@@ -12,7 +12,7 @@ assignees: ''
 ## User-stories 
 Write a user story
 (Also connect it with the kanban project)
-## Definition-of-done
+## Acceptance criteria
 - [ ] Task 1
 - [ ] Task 2
 - [ ] Task 2
