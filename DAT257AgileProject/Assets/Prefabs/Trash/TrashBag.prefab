@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6042829080323119322}
   - component: {fileID: 7433965020610037955}
+  - component: {fileID: 4280939727050352008}
   m_Layer: 0
   m_Name: TrashBag
   m_TagString: Untagged
@@ -84,3 +85,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4280939727050352008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 951709337480037534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00eda25aedcbf6345b7761c684f8b8b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trashScriptableObject: {fileID: 11400000, guid: 7edf8182ae623eb499c067bc8f009867, type: 2}
