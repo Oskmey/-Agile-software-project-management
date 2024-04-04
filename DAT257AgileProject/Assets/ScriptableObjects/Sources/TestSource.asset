@@ -9,12 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 361970fb74199b34c99a5d2daf7d9937, type: 3}
-  m_Name: TrashBag
+  m_Script: {fileID: 11500000, guid: 7ecc9f7c16042e14a9a71ef19b86e438, type: 3}
+  m_Name: TestSource
   m_EditorClassIdentifier: 
-  trashType: 0
-  trashInformation: Trash bag bad for ocean
-  sourcesInformation:
-  - {fileID: 11400000, guid: 78c183dd9a3261f4193df880e2bc9c5a, type: 2}
-  rarity: 5
-  moneyValue: 10
+  sourceName: Test
+  dateAsString: 2023-04-01
+  title: This is a test
+  link: https://this_is_a_test.com
