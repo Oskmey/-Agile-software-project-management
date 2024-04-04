@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class TrashScript : MonoBehaviour
 {
-    [SerializeField] private TrashData trashScriptableObject;
+    [SerializeField] 
+    private TrashData trashScriptableObject;
 
     // Attributes set via the scriptable object
     private TrashType trashType;
@@ -13,14 +14,11 @@ public class TrashScript : MonoBehaviour
     private int rarity;
     private int moneyValue;
 
-    private void Start()
+    // Awake and not Start for it to set the attributes
+    // when the object is created
+    private void Awake()
     {
         IntializeAttributesBasedOnScriptableObject();
-    }
-
-    private void Update()
-    {
-        
     }
 
     private void IntializeAttributesBasedOnScriptableObject()
