@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 4761667138867295379}
   - component: {fileID: 4833948547714040806}
   m_Layer: 5
-  m_Name: NameText
+  m_Name: TrashTypeText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -199,7 +199,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Trash name
+  m_text: Trash type
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -414,7 +414,7 @@ GameObject:
   - component: {fileID: 5491992706885812308}
   - component: {fileID: 7269908843010554308}
   m_Layer: 5
-  m_Name: DescriptionText
+  m_Name: InformationText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -631,7 +631,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd5a9a9bbb211f74c8f91a1be6013bfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trashNameText: {fileID: 4833948547714040806}
-  trashDescriptionText: {fileID: 7269908843010554308}
+  trashTypeText: {fileID: 4833948547714040806}
+  trashInformationText: {fileID: 7269908843010554308}
   trashMoneyValueText: {fileID: 4617936356546997186}
   trashRarityText: {fileID: 2091490784853384430}

@@ -6,22 +6,22 @@ using UnityEngine;
 public class InfoPanelHandler : MonoBehaviour
 {
     [SerializeField]
-    private TextMeshProUGUI trashNameText;
+    private TextMeshProUGUI trashTypeText;
     [SerializeField]
-    private TextMeshProUGUI trashDescriptionText;
+    private TextMeshProUGUI trashInformationText;
     [SerializeField]
     private TextMeshProUGUI trashMoneyValueText;
     [SerializeField]
     private TextMeshProUGUI trashRarityText;
 
-    public void SetTrashNameText(TrashType trashType)
+    public void SetTrashTypeText(TrashType trashType)
     {
-        trashNameText.text = trashType.ToReadableString();
+        trashTypeText.text = trashType.ToReadableString();
     }
 
-    public void SetTrashDescriptionText(string text)
+    public void SetTrashInformationText(string trashInformation)
     {
-        trashDescriptionText.text = text;
+        trashInformationText.text = trashInformation;
     }
 
     public void SetTrashMoneyValueText(int moneyValue)

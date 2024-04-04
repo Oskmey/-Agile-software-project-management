@@ -13,8 +13,8 @@ public class GameplayHudHandler : MonoBehaviour
 
     public void SetTrashInfoPanel(TrashScript trash)
     {
-        infoPanelHandler.SetTrashNameText(trash.TrashType);
-        infoPanelHandler.SetTrashDescriptionText(trash.TrashInformation);
+        infoPanelHandler.SetTrashTypeText(trash.TrashType);
+        infoPanelHandler.SetTrashInformationText(trash.TrashInformation);
         infoPanelHandler.SetTrashMoneyValueText(trash.MoneyValue);
         infoPanelHandler.SetTrashRarityText(trash.Rarity);
     }
