@@ -16,5 +16,5 @@ MonoBehaviour:
   trashInformation: Trash bag bad for ocean
   sourcesInformation:
   - {fileID: 11400000, guid: 78c183dd9a3261f4193df880e2bc9c5a, type: 2}
-  rarity: 5
+  rarity: 0
   moneyValue: 10

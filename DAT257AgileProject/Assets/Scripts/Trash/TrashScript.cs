@@ -11,7 +11,7 @@ public class TrashScript : MonoBehaviour
     private TrashType trashType;
     private string trashInformation;
     private List<SourceData> sourcesInformation;
-    private int rarity;
+    private TrashRarity rarity;
     private int moneyValue;
 
     // Awake and not Start for it to set the attributes
@@ -33,6 +33,6 @@ public class TrashScript : MonoBehaviour
     public TrashType TrashType => trashType;
     public string TrashInformation => trashInformation;
     public IReadOnlyList<SourceData> SourcesInformation => sourcesInformation;
-    public int Rarity => rarity;
+    public TrashRarity Rarity => rarity;
     public int MoneyValue => moneyValue;
 }

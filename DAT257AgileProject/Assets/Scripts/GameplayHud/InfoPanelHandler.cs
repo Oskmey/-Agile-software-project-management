@@ -14,9 +14,9 @@ public class InfoPanelHandler : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI trashRarityText;
 
-    public void SetTrashNameText(string text)
+    public void SetTrashNameText(TrashType trashType)
     {
-        trashNameText.text = text;
+        trashNameText.text = trashType.ToReadableString();
     }
 
     public void SetTrashDescriptionText(string text)
@@ -24,13 +24,13 @@ public class InfoPanelHandler : MonoBehaviour
         trashDescriptionText.text = text;
     }
 
-    public void SetTrashMoneyValueText(string text)
+    public void SetTrashMoneyValueText(int moneyValue)
     {
-        trashMoneyValueText.text = $"Money: {text}";
+        trashMoneyValueText.text = $"Money: {moneyValue}";
     }
 
-    public void SetTrashRarityText(string text)
+    public void SetTrashRarityText(TrashRarity trashRarity)
     {
-        trashRarityText.text = $"Rarity: {text}";
+        trashRarityText.text = $"Rarity: {trashRarity.ToReadableString()}";
     }
 }

@@ -11,13 +11,13 @@ public class TrashData : ScriptableObject
     [SerializeField] 
     private List<SourceData> sourcesInformation;
     [SerializeField] 
-    private int rarity;
+    private TrashRarity rarity;
     [SerializeField] 
     private int moneyValue;
 
     public TrashType TrashType => trashType;
     public string TrashInformation => trashInformation;
     public IReadOnlyList<SourceData> SourcesInformation => sourcesInformation;
-    public int Rarity => rarity;
+    public TrashRarity Rarity => rarity;
     public int MoneyValue => moneyValue;
 }
