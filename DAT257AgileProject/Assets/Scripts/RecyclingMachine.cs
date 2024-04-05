@@ -5,7 +5,7 @@ using UnityEngine;
 public class RecyclingMachine : MonoBehaviour
 {
     private int moneyGenerated;
-    private List<GameObject> trashRecycledList = new List<GameObject>();
+    private List<GameObject> recycledTrashList = new();
     // the recycle machine should accept trash when pressing a button
     // it should generate money when trash is recycled
     // it should log the money generated
@@ -16,11 +16,11 @@ public class RecyclingMachine : MonoBehaviour
     {
         get
         {
-            return trashRecycledList;
+            return recycledTrashList;
         }
         set
         {
-            trashRecycledList = value;
+            recycledTrashList = value;
         }
     }
 
@@ -38,18 +38,30 @@ public class RecyclingMachine : MonoBehaviour
 
     public void Recycle(GameObject trash)
     {
-        // should reject if not trash
+        RecycableTrash recycableTrash = trash.GetComponent<RecycableTrash>();
+        // TODO: should reject if not trash
+        if (recycableTrash == null)
+        {
+            Debug.Log("Not recyclable trash");
+            return;
+        }
+
         Debug.Log("Recycling trash");
-        GenerateMoney(trash);
+
+        GenerateMoney(recycableTrash.trashValue);
         TrashRecycledList.Add(trash);
         Destroy(trash);
     }
 
-    void GenerateMoney(GameObject recycableTrash)
+    void GenerateMoney(int recycableTrashValue)
     {
+        MoneyGenerated += recycableTrashValue;
+        Debug.Log("Money generated: " + recycableTrashValue);
+    }
 
-        int money = 10;
-        MoneyGenerated += money;
-        Debug.Log("Money generated: " + money);
+    // This is a test class to simulate trash
+    public class RecycableTrash : MonoBehaviour
+    {
+        public int trashValue = 10;
     }
 }
