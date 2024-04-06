@@ -23,21 +23,6 @@ public class RecyclingManager : MonoBehaviour
         recyclingMachines = GetRecyclingMachines();
     }
 
-    void Update()
-    {
-        // TODO: Make it so recycling machines can recycle when near them
-        foreach (GameObject recyclingMachine in recyclingMachines)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                // TEMP: Creating trash to recycle
-                GameObject trash = new();
-                trash.AddComponent<RecyclingMachine.RecycableTrash>();
-
-                recyclingMachine.GetComponent<RecyclingMachine>().Recycle(trash);
-            }
-        }
-    }
     public List<GameObject> GetRecyclingMachines()
     {
         List<GameObject> recyclingMachines = new List<GameObject>();

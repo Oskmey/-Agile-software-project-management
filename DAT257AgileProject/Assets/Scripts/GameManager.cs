@@ -20,11 +20,11 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdateMoneyGeneratedText();
+        UpdateMoneyGenerated();
         UpdateRecycledTrashCountText();
     }
 
-    void UpdateMoneyGeneratedText()
+    void UpdateMoneyGenerated()
     {
         moneyGeneratedText.text = "Money Generated: " + recyclingMachineManager.GetTotalGeneratedMoney().ToString();
     }
