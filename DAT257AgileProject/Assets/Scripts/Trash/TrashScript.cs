@@ -9,8 +9,7 @@ public class TrashScript : MonoBehaviour
 
     // Attributes set via the scriptable object
     private TrashType trashType;
-    private string trashInformation;
-    private List<SourceData> sourcesInformation;
+    private List<TrashFactData> sourcesInformation;
     private TrashRarity rarity;
     private int moneyValue;
 
@@ -24,15 +23,13 @@ public class TrashScript : MonoBehaviour
     private void LoadAttributesFromScriptableObject()
     {
         trashType = trashScriptableObject.TrashType;
-        trashInformation = trashScriptableObject.TrashInformation;
-        sourcesInformation = new List<SourceData>(trashScriptableObject.SourcesInformation);
+        sourcesInformation = new List<TrashFactData>(trashScriptableObject.SourcesInformation);
         rarity = trashScriptableObject.Rarity;
         moneyValue = trashScriptableObject.MoneyValue;
     }
 
     public TrashType TrashType => trashType;
-    public string TrashInformation => trashInformation;
-    public IReadOnlyList<SourceData> SourcesInformation => sourcesInformation;
+    public IReadOnlyList<TrashFactData> SourcesInformation => sourcesInformation;
     public TrashRarity Rarity => rarity;
     public int MoneyValue => moneyValue;
 }

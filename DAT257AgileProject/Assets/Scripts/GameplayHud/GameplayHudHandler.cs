@@ -14,7 +14,8 @@ public class GameplayHudHandler : MonoBehaviour
     public void SetTrashInfoPanel(TrashScript trash)
     {
         infoPanelHandler.SetTrashTypeText(trash.TrashType);
-        infoPanelHandler.SetTrashInformationText(trash.TrashInformation);
+        // TODO: Add method to randomly select a fact from the list
+        infoPanelHandler.SetTrashInformationText("fix");
         infoPanelHandler.SetTrashMoneyValueText(trash.MoneyValue);
         infoPanelHandler.SetTrashRarityText(trash.Rarity);
     }
