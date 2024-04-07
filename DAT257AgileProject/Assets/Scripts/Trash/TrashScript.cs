@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,7 @@ public class TrashScript : MonoBehaviour
 
     // Attributes set via the scriptable object
     private TrashType trashType;
-    private List<TrashFactData> sourcesInformation;
+    private List<TrashFactData> trashFacts;
     private TrashRarity rarity;
     private int moneyValue;
 
@@ -23,13 +24,20 @@ public class TrashScript : MonoBehaviour
     private void LoadAttributesFromScriptableObject()
     {
         trashType = trashScriptableObject.TrashType;
-        sourcesInformation = new List<TrashFactData>(trashScriptableObject.SourcesInformation);
+        trashFacts = new List<TrashFactData>(trashScriptableObject.SourcesInformation);
         rarity = trashScriptableObject.Rarity;
         moneyValue = trashScriptableObject.MoneyValue;
     }
 
+    public TrashFactData GetRandomTrashFact()
+    {
+        int randomInteger = UnityEngine.Random.Range(0, trashFacts.Count);
+        TrashFactData randomTrashFact = trashFacts[randomInteger];
+        return randomTrashFact;
+    }
+
     public TrashType TrashType => trashType;
-    public IReadOnlyList<TrashFactData> SourcesInformation => sourcesInformation;
+    public IReadOnlyList<TrashFactData> SourcesInformation => trashFacts;
     public TrashRarity Rarity => rarity;
     public int MoneyValue => moneyValue;
 }

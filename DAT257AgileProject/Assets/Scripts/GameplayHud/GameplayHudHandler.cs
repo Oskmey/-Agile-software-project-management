@@ -13,10 +13,19 @@ public class GameplayHudHandler : MonoBehaviour
 
     public void SetTrashInfoPanel(TrashScript trash)
     {
-        infoPanelHandler.SetTrashTypeText(trash.TrashType);
-        // TODO: Add method to randomly select a fact from the list
-        infoPanelHandler.SetTrashInformationText("fix");
-        infoPanelHandler.SetTrashMoneyValueText(trash.MoneyValue);
-        infoPanelHandler.SetTrashRarityText(trash.Rarity);
+        if (infoPanelHandler != null)
+        {
+            TrashFactData randomTrashFact = trash.GetRandomTrashFact();
+
+            infoPanelHandler.SetTrashTypeText(trash.TrashType);
+            infoPanelHandler.SetTrashInformationText(randomTrashFact.TrashFact);
+            infoPanelHandler.SetTrashMoneyValueText(trash.MoneyValue);
+            infoPanelHandler.SetTrashRarityText(trash.Rarity);
+        } 
+        else
+        {
+            Debug.LogError("InfoPanelHandler is null");
+        }
+
     }
 }
