@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewSourceScriptableObject", menuName = "ScriptableObjects/SourceScriptableObject", order = 2)]
@@ -20,14 +21,22 @@ public class SourceData : ScriptableObject
     [SerializeField]
     private string retrievalDateAsString;
 
+    private static readonly string dateFormat = "dd-MM-yyyy";
+
     public DateTime Date
     {
-        get { return DateTime.Parse(dateAsString); }
+        get
+        {
+            return DateTime.ParseExact(dateAsString, dateFormat, CultureInfo.InvariantCulture);
+        }
     }
 
     public DateTime RetrievalDate
     {
-        get { return DateTime.Parse(retrievalDateAsString); }
+        get
+        {
+            return DateTime.ParseExact(retrievalDateAsString, dateFormat, CultureInfo.InvariantCulture);
+        }
     }
 
     public string SourceName => sourceName;

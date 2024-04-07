@@ -24,7 +24,7 @@ public class TrashScript : MonoBehaviour
     private void LoadAttributesFromScriptableObject()
     {
         trashType = trashScriptableObject.TrashType;
-        trashFacts = new List<TrashFactData>(trashScriptableObject.SourcesInformation);
+        trashFacts = new List<TrashFactData>(trashScriptableObject.TrashFacts);
         rarity = trashScriptableObject.Rarity;
         moneyValue = trashScriptableObject.MoneyValue;
     }
@@ -37,7 +37,7 @@ public class TrashScript : MonoBehaviour
     }
 
     public TrashType TrashType => trashType;
-    public IReadOnlyList<TrashFactData> SourcesInformation => trashFacts;
+    public IReadOnlyList<TrashFactData> TrashFacts => trashFacts;
     public TrashRarity Rarity => rarity;
     public int MoneyValue => moneyValue;
 }

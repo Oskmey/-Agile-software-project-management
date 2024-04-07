@@ -21,6 +21,7 @@ public class GameplayHudHandler : MonoBehaviour
             infoPanelHandler.SetTrashInformationText(randomTrashFact.TrashFact);
             infoPanelHandler.SetTrashMoneyValueText(trash.MoneyValue);
             infoPanelHandler.SetTrashRarityText(trash.Rarity);
+            infoPanelHandler.SetTrashSourcesText(randomTrashFact.SourcesInformation);
         } 
         else
         {

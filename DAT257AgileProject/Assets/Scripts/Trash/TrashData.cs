@@ -14,7 +14,7 @@ public class TrashData : ScriptableObject
     private int moneyValue;
 
     public TrashType TrashType => trashType;
-    public IReadOnlyList<TrashFactData> SourcesInformation => trashFacts;
+    public IReadOnlyList<TrashFactData> TrashFacts => trashFacts;
     public TrashRarity Rarity => rarity;
     public int MoneyValue => moneyValue;
 }
