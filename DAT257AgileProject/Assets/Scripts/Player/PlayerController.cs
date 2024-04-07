@@ -11,6 +11,22 @@ public class PlayerController : MonoBehaviour
     private RecyclingManager recyclingManager;
     private InputAction recycle;
 
+    public PlayerInputActions PlayerControls
+    {
+        get
+        {
+            return playerControls;
+        }
+    }
+
+    public InputAction Recycle
+    {
+        get
+        {
+            return recycle;
+        }
+    }
+
     void Awake()
     {
         recyclingManager = GameObject.FindGameObjectWithTag("Recycling Manager").GetComponent<RecyclingManager>();

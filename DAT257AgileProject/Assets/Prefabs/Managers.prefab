@@ -90,8 +90,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStatsManager: {fileID: 9198498783531149080}
+  recyclingManager: {fileID: 0}
   moneyGeneratedText: {fileID: 0}
   recycledTrashCountText: {fileID: 0}
+  recycleSucessText: {fileID: 0}
 --- !u!1 &6072577512108168834
 GameObject:
   m_ObjectHideFlags: 0

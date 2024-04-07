@@ -6,7 +6,6 @@ using static RecyclingMachine;
 public class RecyclingManager : MonoBehaviour
 {
     private List<RecyclingMachine> recyclingMachines = new();
-    [SerializeField]
     private PlayerStatsManager playerStatsManager;
     private bool trashWasRecycled;
 
@@ -38,6 +37,7 @@ public class RecyclingManager : MonoBehaviour
     {
         TrashWasRecycled = false;
         recyclingMachines = GetRecyclingMachines();
+        playerStatsManager = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatsManager>();
     }
 
     public void RecycleAtNearestMachine(GameObject trash)

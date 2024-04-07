@@ -2,9 +2,11 @@
     "name": "PlayModeTests",
     "rootNamespace": "",
     "references": [
-        "UnityEngine.TestRunner",
+        "Main",
+        "Unity.InputSystem",
+        "Unity.InputSystem.TestFramework",
         "UnityEditor.TestRunner",
-        "Main"
+        "UnityEngine.TestRunner"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
