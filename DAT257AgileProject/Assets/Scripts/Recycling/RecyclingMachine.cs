@@ -4,13 +4,25 @@ using UnityEngine;
 
 public class RecyclingMachine : MonoBehaviour
 {
-    private int moneyGenerated;
     private List<GameObject> recycledTrashList = new();
+    private int moneyGenerated;
+
     // the recycle machine should accept trash when pressing a button
     // it should generate money when trash is recycled
     // it should log the money generated
     // it should log the amount of trash recycled
     // it should log the trash that was recycled or not recycled
+    public int MoneyGenerated
+    {
+        get
+        {
+            return moneyGenerated;
+        }
+        set
+        {
+            moneyGenerated = value;
+        }
+    }
 
     public List<GameObject> TrashRecycledList
     {
@@ -21,18 +33,6 @@ public class RecyclingMachine : MonoBehaviour
         set
         {
             recycledTrashList = value;
-        }
-    }
-
-    public int MoneyGenerated
-    {
-        get
-        {
-            return moneyGenerated;
-        }
-        set
-        {
-            moneyGenerated = value;
         }
     }
 
@@ -54,8 +54,7 @@ public class RecyclingMachine : MonoBehaviour
     }
 
     void GenerateMoney(int recycableTrashValue)
-    {
-        MoneyGenerated += recycableTrashValue;
+    { 
         Debug.Log("Money generated: " + recycableTrashValue);
     }
 

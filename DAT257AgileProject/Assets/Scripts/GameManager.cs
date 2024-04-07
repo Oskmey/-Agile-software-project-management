@@ -5,16 +5,14 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private RecyclingManager recyclingMachineManager;
-    private List<GameObject> recyclingMachines = new();
+    [SerializeField] private PlayerStatsManager playerStatsManager;
     [SerializeField] private TextMeshProUGUI moneyGeneratedText;
     [SerializeField] private TextMeshProUGUI recycledTrashCountText;
 
     // Start is called before the first frame update
     void Start()
     {
-        recyclingMachineManager = GameObject.FindGameObjectWithTag("Recycling Manager").GetComponent<RecyclingManager>();
-        recyclingMachines = recyclingMachineManager.GetRecyclingMachines();
+
     }
 
     // Update is called once per frame
@@ -26,11 +24,11 @@ public class GameManager : MonoBehaviour
 
     void UpdateMoneyGenerated()
     {
-        moneyGeneratedText.text = "Money Generated: " + recyclingMachineManager.GetTotalGeneratedMoney().ToString();
+        moneyGeneratedText.text = "Money Generated: " + playerStatsManager.Money.ToString();
     }
 
     void UpdateRecycledTrashCountText()
     {
-        recycledTrashCountText.text = "Recycling Count: " + recyclingMachineManager.GetRecycledTrashCount().ToString();
+        recycledTrashCountText.text = "Recycling Count: " + playerStatsManager.TrashRecycledList.Count.ToString();
     }
 }

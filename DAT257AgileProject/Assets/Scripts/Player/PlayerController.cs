@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static RecyclingMachine;
 
 public class PlayerController : MonoBehaviour
 {
     private PlayerInputActions playerControls;
-    private InputAction recycle;
+    [SerializeField] 
     private RecyclingManager recyclingManager;
+    private InputAction recycle;
 
     void Awake()
     {
@@ -29,19 +31,8 @@ public class PlayerController : MonoBehaviour
 
     private void RecycleAtNearestMachine(InputAction.CallbackContext context)
     {
-        List<GameObject> recyclingMachines = recyclingManager.GetRecyclingMachines();
-
-        // TODO: Make it so recycling machines can recycle when near them
-        foreach (GameObject recyclingMachine in recyclingMachines)
-        {
-            // TEMP: Creating trash to recycle
-            GameObject trash = new();
-            trash.AddComponent<RecyclingMachine.RecycableTrash>();
-
-            recyclingMachine.GetComponent<RecyclingMachine>().Recycle(trash);
-        }
-
-        Debug.Log("we are recycling");
+        GameObject trash = new();
+        recyclingManager.RecycleAtNearestMachine(trash);
     }
 
     // Update is called once per frame
