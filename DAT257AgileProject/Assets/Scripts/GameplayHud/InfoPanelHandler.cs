@@ -16,12 +16,12 @@ public class InfoPanelHandler : MonoBehaviour
 
     public void SetTrashTypeText(TrashType trashType)
     {
-        trashTypeText.text = trashType.ToReadableString();
+        trashTypeText.text = $"You caught a {trashType.ToReadableString()}";
     }
 
     public void SetTrashInformationText(string trashInformation)
     {
-        trashInformationText.text = trashInformation;
+        trashInformationText.text = $"Did you know {trashInformation}";
     }
 
     public void SetTrashMoneyValueText(int moneyValue)
