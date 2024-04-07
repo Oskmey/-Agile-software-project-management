@@ -18,10 +18,10 @@ public class TrashScript : MonoBehaviour
     // when the object is created
     private void Awake()
     {
-        IntializeAttributesBasedOnScriptableObject();
+        LoadAttributesFromScriptableObject();
     }
 
-    private void IntializeAttributesBasedOnScriptableObject()
+    private void LoadAttributesFromScriptableObject()
     {
         trashType = trashScriptableObject.TrashType;
         trashInformation = trashScriptableObject.TrashInformation;
