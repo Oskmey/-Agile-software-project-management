@@ -118,6 +118,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1898820985549912762}
     m_Modifications:
+    - target: {fileID: 2104287611523587359, guid: aa924479972835f46ad6c152e4e9282e, type: 3}
+      propertyPath: recyclingManager
+      value: 
+      objectReference: {fileID: 6208132556362049380}
     - target: {fileID: 6319926939473160477, guid: aa924479972835f46ad6c152e4e9282e, type: 3}
       propertyPath: m_Name
       value: Managers

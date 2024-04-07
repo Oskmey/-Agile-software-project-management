@@ -6,7 +6,7 @@ public class PlayerStatsManager : MonoBehaviour
 {
     private List<GameObject> recycledTrashList;
     private int money;
-    public List<GameObject> TrashRecycledList
+    public List<GameObject> RecycledTrashList
     {
         get
         {

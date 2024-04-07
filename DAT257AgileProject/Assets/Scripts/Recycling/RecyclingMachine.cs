@@ -4,62 +4,49 @@ using UnityEngine;
 
 public class RecyclingMachine : MonoBehaviour
 {
-    private List<GameObject> recycledTrashList = new();
-    private int moneyGenerated;
-
-    // the recycle machine should accept trash when pressing a button
-    // it should generate money when trash is recycled
-    // it should log the money generated
-    // it should log the amount of trash recycled
-    // it should log the trash that was recycled or not recycled
-    public int MoneyGenerated
+    // TODO: implement interaction range with player
+    private float interactionRange;
+    
+    void Start()
     {
-        get
-        {
-            return moneyGenerated;
-        }
-        set
-        {
-            moneyGenerated = value;
-        }
+        interactionRange = 5f;
     }
 
-    public List<GameObject> TrashRecycledList
+    public float InteractionRange
     {
         get
         {
-            return recycledTrashList;
-        }
-        set
-        {
-            recycledTrashList = value;
+            return interactionRange;
         }
     }
 
     public void Recycle(GameObject trash)
     {
         RecycableTrash recycableTrash = trash.GetComponent<RecycableTrash>();
-        // TODO: should reject if not trash
-        if (recycableTrash == null)
-        {
-            Debug.Log("Not recyclable trash");
-            return;
-        }
 
         Debug.Log("Recycling trash");
+        Debug.Log("Money generated: " + recycableTrash.trashValue);
 
-        GenerateMoney(recycableTrash.trashValue);
-        TrashRecycledList.Add(trash);
         Destroy(trash);
     }
 
-    void GenerateMoney(int recycableTrashValue)
-    { 
-        Debug.Log("Money generated: " + recycableTrashValue);
+    public bool IsPlayerInRange(Vector2 playerPosition)
+    {
+        return Vector2.Distance(playerPosition, transform.position) <= interactionRange;
+    }
+
+    public bool IsTrashRecyclable(GameObject trash)
+    {
+        return trash.GetComponent<RecycableTrash>() != null;
     }
 
     // This is a test class to simulate trash
-    public class RecycableTrash : MonoBehaviour
+    public class RecycableTrash : Trash
+    {
+ 
+    }
+
+    public class Trash : MonoBehaviour
     {
         public int trashValue = 10;
     }

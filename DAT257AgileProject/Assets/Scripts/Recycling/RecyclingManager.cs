@@ -5,11 +5,12 @@ using static RecyclingMachine;
 
 public class RecyclingManager : MonoBehaviour
 {
-    private List<GameObject> recyclingMachines = new();
+    private List<RecyclingMachine> recyclingMachines = new();
     [SerializeField]
     private PlayerStatsManager playerStatsManager;
+    private bool trashWasRecycled;
 
-    public List<GameObject> RecyclingMachines
+    public List<RecyclingMachine> RecyclingMachines
     {
         get
         {
@@ -21,62 +22,66 @@ public class RecyclingManager : MonoBehaviour
         }
     }
 
+    public bool TrashWasRecycled
+    {
+        get
+        {
+            return trashWasRecycled;
+        }
+        set
+        {
+            trashWasRecycled = value;
+        }
+    }
+
     void Start()
     {
+        TrashWasRecycled = false;
         recyclingMachines = GetRecyclingMachines();
     }
 
     public void RecycleAtNearestMachine(GameObject trash)
     {
-        // TODO: add range to recycling machines
-        // TODO: Make it so recycling machines can recycle when near them
-        foreach (GameObject recyclingMachine in recyclingMachines)
+        foreach (RecyclingMachine recyclingMachine in recyclingMachines)
         {
-            // TEMP: Creating trash to recycle
-            trash.AddComponent<RecycableTrash>();
+            // TODO: Make it so player can only recycle trash to nearest recycling machine
+            // if (recyclingMachine.IsPlayerInRange(player.transform.position))
+            {
+                // TEMP: Creating trash to recycle
+                // NOTE: Trash is not recyclable by default, needs to be RecycableTrash
+                trash.AddComponent<RecycableTrash>();
 
-            recyclingMachine.GetComponent<RecyclingMachine>().Recycle(trash);
+                if (recyclingMachine.IsTrashRecyclable(trash)) 
+                {
+                    recyclingMachine.Recycle(trash);
+                    playerStatsManager.Money += trash.GetComponent<RecycableTrash>().trashValue;
+                    playerStatsManager.RecycledTrashList.Add(trash);
+                    TrashWasRecycled = true;
+                }
+                else
+                {
+                    TrashWasRecycled = false;
+                    Debug.Log("Not recyclable trash");
+                }
+            }
+            // else
+            // {
+                // Debug.Log("Player is not in range of recycling machine");
+            // }
         }
-
-        playerStatsManager.TrashRecycledList.Add(trash);
-        playerStatsManager.Money += trash.GetComponent<RecycableTrash>().trashValue;
-
-        Debug.Log("we are recycling");
     }
 
-    public List<GameObject> GetRecyclingMachines()
+    public List<RecyclingMachine> GetRecyclingMachines()
     {
-        List<GameObject> recyclingMachines = new List<GameObject>();
+        List<RecyclingMachine> recyclingMachines = new();
         GameObject[] recycleMachines = GameObject.FindGameObjectsWithTag("Recycle Machine");
-        foreach (GameObject recycleMachine in recycleMachines)
+
+        foreach (GameObject recyclingMachine in recycleMachines)
         {
-            recyclingMachines.Add(recycleMachine);
+            recyclingMachine.GetComponent<RecyclingMachine>();
+            recyclingMachines.Add(recyclingMachine.GetComponent<RecyclingMachine>());
         }
 
         return recyclingMachines;
-    }
-
-    public int GetTotalGeneratedMoney()
-    {
-        int moneyGenerated = 0;
-
-        foreach (GameObject recyclingMachine in recyclingMachines)
-        {
-            moneyGenerated += recyclingMachine.GetComponent<RecyclingMachine>().MoneyGenerated;
-        }
-
-        return moneyGenerated;
-    }
-
-    public int GetRecycledTrashCount()
-    {
-        int recycleCount = 0;
-
-        foreach (GameObject recyclingMachine in recyclingMachines)
-        {
-            recycleCount += recyclingMachine.GetComponent<RecyclingMachine>().TrashRecycledList.Count;
-        }
-
-        return recycleCount;
     }
 }

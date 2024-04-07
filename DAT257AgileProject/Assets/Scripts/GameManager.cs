@@ -5,9 +5,14 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Managers")]
     [SerializeField] private PlayerStatsManager playerStatsManager;
+    [SerializeField] private RecyclingManager recyclingManager;
+    [Header("UI Elements")]
     [SerializeField] private TextMeshProUGUI moneyGeneratedText;
     [SerializeField] private TextMeshProUGUI recycledTrashCountText;
+    [SerializeField] private TextMeshProUGUI recycleSucessText;
+    private int recycledTrashCount;
 
     // Start is called before the first frame update
     void Start()
@@ -18,8 +23,23 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        recycledTrashCount = playerStatsManager.RecycledTrashList.Count;
         UpdateMoneyGenerated();
         UpdateRecycledTrashCountText();
+        UpdateRecycleSucessText();
+    }
+
+    void UpdateRecycleSucessText()
+    {
+        if (recyclingManager.TrashWasRecycled)
+        {
+            recycleSucessText.text = "Recycling Sucess";
+        }
+        else
+        {
+            recycleSucessText.text = "Recycling Failed";
+        }
+
     }
 
     void UpdateMoneyGenerated()
@@ -29,6 +49,6 @@ public class GameManager : MonoBehaviour
 
     void UpdateRecycledTrashCountText()
     {
-        recycledTrashCountText.text = "Recycling Count: " + playerStatsManager.TrashRecycledList.Count.ToString();
+        recycledTrashCountText.text = "Recycled Trash Count: " + recycledTrashCount.ToString();
     }
 }
