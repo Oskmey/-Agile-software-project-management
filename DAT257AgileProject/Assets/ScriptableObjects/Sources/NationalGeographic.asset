@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ecc9f7c16042e14a9a71ef19b86e438, type: 3}
-  m_Name: TestSource
+  m_Name: NationalGeographic
   m_EditorClassIdentifier: 
-  sourceName: Test
-  dateAsString: 2023-04-01
-  title: This is a test
-  link: https://this_is_a_test.com
+  sourceName: Parker L.
+  dateAsString: 21-02-2024
+  title: The world's plastic pollution crisis, explained
+  website: National Geographic
+  link: https://www.nationalgeographic.com/environment/article/plastic-pollution
+  retrievalDateAsString: 07-04-2024

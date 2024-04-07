@@ -13,8 +13,18 @@ MonoBehaviour:
   m_Name: TrashBag
   m_EditorClassIdentifier: 
   trashType: 0
-  trashInformation: Trash bag bad for ocean
-  sourcesInformation:
-  - {fileID: 11400000, guid: 78c183dd9a3261f4193df880e2bc9c5a, type: 2}
+  trashFacts:
+  - {fileID: 11400000, guid: dac7bcb080dc1e44c929c8941c041bb2, type: 2}
+  - {fileID: 11400000, guid: 402ff2bc02ba3ef4fbea94d692f3bdd6, type: 2}
+  - {fileID: 11400000, guid: f4fc2edc62375934b8f4a4aef9a5c826, type: 2}
+  - {fileID: 11400000, guid: 9339d6ca930417c40b16019998f2d868, type: 2}
+  - {fileID: 11400000, guid: 74470956dc7efbc478047c061366dab6, type: 2}
+  - {fileID: 11400000, guid: 5c10469dcebf26e47b02e9292e11be75, type: 2}
+  - {fileID: 11400000, guid: 6e337eb2616f9db48a682d4240786181, type: 2}
+  - {fileID: 11400000, guid: bd85e1f6e5fe34c4f9a33d571622ce17, type: 2}
+  - {fileID: 11400000, guid: b4e80d081a99f394687d2a7d188b5b5c, type: 2}
+  - {fileID: 11400000, guid: 93a06780b0645424e8923e2bbf05b753, type: 2}
+  - {fileID: 11400000, guid: 1bbbed09e611b1644b76b0e678ab406b, type: 2}
+  - {fileID: 11400000, guid: 651d63fa774b6bf42814a9b72d6dcd3e, type: 2}
   rarity: 0
   moneyValue: 10
