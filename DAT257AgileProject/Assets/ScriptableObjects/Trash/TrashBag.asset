@@ -29,3 +29,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 651d63fa774b6bf42814a9b72d6dcd3e, type: 2}
   rarity: 0
   moneyValue: 10
+  isRecyclable: 1

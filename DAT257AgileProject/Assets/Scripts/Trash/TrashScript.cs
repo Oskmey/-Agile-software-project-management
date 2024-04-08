@@ -14,6 +14,7 @@ public class TrashScript : MonoBehaviour
     private List<TrashFactData> trashFacts;
     private TrashRarity rarity;
     private int moneyValue;
+    private bool isRecyclable;
 
     // Awake and not Start for it to set the attributes
     // when the object is created
@@ -29,6 +30,7 @@ public class TrashScript : MonoBehaviour
         trashFacts = new List<TrashFactData>(trashScriptableObject.TrashFacts);
         rarity = trashScriptableObject.Rarity;
         moneyValue = trashScriptableObject.MoneyValue;
+        isRecyclable = trashScriptableObject.IsRecyclable;
     }
 
     public TrashFactData GetRandomTrashFact()
@@ -43,4 +45,5 @@ public class TrashScript : MonoBehaviour
     public IReadOnlyList<TrashFactData> TrashFacts => trashFacts;
     public TrashRarity Rarity => rarity;
     public int MoneyValue => moneyValue;
+    public bool IsRecyclable => isRecyclable;
 }

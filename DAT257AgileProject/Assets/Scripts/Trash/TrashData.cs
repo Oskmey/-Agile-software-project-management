@@ -14,10 +14,13 @@ public class TrashData : ScriptableObject
     private TrashRarity rarity;
     [SerializeField] 
     private int moneyValue;
+    [SerializeField]
+    private bool isRecyclable;
 
     public TrashType TrashType => trashType;
     public TrashCategory TrashCategory => trashCategory;
     public IReadOnlyList<TrashFactData> TrashFacts => trashFacts;
     public TrashRarity Rarity => rarity;
     public int MoneyValue => moneyValue;
+    public bool IsRecyclable => isRecyclable;
 }
