@@ -63,6 +63,13 @@ public class TrashBagTests
         Assert.AreEqual(10, moneyValue);
     }
 
+    [Test]
+    public void TrashBag_GivenRandomTrashFactIsRun_ReturnsTrashFact()
+    {
+        TrashFactData trashFact = trashBagScript.GetRandomTrashFact();
+        Assert.IsNotNull(trashFact);
+    }
+
     [TearDown]
     public void TearDown()
     {
