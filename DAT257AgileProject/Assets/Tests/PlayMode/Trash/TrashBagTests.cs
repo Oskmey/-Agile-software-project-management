@@ -15,7 +15,6 @@ public class TrashBagTests
     [SetUp]
     public void Setup()
     {
-        // Setup
         GameObject trashBagPrefab = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Trash/TrashBag.prefab", typeof(GameObject)) as GameObject;
         trashBagObject = Object.Instantiate(trashBagPrefab);
         trashBagScript = trashBagObject.GetComponent<TrashScript>();
@@ -80,7 +79,6 @@ public class TrashBagTests
     [TearDown]
     public void TearDown()
     {
-        // TearDown
         Object.DestroyImmediate(trashBagObject);
     }
 }
