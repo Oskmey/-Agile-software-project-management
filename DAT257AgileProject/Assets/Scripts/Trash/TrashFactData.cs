@@ -5,8 +5,11 @@ using UnityEngine;
 public class TrashFactData : ScriptableObject
 {
     [TextArea(1, 10)]
+    [Tooltip("Fact about the trash")]
     [SerializeField] 
     private string trashFact;
+
+    [Tooltip("Sources of the trash fact, the sources are scriptable objects")]
     [SerializeField]
     private List<SourceData> sourcesInformation;
 
