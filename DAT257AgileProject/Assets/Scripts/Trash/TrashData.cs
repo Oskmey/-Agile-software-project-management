@@ -6,6 +6,8 @@ public class TrashData : ScriptableObject
 {
     [SerializeField] 
     private TrashType trashType;
+    [SerializeField]
+    private TrashCategory trashCategory;
     [SerializeField] 
     private List<TrashFactData> trashFacts;
     [SerializeField] 
@@ -14,6 +16,7 @@ public class TrashData : ScriptableObject
     private int moneyValue;
 
     public TrashType TrashType => trashType;
+    public TrashCategory TrashCategory => trashCategory;
     public IReadOnlyList<TrashFactData> TrashFacts => trashFacts;
     public TrashRarity Rarity => rarity;
     public int MoneyValue => moneyValue;
