@@ -9,7 +9,7 @@ public class SourceDataTests
 {
     private static readonly SourceData[] sources = Resources.LoadAll<SourceData>("ScriptableObjects");
 
-    public static IEnumerable<TestCaseData> TrashDataTestCases
+    public static IEnumerable<TestCaseData> SourceDataTestCases
     {
         get
         {
@@ -32,31 +32,49 @@ public class SourceDataTests
         Assert.IsNotEmpty(sources);
     }
 
-    [Test, TestCaseSource(nameof(TrashDataTestCases))]
+    [Test, TestCaseSource(nameof(SourceDataTestCases))]
     public void EachSource_HasSourceName(SourceData source)
     {
         Assert.IsNotNull(source.SourceName);
     }
 
-    [Test, TestCaseSource(nameof(TrashDataTestCases))]
+    [Test, TestCaseSource(nameof(SourceDataTestCases))]
+    public void EachSource_HasNonEmptySourceName(SourceData source)
+    {
+        Assert.IsNotEmpty(source.SourceName);
+    }
+
+    [Test, TestCaseSource(nameof(SourceDataTestCases))]
     public void EachSource_HasDate(SourceData source)
     {
         Assert.IsNotNull(source.Date);
     }
 
-    [Test, TestCaseSource(nameof(TrashDataTestCases))]
+    [Test, TestCaseSource(nameof(SourceDataTestCases))]
     public void EachSource_HasTitle(SourceData source)
     {
         Assert.IsNotNull(source.Title);
     }
 
-    [Test, TestCaseSource(nameof(TrashDataTestCases))]
+    [Test, TestCaseSource(nameof(SourceDataTestCases))]
+    public void EachSource_HasNonEmptyTitle(SourceData source)
+    {
+        Assert.IsNotEmpty(source.Title);
+    }
+
+    [Test, TestCaseSource(nameof(SourceDataTestCases))]
     public void EachSource_hasWebsite(SourceData source)
     {
         Assert.IsNotNull(source.Website);
     }
 
-    [Test, TestCaseSource(nameof(TrashDataTestCases))]
+    [Test, TestCaseSource(nameof(SourceDataTestCases))]
+    public void EachSource_hasNonEmptyWebsite(SourceData source)
+    {
+        Assert.IsNotEmpty(source.Website);
+    }
+
+    [Test, TestCaseSource(nameof(SourceDataTestCases))]
     public void EachSource_hasLink(SourceData source)
     {
         Assert.IsNotNull(source.Link);
@@ -72,7 +90,7 @@ public class SourceDataTests
         }
     }
 
-    [Test, TestCaseSource(nameof(TrashDataTestCases))]
+    [Test, TestCaseSource(nameof(SourceDataTestCases))]
     public void EachSource_hasValidLink(SourceData source)
     {
         bool uriCreationResult = Uri.TryCreate(source.Link, UriKind.Absolute, out Uri uriResult);
@@ -83,7 +101,7 @@ public class SourceDataTests
         Assert.IsTrue(isValid, $"Invalid URL: {source.Link}");
     }
 
-    [Test, TestCaseSource(nameof(TrashDataTestCases))]
+    [Test, TestCaseSource(nameof(SourceDataTestCases))]
     public void EachSource_hasRetrievalDate(SourceData source)
     {
         Assert.IsNotNull(source.RetrievalDate);
