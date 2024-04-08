@@ -64,6 +64,13 @@ public class TrashBagTests
     }
 
     [Test]
+    public void TrashBag_IsRecyclable_ReturnsTrue()
+    {
+        bool isRecyclable = trashBagScript.IsRecyclable;
+        Assert.IsTrue(isRecyclable);
+    }
+
+    [Test]
     public void TrashBag_GivenRandomTrashFactIsRun_ReturnsTrashFact()
     {
         TrashFactData trashFact = trashBagScript.GetRandomTrashFact();
