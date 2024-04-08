@@ -22,11 +22,6 @@ public class RecyclingMachine : MonoBehaviour
 
     public void Recycle(GameObject trash)
     {
-        RecycableTrash recycableTrash = trash.GetComponent<RecycableTrash>();
-
-        Debug.Log("Recycling trash");
-        Debug.Log("Money generated: " + recycableTrash.trashValue);
-
         Destroy(trash);
     }
 

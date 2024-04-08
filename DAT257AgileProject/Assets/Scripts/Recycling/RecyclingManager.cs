@@ -61,7 +61,6 @@ public class RecyclingManager : MonoBehaviour
                 else
                 {
                     TrashWasRecycled = false;
-                    Debug.Log("Not recyclable trash");
                 }
             }
             // else

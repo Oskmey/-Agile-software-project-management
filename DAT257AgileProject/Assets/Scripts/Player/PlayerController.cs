@@ -7,7 +7,6 @@ using static RecyclingMachine;
 public class PlayerController : MonoBehaviour
 {
     private PlayerInputActions playerControls;
-    [SerializeField] 
     private RecyclingManager recyclingManager;
     private InputAction recycle;
 

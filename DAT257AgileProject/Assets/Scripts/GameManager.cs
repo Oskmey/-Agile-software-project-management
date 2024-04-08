@@ -24,7 +24,6 @@ public class GameManager : MonoBehaviour
     {
         playerStatsManager = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatsManager>();
         recyclingManager = GameObject.FindGameObjectWithTag("Recycling Manager").GetComponent<RecyclingManager>();
-
     }
 
     // Update is called once per frame
