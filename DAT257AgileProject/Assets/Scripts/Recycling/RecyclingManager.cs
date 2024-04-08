@@ -7,8 +7,20 @@ public class RecyclingManager : MonoBehaviour
 {
     private List<RecyclingMachine> recyclingMachines = new();
     private PlayerStatsManager playerStatsManager;
+    // TEMP: list to store the trash that the player has to recycle
+    private HashSet<GameObject> trashToRecycle;
     private bool trashWasRecycled;
-
+    public HashSet<GameObject> TrashToRecycle
+    {
+        get
+        {
+            return trashToRecycle;
+        }
+        set
+        {
+            trashToRecycle = value;
+        }
+    }
     public List<RecyclingMachine> RecyclingMachines
     {
         get
@@ -33,8 +45,9 @@ public class RecyclingManager : MonoBehaviour
         }
     }
 
-    void Start()
+    void Awake()
     {
+        TrashToRecycle = new();
         TrashWasRecycled = false;
         recyclingMachines = GetRecyclingMachines();
         playerStatsManager = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatsManager>();
@@ -47,15 +60,15 @@ public class RecyclingManager : MonoBehaviour
             // TODO: Make it so player can only recycle trash to nearest recycling machine
             // if (recyclingMachine.IsPlayerInRange(player.transform.position))
             {
-                // TEMP: Creating trash to recycle
                 // NOTE: Trash is not recyclable by default, needs to be RecycableTrash
-                trash.AddComponent<RecycableTrash>();
 
                 if (recyclingMachine.IsTrashRecyclable(trash)) 
                 {
                     recyclingMachine.Recycle(trash);
+               
                     playerStatsManager.Money += trash.GetComponent<RecycableTrash>().trashValue;
                     playerStatsManager.RecycledTrashList.Add(trash);
+                    TrashToRecycle.Remove(trash);
                     TrashWasRecycled = true;
                 }
                 else

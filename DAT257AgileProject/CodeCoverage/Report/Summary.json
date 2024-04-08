@@ -1,34 +1,34 @@
 {
   "summary": {
-    "generatedon": "2024-04-08T17:49:17Z",
+    "generatedon": "2024-04-08T18:46:39Z",
     "parser": "MultiReportParser (16x OpenCoverParser)",
     "assemblies": 3,
     "classes": 9,
     "files": 9,
-    "coveredlines": 169,
-    "uncoveredlines": 126,
-    "coverablelines": 295,
-    "totallines": 715,
-    "linecoverage": 57.2,
+    "coveredlines": 243,
+    "uncoveredlines": 115,
+    "coverablelines": 358,
+    "totallines": 740,
+    "linecoverage": 67.8,
     "coveredbranches": 0,
     "totalbranches": 0,
-    "coveredmethods": 41,
-    "totalmethods": 85,
-    "methodcoverage": 48.2
+    "coveredmethods": 66,
+    "totalmethods": 105,
+    "methodcoverage": 62.8
  },
   "coverage": {
     "assemblies": [
       { "name": "EditModeTests", "classes": 2, "coverage": 100, "coveredlines": 35, "coverablelines": 35, "totallines": 111, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 8, "totalmethods": 8, "classesinassembly": [
         { "name": "NewTestScript", "coverage": 100, "coveredlines": 12, "coverablelines": 12, "totallines": 52, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 3, "totalmethods": 3 },
         { "name": "RecyclingTests", "coverage": 100, "coveredlines": 23, "coverablelines": 23, "totallines": 59, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 5, "totalmethods": 5 } ] },
-      { "name": "Main", "classes": 6, "coverage": 48.6, "coveredlines": 112, "coverablelines": 230, "totallines": 546, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 39.7, "coveredmethods": 29, "totalmethods": 73, "classesinassembly": [
-        { "name": "GameManager", "coverage": 100, "coveredlines": 25, "coverablelines": 25, "totallines": 60, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 5, "totalmethods": 5 },
-        { "name": "PlayerController", "coverage": 62.5, "coveredlines": 15, "coverablelines": 24, "totallines": 58, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 57.1, "coveredmethods": 4, "totalmethods": 7 },
+      { "name": "Main", "classes": 6, "coverage": 62.1, "coveredlines": 181, "coverablelines": 291, "totallines": 572, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 58, "coveredmethods": 54, "totalmethods": 93, "classesinassembly": [
+        { "name": "GameManager", "coverage": 100, "coveredlines": 54, "coverablelines": 54, "totallines": 86, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 11, "totalmethods": 11 },
+        { "name": "PlayerController", "coverage": 84.8, "coveredlines": 28, "coverablelines": 33, "totallines": 45, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 12, "totalmethods": 12 },
         { "name": "PlayerInputActions", "coverage": 13.3, "coveredlines": 14, "coverablelines": 105, "totallines": 255, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 12.1, "coveredmethods": 5, "totalmethods": 41 },
         { "name": "PlayerStatsManager", "coverage": 78.5, "coveredlines": 11, "coverablelines": 14, "totallines": 39, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 83.3, "coveredmethods": 5, "totalmethods": 6 },
         { "name": "RecyclingMachine", "coverage": 62.5, "coveredlines": 10, "coverablelines": 16, "totallines": 48, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 66.6, "coveredmethods": 4, "totalmethods": 6 },
-        { "name": "RecyclingManager", "coverage": 80.4, "coveredlines": 37, "coverablelines": 46, "totallines": 86, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 75, "coveredmethods": 6, "totalmethods": 8 } ] },
-      { "name": "PlayModeTests", "classes": 1, "coverage": 73.3, "coveredlines": 22, "coverablelines": 30, "totallines": 58, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 4, "totalmethods": 4, "classesinassembly": [
-        { "name": "RecyclingTests", "coverage": 73.3, "coveredlines": 22, "coverablelines": 30, "totallines": 58, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 4, "totalmethods": 4 } ] } ]
+        { "name": "RecyclingManager", "coverage": 92.7, "coveredlines": 64, "coverablelines": 69, "totallines": 99, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 17, "totalmethods": 17 } ] },
+      { "name": "PlayModeTests", "classes": 1, "coverage": 84.3, "coveredlines": 27, "coverablelines": 32, "totallines": 57, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 4, "totalmethods": 4, "classesinassembly": [
+        { "name": "RecyclingTests", "coverage": 84.3, "coveredlines": 27, "coverablelines": 32, "totallines": 57, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 4, "totalmethods": 4 } ] } ]
   }
 }

@@ -37,7 +37,6 @@ public class RecyclingTests : InputTestFixture
         // Wait until the scene is fully loaded
         yield return null;
 
-
         playerStatsManager = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatsManager>();
         recyclingManager = GameObject.FindGameObjectWithTag("Recycling Manager").GetComponent<RecyclingManager>();
 
