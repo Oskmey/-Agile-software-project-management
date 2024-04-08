@@ -6,12 +6,17 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [Header("Managers")]
-    [SerializeField] private PlayerStatsManager playerStatsManager;
-    [SerializeField] private RecyclingManager recyclingManager;
+    [SerializeField] 
+    private PlayerStatsManager playerStatsManager;
+    [SerializeField] 
+    private RecyclingManager recyclingManager;
     [Header("UI Elements")]
-    [SerializeField] private TextMeshProUGUI moneyGeneratedText;
-    [SerializeField] private TextMeshProUGUI recycledTrashCountText;
-    [SerializeField] private TextMeshProUGUI recycleSucessText;
+    [SerializeField] 
+    private TextMeshProUGUI moneyGeneratedText;
+    [SerializeField] 
+    private TextMeshProUGUI recycledTrashCountText;
+    [SerializeField] 
+    private TextMeshProUGUI recycleSucessText;
     private int recycledTrashCount;
 
     // Start is called before the first frame update
