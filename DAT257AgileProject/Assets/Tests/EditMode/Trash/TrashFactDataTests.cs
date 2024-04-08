@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 
 [TestFixture]
-public class TrashFactTests
+public class TrashFactDataTests
 {
     private static readonly TrashFactData[] trashFacts = Resources.LoadAll<TrashFactData>("ScriptableObjects");
 
