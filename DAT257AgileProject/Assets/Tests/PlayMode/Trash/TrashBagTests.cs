@@ -11,11 +11,12 @@ public class TrashBagTests
 {
     private GameObject trashBagObject;
     private TrashScript trashBagScript;
+    private static readonly string trashBagPrefabPath = "Assets/Prefabs/Trash/TrashBag.prefab";
 
     [SetUp]
     public void Setup()
     {
-        GameObject trashBagPrefab = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Trash/TrashBag.prefab", typeof(GameObject)) as GameObject;
+        GameObject trashBagPrefab = AssetDatabase.LoadAssetAtPath(trashBagPrefabPath, typeof(GameObject)) as GameObject;
         trashBagObject = Object.Instantiate(trashBagPrefab);
         trashBagScript = trashBagObject.GetComponent<TrashScript>();
     }

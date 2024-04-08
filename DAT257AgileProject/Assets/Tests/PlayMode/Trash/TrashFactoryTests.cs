@@ -7,11 +7,12 @@ public class TrashFactoryTests
 {
     private GameObject trashHandlerObject;
     private TrashFactory trashFactory;
+    private static readonly string trashHandlerPrefabPath = "Assets/Prefabs/Utility/TrashHandler.prefab";
 
     [SetUp]
     public void Setup()
     {
-        GameObject trashHandlerPrefab = AssetDatabase.LoadAssetAtPath("Assets/Prefabs/Utility/TrashHandler.prefab", typeof(GameObject)) as GameObject;
+        GameObject trashHandlerPrefab = AssetDatabase.LoadAssetAtPath(trashHandlerPrefabPath, typeof(GameObject)) as GameObject;
         trashHandlerObject = Object.Instantiate(trashHandlerPrefab);
         trashFactory = trashHandlerObject.GetComponent<TrashFactory>();
     }
