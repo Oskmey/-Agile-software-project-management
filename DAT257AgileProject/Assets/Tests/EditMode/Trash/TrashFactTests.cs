@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [TestFixture]
@@ -42,4 +43,34 @@ public class TrashFactTests
     {
         Assert.IsNotNull(trashFact.SourcesInformation);
     }
+
+    [Test, TestCaseSource(nameof(TrashFactTestCases))]
+    public void EachTrashFact_HasAtLeastOneSource(TrashFactData trashFact)
+    {
+        Assert.IsNotEmpty(trashFact.SourcesInformation);
+    }
+
+    [Test, TestCaseSource(nameof(TrashFactTestCases))]
+    public void EachTrashFact_EndsWithQuestionMark(TrashFactData trashFact)
+    {
+        Assert.IsTrue(trashFact.TrashFact.EndsWith("?"));
+    }
+
+    [Test, TestCaseSource(nameof(TrashFactTestCases))]
+    public void EachTrashFact_StartsWithLowerCase(TrashFactData trashFact)
+    {
+        Assert.IsTrue(char.IsLower(trashFact.TrashFact[0]));
+    }
+
+    [Test, TestCaseSource(nameof(TrashFactTestCases))]
+    public void EachTrashFact_HasAtLeastOneWord(TrashFactData trashFact)
+    {
+        Assert.IsTrue(trashFact.TrashFact.Contains(" "));
+    }
+
+    [Test, TestCaseSource(nameof(TrashFactTestCases))]
+    public void EachTrashFact_HasAtLeastOneLetter(TrashFactData trashFact)
+    {
+        Assert.IsTrue(trashFact.TrashFact.Any(char.IsLetter));
+    }    
 }
