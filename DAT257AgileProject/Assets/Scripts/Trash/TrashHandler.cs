@@ -35,15 +35,45 @@ public class TrashHandler : MonoBehaviour
         currentTrashObject = TrashFactory.CreateTrash(trashType);
         currentTrashObject.transform.position = position;
         TrashScript currentTrashScript = currentTrashObject.GetComponent<TrashScript>();
-        gameplayHudHandler.ShowTrashInfoHandler(currentTrashScript);
+
+        if (gameplayHudHandler != null)
+        {
+            gameplayHudHandler.ShowTrashInfoHandler(currentTrashScript);
+        } 
+        else
+        {
+            Debug.LogError("GameplayHudHandler not found.");
+        }
     }
 
     public void DestroyTrash()
     {
-        gameplayHudHandler.HideTrashInfoHandler();
+        if (gameplayHudHandler != null)
+        {
+            gameplayHudHandler.HideTrashInfoHandler();
+        }
+        else
+        {
+            Debug.LogError("GameplayHudHandler not found.");
+        }
+        
         if (currentTrashObject != null)
         {
             Destroy(currentTrashObject);
         }
+    }
+
+    public GameObject CurrentTrashObject => currentTrashObject;
+
+    // Methods for testing
+    // FindObjectOfType and similar methods don't work as expected in tests
+    // But will work if you add a delay before calling them
+    // I think the loop is unnecessary, but it's there to make sure the object is found
+    public void TryFindGameplayHudHandler()
+    {
+        do
+        {
+            gameplayHudHandler = FindObjectOfType<GameplayHudHandler>();
+        } while (gameplayHudHandler == null);
     }
 }

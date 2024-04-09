@@ -9,7 +9,7 @@ public class GameplayHudHandler : MonoBehaviour
 
     private void Start()
     {
-        infoPanelHandler = FindObjectOfType<InfoPanelHandler>();
+        infoPanelHandler = GetComponentInChildren<InfoPanelHandler>();
         infoPanelHandler.gameObject.SetActive(false);
     }
 
@@ -40,5 +40,14 @@ public class GameplayHudHandler : MonoBehaviour
         {
             Debug.LogError("InfoPanelHandler is null");
         }
+    }
+
+    // Methods for testing
+    public void TryFindInfoPanel()
+    {
+        do
+        {
+            infoPanelHandler = GetComponentInChildren<InfoPanelHandler>();
+        } while (infoPanelHandler == null);
     }
 }
