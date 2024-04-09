@@ -14,6 +14,6 @@ public class TempCodeRunner : MonoBehaviour
         GameObject trash = TrashFactory.CreateTrash(TrashType.TrashBag);
         trash.transform.position = new Vector2(-2, -2);
         trashScript = trash.GetComponent<TrashScript>();
-        gameplayHudHandler.SetTrashInfoPanel(trashScript);
+        gameplayHudHandler.ShowTrashInfoHandler(trashScript);
     }
 }

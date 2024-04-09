@@ -34,7 +34,7 @@
             "id": "475867ca-65f4-4138-b7b1-4d1599730c97",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "HideTrashInfoPanel",
                     "type": "Button",
                     "id": "43ba200c-8794-4bbb-9c45-d4dc049c71d9",
                     "expectedControlType": "",
@@ -47,11 +47,11 @@
                 {
                     "name": "",
                     "id": "d31be826-bb0b-4fcd-b0f7-a385d59c1642",
-                    "path": "",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "HideTrashInfoPanel",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
