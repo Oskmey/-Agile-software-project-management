@@ -32,11 +32,11 @@ public class RecyclingMachine : MonoBehaviour
 
     public bool IsTrashRecyclable(GameObject trash)
     {
-        return trash.GetComponent<RecycableTrash>() != null;
+        return trash.GetComponent<RecyclableTrash>() != null;
     }
 
     // This is a test class to simulate trash
-    public class RecycableTrash : Trash
+    public class RecyclableTrash : Trash
     {
  
     }

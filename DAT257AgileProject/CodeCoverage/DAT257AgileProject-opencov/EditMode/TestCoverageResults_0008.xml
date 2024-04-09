@@ -25,17 +25,17 @@
               <Name>System.Boolean RecyclingMachine::IsTrashRecyclable(UnityEngine.GameObject)</Name>
               <FileRef uid="5" />
               <SequencePoints>
-                <SequencePoint vc="1" uspid="3667" ordinal="0" offset="0" sl="34" sc="5" el="34" ec="5" bec="0" bev="0" fileid="5">
+                <SequencePoint vc="1" uspid="2883" ordinal="0" offset="0" sl="34" sc="5" el="34" ec="5" bec="0" bev="0" fileid="5">
                   <TrackedMethodRefs>
                     <TrackedMethodRef uid="0" vc="1" />
                   </TrackedMethodRefs>
                 </SequencePoint>
-                <SequencePoint vc="1" uspid="3668" ordinal="0" offset="1" sl="35" sc="9" el="35" ec="9" bec="0" bev="0" fileid="5">
+                <SequencePoint vc="1" uspid="2884" ordinal="0" offset="1" sl="35" sc="9" el="35" ec="9" bec="0" bev="0" fileid="5">
                   <TrackedMethodRefs>
                     <TrackedMethodRef uid="0" vc="1" />
                   </TrackedMethodRefs>
                 </SequencePoint>
-                <SequencePoint vc="1" uspid="3669" ordinal="0" offset="16" sl="36" sc="5" el="36" ec="5" bec="0" bev="0" fileid="5">
+                <SequencePoint vc="1" uspid="2885" ordinal="0" offset="16" sl="36" sc="5" el="36" ec="5" bec="0" bev="0" fileid="5">
                   <TrackedMethodRefs>
                     <TrackedMethodRef uid="0" vc="1" />
                   </TrackedMethodRefs>
@@ -51,11 +51,11 @@
           <Methods>
             <Method visited="true" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="100.0" branchCoverage="0" crapScore="0" isConstructor="true" isStatic="false" isGetter="false" isSetter="false">
               <Summary numSequencePoints="1" visitedSequencePoints="1" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="100.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="1" numMethods="1" />
-              <MetadataToken>100663380</MetadataToken>
+              <MetadataToken>100663377</MetadataToken>
               <Name>RecyclingMachine/Trash::Trash()</Name>
               <FileRef uid="5" />
               <SequencePoints>
-                <SequencePoint vc="1" uspid="3815" ordinal="0" offset="0" sl="46" sc="9" el="46" ec="9" bec="0" bev="0" fileid="5">
+                <SequencePoint vc="1" uspid="3021" ordinal="0" offset="0" sl="46" sc="9" el="46" ec="9" bec="0" bev="0" fileid="5">
                   <TrackedMethodRefs>
                     <TrackedMethodRef uid="0" vc="1" />
                   </TrackedMethodRefs>
@@ -67,7 +67,7 @@
         </Class>
       </Classes>
       <TrackedMethods>
-        <TrackedMethod uid="0" token="100663304" name="System.Void RecyclingTests::Recycling_GivenRecycableTrash_ReturnsTrue()" strategy="Test" />
+        <TrackedMethod uid="0" token="100663304" name="System.Void RecyclingTests::Recycling_GivenRecylcableTrash_ReturnsTrue()" strategy="Test" />
       </TrackedMethods>
     </Module>
     <Module>
@@ -89,27 +89,27 @@
               <Name>System.Void RecyclingTests::Setup()</Name>
               <FileRef uid="8" />
               <SequencePoints>
-                <SequencePoint vc="1" uspid="3825" ordinal="0" offset="0" sl="12" sc="5" el="12" ec="5" bec="0" bev="0" fileid="8">
+                <SequencePoint vc="1" uspid="3031" ordinal="0" offset="0" sl="12" sc="5" el="12" ec="5" bec="0" bev="0" fileid="8">
                   <TrackedMethodRefs>
                     <TrackedMethodRef uid="1" vc="1" />
                   </TrackedMethodRefs>
                 </SequencePoint>
-                <SequencePoint vc="1" uspid="3826" ordinal="0" offset="1" sl="13" sc="9" el="13" ec="9" bec="0" bev="0" fileid="8">
+                <SequencePoint vc="1" uspid="3032" ordinal="0" offset="1" sl="13" sc="9" el="13" ec="9" bec="0" bev="0" fileid="8">
                   <TrackedMethodRefs>
                     <TrackedMethodRef uid="1" vc="1" />
                   </TrackedMethodRefs>
                 </SequencePoint>
-                <SequencePoint vc="1" uspid="3827" ordinal="0" offset="7" sl="14" sc="9" el="14" ec="9" bec="0" bev="0" fileid="8">
+                <SequencePoint vc="1" uspid="3033" ordinal="0" offset="7" sl="14" sc="9" el="14" ec="9" bec="0" bev="0" fileid="8">
                   <TrackedMethodRefs>
                     <TrackedMethodRef uid="1" vc="1" />
                   </TrackedMethodRefs>
                 </SequencePoint>
-                <SequencePoint vc="1" uspid="3828" ordinal="0" offset="14" sl="15" sc="9" el="15" ec="9" bec="0" bev="0" fileid="8">
+                <SequencePoint vc="1" uspid="3034" ordinal="0" offset="14" sl="15" sc="9" el="15" ec="9" bec="0" bev="0" fileid="8">
                   <TrackedMethodRefs>
                     <TrackedMethodRef uid="1" vc="1" />
                   </TrackedMethodRefs>
                 </SequencePoint>
-                <SequencePoint vc="1" uspid="3829" ordinal="0" offset="26" sl="16" sc="5" el="16" ec="5" bec="0" bev="0" fileid="8">
+                <SequencePoint vc="1" uspid="3035" ordinal="0" offset="26" sl="16" sc="5" el="16" ec="5" bec="0" bev="0" fileid="8">
                   <TrackedMethodRefs>
                     <TrackedMethodRef uid="1" vc="1" />
                   </TrackedMethodRefs>
@@ -123,17 +123,17 @@
               <Name>System.Void RecyclingTests::TearDown()</Name>
               <FileRef uid="8" />
               <SequencePoints>
-                <SequencePoint vc="1" uspid="3830" ordinal="0" offset="0" sl="19" sc="5" el="19" ec="5" bec="0" bev="0" fileid="8">
+                <SequencePoint vc="1" uspid="3036" ordinal="0" offset="0" sl="19" sc="5" el="19" ec="5" bec="0" bev="0" fileid="8">
                   <TrackedMethodRefs>
                     <TrackedMethodRef uid="1" vc="1" />
                   </TrackedMethodRefs>
                 </SequencePoint>
-                <SequencePoint vc="1" uspid="3831" ordinal="0" offset="1" sl="20" sc="9" el="20" ec="9" bec="0" bev="0" fileid="8">
+                <SequencePoint vc="1" uspid="3037" ordinal="0" offset="1" sl="20" sc="9" el="20" ec="9" bec="0" bev="0" fileid="8">
                   <TrackedMethodRefs>
                     <TrackedMethodRef uid="1" vc="1" />
                   </TrackedMethodRefs>
                 </SequencePoint>
-                <SequencePoint vc="1" uspid="3832" ordinal="0" offset="13" sl="21" sc="5" el="21" ec="5" bec="0" bev="0" fileid="8">
+                <SequencePoint vc="1" uspid="3038" ordinal="0" offset="13" sl="21" sc="5" el="21" ec="5" bec="0" bev="0" fileid="8">
                   <TrackedMethodRefs>
                     <TrackedMethodRef uid="1" vc="1" />
                   </TrackedMethodRefs>
@@ -144,35 +144,35 @@
             <Method visited="true" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="100.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="false" isSetter="false">
               <Summary numSequencePoints="6" visitedSequencePoints="6" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="100.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="1" numMethods="1" />
               <MetadataToken>100663304</MetadataToken>
-              <Name>System.Void RecyclingTests::Recycling_GivenRecycableTrash_ReturnsTrue()</Name>
+              <Name>System.Void RecyclingTests::Recycling_GivenRecylcableTrash_ReturnsTrue()</Name>
               <FileRef uid="8" />
               <SequencePoints>
-                <SequencePoint vc="1" uspid="3839" ordinal="0" offset="0" sl="38" sc="5" el="38" ec="5" bec="0" bev="0" fileid="8">
+                <SequencePoint vc="1" uspid="3045" ordinal="0" offset="0" sl="38" sc="5" el="38" ec="5" bec="0" bev="0" fileid="8">
                   <TrackedMethodRefs>
                     <TrackedMethodRef uid="1" vc="1" />
                   </TrackedMethodRefs>
                 </SequencePoint>
-                <SequencePoint vc="1" uspid="3840" ordinal="0" offset="1" sl="40" sc="9" el="40" ec="9" bec="0" bev="0" fileid="8">
+                <SequencePoint vc="1" uspid="3046" ordinal="0" offset="1" sl="40" sc="9" el="40" ec="9" bec="0" bev="0" fileid="8">
                   <TrackedMethodRefs>
                     <TrackedMethodRef uid="1" vc="1" />
                   </TrackedMethodRefs>
                 </SequencePoint>
-                <SequencePoint vc="1" uspid="3841" ordinal="0" offset="7" sl="41" sc="9" el="41" ec="9" bec="0" bev="0" fileid="8">
+                <SequencePoint vc="1" uspid="3047" ordinal="0" offset="7" sl="41" sc="9" el="41" ec="9" bec="0" bev="0" fileid="8">
                   <TrackedMethodRefs>
                     <TrackedMethodRef uid="1" vc="1" />
                   </TrackedMethodRefs>
                 </SequencePoint>
-                <SequencePoint vc="1" uspid="3842" ordinal="0" offset="14" sl="44" sc="9" el="44" ec="9" bec="0" bev="0" fileid="8">
+                <SequencePoint vc="1" uspid="3048" ordinal="0" offset="14" sl="44" sc="9" el="44" ec="9" bec="0" bev="0" fileid="8">
                   <TrackedMethodRefs>
                     <TrackedMethodRef uid="1" vc="1" />
                   </TrackedMethodRefs>
                 </SequencePoint>
-                <SequencePoint vc="1" uspid="3843" ordinal="0" offset="27" sl="47" sc="9" el="47" ec="9" bec="0" bev="0" fileid="8">
+                <SequencePoint vc="1" uspid="3049" ordinal="0" offset="27" sl="47" sc="9" el="47" ec="9" bec="0" bev="0" fileid="8">
                   <TrackedMethodRefs>
                     <TrackedMethodRef uid="1" vc="1" />
                   </TrackedMethodRefs>
                 </SequencePoint>
-                <SequencePoint vc="1" uspid="3844" ordinal="0" offset="34" sl="48" sc="5" el="48" ec="5" bec="0" bev="0" fileid="8">
+                <SequencePoint vc="1" uspid="3050" ordinal="0" offset="34" sl="48" sc="5" el="48" ec="5" bec="0" bev="0" fileid="8">
                   <TrackedMethodRefs>
                     <TrackedMethodRef uid="1" vc="1" />
                   </TrackedMethodRefs>
@@ -184,7 +184,7 @@
         </Class>
       </Classes>
       <TrackedMethods>
-        <TrackedMethod uid="1" token="100663304" name="System.Void RecyclingTests::Recycling_GivenRecycableTrash_ReturnsTrue()" strategy="Test" />
+        <TrackedMethod uid="1" token="100663304" name="System.Void RecyclingTests::Recycling_GivenRecylcableTrash_ReturnsTrue()" strategy="Test" />
       </TrackedMethods>
     </Module>
   </Modules>

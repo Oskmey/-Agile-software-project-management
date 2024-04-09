@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < amount; i++)
         {
             GameObject gameObject = new GameObject();
-            gameObject.AddComponent<RecyclingMachine.RecycableTrash>();
+            gameObject.AddComponent<RecyclingMachine.RecyclableTrash>();
             recyclingManager.TrashToRecycle.Add(gameObject);
         }
     }
@@ -59,14 +59,14 @@ public class GameManager : MonoBehaviour
 
     void UpdateTrashLeftText()
     {
-        recycleTrashLeftText.text = "Recycable trash Left: " + recyclingManager.TrashToRecycle.Count;
+        recycleTrashLeftText.text = "Recylcable trash Left: " + recyclingManager.TrashToRecycle.Count;
     }
 
     void UpdateRecycleSucessText()
     {
         if (recyclingManager.TrashWasRecycled)
         {
-            recycleSucessText.text = "Recycling Sucess";
+            recycleSucessText.text = "Recycling Success";
         }
         else if(!recyclingManager.TrashWasRecycled)
         {
