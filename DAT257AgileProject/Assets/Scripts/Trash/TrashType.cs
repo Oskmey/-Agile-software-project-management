@@ -3,7 +3,9 @@ using System;
 public enum TrashType
 {
     TrashBag,
-    PlaceHolderName // remove after adding new trash types
+    PETBottle,
+    ElectricScooter,
+    CigaretteButt
 }
 
 public static class TrashTypeExtensions
@@ -14,8 +16,12 @@ public static class TrashTypeExtensions
         {
             case TrashType.TrashBag:
                 return "Trash Bag";
-            case TrashType.PlaceHolderName:
-                return "Change this!";
+            case TrashType.PETBottle:
+                return "PET Bottle";
+            case TrashType.ElectricScooter:
+                return "Electric Scooter";
+            case TrashType.CigaretteButt:
+                return "Cigarette Butt";
             default:
                 throw new ArgumentOutOfRangeException(nameof(trashType), trashType, $"Trash type not found {trashType}");
         }
