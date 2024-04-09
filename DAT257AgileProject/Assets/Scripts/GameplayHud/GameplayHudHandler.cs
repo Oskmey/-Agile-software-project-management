@@ -6,24 +6,11 @@ using UnityEngine.InputSystem;
 public class GameplayHudHandler : MonoBehaviour
 {
     private InfoPanelHandler infoPanelHandler;
-    private PlayerInput UIPlayerInput;
-    // Not necessary to have, but is nice to have.
-    private InputAction hideTrashInfoPanelAction;
 
     private void Start()
     {
         infoPanelHandler = FindObjectOfType<InfoPanelHandler>();
         infoPanelHandler.gameObject.SetActive(false);
-        UIPlayerInput = FindObjectOfType<PlayerInput>();
-        hideTrashInfoPanelAction = UIPlayerInput.actions["HideTrashInfoPanel"];
-    }
-
-    private void Update()
-    {
-        if (hideTrashInfoPanelAction.triggered)
-        {
-            HideTrashInfoHandler();
-        }
     }
 
     public void ShowTrashInfoHandler(TrashScript trash)

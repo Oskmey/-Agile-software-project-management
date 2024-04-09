@@ -78,6 +78,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "TempPlayer",
+            "id": "74096a4c-14cb-4cba-b4ce-44d26b629a3a",
+            "actions": [
+                {
+                    "name": "Fish",
+                    "type": "Button",
+                    "id": "eb7be4b5-b87f-4282-a268-f7b4cd96c542",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a3d2b838-f43f-41b3-8db4-a7171b449213",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Fish",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
