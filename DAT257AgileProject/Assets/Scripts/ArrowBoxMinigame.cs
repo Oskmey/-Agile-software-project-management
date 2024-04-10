@@ -55,7 +55,7 @@ public class ArrowBoxMinigame : MonoBehaviour, IMinigame
         box = Instantiate(boxPrefab);
         blueBoxController = box.GetComponent<BlueBoxController>();
 
-        tutorialText.GetComponent<TextMeshProUGUI>().text = "press spacebar to catch";
+        tutorialText.GetComponent<TextMeshProUGUI>().text = "Press SPACEBAR to catch";
     }
 
     public void DestroyMinigame() // Runs on both "Success" and "Very Bad!"
