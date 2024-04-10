@@ -21,7 +21,7 @@ public class RecyclingTests
     }
     // A Test behaves as an ordinary method
     [Test]
-    public void Recycling_GivenNonRecycableTrash_ReturnsFalse()
+    public void Recycling_GivenNonRecylcableTrash_ReturnsFalse()
     {
         // Assign
         GameObject trash = new();
@@ -34,11 +34,11 @@ public class RecyclingTests
         Assert.IsFalse(isRecycable);
     }
     [Test]
-    public void Recycling_GivenRecycableTrash_ReturnsTrue()
+    public void Recycling_GivenRecylcableTrash_ReturnsTrue()
     {
         // Assign
         GameObject trash = new();
-        trash.AddComponent<RecyclingMachine.RecycableTrash>();
+        trash.AddComponent<RecyclingMachine.RecyclableTrash>();
 
         // Act
         bool isRecycable = recyclingMachine.IsTrashRecyclable(trash);

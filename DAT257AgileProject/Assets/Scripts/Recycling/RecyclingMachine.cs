@@ -22,11 +22,6 @@ public class RecyclingMachine : MonoBehaviour
 
     public void Recycle(GameObject trash)
     {
-        RecycableTrash recycableTrash = trash.GetComponent<RecycableTrash>();
-
-        Debug.Log("Recycling trash");
-        Debug.Log("Money generated: " + recycableTrash.trashValue);
-
         Destroy(trash);
     }
 
@@ -37,11 +32,11 @@ public class RecyclingMachine : MonoBehaviour
 
     public bool IsTrashRecyclable(GameObject trash)
     {
-        return trash.GetComponent<RecycableTrash>() != null;
+        return trash.GetComponent<RecyclableTrash>() != null;
     }
 
     // This is a test class to simulate trash
-    public class RecycableTrash : Trash
+    public class RecyclableTrash : Trash
     {
  
     }

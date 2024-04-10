@@ -18,6 +18,17 @@
             "bindings": [
                 {
                     "name": "",
+                    "id": "e41493f5-c8ea-400a-ab6d-fa5f83ac99b0",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Recycle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "a18099f6-e12e-4813-b5cf-874d556717d8",
                     "path": "<Keyboard>/space",
                     "interactions": "",
