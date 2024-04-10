@@ -22,21 +22,6 @@ public class BlueBoxController : MonoBehaviour
     void Update()
     {
         moveBox();
-
-        // I want this part to be in ArrowBoxMinigame, how the f*** do I do that, tried using the getter for isColliding but can't get
-        // it to work. AAAHAHHHGG, please help.
-        if (Input.GetKeyDown(KeyCode.Space))    
-        {
-            if (isColliding)
-            {
-                Debug.Log("Succes");
-            }
-            else
-            {
-                Debug.Log("Very bad!");               
-            }
-            //DestroyMinigame();
-        }
     }
 
     private void moveBox()
@@ -66,7 +51,7 @@ public class BlueBoxController : MonoBehaviour
         }
     }
 
-    private bool BoxIsColliding()
+    public bool BoxIsColliding()
     {
         return isColliding;
     }

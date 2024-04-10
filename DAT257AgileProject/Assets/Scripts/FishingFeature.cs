@@ -31,7 +31,8 @@ public class FishingFeature : MonoBehaviour
     void Update()
     {
         if (!isPlaying) 
-        { 
+        {
+            GetComponent<SpriteRenderer>().sprite = fishingSprite1;
             elapsedTime += Time.deltaTime;
 
             if (elapsedTime >= delayTime) 
