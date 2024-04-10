@@ -11,6 +11,7 @@ public class RecyclingTests : InputTestFixture
 {
     private RecyclingManager recyclingManager;
     private PlayerStatsManager playerStatsManager;
+    private TrashHandler trashHandler;
     private PlayerInput playerInput;
     private Keyboard keyboard;
     private static readonly string trashBagPrefabPath = "Assets/Prefabs/Trash/TrashBag.prefab";
@@ -41,13 +42,23 @@ public class RecyclingTests : InputTestFixture
 
         playerStatsManager = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatsManager>();
         recyclingManager = GameObject.FindGameObjectWithTag("Recycling Manager").GetComponent<RecyclingManager>();
+        trashHandler = GameObject.FindAnyObjectByType<TrashHandler>();
 
-        GameObject trashBagPrefab = AssetDatabase.LoadAssetAtPath(trashBagPrefabPath, typeof(GameObject)) as GameObject;
-        GameObject trashBagObject = Object.Instantiate(trashBagPrefab);
-        TrashScript trashBagScript = trashBagObject.GetComponent<TrashScript>();
+        //GameObject trashBagPrefab = AssetDatabase.LoadAssetAtPath(trashBagPrefabPath, typeof(GameObject)) as GameObject;
+        //GameObject trashBagObject = Object.Instantiate(trashBagPrefab);
+        //TrashScript trashBagScript = trashBagObject.GetComponent<TrashScript>();
 
-        recyclingManager.AddTrashToRecycle(trashBagScript);
-        recyclingManager.AddTrashToRecycle(trashBagScript);
+        //recyclingManager.AddTrashToRecycle(trashBagScript);
+        //recyclingManager.AddTrashToRecycle(trashBagScript);
+        trashHandler.CreateTrash(TrashType.TrashBag);
+        yield return null;
+        PressAndRelease(keyboard.zKey);
+        yield return null;
+        trashHandler.CreateTrash(TrashType.TrashBag);
+        yield return null;
+        PressAndRelease(keyboard.zKey);
+        yield return null;
+
         Debug.Log(recyclingManager.TrashToRecycle.Count);
 
         PressAndRelease(keyboard.rKey);

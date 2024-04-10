@@ -11,5 +11,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RecyclingTest.unity
     guid: 2947948faad3e1c48bbdafddbea038dd
+  - enabled: 1
+    path: Assets/Scenes/David's Trash Scene.unity
+    guid: aefe0b399f64c854c8304a2ab42df3ab
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: d6756452ac383fd41805ec29c01212ec, type: 3}
