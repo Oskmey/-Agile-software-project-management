@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Arrow
+  - TutorialText
+  - Recycle Machine
+  - Recycling Manager
   layers:
   - Default
   - TransparentFX
@@ -38,6 +42,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 3192734171
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
