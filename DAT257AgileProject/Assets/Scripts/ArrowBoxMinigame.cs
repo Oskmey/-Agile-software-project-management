@@ -9,13 +9,15 @@ public class ArrowBoxMinigame : MonoBehaviour, IMinigame
     [SerializeField] GameObject boxPrefab;
     [SerializeField] GameObject tutorialText;
 
+    MinigameType minigameType = MinigameType.ArrowBoxMinigame;
+
     GameObject arrow;
     GameObject box;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartMinigame();
     }
 
     // Update is called once per frame

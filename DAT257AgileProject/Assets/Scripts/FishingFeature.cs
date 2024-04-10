@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class FishingFeature : MonoBehaviour
 {
-    [SerializeField] private ArrowBoxMinigame fishingMinigame;
+    [SerializeField] private ArrowBoxMinigame arrowBoxMinigame;
     [SerializeField] private Sprite fishingSprite1, fishingSprite2;
     [SerializeField] private GameObject exclamationMarkPrefab;
     [SerializeField] private GameObject trashPrefab;    // TODO Make it possible to have many types of trash
@@ -18,11 +18,13 @@ public class FishingFeature : MonoBehaviour
     private float canCatchTime = 0f;
     private float canCatchDelay = 1.5f;
 
+    private MinigameType currentMinigame;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        currentMinigame = MinigameType.ArrowBoxMinigame;
     }
 
     // Update is called once per frame
@@ -53,8 +55,7 @@ public class FishingFeature : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F) && !isPlaying && canCatchTrash)
         {
             GetComponent<SpriteRenderer>().sprite = fishingSprite2;
-            fishingMinigame.StartMinigame();        // TODO Make it possible to switch minigame
-            TrashCoughtEffect();
+            CreateMinigame(currentMinigame);
             isPlaying = true;                       // TODO Make it so that you can play again
         }
     }
@@ -72,5 +73,21 @@ public class FishingFeature : MonoBehaviour
         Vector3 spawnPos = transform.localPosition + offset;
         GameObject trash = Instantiate(trashPrefab, spawnPos, Quaternion.identity);
         Destroy(trash, 1.5f);
+    }
+
+    private void CreateMinigame(MinigameType type)
+    {
+        switch (type)
+        {
+            case MinigameType.ArrowBoxMinigame:
+                Instantiate(arrowBoxMinigame);
+                break;
+            case MinigameType.AnotherMinigame:
+                //Instantiate(anotherPrefab);
+                break;
+            default:
+                Debug.LogError($"Minigame type not supported: {type}");
+                return;
+        }
     }
 }
