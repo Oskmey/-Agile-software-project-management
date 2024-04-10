@@ -4,6 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Arrow
+  - TutorialText
   - Recycle Machine
   - Recycling Manager
   layers:
@@ -40,6 +42,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 3192734171
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

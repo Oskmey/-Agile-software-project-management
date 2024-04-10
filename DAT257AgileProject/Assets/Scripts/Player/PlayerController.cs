@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
     {
         if(recyclingManager.TrashToRecycle.Count > 0)
         {
-            recyclingManager.RecycleAtNearestMachine(recyclingManager.TrashToRecycle.ToList()[0]);
+            //recyclingManager.RecycleAtNearestMachine(recyclingManager.TrashToRecycle.ToList()[0]);
         }
     }
 
