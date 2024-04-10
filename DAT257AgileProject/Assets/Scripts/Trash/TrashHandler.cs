@@ -7,12 +7,14 @@ public class TrashHandler : MonoBehaviour
     private GameplayHudHandler gameplayHudHandler;
     private PlayerInput playerInput;
     private InputAction hideTrashInfoPanelAction;
+    private RecyclingManager recyclingManager;
 
     private void Start()
     {
         gameplayHudHandler = FindObjectOfType<GameplayHudHandler>();
         playerInput = GetComponent<PlayerInput>();
         hideTrashInfoPanelAction = playerInput.actions["HideTrashInfoPanel"];
+        recyclingManager = FindObjectOfType<RecyclingManager>();
     }
 
     private void Update()
@@ -59,6 +61,8 @@ public class TrashHandler : MonoBehaviour
         
         if (currentTrashObject != null)
         {
+            TrashScript trash = currentTrashObject.GetComponent<TrashScript>();
+            recyclingManager.AddTrashToRecycle(trash);
             Destroy(currentTrashObject);
         }
     }
