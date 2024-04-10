@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerStatsManager : MonoBehaviour
 {
-    private List<GameObject> recycledTrashList;
+    private List<TrashScript> recycledTrashList;
     private int money;
-    public List<GameObject> RecycledTrashList
+    public List<TrashScript> RecycledTrashList
     {
         get
         {
