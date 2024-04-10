@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -10,8 +11,10 @@ public class RecyclingTests : InputTestFixture
 {
     private RecyclingManager recyclingManager;
     private PlayerStatsManager playerStatsManager;
+    private TrashHandler trashHandler;
     private PlayerInput playerInput;
     private Keyboard keyboard;
+    private static readonly string trashBagPrefabPath = "Assets/Prefabs/Trash/TrashBag.prefab";
 
     [SetUp]
     public override void Setup()
@@ -19,7 +22,7 @@ public class RecyclingTests : InputTestFixture
         base.Setup();
         keyboard = new Keyboard();
         keyboard = InputSystem.AddDevice<Keyboard>();
-        SceneManager.LoadScene("RecyclingTest", LoadSceneMode.Single);
+        SceneManager.LoadScene("David's Trash Scene", LoadSceneMode.Single);
     }
 
     [TearDown]
@@ -39,12 +42,31 @@ public class RecyclingTests : InputTestFixture
 
         playerStatsManager = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatsManager>();
         recyclingManager = GameObject.FindGameObjectWithTag("Recycling Manager").GetComponent<RecyclingManager>();
+        trashHandler = GameObject.FindAnyObjectByType<TrashHandler>();
 
-        PressAndRelease(keyboard.spaceKey);
+        //GameObject trashBagPrefab = AssetDatabase.LoadAssetAtPath(trashBagPrefabPath, typeof(GameObject)) as GameObject;
+        //GameObject trashBagObject = Object.Instantiate(trashBagPrefab);
+        //TrashScript trashBagScript = trashBagObject.GetComponent<TrashScript>();
+
+        //recyclingManager.AddTrashToRecycle(trashBagScript);
+        //recyclingManager.AddTrashToRecycle(trashBagScript);
+        trashHandler.CreateTrash(TrashType.TrashBag);
+        yield return null;
+        PressAndRelease(keyboard.zKey);
+        yield return null;
+        trashHandler.CreateTrash(TrashType.TrashBag);
+        yield return null;
+        PressAndRelease(keyboard.zKey);
         yield return null;
 
-        PressAndRelease(keyboard.spaceKey);
+        Debug.Log(recyclingManager.TrashToRecycle.Count);
+
+        PressAndRelease(keyboard.rKey);
         yield return null;
+
+        PressAndRelease(keyboard.rKey);
+        yield return null;
+        Debug.Log(recyclingManager.TrashToRecycle.Count);
 
         // destroying the player input to fix an exception logged in the console
         // link: https://forum.unity.com/threads/i-cannot-make-unity-test-framework-work-with-inputtestfixture.1331400/

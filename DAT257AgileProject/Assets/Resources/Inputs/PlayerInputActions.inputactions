@@ -102,17 +102,37 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Recycle",
+                    "type": "Button",
+                    "id": "b308f4de-5b32-43e1-b2c6-4ade928e14b7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
                     "name": "",
                     "id": "a3d2b838-f43f-41b3-8db4-a7171b449213",
-                    "path": "<Keyboard>/space",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Fish",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5d581b2c-3c3d-41b3-800d-c9cc2788217d",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Recycle",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

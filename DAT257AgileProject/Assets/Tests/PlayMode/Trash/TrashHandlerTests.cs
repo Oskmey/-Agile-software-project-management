@@ -12,6 +12,7 @@ public class TrashHandlerTests : InputTestFixture
     private GameObject gameplayHudObject;
     private TrashHandler trashHandler;
     private PlayerInput playerInput;
+    private RecyclingManager recyclingManager;
     private Mouse mouse;
     private Keyboard keyboard;
     private static readonly string trashHandlerPrefabPath = "Assets/Prefabs/Utility/TrashHandler.prefab";
@@ -34,7 +35,7 @@ public class TrashHandlerTests : InputTestFixture
         trashHandlerObject = Object.Instantiate(trashHandlerPrefab);
         
         trashHandler = trashHandlerObject.GetComponent<TrashHandler>();
-        trashHandler.TryFindGameplayHudHandler();
+        trashHandler.TryFindManagers();
         playerInput = trashHandlerObject.GetComponent<PlayerInput>();
     }
 

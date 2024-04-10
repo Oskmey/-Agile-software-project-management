@@ -7,12 +7,14 @@ public class TrashHandler : MonoBehaviour
     private GameplayHudHandler gameplayHudHandler;
     private PlayerInput playerInput;
     private InputAction hideTrashInfoPanelAction;
+    private RecyclingManager recyclingManager;
 
     private void Start()
     {
         gameplayHudHandler = FindObjectOfType<GameplayHudHandler>();
         playerInput = GetComponent<PlayerInput>();
         hideTrashInfoPanelAction = playerInput.actions["HideTrashInfoPanel"];
+        recyclingManager = FindObjectOfType<RecyclingManager>();
     }
 
     private void Update()
@@ -59,6 +61,8 @@ public class TrashHandler : MonoBehaviour
         
         if (currentTrashObject != null)
         {
+            TrashScript trash = currentTrashObject.GetComponent<TrashScript>();
+            recyclingManager.AddTrashToRecycle(trash);
             Destroy(currentTrashObject);
         }
     }
@@ -69,11 +73,15 @@ public class TrashHandler : MonoBehaviour
     // FindObjectOfType and similar methods don't work as expected in tests
     // But will work if you add a delay before calling them
     // I think the loop is unnecessary, but it's there to make sure the object is found
-    public void TryFindGameplayHudHandler()
+    public void TryFindManagers()
     {
         do
         {
             gameplayHudHandler = FindObjectOfType<GameplayHudHandler>();
         } while (gameplayHudHandler == null);
+        do
+        {
+            recyclingManager = FindObjectOfType<RecyclingManager>();
+        } while (recyclingManager == null);
     }
 }
