@@ -30,9 +30,10 @@ public class TempPlayer : MonoBehaviour
             trashHandler.CreateTrash(TrashType.TrashBag, trashSpawnPosition);
             lastFishedTrash = trashHandler.CurrentTrashObject.GetComponent<TrashScript>();
         }
-        else if (recycleAction.triggered)
+        else if (recycleAction.triggered && lastFishedTrash != null)
         {
             recyclingManager.RecycleAtNearestMachine(lastFishedTrash);
+            lastFishedTrash = null;
         }
     }
 }
