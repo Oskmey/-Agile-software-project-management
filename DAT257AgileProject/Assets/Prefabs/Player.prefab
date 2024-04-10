@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1619529740604299175
+--- !u!1 &869852492224877053
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,38 +8,38 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5792609214146998661}
-  - component: {fileID: 1733142927079603078}
-  - component: {fileID: 2932365599352285351}
+  - component: {fileID: 9148587976041087858}
+  - component: {fileID: 7092027354161464900}
+  - component: {fileID: 7106020273766970808}
   m_Layer: 0
-  m_Name: PlasticBag
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5792609214146998661
+--- !u!4 &9148587976041087858
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1619529740604299175}
+  m_GameObject: {fileID: 869852492224877053}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
-  m_ConstrainProportionsScale: 1
+  m_LocalPosition: {x: 0, y: -0.07, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &1733142927079603078
+--- !u!212 &7092027354161464900
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1619529740604299175}
+  m_GameObject: {fileID: 869852492224877053}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -74,26 +74,30 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ec8e7fb84c7a75f4c9dff243de9dae00, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ccf31f76fa51e2e4bb5a4ac6433bb4b1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.42, y: 1.82}
+  m_Size: {x: 6.1, y: 5.76}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2932365599352285351
+--- !u!114 &7106020273766970808
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1619529740604299175}
+  m_GameObject: {fileID: 869852492224877053}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dccdc39d72562c4f9b72954457b609e, type: 3}
+  m_Script: {fileID: 11500000, guid: fa6b92a82102c2c4d914547af47dca6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fishingMinigame: {fileID: 0}
+  fishingSprite1: {fileID: 21300000, guid: ccf31f76fa51e2e4bb5a4ac6433bb4b1, type: 3}
+  fishingSprite2: {fileID: 21300000, guid: 391e39b721c75fe429ade2862fe059c8, type: 3}
+  exclamationMarkPrefab: {fileID: 8678099781156329870, guid: ea15b8ae6ec919142b49b5f63fe71c11, type: 3}

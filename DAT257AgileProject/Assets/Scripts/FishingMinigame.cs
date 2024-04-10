@@ -24,7 +24,7 @@ public class FishingMinigame : MonoBehaviour
         
     }
 
-    public void startMinigame()
+    public void StartMinigame()
     {
         arrow = Instantiate(arrowPrefab);
         box = Instantiate(boxPrefab);

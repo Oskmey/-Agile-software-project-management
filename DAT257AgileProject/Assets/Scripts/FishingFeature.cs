@@ -8,6 +8,7 @@ public class FishingFeature : MonoBehaviour
     [SerializeField] private FishingMinigame fishingMinigame;
     [SerializeField] private Sprite fishingSprite1, fishingSprite2;
     [SerializeField] private GameObject exclamationMarkPrefab;
+    [SerializeField] private GameObject trashPrefab;    // TODO Make it possible to have many types of trash
 
     private bool isPlaying = false;
     private bool canCatchTrash = false;
@@ -52,15 +53,24 @@ public class FishingFeature : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F) && !isPlaying && canCatchTrash)
         {
             GetComponent<SpriteRenderer>().sprite = fishingSprite2;
-            fishingMinigame.startMinigame();        // TODO Make it possible to switch minigame
+            fishingMinigame.StartMinigame();        // TODO Make it possible to switch minigame
+            TrashCoughtEffect();
             isPlaying = true;                       // TODO Make it so that you can play again
         }
     }
 
     public void SpawnExclamationMark()
     {
-            GameObject exclamationMark = Instantiate(exclamationMarkPrefab);
-            exclamationMark.transform.localPosition += new Vector3(Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f), 0f);
-            Destroy(exclamationMark, 1.5f);
+        GameObject exclamationMark = Instantiate(exclamationMarkPrefab);
+        exclamationMark.transform.localPosition += new Vector3(Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f), 0f);
+        Destroy(exclamationMark, 1.5f);
+    }
+
+    public void TrashCoughtEffect()     // Should spawn on success
+    {
+        Vector3 offset = new Vector3(3f, -2.5f, 0);     // The distance from player to float
+        Vector3 spawnPos = transform.localPosition + offset;
+        GameObject trash = Instantiate(trashPrefab, spawnPos, Quaternion.identity);
+        Destroy(trash, 1.5f);
     }
 }
