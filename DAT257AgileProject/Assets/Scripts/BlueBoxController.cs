@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class BlueBoxController : MonoBehaviour
 {
-    [SerializeField] float speed = 5f;
+    [SerializeField] private float speed = 7f;
 
-    float distanceTraveled = 0;
-    float startPosX;
-    int direction = 1;
+    private float distanceTraveled = 0;
+    private float startPosX;
+    private int direction = 1;
 
-    bool isColliding = false;
+    private bool isColliding = false;
 
     // Start is called before the first frame update
     void Start()
@@ -21,13 +21,7 @@ public class BlueBoxController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 movement = new Vector3(speed * Time.deltaTime * direction, 0f, 0f);
-        transform.Translate(movement);
-
-        // Switch direction if needed
-        distanceTraveled = transform.position.x - startPosX;
-        if (distanceTraveled >= 4) { direction = -1; }
-        if (distanceTraveled <= 0) { direction = 1; }
+        moveBox();
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -40,6 +34,17 @@ public class BlueBoxController : MonoBehaviour
                 Debug.Log("Very bad!");
             }
         }
+    }
+
+    private void moveBox()
+    {
+        Vector3 movement = new Vector3(speed * Time.deltaTime * direction, 0f, 0f);
+        transform.Translate(movement);
+
+        // Switch direction if needed
+        distanceTraveled = transform.position.x - startPosX;
+        if (distanceTraveled >= 4) { direction = -1; }
+        if (distanceTraveled <= 0) { direction = 1; }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -56,5 +61,10 @@ public class BlueBoxController : MonoBehaviour
         {
             isColliding = false;
         }
+    }
+
+    private bool BoxIsColliding()
+    {
+        return isColliding;
     }
 }

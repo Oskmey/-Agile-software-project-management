@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class FishingFeature : MonoBehaviour
 {
-    [SerializeField] private FishingMinigame fishingMinigame;
+    [SerializeField] private ArrowBoxMinigame fishingMinigame;
     [SerializeField] private Sprite fishingSprite1, fishingSprite2;
     [SerializeField] private GameObject exclamationMarkPrefab;
     [SerializeField] private GameObject trashPrefab;    // TODO Make it possible to have many types of trash

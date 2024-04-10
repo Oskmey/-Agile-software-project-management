@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class FishingMinigame : MonoBehaviour
+public class ArrowBoxMinigame : MonoBehaviour
 {
     [SerializeField] GameObject arrowPrefab;
     [SerializeField] GameObject boxPrefab;
@@ -30,5 +30,17 @@ public class FishingMinigame : MonoBehaviour
         box = Instantiate(boxPrefab);
 
         tutorialText.GetComponent<TextMeshProUGUI>().text = "press spacebar to catch";
+    }
+
+    private void DestroyMinigame() // Runs on both "Success" and "Very Bad!"
+    {    
+        if (box != null)
+        {
+            Destroy(box);
+        }
+        if (arrow != null)
+        {
+            Destroy(arrow);
+        }
     }
 }
