@@ -603,6 +603,22 @@ PrefabInstance:
       propertyPath: arrowBoxMinigame
       value: 
       objectReference: {fileID: 3018661562055302610, guid: 164725df16a284b43846c4cc475b1318, type: 3}
+    - target: {fileID: 7106020273766970808, guid: e4df1a59b34464a4d88d67fe99ab6b2f, type: 3}
+      propertyPath: onMinigameWon.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7106020273766970808, guid: e4df1a59b34464a4d88d67fe99ab6b2f, type: 3}
+      propertyPath: onMinigameWon.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7106020273766970808, guid: e4df1a59b34464a4d88d67fe99ab6b2f, type: 3}
+      propertyPath: onMinigameWon.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7106020273766970808, guid: e4df1a59b34464a4d88d67fe99ab6b2f, type: 3}
+      propertyPath: onMinigameWon.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 9148587976041087858, guid: e4df1a59b34464a4d88d67fe99ab6b2f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class FishingFeature : MonoBehaviour
 {
@@ -10,9 +11,11 @@ public class FishingFeature : MonoBehaviour
     [SerializeField] private GameObject exclamationMarkPrefab;
     [SerializeField] private GameObject trashPrefab;    // TODO Make it possible to have many types of trash
 
+    public UnityEvent onMinigameWon;
+    public UnityEvent onMinigameLost;
+
     private bool isPlaying = false;
     private bool canCatchTrash = false;
-
     private float elapsedTime = 0f;
     private float delayTime = 4f;
     private float canCatchTime = 0f;
@@ -90,5 +93,16 @@ public class FishingFeature : MonoBehaviour
                 Debug.LogError($"Minigame type not supported: {type}");
                 return;
         }
+    }
+
+    public void OnMinigameWonHandler()
+    {
+        Debug.Log("Minigame won! Implement your logic here...");
+        // Show trash information
+    }
+
+    public void OnMinigameLostHandler()
+    {
+        Debug.Log("Minigame lost! Implement your logic here...");
     }
 }

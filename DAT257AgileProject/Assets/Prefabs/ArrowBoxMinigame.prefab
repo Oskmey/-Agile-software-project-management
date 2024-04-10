@@ -46,4 +46,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrowPrefab: {fileID: 2556482628821014946, guid: 5133a952652c7714091b79551b4206d2, type: 3}
   boxPrefab: {fileID: 3196374961248977745, guid: b1c06a4b65f55c24c97bfa60cf5c2322, type: 3}
-  tutorialText: {fileID: 6174630943227323721, guid: 4be029f0d67edaf408c8aa00626bfae0, type: 3}
+  onMinigameWon:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7106020273766970808, guid: e4df1a59b34464a4d88d67fe99ab6b2f, type: 3}
+        m_TargetAssemblyTypeName: FishingFeature, Assembly-CSharp
+        m_MethodName: OnMinigameWonHandler
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onMinigameLost:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7106020273766970808, guid: e4df1a59b34464a4d88d67fe99ab6b2f, type: 3}
+        m_TargetAssemblyTypeName: FishingFeature, Assembly-CSharp
+        m_MethodName: OnMinigameLostHandler
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

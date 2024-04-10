@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ArrowBoxMinigame : MonoBehaviour, IMinigame
 {
@@ -14,6 +15,10 @@ public class ArrowBoxMinigame : MonoBehaviour, IMinigame
     private GameObject tutorialText;
     private GameObject arrow;
     private GameObject box;
+
+    public UnityEvent onMinigameWon;
+    public UnityEvent onMinigameLost;
+
 
     // Start is called before the first frame update
     void Start()
@@ -34,14 +39,13 @@ public class ArrowBoxMinigame : MonoBehaviour, IMinigame
         {
             if (boxIsColliding)
             {
-                Debug.Log("Succes");
-                //TrashEffect
+                onMinigameWon.Invoke();
             }
             else
             {
-                Debug.Log("Very bad!");
+                onMinigameLost.Invoke();
             }
-            //DestroyMinigame();
+            DestroyMinigame();
         }
     }
 
@@ -65,4 +69,5 @@ public class ArrowBoxMinigame : MonoBehaviour, IMinigame
             Destroy(arrow);
         }
     }
+
 }
