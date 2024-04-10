@@ -13,8 +13,6 @@ public class GameManager : MonoBehaviour
     private TextMeshProUGUI moneyGeneratedText;
     [SerializeField] 
     private TextMeshProUGUI recycledTrashCountText;
-    [SerializeField] 
-    private TextMeshProUGUI recycleSucessText;
     [SerializeField]
     private TextMeshProUGUI recycleTrashLeftText;
     private int recycledTrashCount;
@@ -46,32 +44,11 @@ public class GameManager : MonoBehaviour
         UpdateTrashLeftText();
         UpdateMoneyGenerated();
         UpdateRecycledTrashCountText();
-
-        if (recyclingManager.TrashToRecycle.Count == 0)
-        {
-            recycleSucessText.text = "No trash to recycle";
-        }
-        else
-        {
-            UpdateRecycleSucessText();
-        }
     }
 
     void UpdateTrashLeftText()
     {
         recycleTrashLeftText.text = "Recylcable trash Left: " + recyclingManager.TrashToRecycle.Count;
-    }
-
-    void UpdateRecycleSucessText()
-    {
-        if (recyclingManager.TrashWasRecycled)
-        {
-            recycleSucessText.text = "Recycling Success";
-        }
-        else if(!recyclingManager.TrashWasRecycled)
-        {
-            recycleSucessText.text = "Recycling Failed";
-        }
     }
 
     void UpdateMoneyGenerated()
