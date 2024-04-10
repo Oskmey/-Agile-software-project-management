@@ -73,11 +73,15 @@ public class TrashHandler : MonoBehaviour
     // FindObjectOfType and similar methods don't work as expected in tests
     // But will work if you add a delay before calling them
     // I think the loop is unnecessary, but it's there to make sure the object is found
-    public void TryFindGameplayHudHandler()
+    public void TryFindManagers()
     {
         do
         {
             gameplayHudHandler = FindObjectOfType<GameplayHudHandler>();
         } while (gameplayHudHandler == null);
+        do
+        {
+            recyclingManager = FindObjectOfType<RecyclingManager>();
+        } while (recyclingManager == null);
     }
 }
