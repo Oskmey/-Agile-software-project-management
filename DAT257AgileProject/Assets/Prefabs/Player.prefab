@@ -97,7 +97,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa6b92a82102c2c4d914547af47dca6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fishingMinigame: {fileID: 0}
+  arrowBoxMinigame: {fileID: 3018661562055302610, guid: 164725df16a284b43846c4cc475b1318, type: 3}
   fishingSprite1: {fileID: 21300000, guid: ccf31f76fa51e2e4bb5a4ac6433bb4b1, type: 3}
   fishingSprite2: {fileID: 21300000, guid: 391e39b721c75fe429ade2862fe059c8, type: 3}
   exclamationMarkPrefab: {fileID: 8678099781156329870, guid: ea15b8ae6ec919142b49b5f63fe71c11, type: 3}
+  trashPrefab: {fileID: 1619529740604299175, guid: 4727ae8376cef174c80bc2639c3b79af, type: 3}
+  onMinigameWon:
+    m_PersistentCalls:
+      m_Calls: []
+  onMinigameLost:
+    m_PersistentCalls:
+      m_Calls: []
