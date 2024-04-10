@@ -23,7 +23,9 @@ public class BlueBoxController : MonoBehaviour
     {
         moveBox();
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        // I want this part to be in ArrowBoxMinigame, how the f*** do I do that, tried using the getter for isColliding but can't get
+        // it to work. AAAHAHHHGG, please help.
+        if (Input.GetKeyDown(KeyCode.Space))    
         {
             if (isColliding)
             {
@@ -31,8 +33,9 @@ public class BlueBoxController : MonoBehaviour
             }
             else
             {
-                Debug.Log("Very bad!");
+                Debug.Log("Very bad!");               
             }
+            //DestroyMinigame();
         }
     }
 
