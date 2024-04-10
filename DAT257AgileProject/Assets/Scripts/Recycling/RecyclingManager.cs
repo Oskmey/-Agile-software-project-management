@@ -63,7 +63,7 @@ public class RecyclingManager : MonoBehaviour
 
                 if (trash.IsRecyclable)
                 {
-
+                    Debug.Log("Trash was recycled");
                     playerStatsManager.Money += trash.MoneyValue;
                     playerStatsManager.RecycledTrashList.Add(trash);
                     trashToRecycle.Remove(trash);

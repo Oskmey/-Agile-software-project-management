@@ -140,7 +140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &87427681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -854,61 +854,9 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7106020273766970808, guid: e4df1a59b34464a4d88d67fe99ab6b2f, type: 3}
-      propertyPath: onMinigameWon.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7106020273766970808, guid: e4df1a59b34464a4d88d67fe99ab6b2f, type: 3}
-      propertyPath: onMinigameLost.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7106020273766970808, guid: e4df1a59b34464a4d88d67fe99ab6b2f, type: 3}
-      propertyPath: onMinigameWon.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7106020273766970808, guid: e4df1a59b34464a4d88d67fe99ab6b2f, type: 3}
-      propertyPath: onMinigameLost.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7106020273766970808, guid: e4df1a59b34464a4d88d67fe99ab6b2f, type: 3}
-      propertyPath: onMinigameWon.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      propertyPath: trashHandler
       value: 
-      objectReference: {fileID: 7106020273766970808, guid: e4df1a59b34464a4d88d67fe99ab6b2f, type: 3}
-    - target: {fileID: 7106020273766970808, guid: e4df1a59b34464a4d88d67fe99ab6b2f, type: 3}
-      propertyPath: onMinigameLost.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 7106020273766970808, guid: e4df1a59b34464a4d88d67fe99ab6b2f, type: 3}
-    - target: {fileID: 7106020273766970808, guid: e4df1a59b34464a4d88d67fe99ab6b2f, type: 3}
-      propertyPath: onMinigameWon.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7106020273766970808, guid: e4df1a59b34464a4d88d67fe99ab6b2f, type: 3}
-      propertyPath: onMinigameLost.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7106020273766970808, guid: e4df1a59b34464a4d88d67fe99ab6b2f, type: 3}
-      propertyPath: onMinigameWon.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnMinigameWonHandler
-      objectReference: {fileID: 0}
-    - target: {fileID: 7106020273766970808, guid: e4df1a59b34464a4d88d67fe99ab6b2f, type: 3}
-      propertyPath: onMinigameLost.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnMinigameLostHandler
-      objectReference: {fileID: 0}
-    - target: {fileID: 7106020273766970808, guid: e4df1a59b34464a4d88d67fe99ab6b2f, type: 3}
-      propertyPath: onMinigameWon.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: FishingFeature, Main
-      objectReference: {fileID: 0}
-    - target: {fileID: 7106020273766970808, guid: e4df1a59b34464a4d88d67fe99ab6b2f, type: 3}
-      propertyPath: onMinigameLost.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: FishingFeature, Main
-      objectReference: {fileID: 0}
-    - target: {fileID: 7106020273766970808, guid: e4df1a59b34464a4d88d67fe99ab6b2f, type: 3}
-      propertyPath: onMinigameWon.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 7106020273766970808, guid: e4df1a59b34464a4d88d67fe99ab6b2f, type: 3}
-      propertyPath: onMinigameLost.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1684572426}
     - target: {fileID: 9148587976041087858, guid: e4df1a59b34464a4d88d67fe99ab6b2f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.143709
@@ -1136,6 +1084,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1684572426 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 868576855452486802, guid: 2bc4a68c240370544be358699ec1741d, type: 3}
+  m_PrefabInstance: {fileID: 734798803187292769}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 169775c09a567274da5c316dc965d51c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1789228327
 GameObject:
   m_ObjectHideFlags: 0
