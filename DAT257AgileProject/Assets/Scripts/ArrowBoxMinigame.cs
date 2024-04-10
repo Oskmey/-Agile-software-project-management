@@ -5,18 +5,16 @@ using UnityEngine;
 
 public class ArrowBoxMinigame : MonoBehaviour, IMinigame
 {
-    [SerializeField] GameObject arrowPrefab;
-    [SerializeField] GameObject boxPrefab;
-    [SerializeField] GameObject tutorialText;
-
-    MinigameType minigameType = MinigameType.ArrowBoxMinigame;
-
+    [SerializeField] private GameObject arrowPrefab;
+    [SerializeField] private GameObject boxPrefab;
+    GameObject tutorialText;
     GameObject arrow;
     GameObject box;
 
     // Start is called before the first frame update
     void Start()
     {
+        tutorialText = GameObject.FindGameObjectWithTag("TutorialText");
         StartMinigame();
     }
 
