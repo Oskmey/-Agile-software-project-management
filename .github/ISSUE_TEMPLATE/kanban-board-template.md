@@ -7,7 +7,13 @@ assignees: ''
 
 ---
 
-# Task
+# User Story X
 ## Desc
-
-link to userstory 
+Write here
+## Acceptance criteria 
+Write here
+### Tasks
+- [ ] Task 1 Description
+- Note: Update on progress or any blockers.
+- [ ] Task 2 Description
+- [ ] Task 3 Description
