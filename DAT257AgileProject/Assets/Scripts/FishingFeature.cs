@@ -17,10 +17,6 @@ public class FishingFeature : MonoBehaviour
     private InputAction recycleAction;
     private RecyclingManager recyclingManager;
 
-
-    public UnityEvent onMinigameWon;
-    public UnityEvent onMinigameLost;
-
     private bool isPlaying = false;
     private bool canCatchTrash = false;
     private float elapsedTime = 0f;
@@ -35,10 +31,10 @@ public class FishingFeature : MonoBehaviour
     void Start()
     {
         currentMinigame = MinigameType.ArrowBoxMinigame;
-        trashHandler = FindObjectOfType<TrashHandler>();
+        trashHandler = GameObject.FindGameObjectWithTag("TrashHandler").GetComponent<TrashHandler>();
         playerInput = GetComponent<PlayerInput>();
         recycleAction = playerInput.actions["Recycle"];
-        recyclingManager = FindObjectOfType<RecyclingManager>();
+        recyclingManager = GameObject.FindGameObjectWithTag("Recycling Manager").GetComponent<RecyclingManager>();
     }
 
     // Update is called once per frame
@@ -79,6 +75,8 @@ public class FishingFeature : MonoBehaviour
             Debug.Log("Recycle action triggered");
             recyclingManager.RecycleAtNearestMachine();
         }
+
+        Debug.Log("RecyclingManager trash count: " + recyclingManager.TrashToRecycle.Count);    
     }
 
     public void SpawnExclamationMark()
@@ -114,21 +112,8 @@ public class FishingFeature : MonoBehaviour
 
     public void OnMinigameWonHandler()
     {
-        Debug.Log("Minigame won! Implement your logic here...");
         Vector2 trashSpawnPosition = new(transform.position.x, transform.position.y + 1);
-        if (trashHandler != null)
-        {
-            // Show trash information and create trash
-            trashHandler.CreateTrash(TrashType.TrashBag, trashSpawnPosition);
-        }
-        else
-        {
-            Debug.LogError("TrashHandler not found!"); 
-            trashHandler = FindObjectOfType<TrashHandler>();
-            trashHandler.CreateTrash(TrashType.TrashBag, trashSpawnPosition);
-        }
-        
-       
+        trashHandler.CreateTrash(TrashType.TrashBag, trashSpawnPosition);
     }
 
     public void OnMinigameLostHandler()

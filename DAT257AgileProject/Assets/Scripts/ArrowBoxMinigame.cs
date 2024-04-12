@@ -23,6 +23,8 @@ public class ArrowBoxMinigame : MonoBehaviour, IMinigame
     // Start is called before the first frame update
     void Start()
     {
+        onMinigameWon.AddListener(GameObject.FindGameObjectWithTag("Player").GetComponent<FishingFeature>().OnMinigameWonHandler);
+        onMinigameLost.AddListener(GameObject.FindGameObjectWithTag("Player").GetComponent<FishingFeature>().OnMinigameLostHandler);
         tutorialText = GameObject.FindGameObjectWithTag("TutorialText");
         StartMinigame();
     }
