@@ -97,7 +97,7 @@ public class CustomDateTime
                 day = int.Parse(dateParts[0]);
                 month = int.Parse(dateParts[1]);
                 year = int.Parse(dateParts[2]);
-                ValidateDayAndMonth(day, month);
+                ValidateDayAndMonth(day, month, year);
                 return new CustomDateTime(year, month, day);
             default:
                 throw new ArgumentException("Invalid date string format");
@@ -112,10 +112,18 @@ public class CustomDateTime
         }
     }
 
-    private static void ValidateDayAndMonth(int day, int month)
+    private static void ValidateDayAndMonth(int day, int month, int year)
     {
-        ValidateMonth(month);
-        int dayLimit = daysInMonth[month];
+        int dayLimit;
+        if (!DateTime.IsLeapYear(year) && month == 2)
+        {
+            dayLimit = 28;
+        }
+        else
+        {
+            ValidateMonth(month);
+            dayLimit = daysInMonth[month];
+        }
         if (day < 1 || day > dayLimit)
         {
             throw new ArgumentException("Invalid day");

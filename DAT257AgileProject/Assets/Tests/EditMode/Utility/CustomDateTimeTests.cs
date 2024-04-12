@@ -12,6 +12,7 @@ public class CustomDateTimeTests
     private const string ValidDateWithoutDayString = "01-1970";
     private const string ValidDateWithOnlyYearString = "1970";
     private const string NoDateGivenString = "n.d.";
+    private const string ValidLeapYearString = "29-02-2020";
 
     // Invalid date strings
     private const string InvalidLengthDateString = "01-01-1970-01";
@@ -26,6 +27,7 @@ public class CustomDateTimeTests
     private const string InvalidDateStringWithTrailingDash = "01-01-1970-";
     private const string InvalidDateStringWithoutDayWithTrailingDash = "01-1970-";
     private const string InvalidDateStringWithOnlyYearWithTrailingDash = "1970-";
+    private const string InvalidLeapYearString = "29-02-2021";
 
     [Test]
     public void CustomDateTime_GivenValidString_IsNotNull()
@@ -81,6 +83,20 @@ public class CustomDateTimeTests
     {
         var customDateTime = CustomDateTime.FromString(NoDateGivenString);
         Assert.AreEqual(NoDateGivenString, customDateTime.ToString());
+    }
+
+    [Test]
+    public void CustomDateTime_GivenValidLeapYearString_IsNotNull()
+    {
+        var customDateTime = CustomDateTime.FromString(ValidLeapYearString);
+        Assert.IsNotNull(customDateTime);
+    }
+
+    [Test]
+    public void CustomDateTime_GivenValidLeapYearString_CanBeConvertedBack()
+    {
+        var customDateTime = CustomDateTime.FromString(ValidLeapYearString);
+        Assert.AreEqual(ValidLeapYearString, customDateTime.ToString());
     }
 
     [Test]
@@ -153,5 +169,11 @@ public class CustomDateTimeTests
     public void CustomDateTime_GivenInvalidDateStringWithOnlyYearWithTrailingDash_ThrowsArgumentException()
     {
         Assert.Throws<ArgumentException>(() => CustomDateTime.FromString(InvalidDateStringWithOnlyYearWithTrailingDash));
+    }
+
+    [Test]
+    public void CustomDateTime_GivenInvalidLeapYearString_ThrowsArgumentException()
+    {
+        Assert.Throws<ArgumentException>(() => CustomDateTime.FromString(InvalidLeapYearString));
     }
 } 
