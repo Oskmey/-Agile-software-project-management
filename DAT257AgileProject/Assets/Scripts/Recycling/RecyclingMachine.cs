@@ -9,7 +9,7 @@ public class RecyclingMachine : MonoBehaviour
     
     void Start()
     {
-        interactionRange = 5f;
+        interactionRange = 100f;
     }
 
     public float InteractionRange
