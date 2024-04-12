@@ -15,6 +15,7 @@ public class FishingFeature : MonoBehaviour
     private TrashHandler trashHandler;
     private PlayerInput playerInput;
     private InputAction recycleAction;
+    private InputAction fishAction;
     private RecyclingManager recyclingManager;
 
     private bool isPlaying = false;
@@ -35,6 +36,7 @@ public class FishingFeature : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         recycleAction = playerInput.actions["Recycle"];
         recyclingManager = GameObject.FindGameObjectWithTag("Recycling Manager").GetComponent<RecyclingManager>();
+        fishAction = playerInput.actions["Fish"];
     }
 
     // Update is called once per frame
@@ -63,20 +65,19 @@ public class FishingFeature : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.F) && !isPlaying && canCatchTrash)
+        if (fishAction.triggered && !isPlaying && canCatchTrash)
         {
             GetComponent<SpriteRenderer>().sprite = fishingSprite2;
             CreateMinigame(currentMinigame);
             isPlaying = true;                       // TODO Make it so that you can play again
+            elapsedTime = 0f;
+            canCatchTime = 0f;
         }
 
         if (recycleAction.triggered)
         {
-            Debug.Log("Recycle action triggered");
             recyclingManager.RecycleAtNearestMachine();
         }
-
-        Debug.Log("RecyclingManager trash count: " + recyclingManager.TrashToRecycle.Count);    
     }
 
     public void SpawnExclamationMark()
@@ -112,6 +113,13 @@ public class FishingFeature : MonoBehaviour
 
     public void OnMinigameWonHandler()
     {
+        // TODO: fix trashHandler being null when event invoked
+        if (trashHandler == null)
+        {
+            Debug.LogError("TrashHandler not found.");
+            return;
+        }
+
         Vector2 trashSpawnPosition = new(transform.position.x, transform.position.y + 1);
         trashHandler.CreateTrash(TrashType.TrashBag, trashSpawnPosition);
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 public class ArrowBoxMinigame : MonoBehaviour, IMinigame
 {
@@ -19,14 +20,18 @@ public class ArrowBoxMinigame : MonoBehaviour, IMinigame
     public UnityEvent onMinigameWon;
     public UnityEvent onMinigameLost;
 
+    private PlayerInput playerControls;
+    private InputAction catchTrash;
 
     // Start is called before the first frame update
     void Start()
     {
+        playerControls = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
         onMinigameWon.AddListener(GameObject.FindGameObjectWithTag("Player").GetComponent<FishingFeature>().OnMinigameWonHandler);
         onMinigameLost.AddListener(GameObject.FindGameObjectWithTag("Player").GetComponent<FishingFeature>().OnMinigameLostHandler);
         tutorialText = GameObject.FindGameObjectWithTag("TutorialText");
         StartMinigame();
+        catchTrash = playerControls.actions["Catch"];
     }
 
     // Update is called once per frame
@@ -37,18 +42,24 @@ public class ArrowBoxMinigame : MonoBehaviour, IMinigame
             boxIsColliding = blueBoxController.BoxIsColliding();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if(catchTrash.triggered)
         {
-            if (boxIsColliding)
-            {
-                onMinigameWon.Invoke();
-            }
-            else
-            {
-                onMinigameLost.Invoke();
-            }
-            DestroyMinigame();
+            HandleCatch();
         }
+    }
+
+    public void HandleCatch()
+    {
+        if (boxIsColliding)
+        {
+            onMinigameWon.Invoke();
+        }
+        else
+        {
+            onMinigameLost.Invoke();
+        }
+
+        DestroyMinigame();
     }
 
     public void StartMinigame()

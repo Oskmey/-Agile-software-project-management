@@ -524,10 +524,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: TutorialText
       objectReference: {fileID: 0}
-    - target: {fileID: 6174630943227323721, guid: 4be029f0d67edaf408c8aa00626bfae0, type: 3}
-      propertyPath: m_TagString
-      value: TutorialText
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -929,6 +925,10 @@ PrefabInstance:
       propertyPath: trashHandler
       value: 
       objectReference: {fileID: 1684572426}
+    - target: {fileID: 7736849986522733317, guid: e4df1a59b34464a4d88d67fe99ab6b2f, type: 3}
+      propertyPath: m_DefaultActionMap
+      value: ac198369-147a-4b8a-a652-f8d987422ea0
+      objectReference: {fileID: 0}
     - target: {fileID: 9148587976041087858, guid: e4df1a59b34464a4d88d67fe99ab6b2f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.88
