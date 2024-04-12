@@ -34,19 +34,19 @@ public class SourceData : ScriptableObject
 
     private static readonly string dateFormat = "dd-MM-yyyy";
 
-    public DateTime Date
+    public CustomDateTime Date
     {
         get
         {
-            return DateTime.ParseExact(dateAsString, dateFormat, CultureInfo.InvariantCulture);
+            return CustomDateTime.FromString(dateAsString);
         }
     }
 
-    public DateTime RetrievalDate
+    public CustomDateTime RetrievalDate
     {
         get
         {
-            return DateTime.ParseExact(retrievalDateAsString, dateFormat, CultureInfo.InvariantCulture);
+            return CustomDateTime.FromString(retrievalDateAsString);
         }
     }
 

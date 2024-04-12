@@ -82,11 +82,11 @@ public class CustomDateTime
         } 
         else if (day == noDay)
         {
-            return $"{month}-{year}";
+            return $"{month.ToString("00")}-{year}";
         } 
         else
         {
-            return $"{day}-{month}-{year}";
+            return $"{day.ToString("00")}-{month.ToString("00")}-{year}";
         }
     }
 }

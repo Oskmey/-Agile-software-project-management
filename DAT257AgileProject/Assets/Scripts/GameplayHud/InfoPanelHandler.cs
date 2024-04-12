@@ -41,8 +41,7 @@ public class InfoPanelHandler : MonoBehaviour
         string sourcesText = "Sources: ";
         foreach (SourceData source in sources)
         {
-            // ToShortDateString() is used to only show the date without the time
-            sourcesText += $"\n- {source.SourceName} ({source.Date.ToShortDateString()}) <i>{source.Title}</i> {source.Website}";
+            sourcesText += $"\n- {source.SourceName} ({source.Date}) <i>{source.Title}</i> {source.Website}";
         }
         trashSourcesText.text = sourcesText;
     }
