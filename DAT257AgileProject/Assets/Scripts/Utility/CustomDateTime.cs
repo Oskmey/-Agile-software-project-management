@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 public class CustomDateTime
@@ -11,6 +12,23 @@ public class CustomDateTime
     private const int noYear = 0;
     private const int noMonth = 0;
     private const int noDay = 0;
+    private const string noDateString = "n.d.";
+
+    private static readonly IReadOnlyDictionary<int, int> daysInMonth = new Dictionary<int, int>
+    {
+        { 1, 31 },
+        { 2, 29 },
+        { 3, 31 },
+        { 4, 30 },
+        { 5, 31 },
+        { 6, 30 },
+        { 7, 31 },
+        { 8, 31 },
+        { 9, 30 },
+        { 10, 31 },
+        { 11, 30 },
+        { 12, 31 }
+    };
 
     private CustomDateTime(int year = noYear, int month = noMonth, int day = noDay)
     {
@@ -28,7 +46,7 @@ public class CustomDateTime
     {
         ValidateDateTimeString(dateAsString);
 
-        if (dateAsString.Equals("n.d."))
+        if (dateAsString.Equals(noDateString))
         {
             return new CustomDateTime();
         }
@@ -48,25 +66,59 @@ public class CustomDateTime
         {
             throw new ArgumentException("Too long date string given");
         }
-        else if (!Regex.IsMatch(dateAsString, @"^[0-9-]*$"))
+        else if (!Regex.IsMatch(dateAsString, @"^[0-9-]*$|^n\.d\.$"))
         {
-            throw new ArgumentException("Date string can only contain numbers and dashes");
+            throw new ArgumentException($"Date string can only contain numbers and dashes or \"{noDateString}\"");
+        } 
+        else if (dateAsString.StartsWith("-") || dateAsString.EndsWith("-"))
+        {
+            throw new ArgumentException("Date string cannot start or end with a dash");
         }
     }
 
     private static CustomDateTime CreateCustomDateTime(string dateAsString)
     {
         string[] dateParts = dateAsString.Split('-');
+        int year;
+        int month;
+        int day;
+
         switch (dateParts.Length)
         {
             case 1:
-                return new CustomDateTime(int.Parse(dateParts[0]));
+                year = int.Parse(dateParts[0]);
+                return new CustomDateTime(year);
             case 2:
-                return new CustomDateTime(int.Parse(dateParts[1]), int.Parse(dateParts[0]));
+                month = int.Parse(dateParts[0]);
+                year = int.Parse(dateParts[1]);
+                ValidateMonth(month);
+                return new CustomDateTime(year, month);
             case 3:
-                return new CustomDateTime(int.Parse(dateParts[2]), int.Parse(dateParts[1]), int.Parse(dateParts[0]));
+                day = int.Parse(dateParts[0]);
+                month = int.Parse(dateParts[1]);
+                year = int.Parse(dateParts[2]);
+                ValidateDayAndMonth(day, month);
+                return new CustomDateTime(year, month, day);
             default:
                 throw new ArgumentException("Invalid date string format");
+        }
+    }
+
+    private static void ValidateMonth(int month)
+    {
+        if (month < 1 || month > 12)
+        {
+            throw new ArgumentException("Invalid month");
+        }
+    }
+
+    private static void ValidateDayAndMonth(int day, int month)
+    {
+        ValidateMonth(month);
+        int dayLimit = daysInMonth[month];
+        if (day < 1 || day > dayLimit)
+        {
+            throw new ArgumentException("Invalid day");
         }
     }
 
@@ -74,7 +126,7 @@ public class CustomDateTime
     {
         if (year == noYear && month == noMonth && day == noDay)
         {
-            return "n.d.";
+            return noDateString;
         } 
         else if (month == noMonth && day == noDay)
         {
