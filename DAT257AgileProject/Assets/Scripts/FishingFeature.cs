@@ -26,33 +26,48 @@ public class FishingFeature : MonoBehaviour
     private float canCatchDelay = 1.5f;
 
     private MinigameType currentMinigame;
-
-
+    private TextMeshProUGUI tutorialText;
+    private IMinigame currentMinigameObject;
+    private void Awake()
+    {
+        tutorialText = GameObject.FindGameObjectWithTag("TutorialText").GetComponent<TextMeshProUGUI>();
+    }
     // Start is called before the first frame update
     void Start()
     {
         currentMinigame = MinigameType.ArrowBoxMinigame;
-        trashHandler = GameObject.FindGameObjectWithTag("TrashHandler").GetComponent<TrashHandler>();
         playerInput = GetComponent<PlayerInput>();
         recycleAction = playerInput.actions["Recycle"];
-        recyclingManager = GameObject.FindGameObjectWithTag("Recycling Manager").GetComponent<RecyclingManager>();
         fishAction = playerInput.actions["Fish"];
+        trashHandler = GameObject.FindGameObjectWithTag("TrashHandler").GetComponent<TrashHandler>();
+        recyclingManager = GameObject.FindGameObjectWithTag("Recycling Manager").GetComponent<RecyclingManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!isPlaying) 
+        HandleFishingPlaying();
+
+        HandleFishingStart();
+
+        HandleRecycle();
+
+    }
+
+    private void HandleFishingPlaying()
+    {
+        if (!isPlaying)
         {
             GetComponent<SpriteRenderer>().sprite = fishingSprite1;
             elapsedTime += Time.deltaTime;
+            tutorialText.text = "Press F to Fish";
 
-            if (elapsedTime >= delayTime) 
+            if (elapsedTime >= delayTime)
             {
                 if (!canCatchTrash)
                 {
                     SpawnExclamationMark();
-                }       
+                }
                 canCatchTrash = true;
                 canCatchTime += Time.deltaTime;
 
@@ -64,16 +79,23 @@ public class FishingFeature : MonoBehaviour
                 }
             }
         }
+    }
 
+    private void HandleFishingStart()
+    {
         if (fishAction.triggered && !isPlaying && canCatchTrash)
         {
             GetComponent<SpriteRenderer>().sprite = fishingSprite2;
             CreateMinigame(currentMinigame);
-            isPlaying = true;                       // TODO Make it so that you can play again
+            isPlaying = true;
             elapsedTime = 0f;
             canCatchTime = 0f;
+            tutorialText.text = "Press SPACE to catch";
         }
+    }
 
+    private void HandleRecycle()
+    {
         if (recycleAction.triggered)
         {
             recyclingManager.RecycleAtNearestMachine();
@@ -100,7 +122,7 @@ public class FishingFeature : MonoBehaviour
         switch (type)
         {
             case MinigameType.ArrowBoxMinigame:
-                Instantiate(arrowBoxMinigame);
+                currentMinigameObject = Instantiate(arrowBoxMinigame);
                 break;
             case MinigameType.AnotherMinigame:
                 //Instantiate(anotherPrefab);
@@ -113,7 +135,10 @@ public class FishingFeature : MonoBehaviour
 
     public void OnMinigameWonHandler()
     {
-        // TODO: fix trashHandler being null when event invoked
+        // TODO: fix objects being null when event invoked
+        tutorialText = GameObject.FindGameObjectWithTag("TutorialText").GetComponent<TextMeshProUGUI>();
+        tutorialText.text = "";
+
         if (trashHandler == null)
         {
             Debug.LogError("TrashHandler not found.");
@@ -122,6 +147,15 @@ public class FishingFeature : MonoBehaviour
 
         Vector2 trashSpawnPosition = new(transform.position.x, transform.position.y + 1);
         trashHandler.CreateTrash(TrashType.TrashBag, trashSpawnPosition);
+
+        Destroy(GameObject.FindGameObjectWithTag("Minigame"));
+    }
+
+    public void ResetMiniGame()
+    {
+        // Reset the game state
+        isPlaying = false;
+        tutorialText.text = "Press F to Fish";
     }
 
     public void OnMinigameLostHandler()
