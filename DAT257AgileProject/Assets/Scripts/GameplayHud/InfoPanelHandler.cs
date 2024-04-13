@@ -38,7 +38,15 @@ public class InfoPanelHandler : MonoBehaviour
 
     public void SetTrashSourcesText(IReadOnlyList<SourceData> sources)
     {
-        string sourcesText = "Sources: ";
+        string sourcesText;
+        if (sources.Count == 1)
+        {
+            sourcesText = "Source: ";
+        } 
+        else
+        {
+            sourcesText = "Sources: ";
+        }
         foreach (SourceData source in sources)
         {
             sourcesText += $"\n- {source.SourceName} ({source.Date}) <i>{source.Title}</i> {source.Website}";
