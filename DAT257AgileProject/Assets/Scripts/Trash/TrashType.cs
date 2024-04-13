@@ -21,7 +21,7 @@ public static class TrashTypeExtensions
             case TrashType.ElectricScooter:
                 return "Electric Scooter";
             case TrashType.CigaretteButt:
-                return "Cigarette Butts";
+                return "Cigarette Butt";
             default:
                 throw new ArgumentOutOfRangeException(nameof(trashType), trashType, $"Trash type not found {trashType}");
         }
