@@ -7,9 +7,10 @@ public class TrashScript : MonoBehaviour
 {
     [SerializeField] 
     private TrashData trashScriptableObject;
+    [SerializeField]
+    private TrashType trashType;
 
     // Attributes set via the scriptable object
-    private TrashType trashType;
     private List<TrashCategory> trashCategories;
     private List<TrashFactData> trashFacts;
     private TrashRarity rarity;
@@ -25,7 +26,6 @@ public class TrashScript : MonoBehaviour
 
     private void LoadAttributesFromScriptableObject()
     {
-        trashType = trashScriptableObject.TrashType;
         trashCategories = new List<TrashCategory>(trashScriptableObject.TrashCategories);
         trashFacts = new List<TrashFactData>(trashScriptableObject.TrashFacts);
         rarity = trashScriptableObject.Rarity;

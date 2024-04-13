@@ -31,12 +31,6 @@ public class TrashDataTests
     }
 
     [Test, TestCaseSource(nameof(TrashDataTestCases))]
-    public void EachTrashData_HasTrashType(TrashData trashDataEntry)
-    {
-        Assert.IsNotNull(trashDataEntry.TrashType);
-    }
-
-    [Test, TestCaseSource(nameof(TrashDataTestCases))]
     public void EachTrashData_HasTrashCategories(TrashData trashDataEntry)
     {
         Assert.IsNotNull(trashDataEntry.TrashCategories);

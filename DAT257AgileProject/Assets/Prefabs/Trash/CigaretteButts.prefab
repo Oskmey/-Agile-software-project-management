@@ -98,3 +98,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trashScriptableObject: {fileID: 11400000, guid: 1ad4ef729f315e044b3e6a2326d94235, type: 2}
+  trashType: 3
