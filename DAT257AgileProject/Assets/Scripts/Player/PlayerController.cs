@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb;
     private InputAction movementAction;
+    private PlayerInput playerControls;
     private RecyclingManager recyclingManager;
     private InputAction recycleAction;
 
@@ -31,8 +32,6 @@ public class PlayerController : MonoBehaviour
 
     private void OnDisable()
     {
-        movementAction.Disable();
-        recycleAction.Disable();
         movementAction.performed -= OnMovment;
         movementAction.canceled -= OnMovmentStopped;
         recycleAction.performed -= RecycleAtNearestMachine;

@@ -15,11 +15,8 @@ public class FishingFeature : MonoBehaviour
     private TrashHandler trashHandler;
     private PlayerInput playerInput;
     private InputAction recycleAction;
+    private InputAction fishAction;
     private RecyclingManager recyclingManager;
-
-
-    public UnityEvent onMinigameWon;
-    public UnityEvent onMinigameLost;
 
     private bool isPlaying = false;
     private bool canCatchTrash = false;
@@ -35,10 +32,11 @@ public class FishingFeature : MonoBehaviour
     void Start()
     {
         currentMinigame = MinigameType.ArrowBoxMinigame;
-        trashHandler = FindObjectOfType<TrashHandler>();
+        trashHandler = GameObject.FindGameObjectWithTag("TrashHandler").GetComponent<TrashHandler>();
         playerInput = GetComponent<PlayerInput>();
         recycleAction = playerInput.actions["Recycle"];
-        recyclingManager = FindObjectOfType<RecyclingManager>();
+        recyclingManager = GameObject.FindGameObjectWithTag("Recycling Manager").GetComponent<RecyclingManager>();
+        fishAction = playerInput.actions["Fish"];
     }
 
     // Update is called once per frame
@@ -67,16 +65,17 @@ public class FishingFeature : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.F) && !isPlaying && canCatchTrash)
+        if (fishAction.triggered && !isPlaying && canCatchTrash)
         {
             GetComponent<SpriteRenderer>().sprite = fishingSprite2;
             CreateMinigame(currentMinigame);
             isPlaying = true;                       // TODO Make it so that you can play again
+            elapsedTime = 0f;
+            canCatchTime = 0f;
         }
 
         if (recycleAction.triggered)
         {
-            Debug.Log("Recycle action triggered");
             recyclingManager.RecycleAtNearestMachine();
         }
     }
@@ -114,21 +113,15 @@ public class FishingFeature : MonoBehaviour
 
     public void OnMinigameWonHandler()
     {
-        Debug.Log("Minigame won! Implement your logic here...");
+        // TODO: fix trashHandler being null when event invoked
+        if (trashHandler == null)
+        {
+            Debug.LogError("TrashHandler not found.");
+            return;
+        }
+
         Vector2 trashSpawnPosition = new(transform.position.x, transform.position.y + 1);
-        if (trashHandler != null)
-        {
-            // Show trash information and create trash
-            trashHandler.CreateTrash(TrashType.TrashBag, trashSpawnPosition);
-        }
-        else
-        {
-            Debug.LogError("TrashHandler not found!"); 
-            trashHandler = FindObjectOfType<TrashHandler>();
-            trashHandler.CreateTrash(TrashType.TrashBag, trashSpawnPosition);
-        }
-        
-       
+        trashHandler.CreateTrash(TrashType.TrashBag, trashSpawnPosition);
     }
 
     public void OnMinigameLostHandler()

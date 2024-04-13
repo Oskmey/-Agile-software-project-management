@@ -47,9 +47,7 @@ public class RecyclingManager : MonoBehaviour
         if (TrashToRecycle.Count > 0)
         {
             RecycleAtNearestMachine(TrashToRecycle[0]);
-        }
-
-        
+        } 
     }
 
     private void RecycleAtNearestMachine(TrashScript trash)

@@ -38,20 +38,29 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Movement"",
-                    ""type"": ""Value"",
-                    ""id"": ""874f5e55-2fdb-48a6-86f5-c4b5efd7fe2e"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""name"": ""Fish"",
+                    ""type"": ""Button"",
+                    ""id"": ""75140928-ae7a-4a62-aa37-f34510b5e900"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": true
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Catch"",
+                    ""type"": ""Button"",
+                    ""id"": ""85d3efaa-4f02-43f1-917a-313bb9bfd7f9"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
                     ""id"": ""e41493f5-c8ea-400a-ab6d-fa5f83ac99b0"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Keyboard>/r"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -61,69 +70,25 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""a18099f6-e12e-4813-b5cf-874d556717d8"",
-                    ""path"": ""<Keyboard>/p"",
+                    ""id"": ""0b63ba8c-1f05-46ea-ad04-0e95f4187644"",
+                    ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Recycle"",
+                    ""action"": ""Fish"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""WASD"",
-                    ""id"": ""a785594a-b800-47e3-a6ed-43eddc89a3fa"",
-                    ""path"": ""2DVector"",
+                    ""name"": """",
+                    ""id"": ""6bbc470f-23cd-411a-8eae-c53059e6b42d"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Movement"",
-                    ""isComposite"": true,
+                    ""action"": ""Catch"",
+                    ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""15bad0fd-15ed-4ad9-8916-60cca4679b79"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""4eee3937-d901-4e29-adb3-383c4de735fd"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""f0947b86-2a8e-43c0-9e9f-12a70c0193a1"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""9b35e24e-a210-44b0-9455-ccf2c4c7d9e3"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -176,54 +141,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
-        },
-        {
-            ""name"": ""TempPlayer"",
-            ""id"": ""74096a4c-14cb-4cba-b4ce-44d26b629a3a"",
-            ""actions"": [
-                {
-                    ""name"": ""Fish"",
-                    ""type"": ""Button"",
-                    ""id"": ""eb7be4b5-b87f-4282-a268-f7b4cd96c542"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Recycle"",
-                    ""type"": ""Button"",
-                    ""id"": ""b308f4de-5b32-43e1-b2c6-4ade928e14b7"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""a3d2b838-f43f-41b3-8db4-a7171b449213"",
-                    ""path"": ""<Keyboard>/f"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Fish"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""5d581b2c-3c3d-41b3-800d-c9cc2788217d"",
-                    ""path"": ""<Keyboard>/r"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Recycle"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
         }
     ],
     ""controlSchemes"": []
@@ -231,14 +148,11 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Recycle = m_Player.FindAction("Recycle", throwIfNotFound: true);
-        m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
+        m_Player_Fish = m_Player.FindAction("Fish", throwIfNotFound: true);
+        m_Player_Catch = m_Player.FindAction("Catch", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_HideTrashInfoPanel = m_UI.FindAction("HideTrashInfoPanel", throwIfNotFound: true);
-        // TempPlayer
-        m_TempPlayer = asset.FindActionMap("TempPlayer", throwIfNotFound: true);
-        m_TempPlayer_Fish = m_TempPlayer.FindAction("Fish", throwIfNotFound: true);
-        m_TempPlayer_Recycle = m_TempPlayer.FindAction("Recycle", throwIfNotFound: true);
     }
 
     ~@PlayerInputActions()
@@ -308,13 +222,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Recycle;
-    private readonly InputAction m_Player_Movement;
+    private readonly InputAction m_Player_Fish;
+    private readonly InputAction m_Player_Catch;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
         public PlayerActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Recycle => m_Wrapper.m_Player_Recycle;
-        public InputAction @Movement => m_Wrapper.m_Player_Movement;
+        public InputAction @Fish => m_Wrapper.m_Player_Fish;
+        public InputAction @Catch => m_Wrapper.m_Player_Catch;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -327,9 +243,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Recycle.started += instance.OnRecycle;
             @Recycle.performed += instance.OnRecycle;
             @Recycle.canceled += instance.OnRecycle;
-            @Movement.started += instance.OnMovement;
-            @Movement.performed += instance.OnMovement;
-            @Movement.canceled += instance.OnMovement;
+            @Fish.started += instance.OnFish;
+            @Fish.performed += instance.OnFish;
+            @Fish.canceled += instance.OnFish;
+            @Catch.started += instance.OnCatch;
+            @Catch.performed += instance.OnCatch;
+            @Catch.canceled += instance.OnCatch;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -337,9 +256,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Recycle.started -= instance.OnRecycle;
             @Recycle.performed -= instance.OnRecycle;
             @Recycle.canceled -= instance.OnRecycle;
-            @Movement.started -= instance.OnMovement;
-            @Movement.performed -= instance.OnMovement;
-            @Movement.canceled -= instance.OnMovement;
+            @Fish.started -= instance.OnFish;
+            @Fish.performed -= instance.OnFish;
+            @Fish.canceled -= instance.OnFish;
+            @Catch.started -= instance.OnCatch;
+            @Catch.performed -= instance.OnCatch;
+            @Catch.canceled -= instance.OnCatch;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -460,15 +382,11 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnRecycle(InputAction.CallbackContext context);
-        void OnMovement(InputAction.CallbackContext context);
+        void OnFish(InputAction.CallbackContext context);
+        void OnCatch(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
         void OnHideTrashInfoPanel(InputAction.CallbackContext context);
-    }
-    public interface ITempPlayerActions
-    {
-        void OnFish(InputAction.CallbackContext context);
-        void OnRecycle(InputAction.CallbackContext context);
     }
 }
