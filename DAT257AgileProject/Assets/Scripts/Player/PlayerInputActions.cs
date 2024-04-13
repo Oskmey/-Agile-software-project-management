@@ -54,6 +54,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Movement"",
+                    ""type"": ""Value"",
+                    ""id"": ""5d285ed1-4205-42c0-9df7-25da581fc9ed"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -89,6 +98,61 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Catch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""a785594a-b800-47e3-a6ed-43eddc89a3fa"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""15bad0fd-15ed-4ad9-8916-60cca4679b79"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""4eee3937-d901-4e29-adb3-383c4de735fd"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""f0947b86-2a8e-43c0-9e9f-12a70c0193a1"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""9b35e24e-a210-44b0-9455-ccf2c4c7d9e3"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -150,6 +214,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_Recycle = m_Player.FindAction("Recycle", throwIfNotFound: true);
         m_Player_Fish = m_Player.FindAction("Fish", throwIfNotFound: true);
         m_Player_Catch = m_Player.FindAction("Catch", throwIfNotFound: true);
+        m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_HideTrashInfoPanel = m_UI.FindAction("HideTrashInfoPanel", throwIfNotFound: true);
@@ -159,7 +224,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     {
         Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, PlayerInputActions.Player.Disable() has not been called.");
         Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, PlayerInputActions.UI.Disable() has not been called.");
-        Debug.Assert(!m_TempPlayer.enabled, "This will cause a leak and performance issues, PlayerInputActions.TempPlayer.Disable() has not been called.");
     }
 
     public void Dispose()
@@ -224,6 +288,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Recycle;
     private readonly InputAction m_Player_Fish;
     private readonly InputAction m_Player_Catch;
+    private readonly InputAction m_Player_Movement;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -231,6 +296,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Recycle => m_Wrapper.m_Player_Recycle;
         public InputAction @Fish => m_Wrapper.m_Player_Fish;
         public InputAction @Catch => m_Wrapper.m_Player_Catch;
+        public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -249,6 +315,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Catch.started += instance.OnCatch;
             @Catch.performed += instance.OnCatch;
             @Catch.canceled += instance.OnCatch;
+            @Movement.started += instance.OnMovement;
+            @Movement.performed += instance.OnMovement;
+            @Movement.canceled += instance.OnMovement;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -262,6 +331,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Catch.started -= instance.OnCatch;
             @Catch.performed -= instance.OnCatch;
             @Catch.canceled -= instance.OnCatch;
+            @Movement.started -= instance.OnMovement;
+            @Movement.performed -= instance.OnMovement;
+            @Movement.canceled -= instance.OnMovement;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -325,65 +397,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         }
     }
     public UIActions @UI => new UIActions(this);
-
-    // TempPlayer
-    private readonly InputActionMap m_TempPlayer;
-    private List<ITempPlayerActions> m_TempPlayerActionsCallbackInterfaces = new List<ITempPlayerActions>();
-    private readonly InputAction m_TempPlayer_Fish;
-    private readonly InputAction m_TempPlayer_Recycle;
-    public struct TempPlayerActions
-    {
-        private @PlayerInputActions m_Wrapper;
-        public TempPlayerActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Fish => m_Wrapper.m_TempPlayer_Fish;
-        public InputAction @Recycle => m_Wrapper.m_TempPlayer_Recycle;
-        public InputActionMap Get() { return m_Wrapper.m_TempPlayer; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(TempPlayerActions set) { return set.Get(); }
-        public void AddCallbacks(ITempPlayerActions instance)
-        {
-            if (instance == null || m_Wrapper.m_TempPlayerActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_TempPlayerActionsCallbackInterfaces.Add(instance);
-            @Fish.started += instance.OnFish;
-            @Fish.performed += instance.OnFish;
-            @Fish.canceled += instance.OnFish;
-            @Recycle.started += instance.OnRecycle;
-            @Recycle.performed += instance.OnRecycle;
-            @Recycle.canceled += instance.OnRecycle;
-        }
-
-        private void UnregisterCallbacks(ITempPlayerActions instance)
-        {
-            @Fish.started -= instance.OnFish;
-            @Fish.performed -= instance.OnFish;
-            @Fish.canceled -= instance.OnFish;
-            @Recycle.started -= instance.OnRecycle;
-            @Recycle.performed -= instance.OnRecycle;
-            @Recycle.canceled -= instance.OnRecycle;
-        }
-
-        public void RemoveCallbacks(ITempPlayerActions instance)
-        {
-            if (m_Wrapper.m_TempPlayerActionsCallbackInterfaces.Remove(instance))
-                UnregisterCallbacks(instance);
-        }
-
-        public void SetCallbacks(ITempPlayerActions instance)
-        {
-            foreach (var item in m_Wrapper.m_TempPlayerActionsCallbackInterfaces)
-                UnregisterCallbacks(item);
-            m_Wrapper.m_TempPlayerActionsCallbackInterfaces.Clear();
-            AddCallbacks(instance);
-        }
-    }
-    public TempPlayerActions @TempPlayer => new TempPlayerActions(this);
     public interface IPlayerActions
     {
         void OnRecycle(InputAction.CallbackContext context);
         void OnFish(InputAction.CallbackContext context);
         void OnCatch(InputAction.CallbackContext context);
+        void OnMovement(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

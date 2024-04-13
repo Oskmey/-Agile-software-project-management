@@ -27,23 +27,25 @@ public class PlayerController : MonoBehaviour
     {
         movementAction.performed += OnMovment;
         movementAction.canceled += OnMovmentStopped;
-        recycleAction.performed += RecycleAtNearestMachine;
+        recycleAction.performed += Recycle;
     }
 
     private void OnDisable()
     {
         movementAction.performed -= OnMovment;
         movementAction.canceled -= OnMovmentStopped;
-        recycleAction.performed -= RecycleAtNearestMachine;
+        recycleAction.performed -= Recycle;
     }
     
     // Test method to recycle trash due to no inventory system
-    private void RecycleAtNearestMachine(InputAction.CallbackContext context)
+    private void Recycle(InputAction.CallbackContext context)
     {
-        if(recyclingManager.TrashToRecycle.Count > 0)
+        
+
+        /*if(recyclingManager.TrashToRecycle.Count > 0)
         {
             //recyclingManager.RecycleAtNearestMachine(recyclingManager.TrashToRecycle.ToList()[0]);
-        }
+        }*/
     }
 
     private void OnMovment(InputAction.CallbackContext value)

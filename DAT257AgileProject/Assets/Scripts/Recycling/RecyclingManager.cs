@@ -50,6 +50,7 @@ public class RecyclingManager : MonoBehaviour
         } 
     }
 
+
     private void RecycleAtNearestMachine(TrashScript trash)
     {
         foreach (RecyclingMachine recyclingMachine in recyclingMachines)
@@ -58,7 +59,6 @@ public class RecyclingManager : MonoBehaviour
             // if (recyclingMachine.IsPlayerInRange(player.transform.position))
             {
                 // NOTE: Trash is not recyclable by default, needs to be RecycableTrash
-
                 if (trash.IsRecyclable)
                 {
                     Debug.Log("Trash was recycled");
