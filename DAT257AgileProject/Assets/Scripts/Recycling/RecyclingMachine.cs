@@ -7,17 +7,17 @@ public class RecyclingMachine : MonoBehaviour
     // TODO: implement interaction range with player
     private float interactionRange;
     
-    void Start()
-    {
-        interactionRange = 100f;
-    }
-
     public float InteractionRange
     {
         get
         {
             return interactionRange;
         }
+    }
+
+    void Start()
+    {
+        interactionRange = 100f;
     }
 
     public void Recycle(GameObject trash)

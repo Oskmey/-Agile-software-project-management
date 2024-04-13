@@ -7,27 +7,40 @@ using static RecyclingMachine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private float speed = 5f;
+    private Rigidbody2D rb;
+    private InputAction movementAction;
     private PlayerInputActions playerControls;
     private RecyclingManager recyclingManager;
-    private InputAction recycle;
+    private InputAction recycleAction;
 
     void Awake()
     {
-        recyclingManager = GameObject.FindGameObjectWithTag("Recycling Manager").GetComponent<RecyclingManager>();
+        rb = GetComponent<Rigidbody2D>();
         playerControls = new PlayerInputActions();
+        recycleAction = playerControls.Player.Recycle;
+        movementAction = playerControls.Player.Movement;
+        recyclingManager = GameObject.FindGameObjectWithTag("Recycling Manager").GetComponent<RecyclingManager>();
     }
 
     private void OnEnable()
     {
-        recycle = playerControls.Player.Recycle;
-        recycle.Enable();
-        recycle.performed += RecycleAtNearestMachine;
+        movementAction.Enable();
+        recycleAction.Enable();
+        movementAction.performed += OnMovment;
+        movementAction.canceled += OnMovmentStopped;
+        recycleAction.performed += RecycleAtNearestMachine;
     }
 
     private void OnDisable()
     {
-        recycle.Disable();
+        movementAction.Disable();
+        recycleAction.Disable();
+        movementAction.performed -= OnMovment;
+        movementAction.canceled -= OnMovmentStopped;
+        recycleAction.performed -= RecycleAtNearestMachine;
     }
+    
     // Test method to recycle trash due to no inventory system
     private void RecycleAtNearestMachine(InputAction.CallbackContext context)
     {
@@ -37,9 +50,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnMovment(InputAction.CallbackContext value)
     {
-        
+        rb.velocity = value.ReadValue<Vector2>() * speed;
+    }
+
+    private void OnMovmentStopped(InputAction.CallbackContext value)
+    {
+        rb.velocity = Vector2.zero;
     }
 }
