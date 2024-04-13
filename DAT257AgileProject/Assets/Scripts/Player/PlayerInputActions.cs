@@ -36,17 +36,57 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Fish"",
+                    ""type"": ""Button"",
+                    ""id"": ""75140928-ae7a-4a62-aa37-f34510b5e900"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Catch"",
+                    ""type"": ""Button"",
+                    ""id"": ""85d3efaa-4f02-43f1-917a-313bb9bfd7f9"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""a18099f6-e12e-4813-b5cf-874d556717d8"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""id"": ""e41493f5-c8ea-400a-ab6d-fa5f83ac99b0"",
+                    ""path"": ""<Keyboard>/r"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Recycle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0b63ba8c-1f05-46ea-ad04-0e95f4187644"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fish"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6bbc470f-23cd-411a-8eae-c53059e6b42d"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Catch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -57,7 +97,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             ""id"": ""475867ca-65f4-4138-b7b1-4d1599730c97"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
+                    ""name"": ""HideTrashInfoPanel"",
                     ""type"": ""Button"",
                     ""id"": ""43ba200c-8794-4bbb-9c45-d4dc049c71d9"",
                     ""expectedControlType"": """",
@@ -70,11 +110,33 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""d31be826-bb0b-4fcd-b0f7-a385d59c1642"",
-                    ""path"": """",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action"",
+                    ""action"": ""HideTrashInfoPanel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2a0d5d51-d72e-4c5d-bc23-27fec81990b4"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HideTrashInfoPanel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e930f12e-c213-464b-b572-293b05d28988"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HideTrashInfoPanel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -86,9 +148,11 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Recycle = m_Player.FindAction("Recycle", throwIfNotFound: true);
+        m_Player_Fish = m_Player.FindAction("Fish", throwIfNotFound: true);
+        m_Player_Catch = m_Player.FindAction("Catch", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
-        m_UI_Newaction = m_UI.FindAction("New action", throwIfNotFound: true);
+        m_UI_HideTrashInfoPanel = m_UI.FindAction("HideTrashInfoPanel", throwIfNotFound: true);
     }
 
     ~@PlayerInputActions()
@@ -157,11 +221,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Recycle;
+    private readonly InputAction m_Player_Fish;
+    private readonly InputAction m_Player_Catch;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
         public PlayerActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Recycle => m_Wrapper.m_Player_Recycle;
+        public InputAction @Fish => m_Wrapper.m_Player_Fish;
+        public InputAction @Catch => m_Wrapper.m_Player_Catch;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -174,6 +242,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Recycle.started += instance.OnRecycle;
             @Recycle.performed += instance.OnRecycle;
             @Recycle.canceled += instance.OnRecycle;
+            @Fish.started += instance.OnFish;
+            @Fish.performed += instance.OnFish;
+            @Fish.canceled += instance.OnFish;
+            @Catch.started += instance.OnCatch;
+            @Catch.performed += instance.OnCatch;
+            @Catch.canceled += instance.OnCatch;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -181,6 +255,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Recycle.started -= instance.OnRecycle;
             @Recycle.performed -= instance.OnRecycle;
             @Recycle.canceled -= instance.OnRecycle;
+            @Fish.started -= instance.OnFish;
+            @Fish.performed -= instance.OnFish;
+            @Fish.canceled -= instance.OnFish;
+            @Catch.started -= instance.OnCatch;
+            @Catch.performed -= instance.OnCatch;
+            @Catch.canceled -= instance.OnCatch;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -202,12 +282,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     // UI
     private readonly InputActionMap m_UI;
     private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
-    private readonly InputAction m_UI_Newaction;
+    private readonly InputAction m_UI_HideTrashInfoPanel;
     public struct UIActions
     {
         private @PlayerInputActions m_Wrapper;
         public UIActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_UI_Newaction;
+        public InputAction @HideTrashInfoPanel => m_Wrapper.m_UI_HideTrashInfoPanel;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -217,16 +297,16 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_UIActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_UIActionsCallbackInterfaces.Add(instance);
-            @Newaction.started += instance.OnNewaction;
-            @Newaction.performed += instance.OnNewaction;
-            @Newaction.canceled += instance.OnNewaction;
+            @HideTrashInfoPanel.started += instance.OnHideTrashInfoPanel;
+            @HideTrashInfoPanel.performed += instance.OnHideTrashInfoPanel;
+            @HideTrashInfoPanel.canceled += instance.OnHideTrashInfoPanel;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
         {
-            @Newaction.started -= instance.OnNewaction;
-            @Newaction.performed -= instance.OnNewaction;
-            @Newaction.canceled -= instance.OnNewaction;
+            @HideTrashInfoPanel.started -= instance.OnHideTrashInfoPanel;
+            @HideTrashInfoPanel.performed -= instance.OnHideTrashInfoPanel;
+            @HideTrashInfoPanel.canceled -= instance.OnHideTrashInfoPanel;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -247,9 +327,11 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnRecycle(InputAction.CallbackContext context);
+        void OnFish(InputAction.CallbackContext context);
+        void OnCatch(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnHideTrashInfoPanel(InputAction.CallbackContext context);
     }
 }

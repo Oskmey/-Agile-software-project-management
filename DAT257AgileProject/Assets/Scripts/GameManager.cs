@@ -22,20 +22,7 @@ public class GameManager : MonoBehaviour
     {
         playerStatsManager = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatsManager>();
         recyclingManager = GameObject.FindGameObjectWithTag("Recycling Manager").GetComponent<RecyclingManager>();
-
-        // TEMP: adding trash to recycle
-        //GenerateTrash(2);
     }
-
-    //void GenerateTrash(int amount)
-    //{
-    //    for (int i = 0; i < amount; i++)
-    //    {
-    //        GameObject gameObject = new GameObject();
-    //        gameObject.AddComponent<RecyclingMachine.RecyclableTrash>();
-    //        recyclingManager.TrashToRecycle.Add(gameObject);
-    //    }
-    //}
 
     // Update is called once per frame
     void Update()

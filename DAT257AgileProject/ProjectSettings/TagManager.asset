@@ -8,6 +8,8 @@ TagManager:
   - TutorialText
   - Recycle Machine
   - Recycling Manager
+  - TrashHandler
+  - GameplayHUD
   layers:
   - Default
   - TransparentFX
