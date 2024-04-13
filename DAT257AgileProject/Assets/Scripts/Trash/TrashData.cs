@@ -10,7 +10,7 @@ public class TrashData : ScriptableObject
 
     [Tooltip("The category of the trash")]
     [SerializeField]
-    private TrashCategory trashCategory;
+    private List<TrashCategory> trashCategories;
 
     [Tooltip("The facts about the trash")]
     [SerializeField] 
@@ -29,7 +29,7 @@ public class TrashData : ScriptableObject
     private bool isRecyclable;
 
     public TrashType TrashType => trashType;
-    public TrashCategory TrashCategory => trashCategory;
+    public IReadOnlyList<TrashCategory> TrashCategories => trashCategories;
     public IReadOnlyList<TrashFactData> TrashFacts => trashFacts;
     public TrashRarity Rarity => rarity;
     public int MoneyValue => moneyValue;
