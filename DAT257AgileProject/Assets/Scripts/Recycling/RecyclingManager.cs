@@ -48,6 +48,9 @@ public class RecyclingManager : MonoBehaviour
         {
             RecycleAtNearestMachine(TrashToRecycle[0]);
         }
+        else{
+            Debug.Log("No trash to recycle");
+        }
     }
 
     private void RecycleAtNearestMachine(TrashScript trash)
