@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewSourceScriptableObject", menuName = "ScriptableObjects/SourceScriptableObject", order = 2)]
 public class SourceData : ScriptableObject
 {
+    [TextArea(1, 10)]
     [Tooltip("The author/organisation/authority of the source")]
     [SerializeField]
     private string sourceName;
