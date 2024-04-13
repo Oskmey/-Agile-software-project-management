@@ -8,25 +8,22 @@ using static RecyclingMachine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
+
     private Rigidbody2D rb;
     private InputAction movementAction;
-    private PlayerInputActions playerControls;
     private RecyclingManager recyclingManager;
     private InputAction recycleAction;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        playerControls = new PlayerInputActions();
-        recycleAction = playerControls.Player.Recycle;
-        movementAction = playerControls.Player.Movement;
+        movementAction = GetComponent<PlayerInput>().actions["Movement"];
+        recycleAction = GetComponent<PlayerInput>().actions["Recycle"];
         recyclingManager = GameObject.FindGameObjectWithTag("Recycling Manager").GetComponent<RecyclingManager>();
     }
 
     private void OnEnable()
     {
-        movementAction.Enable();
-        recycleAction.Enable();
         movementAction.performed += OnMovment;
         movementAction.canceled += OnMovmentStopped;
         recycleAction.performed += RecycleAtNearestMachine;
