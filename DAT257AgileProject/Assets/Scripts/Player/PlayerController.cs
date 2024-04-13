@@ -40,12 +40,8 @@ public class PlayerController : MonoBehaviour
     // Test method to recycle trash due to no inventory system
     private void Recycle(InputAction.CallbackContext context)
     {
-        
-
-        /*if(recyclingManager.TrashToRecycle.Count > 0)
-        {
-            //recyclingManager.RecycleAtNearestMachine(recyclingManager.TrashToRecycle.ToList()[0]);
-        }*/
+        Debug.Log("Recycling trash");
+        recyclingManager.RecycleAtNearestMachine();
     }
 
     private void OnMovment(InputAction.CallbackContext value)
