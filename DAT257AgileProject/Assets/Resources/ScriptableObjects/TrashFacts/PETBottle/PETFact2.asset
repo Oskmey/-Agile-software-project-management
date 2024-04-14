@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 460a09aa7a6be9448a93f8ebd6a3b884, type: 3}
-  m_Name: TrashBagFact1
+  m_Name: PETFact2
   m_EditorClassIdentifier: 
-  trashFact: plastic bags are the most common plastic trash in the oceans?
+  trashFact: seemingly, PET Bottles retain their robustness in the ocean for around
+    15 years?
   sourcesInformation:
-  - {fileID: 11400000, guid: 012defae641a52849a4ae94d61a3d1ed, type: 2}
+  - {fileID: 11400000, guid: 4dc29418160dacb4988d0150a3f6d773, type: 2}
