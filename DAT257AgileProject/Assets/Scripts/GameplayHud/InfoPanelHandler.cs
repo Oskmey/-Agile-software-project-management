@@ -18,7 +18,9 @@ public class InfoPanelHandler : MonoBehaviour
 
     public void SetTrashTypeText(TrashType trashType)
     {
-        trashTypeText.text = $"You caught a {trashType.ToReadableString()}";
+        string trashName = trashType.ToReadableString();
+        string article = ArticleForWordHelper.GetArticle(trashName);
+        trashTypeText.text = $"You caught {article} {trashName}";
     }
 
     public void SetTrashInformationText(string trashInformation)
