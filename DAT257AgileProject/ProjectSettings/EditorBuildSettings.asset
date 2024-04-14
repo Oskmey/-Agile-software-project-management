@@ -18,4 +18,4 @@ EditorBuildSettings:
     path: Assets/Scenes/MVP Scene.unity
     guid: 0263688e4c7d44f4ba7d5183485938c5
   m_configObjects:
-    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: d6756452ac383fd41805ec29c01212ec, type: 3}
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: d8bbbf5c4ce4f0c4eb65e95938a73eba, type: 3}
