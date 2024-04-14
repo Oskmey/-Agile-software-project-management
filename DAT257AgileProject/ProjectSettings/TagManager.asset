@@ -10,6 +10,7 @@ TagManager:
   - Recycling Manager
   - TrashHandler
   - GameplayHUD
+  - Minigame
   layers:
   - Default
   - TransparentFX

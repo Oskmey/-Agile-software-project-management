@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 using static RecyclingMachine;
@@ -12,8 +13,11 @@ public class TrashHandler : MonoBehaviour
     private InputAction hideTrashInfoPanelAction;
     private RecyclingManager recyclingManager;
 
+    public UnityEvent onTrashCollected;
+
     private void Start()
     {
+        onTrashCollected.AddListener(GameObject.FindGameObjectWithTag("Player").GetComponent<FishingFeature>().ResetMiniGame);
         //gameplayHudHandler = GameObject.FindGameObjectWithTag("GameplayHUD").GetComponent<GameplayHudHandler>();
         playerInput = GetComponent<PlayerInput>();
         hideTrashInfoPanelAction = playerInput.actions["HideTrashInfoPanel"];
@@ -48,6 +52,7 @@ public class TrashHandler : MonoBehaviour
         // TODO: Fix gameplayHudHandler being null, so we dont have to find it again, something to do with event invoke
 
         gameplayHudHandler = GameObject.FindGameObjectWithTag("GameplayHUD").GetComponent<GameplayHudHandler>();
+
         if (gameplayHudHandler != null)
         {
             gameplayHudHandler.ShowTrashInfoHandler(currentTrashScript);
@@ -75,6 +80,7 @@ public class TrashHandler : MonoBehaviour
             Debug.Log("Added trash");
             TrashScript trash = currentTrashObject.GetComponent<TrashScript>();
             recyclingManager.AddTrashToRecycle(trash);
+            onTrashCollected.Invoke();
             Destroy(currentTrashObject);
         }
     }

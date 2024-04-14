@@ -13,7 +13,6 @@ public class ArrowBoxMinigame : MonoBehaviour, IMinigame
     private bool boxIsColliding;
     private BlueBoxController blueBoxController;
 
-    private GameObject tutorialText;
     private GameObject arrow;
     private GameObject box;
 
@@ -29,7 +28,6 @@ public class ArrowBoxMinigame : MonoBehaviour, IMinigame
         playerControls = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
         onMinigameWon.AddListener(GameObject.FindGameObjectWithTag("Player").GetComponent<FishingFeature>().OnMinigameWonHandler);
         onMinigameLost.AddListener(GameObject.FindGameObjectWithTag("Player").GetComponent<FishingFeature>().OnMinigameLostHandler);
-        tutorialText = GameObject.FindGameObjectWithTag("TutorialText");
         StartMinigame();
         catchTrash = playerControls.actions["Catch"];
     }
@@ -67,8 +65,6 @@ public class ArrowBoxMinigame : MonoBehaviour, IMinigame
         arrow = Instantiate(arrowPrefab);
         box = Instantiate(boxPrefab);
         blueBoxController = box.GetComponent<BlueBoxController>();
-
-        tutorialText.GetComponent<TextMeshProUGUI>().text = "Press SPACEBAR to catch";
     }
 
     public void DestroyMinigame() // Runs on both "Success" and "Very Bad!"
