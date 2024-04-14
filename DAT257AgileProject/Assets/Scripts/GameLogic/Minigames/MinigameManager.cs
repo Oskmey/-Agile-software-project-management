@@ -5,12 +5,17 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-public class FishingFeature : MonoBehaviour
+public class MinigameManager : MonoBehaviour
 {
-    [SerializeField] private ArrowBoxMinigame arrowBoxMinigame;
-    [SerializeField] private Sprite fishingSprite1, fishingSprite2;
-    [SerializeField] private GameObject exclamationMarkPrefab;
-    [SerializeField] private GameObject trashPrefab;    // TODO Make it possible to have many types of trash
+    [SerializeField] 
+    private ArrowBoxMinigame arrowBoxMinigame;
+    [SerializeField] 
+    private Sprite fishingSprite1, fishingSprite2;
+    [SerializeField] 
+    private GameObject exclamationMarkPrefab;
+    [SerializeField]
+    // TODO Make it possible to have many types of trash
+    private GameObject trashPrefab;   
 
     private TrashHandler trashHandler;
     private PlayerInput playerInput;
@@ -27,14 +32,14 @@ public class FishingFeature : MonoBehaviour
 
     private MinigameType currentMinigame;
     private TextMeshProUGUI tutorialText;
-    private IMinigame currentMinigameObject;
+  
     private void Awake()
     {
-        tutorialText = GameObject.FindGameObjectWithTag("TutorialText").GetComponent<TextMeshProUGUI>();
     }
     // Start is called before the first frame update
     void Start()
     {
+        tutorialText = GameObject.FindGameObjectWithTag("TutorialText").GetComponent<TextMeshProUGUI>();
         currentMinigame = MinigameType.ArrowBoxMinigame;
         playerInput = GetComponent<PlayerInput>();
         recycleAction = playerInput.actions["Recycle"];
@@ -51,7 +56,6 @@ public class FishingFeature : MonoBehaviour
         HandleFishingStart();
 
         HandleRecycle();
-
     }
 
     private void HandleFishingPlaying()
@@ -68,6 +72,7 @@ public class FishingFeature : MonoBehaviour
                 {
                     SpawnExclamationMark();
                 }
+
                 canCatchTrash = true;
                 canCatchTime += Time.deltaTime;
 
@@ -88,8 +93,6 @@ public class FishingFeature : MonoBehaviour
             GetComponent<SpriteRenderer>().sprite = fishingSprite2;
             CreateMinigame(currentMinigame);
             isPlaying = true;
-            elapsedTime = 0f;
-            canCatchTime = 0f;
             tutorialText.text = "Press SPACE to catch";
         }
     }
@@ -122,7 +125,7 @@ public class FishingFeature : MonoBehaviour
         switch (type)
         {
             case MinigameType.ArrowBoxMinigame:
-                currentMinigameObject = Instantiate(arrowBoxMinigame);
+                Instantiate(arrowBoxMinigame);
                 break;
             case MinigameType.AnotherMinigame:
                 //Instantiate(anotherPrefab);
@@ -155,6 +158,9 @@ public class FishingFeature : MonoBehaviour
     {
         // Reset the game state
         isPlaying = false;
+        canCatchTrash = false;
+        elapsedTime = 0f;
+        canCatchTime = 0f;
         tutorialText.text = "Press F to Fish";
     }
 

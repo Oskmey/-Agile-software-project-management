@@ -7,8 +7,10 @@ using UnityEngine.InputSystem;
 
 public class ArrowBoxMinigame : MonoBehaviour, IMinigame
 {
-    [SerializeField] private GameObject arrowPrefab;
-    [SerializeField] private GameObject boxPrefab;
+    [SerializeField] 
+    private GameObject arrowPrefab;
+    [SerializeField] 
+    private GameObject boxPrefab;
 
     private bool boxIsColliding;
     private BlueBoxController blueBoxController;
@@ -26,10 +28,10 @@ public class ArrowBoxMinigame : MonoBehaviour, IMinigame
     void Start()
     {
         playerControls = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
-        onMinigameWon.AddListener(GameObject.FindGameObjectWithTag("Player").GetComponent<FishingFeature>().OnMinigameWonHandler);
-        onMinigameLost.AddListener(GameObject.FindGameObjectWithTag("Player").GetComponent<FishingFeature>().OnMinigameLostHandler);
-        StartMinigame();
+        onMinigameWon.AddListener(GameObject.FindGameObjectWithTag("Player").GetComponent<MinigameManager>().OnMinigameWonHandler);
+        onMinigameLost.AddListener(GameObject.FindGameObjectWithTag("Player").GetComponent<MinigameManager>().OnMinigameLostHandler);
         catchTrash = playerControls.actions["Catch"];
+        StartMinigame();
     }
 
     // Update is called once per frame
