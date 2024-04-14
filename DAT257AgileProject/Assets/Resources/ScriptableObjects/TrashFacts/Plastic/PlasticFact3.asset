@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 460a09aa7a6be9448a93f8ebd6a3b884, type: 3}
-  m_Name: TrashFact10
+  m_Name: PlasticFact3
   m_EditorClassIdentifier: 
-  trashFact: a solution to stopping plastic pollution could be better waste management
-    systems and recycling?
+  trashFact: additives are often used in plastics and can prolong the lifespan of
+    the plastic to various degrees with some estimates being at least 400 years for
+    the material to break down?
   sourcesInformation:
   - {fileID: 11400000, guid: d1b02e50e580e0a45ac2abb0eba7420f, type: 2}
