@@ -12,10 +12,6 @@ public class TrashData : ScriptableObject
     [SerializeField] 
     private List<TrashFactData> trashFacts;
 
-    [Tooltip("The rarity of the trash")]
-    [SerializeField] 
-    private TrashRarity rarity;
-
     [Tooltip("The money value of the trash")]
     [SerializeField] 
     private int moneyValue;
@@ -26,7 +22,6 @@ public class TrashData : ScriptableObject
 
     public IReadOnlyList<TrashCategory> TrashCategories => trashCategories;
     public IReadOnlyList<TrashFactData> TrashFacts => trashFacts;
-    public TrashRarity Rarity => rarity;
     public int MoneyValue => moneyValue;
     public bool IsRecyclable => isRecyclable;
 }

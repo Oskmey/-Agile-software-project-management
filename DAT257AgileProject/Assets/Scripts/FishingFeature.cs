@@ -146,7 +146,7 @@ public class FishingFeature : MonoBehaviour
         }
 
         Vector2 trashSpawnPosition = new(transform.position.x, transform.position.y + 1);
-        trashHandler.CreateTrash(TrashType.TrashBag, trashSpawnPosition);
+        trashHandler.CreateRandomTrash(TrashRarity.Common, trashSpawnPosition);
 
         Destroy(GameObject.FindGameObjectWithTag("Minigame"));
     }
