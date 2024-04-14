@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class TestGameManager : MonoBehaviour
 {
     [Header("Managers")]
     private PlayerStatsManager playerStatsManager;
     private RecyclingManager recyclingManager;
-    private MinigameManager minigameManager;
     [Header("UI Elements")]
     [SerializeField] 
     private TextMeshProUGUI moneyGeneratedText;
@@ -22,8 +21,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         playerStatsManager = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatsManager>();
-        recyclingManager = FindObjectOfType<RecyclingManager>();
-        minigameManager = FindObjectOfType<MinigameManager>();
+        recyclingManager = GameObject.FindGameObjectWithTag("Recycling Manager").GetComponent<RecyclingManager>();
     }
 
     // Update is called once per frame

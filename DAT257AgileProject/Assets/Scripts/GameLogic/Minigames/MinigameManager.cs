@@ -21,6 +21,7 @@ public class MinigameManager : MonoBehaviour
     private PlayerInput playerInput;
     private InputAction recycleAction;
     private InputAction fishAction;
+
     private RecyclingManager recyclingManager;
 
     private bool isPlaying = false;
@@ -32,20 +33,22 @@ public class MinigameManager : MonoBehaviour
 
     private MinigameType currentMinigame;
     private TextMeshProUGUI tutorialText;
+
+    private SpriteRenderer playerSpriteRenderer;
   
-    private void Awake()
-    {
-    }
     // Start is called before the first frame update
     void Start()
     {
         tutorialText = GameObject.FindGameObjectWithTag("TutorialText").GetComponent<TextMeshProUGUI>();
-        currentMinigame = MinigameType.ArrowBoxMinigame;
-        playerInput = GetComponent<PlayerInput>();
-        recycleAction = playerInput.actions["Recycle"];
-        fishAction = playerInput.actions["Fish"];
         trashHandler = GameObject.FindGameObjectWithTag("TrashHandler").GetComponent<TrashHandler>();
         recyclingManager = GameObject.FindGameObjectWithTag("Recycling Manager").GetComponent<RecyclingManager>();
+        playerInput = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
+        playerSpriteRenderer = GameObject.FindGameObjectWithTag("Player").GetComponent<SpriteRenderer>();
+
+        currentMinigame = MinigameType.ArrowBoxMinigame;
+
+        recycleAction = playerInput.actions["Recycle"];
+        fishAction = playerInput.actions["Fish"];
     }
 
     // Update is called once per frame
@@ -62,7 +65,7 @@ public class MinigameManager : MonoBehaviour
     {
         if (!isPlaying)
         {
-            GetComponent<SpriteRenderer>().sprite = fishingSprite1;
+            playerSpriteRenderer.sprite = fishingSprite1;
             elapsedTime += Time.deltaTime;
             tutorialText.text = "Press F to Fish";
 
@@ -90,7 +93,7 @@ public class MinigameManager : MonoBehaviour
     {
         if (fishAction.triggered && !isPlaying && canCatchTrash)
         {
-            GetComponent<SpriteRenderer>().sprite = fishingSprite2;
+            playerSpriteRenderer.sprite = fishingSprite2;
             CreateMinigame(currentMinigame);
             isPlaying = true;
             tutorialText.text = "Press SPACE to catch";

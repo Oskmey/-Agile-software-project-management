@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-public class ArrowBoxMinigame : MonoBehaviour, IMinigame
+public class ArrowBoxMinigame : Minigame
 {
     [SerializeField] 
     private GameObject arrowPrefab;
@@ -28,8 +28,8 @@ public class ArrowBoxMinigame : MonoBehaviour, IMinigame
     void Start()
     {
         playerControls = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
-        onMinigameWon.AddListener(GameObject.FindGameObjectWithTag("Player").GetComponent<MinigameManager>().OnMinigameWonHandler);
-        onMinigameLost.AddListener(GameObject.FindGameObjectWithTag("Player").GetComponent<MinigameManager>().OnMinigameLostHandler);
+        onMinigameWon.AddListener(FindObjectOfType<MinigameManager>().OnMinigameWonHandler);
+        onMinigameLost.AddListener(FindObjectOfType<MinigameManager>().OnMinigameLostHandler);
         catchTrash = playerControls.actions["Catch"];
         StartMinigame();
     }
@@ -62,15 +62,15 @@ public class ArrowBoxMinigame : MonoBehaviour, IMinigame
         DestroyMinigame();
     }
 
-    public void StartMinigame()
+    protected override void StartMinigame()
     {
         arrow = Instantiate(arrowPrefab);
         box = Instantiate(boxPrefab);
         blueBoxController = box.GetComponent<BlueBoxController>();
     }
 
-    public void DestroyMinigame() // Runs on both "Success" and "Very Bad!"
-    {    
+    protected override void DestroyMinigame()
+    {
         if (box != null)
         {
             Destroy(box);
@@ -79,6 +79,7 @@ public class ArrowBoxMinigame : MonoBehaviour, IMinigame
         {
             Destroy(arrow);
         }
-    }
 
+        Destroy(this);
+    }
 }
