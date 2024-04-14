@@ -1,10 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.Events;
 
-public abstract class Minigame : MonoBehaviour
+public abstract class Minigame : MonoBehaviour, IMinigame
 {
-    protected abstract void StartMinigame();
+    public UnityEvent onMinigameWon;
+    public UnityEvent onMinigameLost;
+    protected string promptText;
 
-    protected abstract void DestroyMinigame();
+    public string PromptText { get { return promptText; } }
+    public abstract void StartMinigame();
+    public abstract void DestroyMinigame();
+    public abstract void HandleMinigameWon();
+    public abstract void HandleMinigameLost();
+    public abstract void ResetMinigame();
 }

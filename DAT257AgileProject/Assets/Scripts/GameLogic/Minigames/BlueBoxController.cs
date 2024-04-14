@@ -21,10 +21,10 @@ public class BlueBoxController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        moveBox();
+        MoveBox();
     }
 
-    private void moveBox()
+    private void MoveBox()
     {
         Vector3 movement = new Vector3(speed * Time.deltaTime * direction, 0f, 0f);
         transform.Translate(movement);

@@ -47,6 +47,7 @@ public class TrashHandler : MonoBehaviour
     public void CreateTrash(TrashType trashType, Vector2 position)
     {
         currentTrashObject = TrashFactory.CreateTrash(trashType);
+        Debug.Log("Created trash");
         currentTrashObject.transform.position = position;
         TrashScript currentTrashScript = currentTrashObject.GetComponent<TrashScript>();
         // TODO: Fix gameplayHudHandler being null, so we dont have to find it again, something to do with event invoke
@@ -82,6 +83,10 @@ public class TrashHandler : MonoBehaviour
             recyclingManager.AddTrashToRecycle(trash);
             onTrashCollected.Invoke();
             Destroy(currentTrashObject);
+            if(currentTrashObject != null)
+            {
+                Debug.Log("Trash was deleted");
+            }
         }
     }
 
