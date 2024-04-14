@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 460a09aa7a6be9448a93f8ebd6a3b884, type: 3}
+  m_Name: TrashBagFact1
+  m_EditorClassIdentifier: 
+  trashFact: plastic bags are the most common trash in the oceans?
+  sourcesInformation:
+  - {fileID: 11400000, guid: 012defae641a52849a4ae94d61a3d1ed, type: 2}
