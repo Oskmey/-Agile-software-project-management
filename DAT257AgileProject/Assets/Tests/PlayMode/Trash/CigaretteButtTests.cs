@@ -27,7 +27,7 @@ public class CigaretteButtTests
     }
 
     [Test]
-    public void CigaretteButt_HasCorrectTrashCategory_ReturnsTrue()
+    public void CigaretteButt_HasCorrectTrashCategories_ReturnsTrue()
     {
         IReadOnlyList<TrashCategory> correctCigaretteButtsCategories = new List<TrashCategory> { TrashCategory.Paper, TrashCategory.Plastic };
         IReadOnlyList<TrashCategory> trashCategories = cigaretteButtScript.TrashCategories;
