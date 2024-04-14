@@ -1,4 +1,8 @@
 using NUnit.Framework;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -13,8 +17,13 @@ public class TrashFactoryTests
     public void Setup()
     {
         GameObject trashHandlerPrefab = AssetDatabase.LoadAssetAtPath(trashHandlerPrefabPath, typeof(GameObject)) as GameObject;
-        trashHandlerObject = Object.Instantiate(trashHandlerPrefab);
+        trashHandlerObject = UnityEngine.Object.Instantiate(trashHandlerPrefab);
         trashFactory = trashHandlerObject.GetComponent<TrashFactory>();
+    }
+
+    private static IEnumerable<TrashType> TrashTypeTestCases
+    {
+        get { return Enum.GetValues(typeof(TrashType)).Cast<TrashType>(); }
     }
 
     [Test]
@@ -36,17 +45,24 @@ public class TrashFactoryTests
         Assert.IsNotNull(trashPrefab);
     }
 
-    [Test]
-    public void TrashFactory_CreateTrashBag_ReturnsTrashBagPrefab()
+    [Test, TestCaseSource(nameof(TrashTypeTestCases))]
+    public void EachTrashType_CanBeCreated(TrashType trashType)
     {
-        GameObject trashBagPrefab = TrashFactory.CreateTrash(TrashType.TrashBag);
-        TrashScript trashBagScript = trashBagPrefab.GetComponent<TrashScript>();
-        Assert.AreEqual(TrashType.TrashBag, trashBagScript.TrashType);
+        GameObject createdTrash = TrashFactory.CreateTrash(trashType);
+        Assert.IsNotNull(createdTrash);
+    }
+
+    [Test, TestCaseSource(nameof(TrashTypeTestCases))]
+    public void EachTrashType_CanBeCreatedWithCorrectType(TrashType trashType)
+    {
+        GameObject createdTrash = TrashFactory.CreateTrash(trashType);
+        TrashScript createdTrashScript = createdTrash.GetComponent<TrashScript>();
+        Assert.AreEqual(trashType, createdTrashScript.TrashType);
     }
 
     [TearDown]
     public void TearDown()
     {
-        Object.DestroyImmediate(trashHandlerObject);
+        UnityEngine.Object.DestroyImmediate(trashHandlerObject);
     }
 }
