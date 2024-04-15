@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +11,7 @@ public class GameManager : MonoBehaviour
     private PlayerStatsManager playerStatsManager;
     private RecyclingManager recyclingManager;
     private MinigameManager minigameManager;
+    private FishingLoop fishingLoop;
     [Header("UI Elements")]
     [SerializeField] 
     private TextMeshProUGUI moneyGeneratedText;
@@ -17,13 +20,24 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI recycleTrashLeftText;
     private int recycledTrashCount;
+    private PlayerInput playerInput;
+    private InputAction recycleAction;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        fishingLoop = FindObjectOfType<FishingLoop>();
         playerStatsManager = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatsManager>();
         recyclingManager = FindObjectOfType<RecyclingManager>();
         minigameManager = FindObjectOfType<MinigameManager>();
+        // TODO: make it so i cant start multiple minigames at the sametime
+        fishingLoop.StartFishing();
+
+        playerInput = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
+        recycleAction = playerInput.actions["Recycle"];
+        //startFishing.AddListener<FishingLoopstartFishing()>
+        //minigameManager.StartMinigame(MinigameType.ArrowBoxMinigame);
     }
 
     // Update is called once per frame
@@ -33,6 +47,15 @@ public class GameManager : MonoBehaviour
         UpdateTrashLeftText();
         UpdateMoneyGenerated();
         UpdateRecycledTrashCountText();
+        HandleRecycle();
+    }
+
+    private void HandleRecycle()
+    {
+        if (recycleAction.triggered)
+        {
+            recyclingManager.RecycleAtNearestMachine();
+        }
     }
 
     void UpdateTrashLeftText()

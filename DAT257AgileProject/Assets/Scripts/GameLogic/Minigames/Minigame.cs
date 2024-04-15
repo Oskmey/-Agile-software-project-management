@@ -13,7 +13,4 @@ public abstract class Minigame : MonoBehaviour, IMinigame
     public string PromptText { get { return promptText; } }
     public abstract void StartMinigame();
     public abstract void DestroyMinigame();
-    public abstract void HandleMinigameWon();
-    public abstract void HandleMinigameLost();
-    public abstract void ResetMinigame();
 }

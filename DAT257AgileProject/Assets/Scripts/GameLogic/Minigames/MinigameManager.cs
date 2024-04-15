@@ -11,23 +11,68 @@ public class MinigameManager : MonoBehaviour
     [SerializeField] 
     private ArrowBoxMinigame arrowBoxMinigame;
 
+    private TrashHandler trashHandler;
+
     private MinigameType currentMinigameType;
     private Minigame currentMinigame;
-    private TextMeshProUGUI minigamePromptText;
+    private TextMeshProUGUI promptText;
 
-    // Start is called before the first frame update
-    void Start()
+    private bool minigameStarted = false;
+
+    private void Awake()
+    {
+        trashHandler = GameObject.FindGameObjectWithTag("TrashHandler").GetComponent<TrashHandler>();
+    }
+
+    public bool MinigameStarted
+    {
+        get
+        {
+            return minigameStarted;
+        }
+        set
+        {
+            minigameStarted = value;
+        }
+    }
+
+    public void StartMinigame(MinigameType minigameType)
+    {
+        // 
+        minigameStarted = true;
+        currentMinigameType = minigameType;
+        InitMinigame(currentMinigameType);
+        // TODO: add minigameStarted = false somewhere
+        /*
+        minigameStarted = true;
+
+        if (minigameStarted)
+        {
+            // TEMP: add more minigames
+            InitMinigame(minigameType);
+        }
+        else
+        {
+            Debug.LogError("Can't start a minigame while another one is active");
+        }
+        */
+
+    }
+
+    void InitMinigame(MinigameType minigameType)
     {
         // startminigame
-        currentMinigameType = MinigameType.ArrowBoxMinigame;
-        CreateMinigame(currentMinigameType);
-        minigamePromptText = GameObject.FindGameObjectWithTag("TutorialText").GetComponent<TextMeshProUGUI>();
+        CreateMinigame(minigameType);
+        promptText = GameObject.FindGameObjectWithTag("TutorialText").GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        UpdateMinigamePromptText();
+        if(minigameStarted)
+        {
+            UpdateMinigamePromptText();
+        }
     }
 
     private void CreateMinigame(MinigameType type)
@@ -48,22 +93,24 @@ public class MinigameManager : MonoBehaviour
 
     public void HandleMinigameWon()
     {
-        currentMinigame = GameObject.FindGameObjectWithTag("Minigame").GetComponent<Minigame>();
-        currentMinigame.HandleMinigameWon();
+        minigameStarted = false;
+        // TODO: fix objects being null when event invoked
+        promptText.text = "";
+        trashHandler = FindObjectOfType<TrashHandler>();
+        if (trashHandler == null)
+        {
+            Debug.LogError("TrashHandler not found.");
+            return;
+        }
+
+        Vector2 trashSpawnPosition = new(transform.position.x, transform.position.y + 1);
+        trashHandler.CreateTrash(TrashType.TrashBag, trashSpawnPosition);
     }
 
     public void HandleMinigameLost()
     {
-        currentMinigame = GameObject.FindGameObjectWithTag("Minigame").GetComponent<Minigame>();
-        currentMinigame.HandleMinigameLost();
-    }
-
-    public void ResetMiniGame()
-    {
-        //Destroy(GameObject.FindGameObjectWithTag("Minigame"));
-
-        currentMinigame = GameObject.FindGameObjectWithTag("Minigame").GetComponent<Minigame>();
-        currentMinigame.ResetMinigame();
+        minigameStarted = false;
+        Debug.Log("Minigame lost! Implement your logic here...");
     }
 
     private void UpdateMinigamePromptText()
@@ -71,10 +118,9 @@ public class MinigameManager : MonoBehaviour
         switch (currentMinigameType)
         {
             case MinigameType.ArrowBoxMinigame:
-                minigamePromptText.text = currentMinigame.PromptText;
+                promptText.text = currentMinigame.PromptText;
                 break;
-            case MinigameType.AnotherMinigame:
-                
+            case MinigameType.AnotherMinigame:    
                 break;
             default:
                 Debug.LogError($"Minigame type not supported: {currentMinigameType}");
