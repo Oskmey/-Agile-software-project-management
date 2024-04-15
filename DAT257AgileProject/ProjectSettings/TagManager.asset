@@ -12,6 +12,8 @@ TagManager:
   - GameplayHUD
   - Fishing Spot
   - Fishing Manager
+  - Shop
+  - Shop Manager
   layers:
   - Default
   - TransparentFX

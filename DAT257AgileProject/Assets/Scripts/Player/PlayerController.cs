@@ -18,6 +18,9 @@ public class PlayerController : MonoBehaviour
     private InputAction fishingAction;
     private FishingManager fishingManager;
 
+    private InputAction shopAction;
+    private ShopManager shoppingManager;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -28,6 +31,9 @@ public class PlayerController : MonoBehaviour
         
         fishingAction = GetComponent<PlayerInput>().actions["Fish"];
         fishingManager = GameObject.FindGameObjectWithTag("Fishing Manager").GetComponent<FishingManager>();
+
+        shopAction = GetComponent<PlayerInput>().actions["Shop"];
+        shoppingManager = GameObject.FindGameObjectWithTag("Shop Manager").GetComponent<ShopManager>();
     }
 
     private void OnEnable()
@@ -36,6 +42,7 @@ public class PlayerController : MonoBehaviour
         movementAction.canceled += OnMovmentStopped;
         recycleAction.performed += Recycle;
         fishingAction.performed += Fishing;
+        shopAction.performed += Shopping;
     }
 
     private void OnDisable()
@@ -43,6 +50,7 @@ public class PlayerController : MonoBehaviour
         movementAction.performed -= OnMovment;
         movementAction.canceled -= OnMovmentStopped;
         recycleAction.performed -= Recycle;
+        shopAction.performed -= Shopping;
     }
     
     // Test method to recycle trash due to no inventory system
@@ -56,6 +64,12 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("Fishing if in range");
         fishingManager.FishAtNearestSpot();
+    }
+
+        private void Shopping(InputAction.CallbackContext context)
+    {
+        Debug.Log("Shopping if in range");
+        shoppingManager.ShopAtNearestSpot();
     }
 
     private void OnMovment(InputAction.CallbackContext value)

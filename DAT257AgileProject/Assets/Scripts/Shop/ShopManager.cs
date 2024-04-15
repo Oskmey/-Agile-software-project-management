@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using static RecyclingMachine;
 
-public class shopManager : MonoBehaviour
+public class ShopManager : MonoBehaviour
 {
     private PlayerStatsManager playerStatsManager;
     private IReadOnlyList<Shop> shoppingSpots;
