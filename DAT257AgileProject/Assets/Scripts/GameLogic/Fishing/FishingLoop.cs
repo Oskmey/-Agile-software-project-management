@@ -11,8 +11,9 @@ public class FishingLoop : MonoBehaviour
     private Sprite fishingSprite1, fishingSprite2;
     [SerializeField] 
     private GameObject exclamationMarkPrefab;
+    // TODO Make it possible to have many types of trash
     [SerializeField] 
-    private GameObject trashPrefab;    // TODO Make it possible to have many types of trash
+    private GameObject trashPrefab;    
 
     private PlayerInput playerInput;
     private InputAction fishAction;
@@ -116,8 +117,8 @@ public class FishingLoop : MonoBehaviour
         canCatchTime = 0f;
 
         promptText.text = "Press F to Fish";
-
-        Destroy(GameObject.FindGameObjectWithTag("Minigame"));   
+        
+        //Destroy(GameObject.FindGameObjectWithTag("Minigame"));   
     }
 
     public void TrashCoughtEffect()     // Should spawn on success

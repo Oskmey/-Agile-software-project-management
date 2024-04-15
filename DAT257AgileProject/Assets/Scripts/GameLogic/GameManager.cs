@@ -25,9 +25,8 @@ public class GameManager : MonoBehaviour
     private PlayerInput playerInput;
     private InputAction recycleAction;
 
-
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         PlayerPrefs.SetInt("Money", 0);
         PlayerPrefs.SetInt("RecycledTrashCount", 0);
@@ -35,7 +34,6 @@ public class GameManager : MonoBehaviour
 
         fishingLoop = FindObjectOfType<FishingLoop>();
         playerStatsManager = FindObjectOfType<PlayerStatsManager>();
-
         recyclingManager = FindObjectOfType<RecyclingManager>();
         playerInput = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
 
@@ -45,8 +43,24 @@ public class GameManager : MonoBehaviour
     // TEMO savesystem
     private void Save()
     {
-        playerStatsManager.Save();
-        recyclingManager.Save();
+        if (playerStatsManager == null)
+        {
+            Debug.LogError("Null playerstats manager");
+        }
+        else
+        {
+            playerStatsManager.Save();
+
+        }
+
+        if (recyclingManager == null)
+        {
+            Debug.LogError("Null recycling manager");
+        }
+        else 
+        {
+            recyclingManager.Save();
+        }
     }
 
     // Fishing is currently switching to another scene

@@ -82,5 +82,6 @@ public class ArrowBoxMinigame : Minigame
         }
 
         promptText = "";
+        Destroy(gameObject);
     }
 }
