@@ -19,7 +19,7 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame() 
     {
-        SceneManager.LoadSceneAsync("MVP Scene");
+        SceneManager.LoadSceneAsync("Player Control Fixes");
     }
 
     public void QuitGame()
