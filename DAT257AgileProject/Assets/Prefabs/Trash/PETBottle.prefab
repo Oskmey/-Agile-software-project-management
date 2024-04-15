@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 6746091704529100501}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.082227, y: 2.1326985, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -99,3 +99,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trashScriptableObject: {fileID: 11400000, guid: 214d96c1d493c9744b745a7255d1e9af, type: 2}
   trashType: 1
+  rarity: 0
