@@ -321,7 +321,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4444936653469055995, guid: d4930d0dc155d6a4990c227b8e723320, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4492897047914764450, guid: d4930d0dc155d6a4990c227b8e723320, type: 3}
       propertyPath: m_MatchWidthOrHeight
@@ -1730,15 +1730,15 @@ PrefabInstance:
     - target: {fileID: 216464574939776067, guid: 8e0b57f98cf8696459fb1f24c6c1fedc, type: 3}
       propertyPath: moneyGeneratedText
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1604459820}
     - target: {fileID: 216464574939776067, guid: 8e0b57f98cf8696459fb1f24c6c1fedc, type: 3}
       propertyPath: recycleTrashLeftText
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1788427132}
     - target: {fileID: 216464574939776067, guid: 8e0b57f98cf8696459fb1f24c6c1fedc, type: 3}
       propertyPath: recycledTrashCountText
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1123261072}
     - target: {fileID: 1671947149373300907, guid: 8e0b57f98cf8696459fb1f24c6c1fedc, type: 3}
       propertyPath: m_LocalPosition.y
       value: -1.68

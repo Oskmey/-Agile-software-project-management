@@ -23,7 +23,6 @@ public class GameManager : MonoBehaviour
     private int recycledTrashCount;
 
     private PlayerInput playerInput;
-    private InputAction recycleAction;
 
     // Start is called before the first frame update
     void Awake()
@@ -36,8 +35,6 @@ public class GameManager : MonoBehaviour
         playerStatsManager = FindObjectOfType<PlayerStatsManager>();
         recyclingManager = FindObjectOfType<RecyclingManager>();
         playerInput = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
-
-        recycleAction = playerInput.actions["Recycle"];
     }
 
     // TEMO savesystem
@@ -66,16 +63,16 @@ public class GameManager : MonoBehaviour
     // Fishing is currently switching to another scene
     public void StartFishing()
     {
+        Save();
         FishingLoop.IsFishing = true;
         SceneManager.LoadSceneAsync("Fishing");
-        Save();
     }
 
     public void StopFishing()
     {
+        Save();
         FishingLoop.IsFishing = false;
         SceneManager.LoadSceneAsync("World");
-        Save();
     }
          
     // Update is called once per frame
@@ -85,15 +82,6 @@ public class GameManager : MonoBehaviour
         UpdateTrashLeftText();
         UpdateMoneyGenerated();
         UpdateRecycledTrashCountText();
-        HandleRecycle();
-    }
-
-    private void HandleRecycle()
-    {
-        if (recycleAction.triggered && !FishingLoop.IsFishing)
-        {
-            recyclingManager.RecycleAtNearestMachine();
-        }
     }
 
     void UpdateTrashLeftText()
