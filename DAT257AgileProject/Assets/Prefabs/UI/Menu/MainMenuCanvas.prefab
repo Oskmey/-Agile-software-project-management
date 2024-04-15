@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 8518602920063654095}
   - component: {fileID: 2087550219673342734}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: QuitButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -617,7 +617,7 @@ GameObject:
   - component: {fileID: 1818364218919379372}
   - component: {fileID: 5072234636959553581}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: SettingsText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -884,7 +884,7 @@ GameObject:
   - component: {fileID: 6095190062567912592}
   - component: {fileID: 2617371070451670293}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: HowToPlayText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1163,7 +1163,7 @@ GameObject:
   - component: {fileID: 1058169900867214610}
   - component: {fileID: 8656730114337957957}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: HowButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1297,7 +1297,7 @@ GameObject:
   - component: {fileID: 1987941535549500128}
   - component: {fileID: 4345570523539292477}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: HowExitButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1431,7 +1431,7 @@ GameObject:
   - component: {fileID: 5648858959956109040}
   - component: {fileID: 361874824555320906}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: PlayButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1698,7 +1698,7 @@ GameObject:
   - component: {fileID: 9066733216187113705}
   - component: {fileID: 5536734649922892113}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: SettingsButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1832,7 +1832,7 @@ GameObject:
   - component: {fileID: 5545560518772671723}
   - component: {fileID: 7218890090822735875}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: SettingsExitButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2232,7 +2232,7 @@ GameObject:
   - component: {fileID: 8349169352410465972}
   - component: {fileID: 7130116158294698987}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: GameTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
