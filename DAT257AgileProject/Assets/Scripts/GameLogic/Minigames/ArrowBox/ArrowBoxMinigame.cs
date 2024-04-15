@@ -23,6 +23,8 @@ public class ArrowBoxMinigame : Minigame
     // Start is called before the first frame update
     void Start()
     {
+        onMinigameWon = new UnityEvent();
+        onMinigameLost = new UnityEvent();
         promptText = string.Empty;
         playerControls = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
         catchTrash = playerControls.actions["Catch"];

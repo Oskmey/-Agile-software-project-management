@@ -13,10 +13,11 @@ public class TrashHandler : MonoBehaviour
     private InputAction hideTrashInfoPanelAction;
     private RecyclingManager recyclingManager;
 
-    public UnityEvent onTrashCollected;
+    private UnityEvent onTrashCollected;
 
     private void Start()
     {
+        onTrashCollected = new UnityEvent();
         onTrashCollected.AddListener(FindObjectOfType<FishingLoop>().ResetFishingLoop);
         gameplayHudHandler = GameObject.FindGameObjectWithTag("GameplayHUD").GetComponent<GameplayHudHandler>();
         playerInput = GetComponent<PlayerInput>();

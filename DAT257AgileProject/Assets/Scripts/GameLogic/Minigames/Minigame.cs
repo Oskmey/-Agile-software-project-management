@@ -6,8 +6,8 @@ using UnityEngine.Events;
 
 public abstract class Minigame : MonoBehaviour, IMinigame
 {
-    public UnityEvent onMinigameWon;
-    public UnityEvent onMinigameLost;
+    protected UnityEvent onMinigameWon;
+    protected UnityEvent onMinigameLost;
     protected string promptText;
 
     public string PromptText { get { return promptText; } }
