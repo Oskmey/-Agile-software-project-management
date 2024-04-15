@@ -10,8 +10,8 @@ public class GameManager : MonoBehaviour
     [Header("Managers")]
     private PlayerStatsManager playerStatsManager;
     private RecyclingManager recyclingManager;
-    private MinigameManager minigameManager;
     private FishingLoop fishingLoop;
+
     [Header("UI Elements")]
     [SerializeField] 
     private TextMeshProUGUI moneyGeneratedText;
@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI recycleTrashLeftText;
     private int recycledTrashCount;
+
     private PlayerInput playerInput;
     private InputAction recycleAction;
 
@@ -30,14 +31,11 @@ public class GameManager : MonoBehaviour
         fishingLoop = FindObjectOfType<FishingLoop>();
         playerStatsManager = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatsManager>();
         recyclingManager = FindObjectOfType<RecyclingManager>();
-        minigameManager = FindObjectOfType<MinigameManager>();
-        // TODO: make it so i cant start multiple minigames at the sametime
-        fishingLoop.StartFishing();
-
         playerInput = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
+
         recycleAction = playerInput.actions["Recycle"];
-        //startFishing.AddListener<FishingLoopstartFishing()>
-        //minigameManager.StartMinigame(MinigameType.ArrowBoxMinigame);
+
+        fishingLoop.StartFishing();
     }
 
     // Update is called once per frame

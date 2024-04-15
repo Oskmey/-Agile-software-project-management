@@ -30,38 +30,17 @@ public class MinigameManager : MonoBehaviour
         {
             return minigameStarted;
         }
-        set
-        {
-            minigameStarted = value;
-        }
     }
 
     public void StartMinigame(MinigameType minigameType)
     {
-        // 
         minigameStarted = true;
         currentMinigameType = minigameType;
         InitMinigame(currentMinigameType);
-        // TODO: add minigameStarted = false somewhere
-        /*
-        minigameStarted = true;
-
-        if (minigameStarted)
-        {
-            // TEMP: add more minigames
-            InitMinigame(minigameType);
-        }
-        else
-        {
-            Debug.LogError("Can't start a minigame while another one is active");
-        }
-        */
-
     }
 
     void InitMinigame(MinigameType minigameType)
     {
-        // startminigame
         CreateMinigame(minigameType);
         promptText = GameObject.FindGameObjectWithTag("TutorialText").GetComponent<TextMeshProUGUI>();
     }
@@ -97,6 +76,7 @@ public class MinigameManager : MonoBehaviour
         // TODO: fix objects being null when event invoked
         promptText.text = "";
         trashHandler = FindObjectOfType<TrashHandler>();
+        
         if (trashHandler == null)
         {
             Debug.LogError("TrashHandler not found.");

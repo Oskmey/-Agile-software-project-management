@@ -12,7 +12,7 @@ public class ArrowBoxMinigame : Minigame
     [SerializeField] private GameObject boxPrefab;
 
     private bool boxIsColliding;
-    private BlueBoxController blueBoxController;
+    private TimingBoxController timingBoxController;
 
     private GameObject arrow;
     private GameObject box;
@@ -34,9 +34,9 @@ public class ArrowBoxMinigame : Minigame
     // Update is called once per frame
     void Update()
     {
-        if (blueBoxController != null)
+        if (timingBoxController != null)
         {
-            boxIsColliding = blueBoxController.BoxIsColliding();
+            boxIsColliding = timingBoxController.BoxIsColliding();
         }
 
         if (catchTrash.triggered)
@@ -63,7 +63,7 @@ public class ArrowBoxMinigame : Minigame
     {
         arrow = Instantiate(arrowPrefab);
         box = Instantiate(boxPrefab);
-        blueBoxController = box.GetComponent<BlueBoxController>();
+        timingBoxController = box.GetComponent<TimingBoxController>();
 
         promptText = "Press SPACE to catch";
     }

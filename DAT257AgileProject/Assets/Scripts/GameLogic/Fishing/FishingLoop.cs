@@ -14,9 +14,7 @@ public class FishingLoop : MonoBehaviour
     [SerializeField] 
     private GameObject trashPrefab;    // TODO Make it possible to have many types of trash
 
-    private TrashHandler trashHandler;
     private PlayerInput playerInput;
-    private InputAction recycleAction;
     private InputAction fishAction;
 
     private bool isFishing = false;
@@ -39,29 +37,15 @@ public class FishingLoop : MonoBehaviour
         promptText = GameObject.FindGameObjectWithTag("TutorialText").GetComponent<TextMeshProUGUI>();
         minigameManager = FindObjectOfType<MinigameManager>();
         playerInput = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
-        recycleAction = playerInput.actions["Recycle"];
+
         fishAction = playerInput.actions["Fish"];
-        trashHandler = GameObject.FindGameObjectWithTag("TrashHandler").GetComponent<TrashHandler>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
-            HandleFishingPlaying();
-
-            HandleMinigameStart();
-        
-    }
-
-    public void StartFishing()
-    {
-        isFishing = true;
-    }
-
-    public void StopFishing()
-    {
-        isFishing = false;
+         HandleFishingPlaying();
+         HandleMinigameStart();     
     }
 
     private void HandleFishingPlaying()
@@ -91,16 +75,29 @@ public class FishingLoop : MonoBehaviour
         }
     }
 
+    public void StartFishing()
+    {
+        isFishing = true;
+    }
+
+    public void StopFishing()
+    {
+        isFishing = false;
+    }
+
     private void HandleMinigameStart()
     {
         if (fishAction.triggered && !isPlayingMinigame && canCatchTrash)
         {
             playerSpriteRenderer.sprite = fishingSprite2;
             minigameManager.StartMinigame(MinigameType.ArrowBoxMinigame);
+            
             isPlayingMinigame = true;
             isFishing = false;
+
             elapsedTime = 0f;
             canCatchTime = 0f;
+
             promptText.text = "Press SPACE to catch";
         }
     }
@@ -110,14 +107,6 @@ public class FishingLoop : MonoBehaviour
         GameObject exclamationMark = Instantiate(exclamationMarkPrefab);
         exclamationMark.transform.localPosition += new Vector3(Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f), 0f);
         Destroy(exclamationMark, 1.5f);
-    }
-
-    public void TrashCoughtEffect()     // Should spawn on success
-    {
-        Vector3 offset = new Vector3(3f, -2.5f, 0);     // The distance from player to float
-        Vector3 spawnPos = transform.localPosition + offset;
-        GameObject trash = Instantiate(trashPrefab, spawnPos, Quaternion.identity);
-        Destroy(trash, 1.5f);
     }
 
     public void ResetFishingLoop()
@@ -132,5 +121,14 @@ public class FishingLoop : MonoBehaviour
 
         promptText.text = "Press F to Fish";
 
-        Destroy(GameObject.FindGameObjectWithTag("Minigame"));    }
+        Destroy(GameObject.FindGameObjectWithTag("Minigame"));   
+    }
+
+    public void TrashCoughtEffect()     // Should spawn on success
+    {
+        Vector3 offset = new Vector3(3f, -2.5f, 0);     // The distance from player to float
+        Vector3 spawnPos = transform.localPosition + offset;
+        GameObject trash = Instantiate(trashPrefab, spawnPos, Quaternion.identity);
+        Destroy(trash, 1.5f);
+    }
 }

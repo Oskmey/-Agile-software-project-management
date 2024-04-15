@@ -18,7 +18,7 @@ public class TrashHandler : MonoBehaviour
     private void Start()
     {
         onTrashCollected.AddListener(FindObjectOfType<FishingLoop>().ResetFishingLoop);
-        //gameplayHudHandler = GameObject.FindGameObjectWithTag("GameplayHUD").GetComponent<GameplayHudHandler>();
+        gameplayHudHandler = GameObject.FindGameObjectWithTag("GameplayHUD").GetComponent<GameplayHudHandler>();
         playerInput = GetComponent<PlayerInput>();
         hideTrashInfoPanelAction = playerInput.actions["HideTrashInfoPanel"];
         recyclingManager = GameObject.FindGameObjectWithTag("Recycling Manager").GetComponent<RecyclingManager>();
@@ -81,12 +81,9 @@ public class TrashHandler : MonoBehaviour
             Debug.Log("Added trash");
             TrashScript trash = currentTrashObject.GetComponent<TrashScript>();
             recyclingManager.AddTrashToRecycle(trash);
+
             onTrashCollected.Invoke();
             Destroy(currentTrashObject);
-            if(currentTrashObject != null)
-            {
-                Debug.Log("Trash was deleted");
-            }
         }
     }
 

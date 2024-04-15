@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4555122018127065069}
   - component: {fileID: -7928567110798152397}
   m_Layer: 0
-  m_Name: BlueBox
+  m_Name: TimingBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlueBoxController : MonoBehaviour
+public class TimingBoxController : MonoBehaviour
 {
     [SerializeField] private float speed = 7f;
 
