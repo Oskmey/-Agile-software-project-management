@@ -7,10 +7,12 @@ using UnityEngine.InputSystem;
 
 public class FishingFeature : MonoBehaviour
 {
-    [SerializeField] private ArrowBoxMinigame arrowBoxMinigame;
-    [SerializeField] private Sprite fishingSprite1, fishingSprite2;
-    [SerializeField] private GameObject exclamationMarkPrefab;
-    [SerializeField] private GameObject trashPrefab;    // TODO Make it possible to have many types of trash
+    [SerializeField] 
+    private ArrowBoxMinigame arrowBoxMinigame;
+    [SerializeField] 
+    private Sprite fishingSprite1, fishingSprite2;
+    [SerializeField] 
+    private GameObject exclamationMarkPrefab;
 
     private TrashHandler trashHandler;
     private PlayerInput playerInput;
@@ -107,14 +109,6 @@ public class FishingFeature : MonoBehaviour
         GameObject exclamationMark = Instantiate(exclamationMarkPrefab);
         exclamationMark.transform.localPosition += new Vector3(Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f), 0f);
         Destroy(exclamationMark, 1.5f);
-    }
-
-    public void TrashCoughtEffect()     // Should spawn on success
-    {
-        Vector3 offset = new Vector3(3f, -2.5f, 0);     // The distance from player to float
-        Vector3 spawnPos = transform.localPosition + offset;
-        GameObject trash = Instantiate(trashPrefab, spawnPos, Quaternion.identity);
-        Destroy(trash, 1.5f);
     }
 
     private void CreateMinigame(MinigameType type)
