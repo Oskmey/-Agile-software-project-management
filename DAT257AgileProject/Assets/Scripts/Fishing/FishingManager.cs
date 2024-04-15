@@ -11,7 +11,6 @@ public class FishingManager : MonoBehaviour
     
 void Awake()
 {
-    
     fishingSpots = GetFishingSpots();
     playerStatsManager = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatsManager>();
 }

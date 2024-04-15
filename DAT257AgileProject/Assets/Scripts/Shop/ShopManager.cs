@@ -11,7 +11,6 @@ public class ShopManager : MonoBehaviour
     
 void Awake()
 {
-    
     shoppingSpots = GetShoppingSpots();
     playerStatsManager = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatsManager>();
 }

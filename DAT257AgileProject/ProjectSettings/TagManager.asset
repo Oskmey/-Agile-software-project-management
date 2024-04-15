@@ -14,6 +14,7 @@ TagManager:
   - Fishing Manager
   - Shop
   - Shop Manager
+  - Map
   layers:
   - Default
   - TransparentFX

@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
 
         recycleAction = GetComponent<PlayerInput>().actions["Recycle"];
         recyclingManager = GameObject.FindGameObjectWithTag("Recycling Manager").GetComponent<RecyclingManager>();
-        
+
         fishingAction = GetComponent<PlayerInput>().actions["Fish"];
         fishingManager = GameObject.FindGameObjectWithTag("Fishing Manager").GetComponent<FishingManager>();
 
