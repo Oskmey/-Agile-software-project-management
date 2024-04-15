@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
     {
         if (playerStatsManager == null)
         {
-            Debug.LogError("Null playerstats manager");
+            Debug.LogError("playerStatsManager is null");
         }
         else
         {
@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
 
         if (recyclingManager == null)
         {
-            Debug.LogError("Null recycling manager");
+            Debug.LogError("recyclingManager is null");
         }
         else 
         {

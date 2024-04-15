@@ -31,11 +31,6 @@ public class TrashHandler : MonoBehaviour
         {
             DestroyTrash();
         }
-
-        if(gameplayHudHandler == null)
-        {
-            Debug.Log("GameplayHudHandler not found.");
-        }
     }
 
     // Creates trash at the center of the screen
@@ -48,7 +43,6 @@ public class TrashHandler : MonoBehaviour
     public void CreateTrash(TrashType trashType, Vector2 position)
     {
         currentTrashObject = TrashFactory.CreateTrash(trashType);
-        Debug.Log("Created trash");
         currentTrashObject.transform.position = position;
         TrashScript currentTrashScript = currentTrashObject.GetComponent<TrashScript>();
         // TODO: Fix gameplayHudHandler being null, so we dont have to find it again, something to do with event invoke
@@ -79,7 +73,6 @@ public class TrashHandler : MonoBehaviour
 
         if (currentTrashObject != null)
         {
-            Debug.Log("Added trash");
             TrashScript trash = currentTrashObject.GetComponent<TrashScript>();
             recyclingManager.AddTrashToRecycle(trash);
 
