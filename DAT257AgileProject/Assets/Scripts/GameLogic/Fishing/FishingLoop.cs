@@ -17,7 +17,7 @@ public class FishingLoop : MonoBehaviour
     private PlayerInput playerInput;
     private InputAction fishAction;
 
-    private bool isFishing = false;
+    private static bool isFishing = false;
     private bool isPlayingMinigame = false;
     private bool canCatchTrash = false;
     private float elapsedTime = 0f;
@@ -29,6 +29,12 @@ public class FishingLoop : MonoBehaviour
     private TextMeshProUGUI promptText;
 
     private SpriteRenderer playerSpriteRenderer;
+
+    public static bool IsFishing
+    {
+        get { return isFishing; }
+        set { isFishing = value; }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -73,16 +79,6 @@ public class FishingLoop : MonoBehaviour
                 }
             }
         }
-    }
-
-    public void StartFishing()
-    {
-        isFishing = true;
-    }
-
-    public void StopFishing()
-    {
-        isFishing = false;
     }
 
     private void HandleMinigameStart()

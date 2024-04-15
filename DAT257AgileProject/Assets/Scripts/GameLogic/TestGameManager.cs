@@ -20,7 +20,7 @@ public class TestGameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerStatsManager = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatsManager>();
+        playerStatsManager = FindObjectOfType<PlayerStatsManager>();
         recyclingManager = GameObject.FindGameObjectWithTag("Recycling Manager").GetComponent<RecyclingManager>();
     }
 

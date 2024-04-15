@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -28,16 +29,41 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PlayerPrefs.SetInt("Money", 0);
+        PlayerPrefs.SetInt("RecycledTrashCount", 0);
+        PlayerPrefs.SetInt("RecycledTrashLeft", 0);
+
         fishingLoop = FindObjectOfType<FishingLoop>();
-        playerStatsManager = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatsManager>();
+        playerStatsManager = FindObjectOfType<PlayerStatsManager>();
+
         recyclingManager = FindObjectOfType<RecyclingManager>();
         playerInput = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
 
         recycleAction = playerInput.actions["Recycle"];
-
-        fishingLoop.StartFishing();
     }
 
+    // TEMO savesystem
+    private void Save()
+    {
+        playerStatsManager.Save();
+        recyclingManager.Save();
+    }
+
+    // Fishing is currently switching to another scene
+    public void StartFishing()
+    {
+        FishingLoop.IsFishing = true;
+        SceneManager.LoadSceneAsync("Fishing");
+        Save();
+    }
+
+    public void StopFishing()
+    {
+        FishingLoop.IsFishing = false;
+        SceneManager.LoadSceneAsync("World");
+        Save();
+    }
+         
     // Update is called once per frame
     void Update()
     {
@@ -50,7 +76,7 @@ public class GameManager : MonoBehaviour
 
     private void HandleRecycle()
     {
-        if (recycleAction.triggered)
+        if (recycleAction.triggered && !FishingLoop.IsFishing)
         {
             recyclingManager.RecycleAtNearestMachine();
         }
@@ -58,7 +84,7 @@ public class GameManager : MonoBehaviour
 
     void UpdateTrashLeftText()
     {
-        recycleTrashLeftText.text = "Recylcable trash Left: " + recyclingManager.TrashToRecycle.Count;
+        recycleTrashLeftText.text = "Trash left to recycle: " + recyclingManager.TrashToRecycle.Count;
     }
 
     void UpdateMoneyGenerated()
@@ -68,6 +94,6 @@ public class GameManager : MonoBehaviour
 
     void UpdateRecycledTrashCountText()
     {
-        recycledTrashCountText.text = "Recycled Trash Count: " + recycledTrashCount.ToString();
+        recycledTrashCountText.text = "Trash recycled: " + recycledTrashCount.ToString();
     }
 }
