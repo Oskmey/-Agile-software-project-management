@@ -37,6 +37,7 @@ public class RecyclingManager : MonoBehaviour
     void Awake()
     {
         trashToRecycle = LoadTrash();
+
         trashWasRecycled = false;
 
         recyclingMachines = GetRecyclingMachines();

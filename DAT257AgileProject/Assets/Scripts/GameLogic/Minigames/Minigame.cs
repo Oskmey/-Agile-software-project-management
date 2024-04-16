@@ -7,13 +7,12 @@ using UnityEngine.Events;
 public abstract class Minigame : MonoBehaviour, IMinigame
 {
     // Define the delegate for the events
-    protected delegate void MinigameEvent();
+    public delegate void MinigameEvent();
 
-    protected event MinigameEvent OnMinigameWon;
-    protected event MinigameEvent OnMinigameLost;
+    // Define the events
+    public event MinigameEvent OnMinigameWon;
+    public event MinigameEvent OnMinigameLost;
 
-    // protected UnityEvent onMinigameWon;
-    // protected UnityEvent onMinigameLost;
     protected string promptText;
 
     public string PromptText { get { return promptText; } }

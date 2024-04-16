@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     [Header("Managers")]
     private PlayerStatsManager playerStatsManager;
     private RecyclingManager recyclingManager;
-    private FishingLoop fishingLoop;
+    // private FishingLoop fishingLoop;
 
     [Header("UI Elements")]
     [SerializeField] 
@@ -20,24 +20,24 @@ public class GameManager : MonoBehaviour
     private TextMeshProUGUI recycledTrashCountText;
     [SerializeField]
     private TextMeshProUGUI recycleTrashLeftText;
-    private int recycledTrashCount;
-
-    private PlayerInput playerInput;
 
     // Start is called before the first frame update
     void Awake()
     {
-        PlayerPrefs.SetInt("Money", 0);
-        PlayerPrefs.SetInt("RecycledTrashCount", 0);
-        PlayerPrefs.SetInt("RecycledTrashLeft", 0);
-
-        fishingLoop = FindObjectOfType<FishingLoop>();
+        ResetSave();
+        // fishingLoop = FindObjectOfType<FishingLoop>();
         playerStatsManager = FindObjectOfType<PlayerStatsManager>();
         recyclingManager = FindObjectOfType<RecyclingManager>();
-        playerInput = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
     }
 
     // TEMO savesystem
+    private void ResetSave()
+    {
+        PlayerPrefs.SetInt("RecycledTrashLeft", 0);
+        PlayerPrefs.SetInt("RecycledTrashCount", 0);
+        PlayerPrefs.SetInt("Money", 0);
+    }
+
     private void Save()
     {
         if (playerStatsManager == null)
@@ -78,7 +78,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        recycledTrashCount = playerStatsManager.RecycledTrashList.Count;
         UpdateTrashLeftText();
         UpdateMoneyGenerated();
         UpdateRecycledTrashCountText();
@@ -96,6 +95,6 @@ public class GameManager : MonoBehaviour
 
     void UpdateRecycledTrashCountText()
     {
-        recycledTrashCountText.text = "Trash recycled: " + recycledTrashCount.ToString();
+        recycledTrashCountText.text = "Trash recycled: " + playerStatsManager.RecycledTrashList.Count.ToString();
     }
 }
