@@ -20,6 +20,11 @@ public class ArrowBoxMinigame : Minigame
     private PlayerInput playerControls;
     private InputAction catchTrash;
 
+    private Transform playerPos ;
+
+    private Vector3 offsetArrow;
+
+    private Vector3 offsetBox;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +32,10 @@ public class ArrowBoxMinigame : Minigame
         onMinigameLost = new UnityEvent();
         promptText = string.Empty;
         playerControls = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
-        catchTrash = playerControls.actions["Catch"];
+        playerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+
+
+        //catchTrash = playerControls.actions["Catch"];
         onMinigameWon.AddListener(FindObjectOfType<MinigameManager>().HandleMinigameWon);
         onMinigameLost.AddListener(FindObjectOfType<MinigameManager>().GetComponent<MinigameManager>().HandleMinigameLost);
         StartMinigame();
@@ -40,14 +48,9 @@ public class ArrowBoxMinigame : Minigame
         {
             boxIsColliding = timingBoxController.BoxIsColliding();
         }
-
-        if (catchTrash.triggered)
-        {
-            HandleCatch();
-        }
     }
 
-    public void HandleCatch()
+    public override void HandleCatch()
     {
         if (boxIsColliding)
         {
@@ -65,6 +68,10 @@ public class ArrowBoxMinigame : Minigame
     {
         arrow = Instantiate(arrowPrefab);
         box = Instantiate(boxPrefab);
+        offsetArrow = new Vector3(0,2f,0);
+        offsetBox = new Vector3(-2f,1.7f,0);
+        arrow.transform.position = playerPos.position + offsetArrow;
+        box.transform.position = playerPos.position + offsetBox;
         timingBoxController = box.GetComponent<TimingBoxController>();
 
         promptText = "Press SPACE to catch";
@@ -84,4 +91,6 @@ public class ArrowBoxMinigame : Minigame
         promptText = "";
         Destroy(gameObject);
     }
+
+
 }

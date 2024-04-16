@@ -22,7 +22,7 @@ public class PlayerInteraction : MonoBehaviour
         
         if (collision.gameObject.CompareTag("Fishing Spot"))
         {
-            Debug.Log("Collision");
+            //Debug.Log("Collision");
             currentFishingSpot = collision.gameObject.GetComponent<FishingSpot>();
             currentFishingSpot.HandleFishingPlaying();
         }

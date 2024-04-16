@@ -16,12 +16,17 @@ public class MinigameManager : MonoBehaviour
     private MinigameType currentMinigameType;
     private Minigame currentMinigame;
     private TextMeshProUGUI promptText;
-
+ 
     private bool minigameStarted = false;
+
+    private TimingBoxController box;
+
+
 
     private void Awake()
     {
         trashHandler = GameObject.FindGameObjectWithTag("TrashHandler").GetComponent<TrashHandler>();
+        promptText = GameObject.FindGameObjectWithTag("TutorialText").GetComponent<TextMeshProUGUI>();
     }
 
     public bool MinigameStarted
@@ -30,6 +35,11 @@ public class MinigameManager : MonoBehaviour
         {
             return minigameStarted;
         }
+    }
+
+    public Minigame getCurrentMinigame()
+    {
+        return currentMinigame;
     }
 
     public void StartMinigame(MinigameType minigameType)
@@ -60,6 +70,8 @@ public class MinigameManager : MonoBehaviour
         {
             case MinigameType.ArrowBoxMinigame:
                 currentMinigame = Instantiate(arrowBoxMinigame).GetComponent<Minigame>();
+            
+                // arrowBoxMinigame.transform.position = 
                 break;
             case MinigameType.AnotherMinigame:
                 //Instantiate(anotherPrefab);
@@ -85,6 +97,7 @@ public class MinigameManager : MonoBehaviour
 
         Vector2 trashSpawnPosition = new(transform.position.x, transform.position.y + 1);
         trashHandler.CreateTrash(TrashType.TrashBag, trashSpawnPosition);
+        PlayerPrefs.SetInt("RecycledTrashLeft", 1);
     }
 
     public void HandleMinigameLost()

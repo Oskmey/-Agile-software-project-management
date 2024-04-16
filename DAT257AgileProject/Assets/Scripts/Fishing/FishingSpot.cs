@@ -25,7 +25,7 @@ public class FishingSpot : MonoBehaviour
     private float canCatchTime = 0f;
     private float canCatchDelay = 1.5f;
 
-    //private MinigameManager minigameManager;
+    private MinigameManager minigameManager;
     private TextMeshProUGUI promptText;
 
     private SpriteRenderer playerSpriteRenderer;
@@ -35,23 +35,42 @@ public class FishingSpot : MonoBehaviour
     private TrashHandler trashHandler;
 
 
-    void Start()
-        {
-            //Ska inte vara på playerspriten
-            fishSpot = GameObject.FindGameObjectWithTag("Fishing Spot").GetComponent<FishingSpot>();
-            promptText = GameObject.FindGameObjectWithTag("TutorialText").GetComponent<TextMeshProUGUI>();
-            //minigameManager = FindObjectOfType<MinigameManager>();
-            trashHandler = GameObject.FindGameObjectWithTag("TrashHandler").GetComponent<TrashHandler>();
-        }
-    //Triggered when walking close, borde vara collider grejs
-    public void HandleFishingPlaying()
+public bool IsPlayerInRange()
+{
+    return GetComponentInChildren<FishingInteraction>().IsPlayerInRange;
+}
+
+
+void Start()
     {
-        
-        if (isFishing)
+        //Ska inte vara på playerspriten
+        fishSpot = GameObject.FindGameObjectWithTag("Fishing Spot").GetComponent<FishingSpot>();
+        promptText = GameObject.FindGameObjectWithTag("TutorialText").GetComponent<TextMeshProUGUI>();
+        minigameManager = GameObject.FindGameObjectWithTag("Minigame Manager").GetComponent<MinigameManager>();
+        trashHandler = GameObject.FindGameObjectWithTag("TrashHandler").GetComponent<TrashHandler>();
+    }
+//Triggered when walking close, borde vara collider grejs
+public void HandleFishingPlaying()
+{
+    
+    if (isFishing)
+    {
+        promptText.text = "Press F to Fish";
+        //playerSpriteRenderer.sprite = fishingSprite1;
+        elapsedTime += Time.deltaTime;
+
+        if (elapsedTime >= delayTime)
         {
-            promptText.text = "Press F to Fish";
-            //playerSpriteRenderer.sprite = fishingSprite1;
-            elapsedTime += Time.deltaTime;
+            //Debug.Log("Player is in range of fishing");
+            
+            
+            if (!canCatchTrash)
+            {
+                //Debug.Log("Hej");
+                SpawnExclamationMark();
+            }
+            canCatchTrash = true;
+            canCatchTime += Time.deltaTime;
 
             if (elapsedTime >= delayTime)
             {
@@ -75,7 +94,7 @@ public class FishingSpot : MonoBehaviour
             }
         }
     }
-
+}
     public void HandleMinigameStart()
     {
         if (!isPlayingMinigame && canCatchTrash)
@@ -105,6 +124,12 @@ public class FishingSpot : MonoBehaviour
         isFishing = true;
         isPlayingMinigame = false;
         canCatchTrash = false;
+        //playerSpriteRenderer.sprite = fishingSprite2;
+        Debug.Log(minigameManager);
+        minigameManager.StartMinigame(MinigameType.ArrowBoxMinigame);
+        
+        isPlayingMinigame = true;
+        isFishing = false;
 
         elapsedTime = 0f;
         canCatchTime = 0f;

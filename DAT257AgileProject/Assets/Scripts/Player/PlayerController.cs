@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
 
     private InputAction catchingAction; 
 
-    //private Minigame minigame;
+    private Minigame minigame;
 
     void Awake()
     {
@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
         shoppingManager = GameObject.FindGameObjectWithTag("Shop Manager").GetComponent<ShopManager>();
 
         catchingAction = GetComponent<PlayerInput>().actions["Catch"];
-        //minigame = GameObject.FindGameObjectWithTag("MinigameManager").GetComponentInChildren<Minigame>();
+        minigame = GameObject.FindGameObjectWithTag("Minigame Manager").GetComponent<MinigameManager>().getCurrentMinigame();
 
         playerInteraction = GetComponentInChildren<PlayerInteraction>();
     }
@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
         recycleAction.performed += Recycle;
         fishingAction.performed += Fishing;
         shopAction.performed += Shopping;
-        // catchingAction.performed += Catch;
+        catchingAction.performed += Catch;
     }
 
     private void OnDisable()
@@ -64,6 +64,7 @@ public class PlayerController : MonoBehaviour
         movementAction.canceled -= OnMovmentStopped;
         recycleAction.performed -= Recycle;
         shopAction.performed -= Shopping;
+        catchingAction.performed -= Catch;
     }
     
     // Test method to recycle trash due to no inventory system
@@ -98,10 +99,11 @@ public class PlayerController : MonoBehaviour
     }
 
     //Måste lägga till minigames, cant be arsed
-    //      private void Catch(InputAction.CallbackContext context)
-    //  {
-    //      Debug.Log("Catching");
-    //      minigame.HandleCatch();
-    //  }
+    private void Catch(InputAction.CallbackContext context)
+    {if (playerInteraction.currentFishingSpot != null){
+        Debug.Log("Catching");
+        minigame = GameObject.FindGameObjectWithTag("Minigame Manager").GetComponent<MinigameManager>().getCurrentMinigame();
+        minigame.HandleCatch();}
+    }
 
 }

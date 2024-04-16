@@ -18,7 +18,7 @@ public class TrashHandler : MonoBehaviour
     private void Start()
     {
         onTrashCollected = new UnityEvent();
-        //onTrashCollected.AddListener(FindObjectOfType<FishingLoop>().ResetFishingLoop);
+        //onTrashCollected.AddListener(FindObjectOfType<FishingSpot>().ResetFishingLoop);
         gameplayHudHandler = GameObject.FindGameObjectWithTag("GameplayHUD").GetComponent<GameplayHudHandler>();
         playerInput = GetComponent<PlayerInput>();
         //hideTrashInfoPanelAction = playerInput.actions["HideTrashInfoPanel"];
