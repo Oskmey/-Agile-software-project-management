@@ -30,19 +30,8 @@ public class RecyclingMachine : MonoBehaviour
         return Vector2.Distance(playerPosition, transform.position) <= interactionRange;
     }
 
-    public bool IsTrashRecyclable(GameObject trash)
+    public bool IsTrashRecyclable(TrashData trashData)
     {
-        return trash.GetComponent<RecyclableTrash>() != null;
-    }
-
-    // This is a test class to simulate trash
-    public class RecyclableTrash : Trash
-    {
- 
-    }
-
-    public class Trash : MonoBehaviour
-    {
-        public int trashValue = 10;
+        return trashData.IsRecyclable;
     }
 }

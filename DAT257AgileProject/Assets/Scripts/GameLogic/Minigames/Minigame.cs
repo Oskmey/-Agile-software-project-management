@@ -6,10 +6,8 @@ using UnityEngine.Events;
 
 public abstract class Minigame : MonoBehaviour, IMinigame
 {
-    // Define the delegate for the events
     public delegate void MinigameEvent();
 
-    // Define the events
     public event MinigameEvent OnMinigameWon;
     public event MinigameEvent OnMinigameLost;
 

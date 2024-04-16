@@ -48,7 +48,7 @@ public class TrashHandler : MonoBehaviour
         }
     }
 
-    // Methods to trigger the events
+    // Method to trigger the events
     private void TrashCollected()
     {
         OnTrashCollected?.Invoke();

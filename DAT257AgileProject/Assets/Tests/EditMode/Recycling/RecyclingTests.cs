@@ -7,6 +7,8 @@ using UnityEngine.TestTools;
 public class RecyclingTests
 {
     private RecyclingMachine recyclingMachine;
+    private static readonly TrashData[] trashData = Resources.LoadAll<TrashData>("ScriptableObjects");
+
     [SetUp]
     public void Setup()
     {
@@ -19,29 +21,56 @@ public class RecyclingTests
     {
         Object.DestroyImmediate(recyclingMachine);
     }
-    // A Test behaves as an ordinary method
-    [Test]
-    public void Recycling_GivenNonRecylcableTrash_ReturnsFalse()
+
+    private static IEnumerable<TestCaseData> NonRecycableTrashDataTestCases
+    {
+        get
+        {
+            foreach (TrashData trashDataEntry in trashData)
+            {
+                if (!trashDataEntry.IsRecyclable)
+                {
+                    yield return new TestCaseData(trashDataEntry);
+                }
+            }
+        }
+    }
+
+    private static IEnumerable<TestCaseData> RecycableTrashDataTestCases
+    {
+        get
+        {
+            foreach (TrashData trashDataEntry in trashData)
+            {
+                if(trashDataEntry.IsRecyclable)
+                {
+                    yield return new TestCaseData(trashDataEntry);
+                }
+            }
+        }
+    }
+
+    // Test for if we are adding non recycable trash data
+    /*
+    [Test, TestCaseSource(nameof(NonRecycableTrashDataTestCases))]
+    public void Recycling_GivenNonRecylcableTrash_ReturnsFalse(TrashData trashDataEntry)
     {
         // Assign
-        GameObject trash = new();
-        trash.AddComponent<RecyclingMachine.Trash>();
-
         // Act
-        bool isRecycable = recyclingMachine.IsTrashRecyclable(trash);
+        bool isRecycable = recyclingMachine.IsTrashRecyclable(trashDataEntry);
 
         // Assert
         Assert.IsFalse(isRecycable);
     }
-    [Test]
-    public void Recycling_GivenRecylcableTrash_ReturnsTrue()
+    */
+
+    [Test, TestCaseSource(nameof(RecycableTrashDataTestCases))]
+    public void Recycling_GivenRecyclableTrash_ReturnsTrue(TrashData trashDataEntry)
     {
         // Assign
-        GameObject trash = new();
-        trash.AddComponent<RecyclingMachine.RecyclableTrash>();
 
         // Act
-        bool isRecycable = recyclingMachine.IsTrashRecyclable(trash);
+        bool isRecycable = recyclingMachine.IsTrashRecyclable(trashDataEntry);
 
         // Assert
         Assert.IsTrue(isRecycable);
