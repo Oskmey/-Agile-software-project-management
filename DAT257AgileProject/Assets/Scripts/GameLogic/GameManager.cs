@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
         recyclingManager = FindObjectOfType<RecyclingManager>();
     }
 
-    // TEMO savesystem
+    // TEMP savesystem
     private void ResetSave()
     {
         PlayerPrefs.SetInt("RecycledTrashLeft", 0);
