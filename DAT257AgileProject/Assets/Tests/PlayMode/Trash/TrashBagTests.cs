@@ -29,11 +29,11 @@ public class TrashBagTests
     }
 
     [Test]
-    public void TrashBag_HasCorrectTrashCategory_ReturnsTrue()
+    public void TrashBag_HasCorrectTrashCategories_ReturnsTrue()
     {
         IReadOnlyList<TrashCategory> correctTrashBagCategories = new List<TrashCategory> { TrashCategory.Plastic };
         IReadOnlyList<TrashCategory> trashCategories = trashBagScript.TrashCategories;
-        Assert.AreEqual(correctTrashBagCategories, trashCategories);
+        CollectionAssert.AreEquivalent(correctTrashBagCategories, trashCategories);
     }
 
     [Test]

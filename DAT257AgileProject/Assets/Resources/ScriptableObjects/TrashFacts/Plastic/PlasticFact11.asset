@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 460a09aa7a6be9448a93f8ebd6a3b884, type: 3}
-  m_Name: TrashFact7
+  m_Name: PlasticFact11
   m_EditorClassIdentifier: 
-  trashFact: close to 700 species of animals have been affected by plastic, where
-    most seabirds have eaten plastic?
+  trashFact: a solution to stopping plastic pollution could be better package designs
+    which accounts for the limited life of the product?
   sourcesInformation:
   - {fileID: 11400000, guid: d1b02e50e580e0a45ac2abb0eba7420f, type: 2}

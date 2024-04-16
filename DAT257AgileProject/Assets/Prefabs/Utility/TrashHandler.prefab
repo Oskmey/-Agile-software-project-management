@@ -49,6 +49,7 @@ MonoBehaviour:
   trashPrefabs:
   - {fileID: 951709337480037534, guid: e832d922162442b4c9349cd219bcfa0b, type: 3}
   - {fileID: 6108896794586476295, guid: b3eb4c006d570f440a866a60439ae0ee, type: 3}
+  - {fileID: 6746091704529100501, guid: ee436337835113146bf9ffd89ccb8002, type: 3}
 --- !u!114 &868576855452486802
 MonoBehaviour:
   m_ObjectHideFlags: 0

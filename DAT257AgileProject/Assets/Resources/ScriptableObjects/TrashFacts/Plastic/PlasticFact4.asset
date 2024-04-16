@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 460a09aa7a6be9448a93f8ebd6a3b884, type: 3}
-  m_Name: TrashFact8
+  m_Name: PlasticFact4
   m_EditorClassIdentifier: 
-  trashFact: most animal deaths from plastics are from starvation or entanglement?
+  trashFact: most of the trash in the ocean was carried from land, where for instance
+    rivers can act as a transport method for the trash?
   sourcesInformation:
   - {fileID: 11400000, guid: d1b02e50e580e0a45ac2abb0eba7420f, type: 2}
