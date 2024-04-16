@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ecc9f7c16042e14a9a71ef19b86e438, type: 3}
-  m_Name: NationalGeographic
+  m_Name: Ioakeimidis et al
   m_EditorClassIdentifier: 
-  sourceName: Parker, L.
-  dateAsString: 21-02-2024
-  title: The world's plastic pollution crisis, explained
-  website: National Geographic
-  link: https://www.nationalgeographic.com/environment/article/plastic-pollution
-  retrievalDateAsString: 07-04-2024
+  sourceName: Ioakeimidis, C., Fotopoulou, K., Karapanagioti, H. et al.
+  dateAsString: 22-03-2016
+  title: 'The degradation potential of PET bottles in the marine environment: An
+    ATR-FTIR based approach'
+  website: Springer Nature
+  link: https://www.nature.com/articles/srep23501
+  retrievalDateAsString: 11-04-2024
