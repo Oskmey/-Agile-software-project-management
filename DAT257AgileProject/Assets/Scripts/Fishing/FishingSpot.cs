@@ -45,7 +45,7 @@ void Start()
     {
         //Ska inte vara på playerspriten
         fishSpot = GameObject.FindGameObjectWithTag("Fishing Spot").GetComponent<FishingSpot>();
-        //promptText = GameObject.FindGameObjectWithTag("TutorialText").GetComponent<TextMeshProUGUI>();
+        promptText = GameObject.FindGameObjectWithTag("TutorialText").GetComponent<TextMeshProUGUI>();
         //minigameManager = FindObjectOfType<MinigameManager>();
         trashHandler = GameObject.FindGameObjectWithTag("TrashHandler").GetComponent<TrashHandler>();
     }
@@ -55,7 +55,7 @@ public void HandleFishingPlaying()
     
     if (isFishing)
     {
-        //promptText.text = "Press F to Fish";
+        promptText.text = "Press F to Fish";
         //playerSpriteRenderer.sprite = fishingSprite1;
         elapsedTime += Time.deltaTime;
 
@@ -115,7 +115,7 @@ public void ResetFishingLoop()
     elapsedTime = 0f;
     canCatchTime = 0f;
 
-    //promptText.text = "Press F to Fish";
+    promptText.text = "";
 
     Destroy(GameObject.FindGameObjectWithTag("Minigame"));   
 }

@@ -25,6 +25,7 @@ public void FishAtNearestSpot()
         
         if (fishingSpot.IsPlayerInRange())
         {
+            
             Debug.Log("Player is in range of fishing");
             // NOTE: Trash is not recyclable by default, needs to be RecycableTrash
             

@@ -17,7 +17,7 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
         
         if (collision.gameObject.CompareTag("Fishing Spot"))
@@ -28,7 +28,7 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Fishing Spot"))
         {

@@ -14,11 +14,13 @@ public class FishingInteraction : MonoBehaviour
             return isPlayerInRange;
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            isPlayerInRange = true;
+            //isPlayerInRange = true;
+            //Debug.Log("Collision");
+            //GetComponentInParent<FishingSpot>().HandleFishingPlaying();
         }
     }
 
@@ -26,7 +28,8 @@ public class FishingInteraction : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            isPlayerInRange = false;
+            //isPlayerInRange = false;
+            //GetComponentInParent<FishingSpot>().ResetFishingLoop();
         }
     }
 }
