@@ -26,4 +26,15 @@ public class TrashFactory : MonoBehaviour
             return Instantiate(trashPrefab);
         }
     }
+
+    public static GameObject CreateRandomTrashBasedOnRarity(TrashRarity trashRarity)
+    {
+        IReadOnlyList<GameObject> trashPrefabsWithRarity = TrashPrefabs.FindAll(prefab => prefab.GetComponent<TrashScript>().Rarity == trashRarity);
+        if (trashPrefabsWithRarity.Count == 0)
+        {
+            Debug.LogError($"No prefab found for TrashRarity: {trashRarity}");
+            return null;
+        }
+        return Instantiate(trashPrefabsWithRarity[Random.Range(0, trashPrefabsWithRarity.Count)]);
+    }
 }

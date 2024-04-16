@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 361970fb74199b34c99a5d2daf7d9937, type: 3}
+  m_Name: ElectricScooter
+  m_EditorClassIdentifier: 
+  trashCategories: 0400000005000000
+  trashFacts:
+  - {fileID: 11400000, guid: 2843965bef5670847a2cd07838a76e95, type: 2}
+  - {fileID: 11400000, guid: 7dfe6725db6d8fd40909e003f575aabe, type: 2}
+  - {fileID: 11400000, guid: 24dfe911aaebf514e970da4f39a6706e, type: 2}
+  rarity: 4
+  moneyValue: 1000
+  isRecyclable: 1

@@ -9,11 +9,12 @@ public class TrashScript : MonoBehaviour
     private TrashData trashScriptableObject;
     [SerializeField]
     private TrashType trashType;
+    [SerializeField]
+    private TrashRarity rarity;
 
     // Attributes set via the scriptable object
     private List<TrashCategory> trashCategories;
     private List<TrashFactData> trashFacts;
-    private TrashRarity rarity;
     private int moneyValue;
     private bool isRecyclable;
 
@@ -28,7 +29,6 @@ public class TrashScript : MonoBehaviour
     {
         trashCategories = new List<TrashCategory>(trashScriptableObject.TrashCategories);
         trashFacts = new List<TrashFactData>(trashScriptableObject.TrashFacts);
-        rarity = trashScriptableObject.Rarity;
         moneyValue = trashScriptableObject.MoneyValue;
         isRecyclable = trashScriptableObject.IsRecyclable;
     }

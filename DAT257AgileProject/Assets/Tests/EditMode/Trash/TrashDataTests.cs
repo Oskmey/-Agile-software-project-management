@@ -55,12 +55,6 @@ public class TrashDataTests
     }
 
     [Test, TestCaseSource(nameof(TrashDataTestCases))]
-    public void EachTrashData_HasTrashRarity(TrashData trashDataEntry)
-    {
-        Assert.IsNotNull(trashDataEntry.Rarity);
-    }
-
-    [Test, TestCaseSource(nameof(TrashDataTestCases))]
     public void EachTrashData_HasMoneyValue(TrashData trashDataEntry)
     {
         Assert.IsNotNull(trashDataEntry.MoneyValue);
