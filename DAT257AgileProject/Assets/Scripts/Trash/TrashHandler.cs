@@ -64,6 +64,24 @@ public class TrashHandler : MonoBehaviour
         }
     }
 
+    public void CreateRandomTrash(TrashRarity trashRarity, Vector2 position)
+    {
+        currentTrashObject = TrashFactory.CreateRandomTrashBasedOnRarity(trashRarity);
+        currentTrashObject.transform.position = position;
+        TrashScript currentTrashScript = currentTrashObject.GetComponent<TrashScript>();
+
+        gameplayHudHandler = GameObject.FindGameObjectWithTag("GameplayHUD").GetComponent<GameplayHudHandler>();
+
+        if (gameplayHudHandler != null)
+        {
+            gameplayHudHandler.ShowTrashInfoHandler(currentTrashScript);
+        }
+        else
+        {
+            Debug.LogError("GameplayHudHandler not found.");
+        }
+    }
+
     public void DestroyTrash()
     {
         if (gameplayHudHandler != null)
