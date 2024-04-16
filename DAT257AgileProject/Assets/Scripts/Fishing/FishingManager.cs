@@ -15,26 +15,6 @@ void Awake()
     playerStatsManager = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatsManager>();
 }
 
-
-public void FishAtNearestSpot()
-{
-    foreach (FishingSpot fishingSpot in fishingSpots)
-    {
-        // TODO: Make it so player can only recycle trash to nearest recycling machine
-        // if (recyclingMachine.IsPlayerInRange(player.transform.position))
-        
-        if (fishingSpot.IsPlayerInRange())
-        {
-            
-            Debug.Log("Player is in range of fishing");
-            // NOTE: Trash is not recyclable by default, needs to be RecycableTrash
-            
-        }
-        
-    }
-}
-
-
 public IReadOnlyList<FishingSpot> GetFishingSpots()
     {
         List<FishingSpot> fishSpots = new();

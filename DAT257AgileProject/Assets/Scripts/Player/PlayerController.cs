@@ -76,7 +76,6 @@ public class PlayerController : MonoBehaviour
     private void Fishing(InputAction.CallbackContext context)
     {
         Debug.Log("Fishing if in range");
-        fishingManager.FishAtNearestSpot();
         if (playerInteraction.currentFishingSpot != null){
         playerInteraction.currentFishingSpot.HandleMinigameStart();
         }
