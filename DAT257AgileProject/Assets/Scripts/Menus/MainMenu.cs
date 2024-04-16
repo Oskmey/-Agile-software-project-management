@@ -19,7 +19,7 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame() 
     {
-        SceneManager.LoadSceneAsync("Player Control Fixes");
+        SceneManager.LoadSceneAsync("World");
     }
 
     public void QuitGame()
