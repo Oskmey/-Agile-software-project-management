@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b4209648b81124f7f9470a58a64fb070
+guid: 65ded491e62b9c74e9053ddac235c341
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -93,24 +93,11 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Basic Charakter Actions_0
+      name: Cat fishing_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +111,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ab8564307d7ea49c2b8c722027109d94
-      internalID: -704220219
+      spriteID: 9dff79fbb30c2a246a3bfa865e466fe5
+      internalID: -203554075
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Basic Charakter Actions_1
+      name: Cat fishing_1
       rect:
         serializedVersion: 2
         x: 48
@@ -145,14 +132,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 530ccd63b810f4709a7ce0e91b053a62
-      internalID: 832910126
+      spriteID: a43779650a813734bb66701dbd916acd
+      internalID: -308734186
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Basic Charakter Actions_2
+      name: Cat fishing_2
       rect:
         serializedVersion: 2
         x: 0
@@ -166,14 +153,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1e1c94eacb1104a8a97f482d9801e4a5
-      internalID: 837080146
+      spriteID: 0c277932f7d144e40ab8e09ac1262d45
+      internalID: 960493291
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Basic Charakter Actions_3
+      name: Cat fishing_3
       rect:
         serializedVersion: 2
         x: 48
@@ -187,14 +174,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7340e4074e8494fd2b14280670067f16
-      internalID: 1719033114
+      spriteID: 40d74b0b9550c8d45aafcb55c666671e
+      internalID: -424496688
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Basic Charakter Actions_4
+      name: Cat fishing_4
       rect:
         serializedVersion: 2
         x: 0
@@ -208,14 +195,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f9fb442821a31419e929089a0b59fd84
-      internalID: 1972418887
+      spriteID: a30b076309e37e4449ce25a12aadf015
+      internalID: -750847436
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Basic Charakter Actions_5
+      name: Cat fishing_5
       rect:
         serializedVersion: 2
         x: 48
@@ -229,14 +216,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7a55fdd83e9234f6983837b29b0e7519
-      internalID: -726616380
+      spriteID: 18d3246128ef61f40a9d2d7c6c699520
+      internalID: 163002433
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Basic Charakter Actions_6
+      name: Cat fishing_6
       rect:
         serializedVersion: 2
         x: 0
@@ -250,14 +237,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3f5dabe900a5e401fb17d0bf81493b79
-      internalID: 1382280668
+      spriteID: 9c27cde591edf0d46834166c7ffa9a18
+      internalID: 1169879045
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Basic Charakter Actions_7
+      name: Cat fishing_7
       rect:
         serializedVersion: 2
         x: 48
@@ -271,14 +258,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5658f94b079754c08b4f2b7e4c8998d3
-      internalID: -157490395
+      spriteID: 23a501ce919e4ed48984666d0daf4157
+      internalID: 692321267
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Basic Charakter Actions_8
+      name: Cat fishing_8
       rect:
         serializedVersion: 2
         x: 0
@@ -292,14 +279,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cf2a7131aecb5472db373f4fc84d3161
-      internalID: 1512219963
+      spriteID: 1cc8081856c696f4e857c820aec0af80
+      internalID: 264735524
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Basic Charakter Actions_9
+      name: Cat fishing_9
       rect:
         serializedVersion: 2
         x: 48
@@ -313,14 +300,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1466e5c734fa74df5b090163d89c9b9a
-      internalID: -1021827670
+      spriteID: 6a6fa39d616918c48979a3d6cc62c30c
+      internalID: 869881932
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Basic Charakter Actions_10
+      name: Cat fishing_10
       rect:
         serializedVersion: 2
         x: 0
@@ -334,14 +321,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 275dca1def4d049a59c79f8df215a3ac
-      internalID: -193374766
+      spriteID: c2472fa74eb03dd45a62f78767ac07c6
+      internalID: 1819929935
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Basic Charakter Actions_11
+      name: Cat fishing_11
       rect:
         serializedVersion: 2
         x: 48
@@ -355,14 +342,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4b76cd4b508374c28a4c4027711c5952
-      internalID: 264186454
+      spriteID: e9350e2f53f3dc44cb3fa0c165416389
+      internalID: 896633
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Basic Charakter Actions_12
+      name: Cat fishing_12
       rect:
         serializedVersion: 2
         x: 0
@@ -376,14 +363,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 671f868afb8a242d5b818f59fa8c5a49
-      internalID: -1803071049
+      spriteID: 3b6152265d8b2ba49ac0d4f421c214d4
+      internalID: -1019563579
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Basic Charakter Actions_13
+      name: Cat fishing_13
       rect:
         serializedVersion: 2
         x: 48
@@ -397,14 +384,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f46bbe5fe6e3c4e219a841b13413f604
-      internalID: -758726277
+      spriteID: 9956d45515294c74abf013930044f180
+      internalID: 1802411686
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Basic Charakter Actions_14
+      name: Cat fishing_14
       rect:
         serializedVersion: 2
         x: 0
@@ -418,14 +405,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5929f97e300cb46f3a11933e147927a5
-      internalID: 249254260
+      spriteID: 0cc6e0aca36316b4a86b188ee5ed6e17
+      internalID: 1424452742
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Basic Charakter Actions_15
+      name: Cat fishing_15
       rect:
         serializedVersion: 2
         x: 48
@@ -439,14 +426,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: db0d057a3158e4da7bf90ec8dc84ae08
-      internalID: -926352644
+      spriteID: 2666ee62e0785564ba5ece0fa6873ea6
+      internalID: -1387903383
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Basic Charakter Actions_16
+      name: Cat fishing_16
       rect:
         serializedVersion: 2
         x: 0
@@ -460,14 +447,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 72254661b3fa74771b56c4e9a81caa03
-      internalID: 236556087
+      spriteID: 2144faf2b43375745ab7f9d48c88a9ce
+      internalID: 594508448
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Basic Charakter Actions_17
+      name: Cat fishing_17
       rect:
         serializedVersion: 2
         x: 48
@@ -481,14 +468,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fbf68cb899afa4a44bc79c37f7178ec7
-      internalID: 508283745
+      spriteID: 6fb2668294336dc43accb5ecb32bb698
+      internalID: 968428019
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Basic Charakter Actions_18
+      name: Cat fishing_18
       rect:
         serializedVersion: 2
         x: 0
@@ -502,14 +489,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 588f4dd43797e47e7891009e82d26177
-      internalID: -1720151039
+      spriteID: 26f860dede11a4940aa01ed05477b9e5
+      internalID: -549822902
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Basic Charakter Actions_19
+      name: Cat fishing_19
       rect:
         serializedVersion: 2
         x: 48
@@ -523,14 +510,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a79d921392c23495e9b6bcef01bef9db
-      internalID: -82394147
+      spriteID: 69db04ab84a264c4baff2c9f2598c021
+      internalID: -147194077
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Basic Charakter Actions_20
+      name: Cat fishing_20
       rect:
         serializedVersion: 2
         x: 0
@@ -544,14 +531,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1eb059edd4a174edca34e8b5c66a021e
-      internalID: -380014224
+      spriteID: c77f22d4737ab5e42b6698be99754022
+      internalID: 725194672
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Basic Charakter Actions_21
+      name: Cat fishing_21
       rect:
         serializedVersion: 2
         x: 48
@@ -565,14 +552,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1c463fc954e944155b9b77105db38255
-      internalID: -617583252
+      spriteID: 1af6df6cca87cbe4b89be2c906f29055
+      internalID: 2086201902
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Basic Charakter Actions_22
+      name: Cat fishing_22
       rect:
         serializedVersion: 2
         x: 0
@@ -586,14 +573,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 33b9d2e2e7e0446bea5d1c6ed30e113a
-      internalID: -345667198
+      spriteID: af9e6f98557fa4346954e2da62542903
+      internalID: -1524109969
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Basic Charakter Actions_23
+      name: Cat fishing_23
       rect:
         serializedVersion: 2
         x: 48
@@ -607,8 +594,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1c4c462f06c8e4326b7b75d576ed3f87
-      internalID: 2061471124
+      spriteID: be5b337ea4f3b984385cf08a69074bb9
+      internalID: -982618900
       vertices: []
       indices: 
       edges: []
@@ -624,30 +611,30 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Basic Charakter Actions_0: -704220219
-      Basic Charakter Actions_1: 832910126
-      Basic Charakter Actions_10: -193374766
-      Basic Charakter Actions_11: 264186454
-      Basic Charakter Actions_12: -1803071049
-      Basic Charakter Actions_13: -758726277
-      Basic Charakter Actions_14: 249254260
-      Basic Charakter Actions_15: -926352644
-      Basic Charakter Actions_16: 236556087
-      Basic Charakter Actions_17: 508283745
-      Basic Charakter Actions_18: -1720151039
-      Basic Charakter Actions_19: -82394147
-      Basic Charakter Actions_2: 837080146
-      Basic Charakter Actions_20: -380014224
-      Basic Charakter Actions_21: -617583252
-      Basic Charakter Actions_22: -345667198
-      Basic Charakter Actions_23: 2061471124
-      Basic Charakter Actions_3: 1719033114
-      Basic Charakter Actions_4: 1972418887
-      Basic Charakter Actions_5: -726616380
-      Basic Charakter Actions_6: 1382280668
-      Basic Charakter Actions_7: -157490395
-      Basic Charakter Actions_8: 1512219963
-      Basic Charakter Actions_9: -1021827670
+      Cat fishing_0: -203554075
+      Cat fishing_1: -308734186
+      Cat fishing_10: 1819929935
+      Cat fishing_11: 896633
+      Cat fishing_12: -1019563579
+      Cat fishing_13: 1802411686
+      Cat fishing_14: 1424452742
+      Cat fishing_15: -1387903383
+      Cat fishing_16: 594508448
+      Cat fishing_17: 968428019
+      Cat fishing_18: -549822902
+      Cat fishing_19: -147194077
+      Cat fishing_2: 960493291
+      Cat fishing_20: 725194672
+      Cat fishing_21: 2086201902
+      Cat fishing_22: -1524109969
+      Cat fishing_23: -982618900
+      Cat fishing_3: -424496688
+      Cat fishing_4: -750847436
+      Cat fishing_5: 163002433
+      Cat fishing_6: 1169879045
+      Cat fishing_7: 692321267
+      Cat fishing_8: 264735524
+      Cat fishing_9: 869881932
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
