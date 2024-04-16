@@ -73,15 +73,7 @@ public class MinigameManager : MonoBehaviour
     public void HandleMinigameWon()
     {
         minigameStarted = false;
-        // TODO: fix objects being null when event invoked
         promptText.text = "";
-        trashHandler = FindObjectOfType<TrashHandler>();
-        
-        if (trashHandler == null)
-        {
-            Debug.LogError("TrashHandler not found.");
-            return;
-        }
 
         Vector2 trashSpawnPosition = new(transform.position.x, transform.position.y + 1);
         trashHandler.CreateTrash(TrashType.TrashBag, trashSpawnPosition);

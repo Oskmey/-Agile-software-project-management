@@ -45,9 +45,6 @@ public class TrashHandler : MonoBehaviour
         currentTrashObject = TrashFactory.CreateTrash(trashType);
         currentTrashObject.transform.position = position;
         TrashScript currentTrashScript = currentTrashObject.GetComponent<TrashScript>();
-        // TODO: Fix gameplayHudHandler being null, so we dont have to find it again, something to do with event invoke
-
-        gameplayHudHandler = GameObject.FindGameObjectWithTag("GameplayHUD").GetComponent<GameplayHudHandler>();
 
         if (gameplayHudHandler != null)
         {
