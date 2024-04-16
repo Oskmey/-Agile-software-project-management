@@ -52,7 +52,7 @@ public class MinigameManager : MonoBehaviour
     void InitMinigame(MinigameType minigameType)
     {
         CreateMinigame(minigameType);
-        promptText = GameObject.FindGameObjectWithTag("TutorialText").GetComponent<TextMeshProUGUI>();
+        //promptText = GameObject.FindGameObjectWithTag("TutorialText").GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
@@ -102,6 +102,7 @@ public class MinigameManager : MonoBehaviour
 
     public void HandleMinigameLost()
     {
+        
         minigameStarted = false;
         Debug.Log("Minigame lost! Implement your logic here...");
     }

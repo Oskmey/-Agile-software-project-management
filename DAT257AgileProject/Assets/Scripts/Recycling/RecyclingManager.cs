@@ -34,9 +34,13 @@ public class RecyclingManager : MonoBehaviour
         }
     }
 
+    void Start(){
+        trashToRecycle = LoadTrash();
+    }
+
     void Awake()
     {
-        trashToRecycle = LoadTrash();
+        
         trashWasRecycled = false;
 
         recyclingMachines = GetRecyclingMachines();

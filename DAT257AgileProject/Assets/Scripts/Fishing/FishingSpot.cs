@@ -35,11 +35,6 @@ public class FishingSpot : MonoBehaviour
     private TrashHandler trashHandler;
 
 
-public bool IsPlayerInRange()
-{
-    return GetComponentInChildren<FishingInteraction>().IsPlayerInRange;
-}
-
 
 void Start()
     {
@@ -100,7 +95,7 @@ public void HandleFishingPlaying()
         if (!isPlayingMinigame && canCatchTrash)
         {
             //playerSpriteRenderer.sprite = fishingSprite2;
-            //minigameManager.StartMinigame(MinigameType.ArrowBoxMinigame);
+            minigameManager.StartMinigame(MinigameType.ArrowBoxMinigame);
             
             isPlayingMinigame = true;
             isFishing = false;
@@ -125,11 +120,6 @@ public void HandleFishingPlaying()
         isPlayingMinigame = false;
         canCatchTrash = false;
         //playerSpriteRenderer.sprite = fishingSprite2;
-        Debug.Log(minigameManager);
-        minigameManager.StartMinigame(MinigameType.ArrowBoxMinigame);
-        
-        isPlayingMinigame = true;
-        isFishing = false;
 
         elapsedTime = 0f;
         canCatchTime = 0f;
