@@ -22,6 +22,12 @@ public class PlayerController : MonoBehaviour
     private InputAction shopAction;
     private ShopManager shoppingManager;
 
+    private PlayerInteraction playerInteraction;
+
+    private InputAction catchingAction; 
+
+    //private Minigame minigame;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -35,6 +41,11 @@ public class PlayerController : MonoBehaviour
 
         shopAction = GetComponent<PlayerInput>().actions["Shop"];
         shoppingManager = GameObject.FindGameObjectWithTag("Shop Manager").GetComponent<ShopManager>();
+
+        catchingAction = GetComponent<PlayerInput>().actions["Catch"];
+        //minigame = GameObject.FindGameObjectWithTag("MinigameManager").GetComponentInChildren<Minigame>();
+
+        playerInteraction = GetComponentInChildren<PlayerInteraction>();
     }
 
     private void OnEnable()
@@ -44,6 +55,7 @@ public class PlayerController : MonoBehaviour
         recycleAction.performed += Recycle;
         fishingAction.performed += Fishing;
         shopAction.performed += Shopping;
+        // catchingAction.performed += Catch;
     }
 
     private void OnDisable()

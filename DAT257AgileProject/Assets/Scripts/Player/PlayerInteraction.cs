@@ -1,0 +1,43 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using UnityEngine;
+
+public class PlayerInteraction : MonoBehaviour
+{
+    public FishingSpot currentFishingSpot;
+    private bool isPlayerInRange;
+
+
+    public bool IsPlayerInRange
+    {
+        get
+        {
+            return isPlayerInRange;
+        }
+    }
+
+
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        
+        if (collision.gameObject.CompareTag("Fishing Spot"))
+        {
+            Debug.Log("Collision");
+            currentFishingSpot = collision.gameObject.GetComponent<FishingSpot>();
+            currentFishingSpot.HandleFishingPlaying();
+            
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Fishing Spot"))
+        {
+            
+            currentFishingSpot.ResetFishingLoop();
+            currentFishingSpot = null;
+        }
+    }
+}
