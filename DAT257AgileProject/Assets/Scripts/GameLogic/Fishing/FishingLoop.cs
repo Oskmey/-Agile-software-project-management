@@ -11,9 +11,6 @@ public class FishingLoop : MonoBehaviour
     private Sprite fishingSprite1, fishingSprite2;
     [SerializeField] 
     private GameObject exclamationMarkPrefab;
-    // TODO Make it possible to have many types of trash
-    [SerializeField] 
-    private GameObject trashPrefab;    
 
     private PlayerInput playerInput;
     private InputAction fishAction;
@@ -119,13 +116,5 @@ public class FishingLoop : MonoBehaviour
         promptText.text = "Press F to Fish";
         
         //Destroy(GameObject.FindGameObjectWithTag("Minigame"));   
-    }
-
-    public void TrashCoughtEffect()     // Should spawn on success
-    {
-        Vector3 offset = new Vector3(3f, -2.5f, 0);     // The distance from player to float
-        Vector3 spawnPos = transform.localPosition + offset;
-        GameObject trash = Instantiate(trashPrefab, spawnPos, Quaternion.identity);
-        Destroy(trash, 1.5f);
     }
 }
