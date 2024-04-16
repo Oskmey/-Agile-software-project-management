@@ -5,7 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewSourceScriptableObject", menuName = "ScriptableObjects/SourceScriptableObject", order = 2)]
 public class SourceData : ScriptableObject
 {
-    [Tooltip("The Author/Organisation/Authority of the source")]
+    [TextArea(1, 10)]
+    [Tooltip("The author/organisation/authority of the source")]
     [SerializeField]
     private string sourceName;
 
@@ -32,21 +33,19 @@ public class SourceData : ScriptableObject
     [SerializeField]
     private string retrievalDateAsString;
 
-    private static readonly string dateFormat = "dd-MM-yyyy";
-
-    public DateTime Date
+    public CustomDateTime Date
     {
         get
         {
-            return DateTime.ParseExact(dateAsString, dateFormat, CultureInfo.InvariantCulture);
+            return CustomDateTime.FromString(dateAsString);
         }
     }
 
-    public DateTime RetrievalDate
+    public CustomDateTime RetrievalDate
     {
         get
         {
-            return DateTime.ParseExact(retrievalDateAsString, dateFormat, CultureInfo.InvariantCulture);
+            return CustomDateTime.FromString(retrievalDateAsString);
         }
     }
 

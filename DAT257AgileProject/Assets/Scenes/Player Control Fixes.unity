@@ -466,7 +466,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 500750636479609146, guid: 4be029f0d67edaf408c8aa00626bfae0, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 200
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 500750636479609146, guid: 4be029f0d67edaf408c8aa00626bfae0, type: 3}
       propertyPath: m_SizeDelta.y
@@ -925,6 +925,10 @@ PrefabInstance:
       propertyPath: trashHandler
       value: 
       objectReference: {fileID: 1684572426}
+    - target: {fileID: 7106020273766970808, guid: e4df1a59b34464a4d88d67fe99ab6b2f, type: 3}
+      propertyPath: tutorialText
+      value: 
+      objectReference: {fileID: 2070902676}
     - target: {fileID: 7736849986522733317, guid: e4df1a59b34464a4d88d67fe99ab6b2f, type: 3}
       propertyPath: m_DefaultActionMap
       value: ac198369-147a-4b8a-a652-f8d987422ea0
@@ -1444,6 +1448,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1982308177}
   m_CullTransparentMesh: 1
+--- !u!114 &2070902676 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 76765740793077817, guid: 4be029f0d67edaf408c8aa00626bfae0, type: 3}
+  m_PrefabInstance: {fileID: 620322088}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &734798803187292769
 PrefabInstance:
   m_ObjectHideFlags: 0
