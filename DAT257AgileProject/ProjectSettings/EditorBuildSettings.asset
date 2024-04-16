@@ -17,8 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TestCollisionScene.unity
     guid: 9b231ba15774633468d1c01f511fb5aa
-    path: Assets/Scenes/Game/Fishing.unity
-    guid: 5a6cbb7d25a6bd845adf70334087443d
   - enabled: 1
     path: Assets/Scenes/Game/World.unity
     guid: 98037e9a5efe6624694133cbcd5cc7e6

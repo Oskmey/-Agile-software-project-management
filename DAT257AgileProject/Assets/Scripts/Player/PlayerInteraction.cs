@@ -17,8 +17,6 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
-
-
     private void OnTriggerStay2D(Collider2D collision)
     {
         
@@ -27,7 +25,6 @@ public class PlayerInteraction : MonoBehaviour
             Debug.Log("Collision");
             currentFishingSpot = collision.gameObject.GetComponent<FishingSpot>();
             currentFishingSpot.HandleFishingPlaying();
-            
         }
     }
 
@@ -35,7 +32,6 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Fishing Spot"))
         {
-            
             currentFishingSpot.ResetFishingLoop();
             currentFishingSpot = null;
         }

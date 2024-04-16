@@ -41,18 +41,18 @@ public bool IsPlayerInRange()
 }
 
 
- void Start()
+void Start()
     {
         //Ska inte vara på playerspriten
         fishSpot = GameObject.FindGameObjectWithTag("Fishing Spot").GetComponent<FishingSpot>();
-        promptText = GameObject.FindGameObjectWithTag("TutorialText").GetComponent<TextMeshProUGUI>();
+        //promptText = GameObject.FindGameObjectWithTag("TutorialText").GetComponent<TextMeshProUGUI>();
         //minigameManager = FindObjectOfType<MinigameManager>();
         trashHandler = GameObject.FindGameObjectWithTag("TrashHandler").GetComponent<TrashHandler>();
     }
 //Triggered when walking close, borde vara collider grejs
 public void HandleFishingPlaying()
 {
-    if (IsPlayerInRange())
+    
     if (isFishing)
     {
         //promptText.text = "Press F to Fish";

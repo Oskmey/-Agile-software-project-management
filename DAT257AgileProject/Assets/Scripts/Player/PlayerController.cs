@@ -77,6 +77,9 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("Fishing if in range");
         fishingManager.FishAtNearestSpot();
+        if (playerInteraction.currentFishingSpot != null){
+        playerInteraction.currentFishingSpot.HandleMinigameStart();
+        }
     }
 
         private void Shopping(InputAction.CallbackContext context)
@@ -94,4 +97,12 @@ public class PlayerController : MonoBehaviour
     {
         rb.velocity = Vector2.zero;
     }
+
+    //Måste lägga till minigames, cant be arsed
+    //      private void Catch(InputAction.CallbackContext context)
+    //  {
+    //      Debug.Log("Catching");
+    //      minigame.HandleCatch();
+    //  }
+
 }
