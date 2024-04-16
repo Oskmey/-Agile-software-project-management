@@ -44,6 +44,7 @@ void Start()
         minigameManager = GameObject.FindGameObjectWithTag("Minigame Manager").GetComponent<MinigameManager>();
         trashHandler = GameObject.FindGameObjectWithTag("TrashHandler").GetComponent<TrashHandler>();
     }
+    
 //Triggered when walking close, borde vara collider grejs
 public void HandleFishingPlaying()
 {

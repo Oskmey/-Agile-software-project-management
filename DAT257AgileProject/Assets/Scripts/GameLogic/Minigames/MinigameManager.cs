@@ -97,12 +97,12 @@ public class MinigameManager : MonoBehaviour
 
         Vector2 trashSpawnPosition = new(transform.position.x, transform.position.y + 1);
         trashHandler.CreateTrash(TrashType.TrashBag, trashSpawnPosition);
-        PlayerPrefs.SetInt("RecycledTrashLeft", 1);
+        PlayerPrefs.SetInt("RecycledTrashLeft", PlayerPrefs.GetInt("RecycledTrashLeft")+1);
     }
 
     public void HandleMinigameLost()
     {
-        
+
         minigameStarted = false;
         Debug.Log("Minigame lost! Implement your logic here...");
     }

@@ -75,10 +75,11 @@ public class RecyclingManager : MonoBehaviour
     public void RecycleAtNearestMachine()
     {
         trashToRecycle = LoadTrash();
-        
-        if (TrashToRecycle.Count > 0)
+        Debug.Log(trashToRecycle.Count);
+        if (trashToRecycle.Count > 0)
         {
-            RecycleAtNearestMachine(TrashToRecycle[0]);
+            
+            RecycleAtNearestMachine(trashToRecycle[0]);
         }
         else{
             Debug.Log("No trash to recycle");
@@ -104,6 +105,7 @@ public class RecyclingManager : MonoBehaviour
                     trashWasRecycled = true;
                     Debug.Log("Sold!");
                     Debug.Log(playerStatsManager.Money);
+                    PlayerPrefs.SetInt("RecycledTrashLeft", PlayerPrefs.GetInt("RecycledTrashLeft")-1);
                 }
                 else
                 {
