@@ -1,4 +1,4 @@
-public interface IMinigame
+interface IMinigame
 {
     void StartMinigame();
     void DestroyMinigame();

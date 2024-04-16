@@ -36,10 +36,36 @@ public class RecyclingManager : MonoBehaviour
 
     void Awake()
     {
-        trashToRecycle = new();
+        trashToRecycle = LoadTrash();
         trashWasRecycled = false;
+
         recyclingMachines = GetRecyclingMachines();
-        playerStatsManager = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatsManager>();
+        playerStatsManager = FindObjectOfType<PlayerStatsManager>();
+    }
+
+    // TEMP: basic temporary saving system between scenes
+    private List<TrashScript> LoadTrash()
+    {
+        List<TrashScript> trashToRecycle = new();
+        int trashToRecycleLeft = PlayerPrefs.GetInt("RecycledTrashLeft");
+
+        if (trashToRecycleLeft > 0)
+        {
+            for (int i = 0; i < trashToRecycleLeft; i++)
+            {
+                GameObject tempTrash = TrashFactory.CreateTrash(TrashType.TrashBag);
+                trashToRecycle.Add(tempTrash.GetComponent<TrashScript>());
+                Destroy(tempTrash);
+            }
+        }
+
+        return trashToRecycle;
+    }
+
+    // TEMP SAVE
+    public void Save()
+    {
+        PlayerPrefs.SetInt("RecycledTrashLeft", trashToRecycle.Count);
     }
 
     public void RecycleAtNearestMachine()
@@ -65,7 +91,6 @@ public class RecyclingManager : MonoBehaviour
                 // NOTE: Trash is not recyclable by default, needs to be RecycableTrash
                 if (trash.IsRecyclable)
                 {
-                    Debug.Log("Trash was recycled");
                     playerStatsManager.Money += trash.MoneyValue;
                     playerStatsManager.RecycledTrashList.Add(trash);
                     trashToRecycle.Remove(trash);
