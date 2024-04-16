@@ -4,20 +4,18 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.TextCore.Text;
 
-public class ArrowBoxMinigame : MonoBehaviour, IMinigame
+public class ArrowBoxMinigame : Minigame
 {
     [SerializeField] private GameObject arrowPrefab;
     [SerializeField] private GameObject boxPrefab;
 
     private bool boxIsColliding;
-    private BlueBoxController blueBoxController;
+    private TimingBoxController timingBoxController;
 
     private GameObject arrow;
     private GameObject box;
-
-    public UnityEvent onMinigameWon;
-    public UnityEvent onMinigameLost;
 
     private PlayerInput playerControls;
     private InputAction catchTrash;
@@ -25,22 +23,25 @@ public class ArrowBoxMinigame : MonoBehaviour, IMinigame
     // Start is called before the first frame update
     void Start()
     {
+        onMinigameWon = new UnityEvent();
+        onMinigameLost = new UnityEvent();
+        promptText = string.Empty;
         playerControls = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
-        onMinigameWon.AddListener(GameObject.FindGameObjectWithTag("Player").GetComponent<FishingFeature>().OnMinigameWonHandler);
-        onMinigameLost.AddListener(GameObject.FindGameObjectWithTag("Player").GetComponent<FishingFeature>().OnMinigameLostHandler);
-        StartMinigame();
         catchTrash = playerControls.actions["Catch"];
+        onMinigameWon.AddListener(FindObjectOfType<MinigameManager>().HandleMinigameWon);
+        onMinigameLost.AddListener(FindObjectOfType<MinigameManager>().GetComponent<MinigameManager>().HandleMinigameLost);
+        StartMinigame();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (blueBoxController != null)
+        if (timingBoxController != null)
         {
-            boxIsColliding = blueBoxController.BoxIsColliding();
+            boxIsColliding = timingBoxController.BoxIsColliding();
         }
 
-        if(catchTrash.triggered)
+        if (catchTrash.triggered)
         {
             HandleCatch();
         }
@@ -60,15 +61,17 @@ public class ArrowBoxMinigame : MonoBehaviour, IMinigame
         DestroyMinigame();
     }
 
-    public void StartMinigame()
+    public override void StartMinigame()
     {
         arrow = Instantiate(arrowPrefab);
         box = Instantiate(boxPrefab);
-        blueBoxController = box.GetComponent<BlueBoxController>();
+        timingBoxController = box.GetComponent<TimingBoxController>();
+
+        promptText = "Press SPACE to catch";
     }
 
-    public void DestroyMinigame() // Runs on both "Success" and "Very Bad!"
-    {    
+    public override void DestroyMinigame() // Runs on both "Success" and "Very Bad!"
+    {
         if (box != null)
         {
             Destroy(box);
@@ -77,6 +80,8 @@ public class ArrowBoxMinigame : MonoBehaviour, IMinigame
         {
             Destroy(arrow);
         }
-    }
 
+        promptText = "";
+        Destroy(gameObject);
+    }
 }
