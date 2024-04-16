@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TrashBag
   m_EditorClassIdentifier: 
   trashType: 0
-  trashCategory: 2
+  trashCategories: 02000000
   trashFacts:
   - {fileID: 11400000, guid: dac7bcb080dc1e44c929c8941c041bb2, type: 2}
   - {fileID: 11400000, guid: 402ff2bc02ba3ef4fbea94d692f3bdd6, type: 2}

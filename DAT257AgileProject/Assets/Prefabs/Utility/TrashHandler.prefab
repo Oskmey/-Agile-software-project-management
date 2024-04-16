@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trashPrefabs:
   - {fileID: 951709337480037534, guid: e832d922162442b4c9349cd219bcfa0b, type: 3}
+  - {fileID: 6108896794586476295, guid: b3eb4c006d570f440a866a60439ae0ee, type: 3}
 --- !u!114 &868576855452486802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,6 +61,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 169775c09a567274da5c316dc965d51c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameplayHudHandler: {fileID: 0}
 --- !u!114 &6575130779639470006
 MonoBehaviour:
   m_ObjectHideFlags: 0
