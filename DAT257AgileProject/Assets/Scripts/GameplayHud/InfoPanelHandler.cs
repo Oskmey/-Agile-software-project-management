@@ -18,7 +18,9 @@ public class InfoPanelHandler : MonoBehaviour
 
     public void SetTrashTypeText(TrashType trashType)
     {
-        trashTypeText.text = $"You caught a {trashType.ToReadableString()}";
+        string trashName = trashType.ToReadableString();
+        string article = ArticleForWordHelper.GetArticle(trashName);
+        trashTypeText.text = $"You caught {article} {trashName}";
     }
 
     public void SetTrashInformationText(string trashInformation)
@@ -38,11 +40,18 @@ public class InfoPanelHandler : MonoBehaviour
 
     public void SetTrashSourcesText(IReadOnlyList<SourceData> sources)
     {
-        string sourcesText = "Sources: ";
+        string sourcesText;
+        if (sources.Count == 1)
+        {
+            sourcesText = "Source: ";
+        } 
+        else
+        {
+            sourcesText = "Sources: ";
+        }
         foreach (SourceData source in sources)
         {
-            // ToShortDateString() is used to only show the date without the time
-            sourcesText += $"\n- {source.SourceName} ({source.Date.ToShortDateString()}) <i>{source.Title}</i> {source.Website}";
+            sourcesText += $"\n- {source.SourceName} ({source.Date}) <i>{source.Title}</i> {source.Website}";
         }
         trashSourcesText.text = sourcesText;
     }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6575130779639470006}
   m_Layer: 0
   m_Name: TrashHandler
-  m_TagString: Untagged
+  m_TagString: TrashHandler
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,6 +48,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trashPrefabs:
   - {fileID: 951709337480037534, guid: e832d922162442b4c9349cd219bcfa0b, type: 3}
+  - {fileID: 6108896794586476295, guid: b3eb4c006d570f440a866a60439ae0ee, type: 3}
+  - {fileID: 6746091704529100501, guid: ee436337835113146bf9ffd89ccb8002, type: 3}
+  - {fileID: 8941772817073763933, guid: 7a3f7bd480d47dc48b440db56a7beabe, type: 3}
 --- !u!114 &868576855452486802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,6 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 169775c09a567274da5c316dc965d51c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameplayHudHandler: {fileID: 0}
 --- !u!114 &6575130779639470006
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -8,6 +8,9 @@ TagManager:
   - TutorialText
   - Recycle Machine
   - Recycling Manager
+  - TrashHandler
+  - GameplayHUD
+  - Minigame
   layers:
   - Default
   - TransparentFX

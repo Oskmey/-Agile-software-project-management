@@ -1,40 +1,48 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static RecyclingMachine;
 
 public class PlayerController : MonoBehaviour
 {
-    private PlayerInputActions playerControls;
+    private PlayerInput playerControls;
     private RecyclingManager recyclingManager;
     private InputAction recycle;
+    private InputAction recycleAction;
 
     void Awake()
     {
+        playerControls = GetComponent<PlayerInput>();
+
+        recycleAction = GetComponent<PlayerInput>().actions["Recycle"];
         recyclingManager = GameObject.FindGameObjectWithTag("Recycling Manager").GetComponent<RecyclingManager>();
-        playerControls = new PlayerInputActions();
     }
 
     private void OnEnable()
     {
-        recycle = playerControls.Player.Recycle;
-        recycle.Enable();
-        recycle.performed += RecycleAtNearestMachine;
+        recycleAction.performed += Recycle;
     }
 
     private void OnDisable()
     {
-        recycle.Disable();
+        recycleAction.performed -= Recycle;
     }
+
     // Test method to recycle trash due to no inventory system
-    private void RecycleAtNearestMachine(InputAction.CallbackContext context)
+    private void Recycle(InputAction.CallbackContext context)
     {
-        if(recyclingManager.TrashToRecycle.Count > 0)
+        if (!FishingLoop.IsFishing)
         {
-            //recyclingManager.RecycleAtNearestMachine(recyclingManager.TrashToRecycle.ToList()[0]);
+            recyclingManager.RecycleAtNearestMachine();
         }
+        /*
+        else
+        {
+            Debug.Log("Can't recycle if not in range of machine or fishing");
+        }*/
     }
 
     // Update is called once per frame

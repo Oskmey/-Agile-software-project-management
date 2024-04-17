@@ -64,6 +64,26 @@ public class TrashHandlerTests : InputTestFixture
         Assert.AreEqual(position, actualPosition);
     }
 
+    [Test]
+    public void CreateRandomTrash_WhenCalledWithTrashRarityAndPosition_ShouldCreateTrash()
+    {
+        Vector2 position = new(1, 1);
+        trashHandler.CreateRandomTrash(TrashRarity.Common, position);
+        Assert.IsNotNull(trashHandler.CurrentTrashObject);
+    }
+
+    [Test]
+    public void CreateRandomTrash_WhenCalledWithTrashRarityAndPosition_ShouldCreateTrashAtPosition()
+    {
+        Vector2 position = new(1, 1);
+        trashHandler.CreateRandomTrash(TrashRarity.Common, position);
+        float positionX = trashHandler.CurrentTrashObject.transform.position.x;
+        float positionY = trashHandler.CurrentTrashObject.transform.position.y;
+        // Have to convert to Vector2 because a gameobject's position is a Vector3 by default
+        Vector2 actualPosition = new(positionX, positionY);
+        Assert.AreEqual(position, actualPosition);
+    }
+
     [UnityTest]
     public IEnumerator DestroyTrash_WhenCalled_ShouldDestroyTrash()
     {

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ecc9f7c16042e14a9a71ef19b86e438, type: 3}
   m_Name: NationalGeographic
   m_EditorClassIdentifier: 
-  sourceName: Parker L.
+  sourceName: Parker, L.
   dateAsString: 21-02-2024
   title: The world's plastic pollution crisis, explained
   website: National Geographic

@@ -31,15 +31,15 @@ public class TrashDataTests
     }
 
     [Test, TestCaseSource(nameof(TrashDataTestCases))]
-    public void EachTrashData_HasTrashType(TrashData trashDataEntry)
+    public void EachTrashData_HasTrashCategories(TrashData trashDataEntry)
     {
-        Assert.IsNotNull(trashDataEntry.TrashType);
+        Assert.IsNotNull(trashDataEntry.TrashCategories);
     }
 
     [Test, TestCaseSource(nameof(TrashDataTestCases))]
-    public void EachTrashData_HasTrashCategory(TrashData trashDataEntry)
+    public void EachTrashData_HasAtLeastOneTrashCategory(TrashData trashDataEntry)
     {
-        Assert.IsNotNull(trashDataEntry.TrashCategory);
+        Assert.IsNotEmpty(trashDataEntry.TrashCategories);
     }
 
     [Test, TestCaseSource(nameof(TrashDataTestCases))]
@@ -52,12 +52,6 @@ public class TrashDataTests
     public void EachTrashData_HasAtLeastOneTrashFact(TrashData trashDataEntry)
     {
         Assert.IsNotEmpty(trashDataEntry.TrashFacts);
-    }
-
-    [Test, TestCaseSource(nameof(TrashDataTestCases))]
-    public void EachTrashData_HasTrashRarity(TrashData trashDataEntry)
-    {
-        Assert.IsNotNull(trashDataEntry.Rarity);
     }
 
     [Test, TestCaseSource(nameof(TrashDataTestCases))]
