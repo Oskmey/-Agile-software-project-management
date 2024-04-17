@@ -17,8 +17,7 @@ public class PlayerController : MonoBehaviour
     private InputAction recycleAction;
 
     private InputAction fishingAction;
-    private FishingManager fishingManager;
-
+ 
     private InputAction shopAction;
     private ShopManager shoppingManager;
 
@@ -41,7 +40,7 @@ public class PlayerController : MonoBehaviour
         recyclingManager = GameObject.FindGameObjectWithTag("Recycling Manager").GetComponent<RecyclingManager>();
 
         fishingAction = GetComponent<PlayerInput>().actions["Fish"];
-        fishingManager = GameObject.FindGameObjectWithTag("Fishing Manager").GetComponent<FishingManager>();
+        
 
         shopAction = GetComponent<PlayerInput>().actions["Shop"];
         shoppingManager = GameObject.FindGameObjectWithTag("Shop Manager").GetComponent<ShopManager>();
