@@ -29,9 +29,4 @@ public class RecyclingMachine : MonoBehaviour
     {
         return Vector2.Distance(playerPosition, transform.position) <= interactionRange;
     }
-
-    public bool IsTrashRecyclable(TrashData trashData)
-    {
-        return trashData.IsRecyclable;
-    }
 }
