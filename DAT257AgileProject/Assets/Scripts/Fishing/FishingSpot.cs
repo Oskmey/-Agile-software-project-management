@@ -39,7 +39,7 @@ public class FishingSpot : MonoBehaviour
 void Start()
     {
         //Ska inte vara på playerspriten
-        fishSpot = GameObject.FindGameObjectWithTag("Fishing Spot").GetComponent<FishingSpot>();
+        fishSpot = GetComponent<FishingSpot>();
         promptText = GameObject.FindGameObjectWithTag("TutorialText").GetComponent<TextMeshProUGUI>();
         minigameManager = GameObject.FindGameObjectWithTag("Minigame Manager").GetComponent<MinigameManager>();
         trashHandler = GameObject.FindGameObjectWithTag("TrashHandler").GetComponent<TrashHandler>();
