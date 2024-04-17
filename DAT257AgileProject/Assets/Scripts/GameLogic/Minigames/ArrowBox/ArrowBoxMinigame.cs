@@ -50,18 +50,22 @@ public class ArrowBoxMinigame : Minigame
         }
     }
 
-    public override void HandleCatch()
+    public override bool HandleCatch()
     {
         if (boxIsColliding)
         {
             onMinigameWon.Invoke();
+            DestroyMinigame();
+            return true;
         }
         else
         {
             onMinigameLost.Invoke();
+            DestroyMinigame();
+            return false;
         }
 
-        //DestroyMinigame();
+        
     }
 
     public override void StartMinigame()

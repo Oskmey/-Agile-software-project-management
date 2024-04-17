@@ -19,9 +19,7 @@ public class MinigameManager : MonoBehaviour
  
     private bool minigameStarted = false;
 
-    private TimingBoxController box;
-
-
+    private GameObject currentTrash;
 
     private void Awake()
     {
@@ -44,6 +42,7 @@ public class MinigameManager : MonoBehaviour
 
     public void StartMinigame(MinigameType minigameType)
     {
+        //currentTrash = trashPrefab;
         minigameStarted = true;
         currentMinigameType = minigameType;
         InitMinigame(currentMinigameType);
@@ -52,6 +51,7 @@ public class MinigameManager : MonoBehaviour
     void InitMinigame(MinigameType minigameType)
     {
         CreateMinigame(minigameType);
+        
         //promptText = GameObject.FindGameObjectWithTag("TutorialText").GetComponent<TextMeshProUGUI>();
     }
 
@@ -64,6 +64,8 @@ public class MinigameManager : MonoBehaviour
         }
     }
 
+
+//Bör skicka med trashprefaben som ska spawnas aswell om man vill göra olika fishing tiles
     private void CreateMinigame(MinigameType type)
     {
         switch (type)
@@ -84,7 +86,8 @@ public class MinigameManager : MonoBehaviour
 
     public void HandleMinigameWon()
     {
-        currentMinigame.DestroyMinigame();
+        
+        //currentMinigame.DestroyMinigame();
         minigameStarted = false;
         // TODO: fix objects being null when event invoked
         promptText.text = "";
@@ -95,19 +98,15 @@ public class MinigameManager : MonoBehaviour
             Debug.LogError("TrashHandler not found.");
             return;
         }
-
-        Vector2 trashSpawnPosition = new(transform.position.x, transform.position.y + 1);
-        trashHandler.CreateTrash(TrashType.TrashBag, trashSpawnPosition);
         PlayerPrefs.SetInt("RecycledTrashLeft", PlayerPrefs.GetInt("RecycledTrashLeft")+1);
-        
     }
 
     public void HandleMinigameLost()
     {
-
+        //currentMinigame.DestroyMinigame();
         minigameStarted = false;
-        Debug.Log("Minigame lost! Implement your logic here...");
-        currentMinigame.DestroyMinigame();
+        //Debug.Log("Minigame lost! Implement your logic here...");
+        
     }
 
     private void UpdateMinigamePromptText()

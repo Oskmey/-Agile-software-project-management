@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 
 using UnityEngine.Events;
@@ -14,6 +15,7 @@ public class FishingSpot : MonoBehaviour
     private Sprite fishingSprite1, fishingSprite2;
     [SerializeField] 
     private GameObject exclamationMarkPrefab;
+
     [SerializeField] 
     private GameObject trashPrefab;    // TODO Make it possible to have many types of trash
 
@@ -24,7 +26,6 @@ public class FishingSpot : MonoBehaviour
     private float delayTime = 2f;
     private float canCatchTime = 0f;
     private float canCatchDelay = 1.5f;
-
     private MinigameManager minigameManager;
     private TextMeshProUGUI promptText;
 
@@ -59,15 +60,6 @@ public void HandleFishingPlaying()
         {
             //Debug.Log("Player is in range of fishing");
             
-            
-            if (!canCatchTrash)
-            {
-                //Debug.Log("Hej");
-                SpawnExclamationMark();
-            }
-            canCatchTrash = true;
-            canCatchTime += Time.deltaTime;
-
             if (elapsedTime >= delayTime)
             {
                 Debug.Log("Player is in range of fishing");
@@ -75,7 +67,7 @@ public void HandleFishingPlaying()
                 
                 if (!canCatchTrash)
                 {
-                    Debug.Log("Hej");
+                    
                     SpawnExclamationMark();
                 }
                 canCatchTrash = true;
@@ -96,6 +88,7 @@ public void HandleFishingPlaying()
         if (!isPlayingMinigame && canCatchTrash)
         {
             //playerSpriteRenderer.sprite = fishingSprite2;
+            
             minigameManager.StartMinigame(MinigameType.ArrowBoxMinigame);
             
             isPlayingMinigame = true;
@@ -126,11 +119,10 @@ public void HandleFishingPlaying()
         canCatchTime = 0f;
 
         promptText.text = "";
-
-        //Should not be able to move anyways
-        //Destroy(GameObject.FindGameObjectWithTag("Minigame")); 
     }
 
+
+//Kallas inte right now
     public void TrashCoughtEffect()     // Should spawn on success
     {
         Vector3 offset = new Vector3(3f, -2.5f, 0);     // The distance from player to float
@@ -139,14 +131,14 @@ public void HandleFishingPlaying()
         Destroy(trash, 1.5f);
     }
 
-
+//Should spawn the trashPrefab for each spot
     public void OnMinigameWonHandler()
     {
         // TODO: fix trashHandler being null when event invoked
         Debug.Log("U won minigame");
         Debug.Log(transform.position.x);
         Vector2 trashSpawnPosition = new(transform.position.x, transform.position.y);
-        trashHandler.CreateTrash(TrashType.TrashBag, trashSpawnPosition);
+        trashHandler.CreateTrash(trashPrefab.GetComponent<TrashScript>().TrashType, trashSpawnPosition);
     }
 
     public void OnMinigameLostHandler()

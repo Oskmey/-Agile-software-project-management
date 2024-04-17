@@ -30,6 +30,8 @@ public class PlayerController : MonoBehaviour
 
     private bool canMove = true;
 
+    private bool resultOfCatch;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -107,12 +109,19 @@ public class PlayerController : MonoBehaviour
 
     //Måste lägga till minigames, cant be arsed
     private void Catch(InputAction.CallbackContext context)
-    {if (playerInteraction.currentFishingSpot != null){
+    {
+        if (playerInteraction.currentFishingSpot != null){
         
         Debug.Log("Catching");
         minigame = GameObject.FindGameObjectWithTag("Minigame Manager").GetComponent<MinigameManager>().getCurrentMinigame();
-        minigame.HandleCatch();}
+        resultOfCatch = minigame.HandleCatch();}
         canMove=true;
+        if (resultOfCatch){
+            playerInteraction.currentFishingSpot.OnMinigameWonHandler();
+        }
+        else{
+            playerInteraction.currentFishingSpot.OnMinigameLostHandler();
+        }
     }
 
 }

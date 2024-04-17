@@ -14,5 +14,5 @@ public abstract class Minigame : MonoBehaviour, IMinigame
     public abstract void StartMinigame();
     public abstract void DestroyMinigame();
 
-    public abstract void HandleCatch();
+    public abstract bool HandleCatch();
 }
