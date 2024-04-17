@@ -28,6 +28,8 @@ public class PlayerController : MonoBehaviour
 
     private Minigame minigame;
 
+    private bool canMove = true;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -78,8 +80,12 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("Fishing if in range");
         if (playerInteraction.currentFishingSpot != null){
+            canMove=false;
+        rb.velocity = Vector2.zero;
         playerInteraction.currentFishingSpot.HandleMinigameStart();
+        
         }
+        
     }
 
         private void Shopping(InputAction.CallbackContext context)
@@ -90,7 +96,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnMovment(InputAction.CallbackContext value)
     {
-        rb.velocity = value.ReadValue<Vector2>() * speed;
+        if(canMove){
+        rb.velocity = value.ReadValue<Vector2>() * speed;}
     }
 
     private void OnMovmentStopped(InputAction.CallbackContext value)
@@ -101,9 +108,11 @@ public class PlayerController : MonoBehaviour
     //Måste lägga till minigames, cant be arsed
     private void Catch(InputAction.CallbackContext context)
     {if (playerInteraction.currentFishingSpot != null){
+        
         Debug.Log("Catching");
         minigame = GameObject.FindGameObjectWithTag("Minigame Manager").GetComponent<MinigameManager>().getCurrentMinigame();
         minigame.HandleCatch();}
+        canMove=true;
     }
 
 }

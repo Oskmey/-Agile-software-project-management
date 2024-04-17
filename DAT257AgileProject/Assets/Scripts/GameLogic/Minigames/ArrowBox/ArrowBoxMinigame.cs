@@ -61,7 +61,7 @@ public class ArrowBoxMinigame : Minigame
             onMinigameLost.Invoke();
         }
 
-        DestroyMinigame();
+        //DestroyMinigame();
     }
 
     public override void StartMinigame()

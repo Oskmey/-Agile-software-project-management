@@ -38,7 +38,7 @@ public class FishingSpot : MonoBehaviour
 
 void Start()
     {
-        //Ska inte vara på playerspriten
+        
         fishSpot = GetComponent<FishingSpot>();
         promptText = GameObject.FindGameObjectWithTag("TutorialText").GetComponent<TextMeshProUGUI>();
         minigameManager = GameObject.FindGameObjectWithTag("Minigame Manager").GetComponent<MinigameManager>();
@@ -127,7 +127,8 @@ public void HandleFishingPlaying()
 
         promptText.text = "";
 
-        Destroy(GameObject.FindGameObjectWithTag("Minigame"));   
+        //Should not be able to move anyways
+        //Destroy(GameObject.FindGameObjectWithTag("Minigame")); 
     }
 
     public void TrashCoughtEffect()     // Should spawn on success

@@ -84,6 +84,7 @@ public class MinigameManager : MonoBehaviour
 
     public void HandleMinigameWon()
     {
+        currentMinigame.DestroyMinigame();
         minigameStarted = false;
         // TODO: fix objects being null when event invoked
         promptText.text = "";
@@ -98,6 +99,7 @@ public class MinigameManager : MonoBehaviour
         Vector2 trashSpawnPosition = new(transform.position.x, transform.position.y + 1);
         trashHandler.CreateTrash(TrashType.TrashBag, trashSpawnPosition);
         PlayerPrefs.SetInt("RecycledTrashLeft", PlayerPrefs.GetInt("RecycledTrashLeft")+1);
+        
     }
 
     public void HandleMinigameLost()
@@ -105,6 +107,7 @@ public class MinigameManager : MonoBehaviour
 
         minigameStarted = false;
         Debug.Log("Minigame lost! Implement your logic here...");
+        currentMinigame.DestroyMinigame();
     }
 
     private void UpdateMinigamePromptText()
