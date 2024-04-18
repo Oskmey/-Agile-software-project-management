@@ -18,6 +18,47 @@ public class TrashDataTests
         }
     }
 
+    private static IEnumerable<TestCaseData> NonRecycableTrashDataTestCases
+    {
+        get
+        {
+            foreach (TrashData trashDataEntry in trashData)
+            {
+                if (!trashDataEntry.IsRecyclable)
+                {
+                    yield return new TestCaseData(trashDataEntry);
+                }
+            }
+        }
+    }
+
+    private static IEnumerable<TestCaseData> RecycableTrashDataTestCases
+    {
+        get
+        {
+            foreach (TrashData trashDataEntry in trashData)
+            {
+                if (trashDataEntry.IsRecyclable)
+                {
+                    yield return new TestCaseData(trashDataEntry);
+                }
+            }
+        }
+    }
+
+    // Test for if we are adding non recycable trash data
+    /*
+    [Test, TestCaseSource(nameof(NonRecycableTrashDataTestCases))]
+    public void Recycling_GivenNonRecylcableTrash_ReturnsFalse(TrashData trashDataEntry)
+    {
+        // Assign
+        // Act
+
+        // Assert
+        Assert.IsFalse(!trashDataEntry.IsRecyclable);
+    }
+    */
+
     [Test]
     public void TrashData_AreNotNull()
     {
@@ -28,6 +69,18 @@ public class TrashDataTests
     public void TrashData_AreNotEmpty()
     {
         Assert.IsNotEmpty(trashData);
+    }
+
+
+    [Test, TestCaseSource(nameof(RecycableTrashDataTestCases))]
+    public void Recycling_GivenRecyclableTrash_ReturnsTrue(TrashData trashDataEntry)
+    {
+        // Assign
+
+        // Act
+
+        // Assert
+        Assert.IsTrue(trashDataEntry.IsRecyclable);
     }
 
     [Test, TestCaseSource(nameof(TrashDataTestCases))]

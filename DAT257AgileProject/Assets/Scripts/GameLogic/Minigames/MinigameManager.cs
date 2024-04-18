@@ -86,18 +86,8 @@ public class MinigameManager : MonoBehaviour
 
     public void HandleMinigameWon()
     {
-        
-        //currentMinigame.DestroyMinigame();
         minigameStarted = false;
-        // TODO: fix objects being null when event invoked
         promptText.text = "";
-        // trashHandler = FindObjectOfType<TrashHandler>();
-        
-        // if (trashHandler == null)
-        // {
-        //     Debug.LogError("TrashHandler not found.");
-        //     return;
-        // }
         PlayerPrefs.SetInt("RecycledTrashLeft", PlayerPrefs.GetInt("RecycledTrashLeft")+1);
     }
 

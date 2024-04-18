@@ -28,16 +28,13 @@ public class ArrowBoxMinigame : Minigame
     // Start is called before the first frame update
     void Start()
     {
-        onMinigameWon = new UnityEvent();
-        onMinigameLost = new UnityEvent();
         promptText = string.Empty;
         playerControls = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>();
         playerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        // Subscribe to the events
+        OnMinigameWon += FindObjectOfType<MinigameManager>().HandleMinigameWon;
+        OnMinigameLost += FindObjectOfType<MinigameManager>().HandleMinigameLost;
 
-
-        //catchTrash = playerControls.actions["Catch"];
-        onMinigameWon.AddListener(FindObjectOfType<MinigameManager>().HandleMinigameWon);
-        onMinigameLost.AddListener(FindObjectOfType<MinigameManager>().GetComponent<MinigameManager>().HandleMinigameLost);
         StartMinigame();
     }
 
@@ -54,18 +51,24 @@ public class ArrowBoxMinigame : Minigame
     {
         if (boxIsColliding)
         {
-            onMinigameWon.Invoke();
+            MinigameWon();
             DestroyMinigame();
             return true;
         }
         else
         {
-            onMinigameLost.Invoke();
+            MinigameLost();
             DestroyMinigame();
             return false;
         }
 
         
+    }
+
+    void OnDestroy()
+    {
+        OnMinigameWon -= FindObjectOfType<MinigameManager>().HandleMinigameWon;
+        OnMinigameLost -= FindObjectOfType<MinigameManager>().HandleMinigameLost;
     }
 
     public override void StartMinigame()
