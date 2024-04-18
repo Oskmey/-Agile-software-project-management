@@ -21,16 +21,16 @@ public class TrashHandler : MonoBehaviour
         //onTrashCollected.AddListener(FindObjectOfType<FishingSpot>().ResetFishingLoop);
         gameplayHudHandler = GameObject.FindGameObjectWithTag("GameplayHUD").GetComponent<GameplayHudHandler>();
         playerInput = GetComponent<PlayerInput>();
-        //hideTrashInfoPanelAction = playerInput.actions["HideTrashInfoPanel"];
+        hideTrashInfoPanelAction = playerInput.actions["HideTrashInfoPanel"];
         recyclingManager = GameObject.FindGameObjectWithTag("Recycling Manager").GetComponent<RecyclingManager>();
     }
 
     private void Update()
     {
-        // if (hideTrashInfoPanelAction.triggered)
-        // {
-        //     DestroyTrash();
-        // }
+         if (hideTrashInfoPanelAction.triggered)
+         {
+             DestroyTrash();
+         }
     }
 
     // Creates trash at the center of the screen

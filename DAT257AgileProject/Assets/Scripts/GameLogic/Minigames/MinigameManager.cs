@@ -91,13 +91,13 @@ public class MinigameManager : MonoBehaviour
         minigameStarted = false;
         // TODO: fix objects being null when event invoked
         promptText.text = "";
-        trashHandler = FindObjectOfType<TrashHandler>();
+        // trashHandler = FindObjectOfType<TrashHandler>();
         
-        if (trashHandler == null)
-        {
-            Debug.LogError("TrashHandler not found.");
-            return;
-        }
+        // if (trashHandler == null)
+        // {
+        //     Debug.LogError("TrashHandler not found.");
+        //     return;
+        // }
         PlayerPrefs.SetInt("RecycledTrashLeft", PlayerPrefs.GetInt("RecycledTrashLeft")+1);
     }
 

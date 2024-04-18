@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
 
     private bool resultOfCatch;
 
+    private TrashHandler trashHandler;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -47,6 +49,8 @@ public class PlayerController : MonoBehaviour
 
         catchingAction = GetComponent<PlayerInput>().actions["Catch"];
         minigame = GameObject.FindGameObjectWithTag("Minigame Manager").GetComponent<MinigameManager>().getCurrentMinigame();
+
+        
 
         playerInteraction = GetComponentInChildren<PlayerInteraction>();
     }
@@ -113,7 +117,7 @@ public class PlayerController : MonoBehaviour
         
         Debug.Log("Catching");
         minigame = GameObject.FindGameObjectWithTag("Minigame Manager").GetComponent<MinigameManager>().getCurrentMinigame();
-        resultOfCatch = minigame.HandleCatch();}
+        resultOfCatch = minigame.HandleCatch();
         canMove=true;
         if (resultOfCatch){
             playerInteraction.currentFishingSpot.OnMinigameWonHandler();
@@ -121,6 +125,8 @@ public class PlayerController : MonoBehaviour
         else{
             playerInteraction.currentFishingSpot.OnMinigameLostHandler();
         }
+        }
     }
+    
 
 }

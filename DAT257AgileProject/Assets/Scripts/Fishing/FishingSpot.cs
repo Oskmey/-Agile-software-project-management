@@ -16,9 +16,6 @@ public class FishingSpot : MonoBehaviour
     [SerializeField] 
     private GameObject exclamationMarkPrefab;
 
-    [SerializeField] 
-    private GameObject trashPrefab;    // TODO Make it possible to have many types of trash
-
     private static bool isFishing = true;
     private bool isPlayingMinigame = false;
     private bool canCatchTrash = false;
@@ -127,8 +124,8 @@ public void HandleFishingPlaying()
     {
         Vector3 offset = new Vector3(3f, -2.5f, 0);     // The distance from player to float
         Vector3 spawnPos = transform.localPosition + offset;
-        GameObject trash = Instantiate(trashPrefab, spawnPos, Quaternion.identity);
-        Destroy(trash, 1.5f);
+        //GameObject trash = Instantiate(trashPrefab, spawnPos, Quaternion.identity);
+        //Destroy(trash, 1.5f);
     }
 
 //Should spawn the trashPrefab for each spot
@@ -138,7 +135,7 @@ public void HandleFishingPlaying()
         Debug.Log("U won minigame");
         Debug.Log(transform.position.x);
         Vector2 trashSpawnPosition = new(transform.position.x, transform.position.y);
-        trashHandler.CreateTrash(trashPrefab.GetComponent<TrashScript>().TrashType, trashSpawnPosition);
+        trashHandler.CreateTrash(TrashType.TrashBag, trashSpawnPosition);
     }
 
     public void OnMinigameLostHandler()
