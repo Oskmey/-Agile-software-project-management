@@ -4,19 +4,15 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
+using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 
 public class TrashHandlerTests : InputTestFixture
 {
-    private GameObject trashHandlerObject;
-    private GameObject gameplayHudObject;
     private TrashHandler trashHandler;
-    private PlayerInput playerInput;
-    private RecyclingManager recyclingManager;
     private Mouse mouse;
+    private PlayerInput playerInput;
     private Keyboard keyboard;
-    private static readonly string trashHandlerPrefabPath = "Assets/Prefabs/Utility/TrashHandler.prefab";
-    private static readonly string gameplayHudPrefabPath = "Assets/Prefabs/UI/GameplayHud.prefab";
 
     [SetUp]
     public override void Setup()
@@ -26,37 +22,35 @@ public class TrashHandlerTests : InputTestFixture
         keyboard = InputSystem.AddDevice<Keyboard>();
         mouse = new Mouse();
         mouse = InputSystem.AddDevice<Mouse>();
-
-        GameObject gameplayHudPrefab = AssetDatabase.LoadAssetAtPath(gameplayHudPrefabPath, typeof(GameObject)) as GameObject;
-        gameplayHudObject = Object.Instantiate(gameplayHudPrefab);
-        gameplayHudObject.GetComponent<GameplayHudHandler>().TryFindInfoPanel();
-
-        GameObject trashHandlerPrefab = AssetDatabase.LoadAssetAtPath(trashHandlerPrefabPath, typeof(GameObject)) as GameObject;
-        trashHandlerObject = Object.Instantiate(trashHandlerPrefab);
-        
-        trashHandler = trashHandlerObject.GetComponent<TrashHandler>();
-        trashHandler.TryFindManagers();
-        playerInput = trashHandlerObject.GetComponent<PlayerInput>();
+        SceneManager.LoadScene("RecyclingTest", LoadSceneMode.Single);
     }
 
     [Test]
     public void TrashHandler_IsNotNull_ReturnsTrue()
     {
+        trashHandler = GameObject.FindAnyObjectByType<TrashHandler>();
         Assert.IsNotNull(trashHandler);
     }
 
-    [Test]
-    public void CreateTrash_WhenCalledWithTrashType_ShouldCreateTrash()
+    [UnityTest]
+    public IEnumerator CreateTrash_WhenCalledWithTrashType_ShouldCreateTrash()
     {
+        yield return null;
+        trashHandler = GameObject.FindAnyObjectByType<TrashHandler>();
+        yield return null;
         trashHandler.CreateTrash(TrashType.TrashBag);
+        yield return null;
         Assert.IsNotNull(trashHandler.CurrentTrashObject);
     }
 
-    [Test]
-    public void CreateTrash_WhenCalledWithTrashTypeAndPosition_ShouldCreateTrashAtPosition()
+    [UnityTest]
+    public IEnumerator CreateTrash_WhenCalledWithTrashTypeAndPosition_ShouldCreateTrashAtPosition()
     {
+        yield return null;
+        trashHandler = GameObject.FindAnyObjectByType<TrashHandler>();
         Vector2 position = new(1, 1);
         trashHandler.CreateTrash(TrashType.TrashBag, position);
+        yield return null;
         float positionX = trashHandler.CurrentTrashObject.transform.position.x;
         float positionY = trashHandler.CurrentTrashObject.transform.position.y;
         // Have to convert to Vector2 because a gameobject's position is a Vector3 by default
@@ -65,36 +59,70 @@ public class TrashHandlerTests : InputTestFixture
     }
 
     [UnityTest]
+    public IEnumerator CreateRandomTrash_WhenCalledWithTrashRarityAndPosition_ShouldCreateTrash()
+    {
+        yield return null;
+        trashHandler = GameObject.FindAnyObjectByType<TrashHandler>();
+        Vector2 position = new(1, 1);
+        trashHandler.CreateRandomTrash(TrashRarity.Common, position);
+        yield return null;
+        Assert.IsNotNull(trashHandler.CurrentTrashObject);
+    }
+
+    [UnityTest]
+    public IEnumerator CreateRandomTrash_WhenCalledWithTrashRarityAndPosition_ShouldCreateTrashAtPosition()
+    {
+        yield return null;
+        trashHandler = GameObject.FindAnyObjectByType<TrashHandler>();
+        playerInput = GameObject.FindAnyObjectByType<PlayerInput>();
+        yield return null;
+        Vector2 position = new(1, 1);
+        trashHandler.CreateRandomTrash(TrashRarity.Common, position);
+        yield return null;
+        float positionX = trashHandler.CurrentTrashObject.transform.position.x;
+        float positionY = trashHandler.CurrentTrashObject.transform.position.y;
+        // Have to convert to Vector2 because a gameobject's position is a Vector3 by default
+        Vector2 actualPosition = new(positionX, positionY);
+        Object.Destroy(playerInput);
+        Assert.AreEqual(position, actualPosition);
+    }
+
+    [UnityTest]
     public IEnumerator DestroyTrash_WhenCalled_ShouldDestroyTrash()
     {
+        yield return null;
+        trashHandler = GameObject.FindAnyObjectByType<TrashHandler>();
+        yield return null;
         trashHandler.CreateTrash(TrashType.TrashBag);
+        yield return null;
         trashHandler.DestroyTrash();
-        // Wait until the next frame
         yield return null;
         
         Assert.IsTrue(trashHandler.CurrentTrashObject.Equals(null));
     }
 
-    // Tried creating a test for input, but couldn't make it work. 
-    //[UnityTest]
-    //public IEnumerator Update_WhenHideTrashInfoPanelActionTriggered_ShouldDestroyTrash()
-    //{
-    //    trashHandler.CreateTrash(TrashType.TrashBag);
-    //    playerInput.actions["HideTrashInfoPanel"].Enable();
-    //    PressAndRelease(mouse.leftButton);
-    //    yield return null;
-    //    playerInput.actions["HideTrashInfoPanel"].Disable();
-    //    Object.Destroy(playerInput);
-    //    Assert.IsTrue(trashHandler.CurrentTrashObject.Equals(null), $"Current Trash Object was {trashHandler.CurrentTrashObject}");
-    //}
+    [UnityTest]
+    public IEnumerator Update_WhenHideTrashInfoPanelActionTriggered_ShouldDestroyTrash()
+    {
+        yield return null;
+        trashHandler = GameObject.FindAnyObjectByType<TrashHandler>();
+        playerInput = GameObject.FindAnyObjectByType<PlayerInput>();
+        yield return null;
+        trashHandler.CreateTrash(TrashType.TrashBag);
+        yield return null;
+        playerInput.actions["HideTrashInfoPanel"].Enable();
+        PressAndRelease(mouse.leftButton);
+        yield return null;
+        playerInput.actions["HideTrashInfoPanel"].Disable();
+        yield return null;
+        Object.Destroy(playerInput);
+        Assert.IsTrue(trashHandler.CurrentTrashObject.Equals(null), $"Current Trash Object was {trashHandler.CurrentTrashObject}");
+    }
 
     [TearDown]
     public override void TearDown()
     {
         base.TearDown();
-        Object.DestroyImmediate(trashHandlerObject);
-        Object.DestroyImmediate(gameplayHudObject);
-        Object.DestroyImmediate(trashHandler);
-        Object.DestroyImmediate(playerInput);
+        trashHandler = null;
     }
 }

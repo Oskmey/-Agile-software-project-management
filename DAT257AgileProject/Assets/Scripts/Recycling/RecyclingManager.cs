@@ -9,8 +9,9 @@ public class RecyclingManager : MonoBehaviour
     private IReadOnlyList<RecyclingMachine> recyclingMachines;
     private PlayerStatsManager playerStatsManager;
     // TEMP: list to store the trash that the player has to recycle
-    private List<TrashScript> trashToRecycle;
+    private static List<TrashScript> trashToRecycle;
     private bool trashWasRecycled;
+    private TrashHandler TrashHandler;
     public IReadOnlyList<TrashScript> TrashToRecycle
     {
         get
@@ -34,19 +35,49 @@ public class RecyclingManager : MonoBehaviour
         }
     }
 
+    void Start(){
+        trashToRecycle = LoadTrash();
+    }
+
     void Awake()
     {
-        trashToRecycle = new();
         trashWasRecycled = false;
+        TrashHandler = FindObjectOfType<TrashHandler>().GetComponent<TrashHandler>();
         recyclingMachines = GetRecyclingMachines();
-        playerStatsManager = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatsManager>();
+        playerStatsManager = FindObjectOfType<PlayerStatsManager>();
+    }
+
+    // TEMP: basic temporary saving system between scenes
+    private List<TrashScript> LoadTrash()
+    {
+        List<TrashScript> trashToRecycle = new();
+        int trashToRecycleLeft = PlayerPrefs.GetInt("RecycledTrashLeft");
+
+        if (trashToRecycleLeft > 0)
+        {
+            for (int i = 0; i < trashToRecycleLeft; i++)
+            {
+                GameObject tempTrash = TrashFactory.CreateTrash(TrashType.TrashBag);
+                trashToRecycle.Add(tempTrash.GetComponent<TrashScript>());
+                Destroy(tempTrash);
+            }
+        }
+
+        return trashToRecycle;
+    }
+
+    // TEMP SAVE
+    public void Save()
+    {
+        PlayerPrefs.SetInt("RecycledTrashLeft", trashToRecycle.Count);
     }
 
     public void RecycleAtNearestMachine()
     {
-        if (TrashToRecycle.Count > 0)
+        trashToRecycle = LoadTrash();
+        if (trashToRecycle.Count > 0)
         {
-            RecycleAtNearestMachine(TrashToRecycle[0]);
+            RecycleAtNearestMachine(trashToRecycle[0]);
         }
         else{
             Debug.Log("No trash to recycle");
@@ -61,15 +92,16 @@ public class RecyclingManager : MonoBehaviour
             // if (recyclingMachine.IsPlayerInRange(player.transform.position))
             if (recyclingMachine.IsPlayerInRange())
             {
-                Debug.Log("Player is in range of recycling machine");
                 // NOTE: Trash is not recyclable by default, needs to be RecycableTrash
                 if (trash.IsRecyclable)
                 {
-                    Debug.Log("Trash was recycled");
+                    Debug.Log(trash.MoneyValue);
                     playerStatsManager.Money += trash.MoneyValue;
                     playerStatsManager.RecycledTrashList.Add(trash);
                     trashToRecycle.Remove(trash);
                     trashWasRecycled = true;
+                    TrashHandler.DestroyTrash();
+                    PlayerPrefs.SetInt("RecycledTrashLeft", PlayerPrefs.GetInt("RecycledTrashLeft")-1);
                 }
                 else
                 {

@@ -14,6 +14,9 @@ TagManager:
   - Fishing Manager
   - Shop
   - Shop Manager
+  - Map
+  - Minigame
+  - Minigame Manager
   layers:
   - Default
   - TransparentFX

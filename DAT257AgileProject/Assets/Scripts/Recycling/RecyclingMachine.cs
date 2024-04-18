@@ -13,20 +13,4 @@ public class RecyclingMachine : MonoBehaviour
     {
         return GetComponentInChildren<RecyclingInteraction>().IsPlayerInRange;
     }
-
-    public bool IsTrashRecyclable(GameObject trash)
-    {
-        return trash.GetComponent<RecyclableTrash>() != null;
-    }
-
-    // This is a test class to simulate trash
-    public class RecyclableTrash : Trash
-    {
- 
-    }
-
-    public class Trash : MonoBehaviour
-    {
-        public int trashValue = 10;
-    }
 }

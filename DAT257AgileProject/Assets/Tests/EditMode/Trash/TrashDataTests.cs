@@ -18,6 +18,47 @@ public class TrashDataTests
         }
     }
 
+    private static IEnumerable<TestCaseData> NonRecycableTrashDataTestCases
+    {
+        get
+        {
+            foreach (TrashData trashDataEntry in trashData)
+            {
+                if (!trashDataEntry.IsRecyclable)
+                {
+                    yield return new TestCaseData(trashDataEntry);
+                }
+            }
+        }
+    }
+
+    private static IEnumerable<TestCaseData> RecycableTrashDataTestCases
+    {
+        get
+        {
+            foreach (TrashData trashDataEntry in trashData)
+            {
+                if (trashDataEntry.IsRecyclable)
+                {
+                    yield return new TestCaseData(trashDataEntry);
+                }
+            }
+        }
+    }
+
+    // Test for if we are adding non recycable trash data
+    /*
+    [Test, TestCaseSource(nameof(NonRecycableTrashDataTestCases))]
+    public void Recycling_GivenNonRecylcableTrash_ReturnsFalse(TrashData trashDataEntry)
+    {
+        // Assign
+        // Act
+
+        // Assert
+        Assert.IsFalse(!trashDataEntry.IsRecyclable);
+    }
+    */
+
     [Test]
     public void TrashData_AreNotNull()
     {
@@ -30,16 +71,28 @@ public class TrashDataTests
         Assert.IsNotEmpty(trashData);
     }
 
-    [Test, TestCaseSource(nameof(TrashDataTestCases))]
-    public void EachTrashData_HasTrashType(TrashData trashDataEntry)
+
+    [Test, TestCaseSource(nameof(RecycableTrashDataTestCases))]
+    public void Recycling_GivenRecyclableTrash_ReturnsTrue(TrashData trashDataEntry)
     {
-        Assert.IsNotNull(trashDataEntry.TrashType);
+        // Assign
+
+        // Act
+
+        // Assert
+        Assert.IsTrue(trashDataEntry.IsRecyclable);
     }
 
     [Test, TestCaseSource(nameof(TrashDataTestCases))]
-    public void EachTrashData_HasTrashCategory(TrashData trashDataEntry)
+    public void EachTrashData_HasTrashCategories(TrashData trashDataEntry)
     {
-        Assert.IsNotNull(trashDataEntry.TrashCategory);
+        Assert.IsNotNull(trashDataEntry.TrashCategories);
+    }
+
+    [Test, TestCaseSource(nameof(TrashDataTestCases))]
+    public void EachTrashData_HasAtLeastOneTrashCategory(TrashData trashDataEntry)
+    {
+        Assert.IsNotEmpty(trashDataEntry.TrashCategories);
     }
 
     [Test, TestCaseSource(nameof(TrashDataTestCases))]
@@ -52,12 +105,6 @@ public class TrashDataTests
     public void EachTrashData_HasAtLeastOneTrashFact(TrashData trashDataEntry)
     {
         Assert.IsNotEmpty(trashDataEntry.TrashFacts);
-    }
-
-    [Test, TestCaseSource(nameof(TrashDataTestCases))]
-    public void EachTrashData_HasTrashRarity(TrashData trashDataEntry)
-    {
-        Assert.IsNotNull(trashDataEntry.Rarity);
     }
 
     [Test, TestCaseSource(nameof(TrashDataTestCases))]
