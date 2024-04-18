@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 2718632994179517745}
   - component: {fileID: 1486155095398960345}
   - component: {fileID: 4432090041502326126}
+  - component: {fileID: 4974297544954403209}
   m_Layer: 0
   m_Name: Player 1
   m_TagString: Player
@@ -230,7 +231,7 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &5054322788681438099
@@ -348,7 +349,31 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1211c2f0-512f-4b4a-92ed-2039cc40f68f
+    m_ActionName: Player/Recycle[/Keyboard/r]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 75140928-ae7a-4a62-aa37-f34510b5e900
+    m_ActionName: Player/Fish[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 85d3efaa-4f02-43f1-917a-313bb9bfd7f9
+    m_ActionName: Player/Catch[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5d285ed1-4205-42c0-9df7-25da581fc9ed
+    m_ActionName: Player/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7281573c-7408-433e-a7bf-e5ad9d62ecfa
+    m_ActionName: Player/Shop[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 43ba200c-8794-4bbb-9c45-d4dc049c71d9
+    m_ActionName: UI/HideTrashInfoPanel[/Mouse/leftButton,/Keyboard/enter,/Keyboard/z]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -378,3 +403,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58678ca833af76b43b21e20dfe0f46ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4974297544954403209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6477538420710758391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af33447c2c4af84f9f1c06627c00fa5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentFishingSpot: {fileID: 0}
