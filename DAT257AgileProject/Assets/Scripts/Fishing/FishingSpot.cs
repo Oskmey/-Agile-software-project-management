@@ -116,14 +116,6 @@ public void HandleFishingPlaying()
     }
 
 
-//Kallas inte right now
-    public void TrashCoughtEffect()     // Should spawn on success
-    {
-        Vector3 offset = new Vector3(3f, -2.5f, 0);     // The distance from player to float
-        Vector3 spawnPos = transform.localPosition + offset;
-        //GameObject trash = Instantiate(trashPrefab, spawnPos, Quaternion.identity);
-        //Destroy(trash, 1.5f);
-    }
 
 //Should spawn the trashPrefab for each spot
     public void OnMinigameWonHandler()
