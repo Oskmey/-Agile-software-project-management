@@ -77,13 +77,11 @@ public class PlayerController : MonoBehaviour
     // Test method to recycle trash due to no inventory system
     private void Recycle(InputAction.CallbackContext context)
     {
-        Debug.Log("Recycling trash if in range");
         recyclingManager.RecycleAtNearestMachine();
     }
 
     private void Fishing(InputAction.CallbackContext context)
     {
-        Debug.Log("Fishing if in range");
         if (playerInteraction.currentFishingSpot != null){
             canMove=false;
         rb.velocity = Vector2.zero;
@@ -114,8 +112,6 @@ public class PlayerController : MonoBehaviour
     private void Catch(InputAction.CallbackContext context)
     {
         if (playerInteraction.currentFishingSpot != null){
-        
-        Debug.Log("Catching");
         minigame = GameObject.FindGameObjectWithTag("Minigame Manager").GetComponent<MinigameManager>().getCurrentMinigame();
         resultOfCatch = minigame.HandleCatch();
         canMove=true;

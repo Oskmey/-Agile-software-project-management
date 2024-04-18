@@ -76,7 +76,6 @@ public class RecyclingManager : MonoBehaviour
     public void RecycleAtNearestMachine()
     {
         trashToRecycle = LoadTrash();
-        Debug.Log(trashToRecycle.Count);
         if (trashToRecycle.Count > 0)
         {
             
@@ -95,7 +94,6 @@ public class RecyclingManager : MonoBehaviour
             // if (recyclingMachine.IsPlayerInRange(player.transform.position))
             if (recyclingMachine.IsPlayerInRange())
             {
-                Debug.Log("Player is in range of recycling machine");
                 // NOTE: Trash is not recyclable by default, needs to be RecycableTrash
                 if (trash.IsRecyclable)
                 {

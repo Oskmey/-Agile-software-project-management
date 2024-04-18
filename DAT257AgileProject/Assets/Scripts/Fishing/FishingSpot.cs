@@ -59,9 +59,6 @@ public void HandleFishingPlaying()
             
             if (elapsedTime >= delayTime)
             {
-                Debug.Log("Player is in range of fishing");
-                
-                
                 if (!canCatchTrash)
                 {
                     
