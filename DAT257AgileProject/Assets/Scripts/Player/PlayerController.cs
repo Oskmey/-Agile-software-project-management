@@ -71,6 +71,7 @@ public class PlayerController : MonoBehaviour
         movementAction.canceled -= OnMovementStopped;
         recycleAction.performed -= Recycle;
         shopAction.performed -= Shopping;
+        fishingAction.performed -= Fishing;
         catchingAction.performed -= Catch;
     }
     

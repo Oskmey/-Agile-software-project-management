@@ -14,6 +14,8 @@ public class FishingSpot : MonoBehaviour
     [SerializeField] 
     private Sprite fishingSprite1, fishingSprite2;
     [SerializeField] 
+    private TrashRarity trashRarity;
+    [SerializeField] 
     private GameObject exclamationMarkPrefab;
 
     private static bool isFishing = true;
@@ -121,7 +123,7 @@ public void HandleFishingPlaying()
     {
         // TODO: fix trashHandler being null when event invoked
         Vector2 trashSpawnPosition = new(transform.position.x, transform.position.y);
-        TrashScript currentTrash = trashHandler.CreateRandomTrash(TrashRarity.Common, trashSpawnPosition);
+        TrashScript currentTrash = trashHandler.CreateRandomTrash(trashRarity, trashSpawnPosition);
     }
 
     public void OnMinigameLostHandler()
