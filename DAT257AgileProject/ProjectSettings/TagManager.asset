@@ -10,7 +10,13 @@ TagManager:
   - Recycling Manager
   - TrashHandler
   - GameplayHUD
+  - Fishing Spot
+  - Fishing Manager
+  - Shop
+  - Shop Manager
+  - Map
   - Minigame
+  - Minigame Manager
   layers:
   - Default
   - TransparentFX

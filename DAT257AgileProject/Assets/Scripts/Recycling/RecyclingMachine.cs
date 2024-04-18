@@ -4,29 +4,13 @@ using UnityEngine;
 
 public class RecyclingMachine : MonoBehaviour
 {
-    // TODO: implement interaction range with player
-    private float interactionRange;
-    
-    void Start()
-    {
-        interactionRange = 5f;
-    }
-
-    public float InteractionRange
-    {
-        get
-        {
-            return interactionRange;
-        }
-    }
-
     public void Recycle(GameObject trash)
     {
         Destroy(trash);
     }
 
-    public bool IsPlayerInRange(Vector2 playerPosition)
+    public bool IsPlayerInRange()
     {
-        return Vector2.Distance(playerPosition, transform.position) <= interactionRange;
+        return GetComponentInChildren<RecyclingInteraction>().IsPlayerInRange;
     }
 }

@@ -34,10 +34,10 @@ public class TrashHandler : MonoBehaviour
 
     private void Update()
     {
-        if (hideTrashInfoPanelAction.triggered)
-        {
-            DestroyTrash();
-        }
+         if (hideTrashInfoPanelAction.triggered)
+         {
+             DestroyTrash();
+         }
     }
 
     void OnDestroy()
@@ -78,7 +78,7 @@ public class TrashHandler : MonoBehaviour
         }
     }
 
-    public void CreateRandomTrash(TrashRarity trashRarity, Vector2 position)
+    public TrashScript CreateRandomTrash(TrashRarity trashRarity, Vector2 position)
     {
         currentTrashObject = TrashFactory.CreateRandomTrashBasedOnRarity(trashRarity);
         currentTrashObject.transform.position = position;
@@ -94,6 +94,7 @@ public class TrashHandler : MonoBehaviour
         {
             Debug.LogError("GameplayHudHandler not found.");
         }
+        return currentTrashScript;
     }
 
     public void DestroyTrash()
