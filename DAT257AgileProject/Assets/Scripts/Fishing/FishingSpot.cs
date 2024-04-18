@@ -36,7 +36,6 @@ public class FishingSpot : MonoBehaviour
 
 void Start()
     {
-        
         fishSpot = GetComponent<FishingSpot>();
         promptText = GameObject.FindGameObjectWithTag("TutorialText").GetComponent<TextMeshProUGUI>();
         minigameManager = GameObject.FindGameObjectWithTag("Minigame Manager").GetComponent<MinigameManager>();
@@ -122,7 +121,7 @@ public void HandleFishingPlaying()
     {
         // TODO: fix trashHandler being null when event invoked
         Vector2 trashSpawnPosition = new(transform.position.x, transform.position.y);
-        trashHandler.CreateRandomTrash(TrashRarity.Common, trashSpawnPosition);
+        TrashScript currentTrash = trashHandler.CreateRandomTrash(TrashRarity.Common, trashSpawnPosition);
     }
 
     public void OnMinigameLostHandler()
