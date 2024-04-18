@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 361970fb74199b34c99a5d2daf7d9937, type: 3}
   m_Name: CarTire
   m_EditorClassIdentifier: 
-  trashCategories: 02000000
+  trashCategories: 0200000006000000
   trashFacts:
   - {fileID: 11400000, guid: 088180437b40a584d84ac5fd47080413, type: 2}
   - {fileID: 11400000, guid: 36a901bee56e5ee49993d28ed0e3d95e, type: 2}
