@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
 
     private bool resultOfCatch;
 
-    private TrashHandler trashHandler;
+
 
     void Awake()
     {
