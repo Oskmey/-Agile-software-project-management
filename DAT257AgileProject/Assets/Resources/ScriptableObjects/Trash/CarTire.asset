@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 361970fb74199b34c99a5d2daf7d9937, type: 3}
+  m_Name: CarTire
+  m_EditorClassIdentifier: 
+  trashCategories: 02000000
+  trashFacts:
+  - {fileID: 11400000, guid: 088180437b40a584d84ac5fd47080413, type: 2}
+  - {fileID: 11400000, guid: 36a901bee56e5ee49993d28ed0e3d95e, type: 2}
+  - {fileID: 11400000, guid: 24d910268be364f479b3276f799e8ea9, type: 2}
+  - {fileID: 11400000, guid: 5313b9858b42806419289b8d97533f43, type: 2}
+  - {fileID: 11400000, guid: 4c98a4bc1f6e94443b9449b7d9097d22, type: 2}
+  - {fileID: 11400000, guid: 779b87a002c52c14591c9808e96caa80, type: 2}
+  - {fileID: 11400000, guid: a078210a8fdcf8842900856fc8355d5a, type: 2}
+  - {fileID: 11400000, guid: 911d8c2fabed56848b13b3badc9a67d7, type: 2}
+  - {fileID: 11400000, guid: 942d17cb609368248b3fdd1287663a60, type: 2}
+  - {fileID: 11400000, guid: 44dc4f386ed1ecb4398a488b1fd7b054, type: 2}
+  moneyValue: 250
+  isRecyclable: 1
