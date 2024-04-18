@@ -212,7 +212,7 @@ public void HandleFishingPlaying()
                 }
             }
         }
-        while(tempList.Count < 100){
+        while(tempList.Count < 10){
             
             tempList.Add(TrashRarity.Common);
         }
