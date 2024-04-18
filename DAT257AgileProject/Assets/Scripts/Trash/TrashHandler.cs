@@ -17,26 +17,34 @@ public class TrashHandler : MonoBehaviour
     private delegate void TrashEvent();
     private event TrashEvent OnTrashCollected;
 
-    private FishingLoop fishingLoop;
+    private PlayerInteraction playerInteraction;
+
+    private FishingSpot fishingLoop;
 
     private void Start()
     {
-        fishingLoop = FindObjectOfType<FishingLoop>();
-        if (fishingLoop != null)
-        {
-            OnTrashCollected += fishingLoop.ResetFishingLoop;
-        }
+        
+        playerInteraction = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<PlayerInteraction>();
         gameplayHudHandler = GameObject.FindGameObjectWithTag("GameplayHUD").GetComponent<GameplayHudHandler>();
         playerInput = GetComponent<PlayerInput>();
         hideTrashInfoPanelAction = playerInput.actions["HideTrashInfoPanel"];
         recyclingManager = GameObject.FindGameObjectWithTag("Recycling Manager").GetComponent<RecyclingManager>();
+
+        // Kommer alltid vara null vid start
+        // fishingLoop = playerInteraction.currentFishingSpot;
+        // if (fishingLoop != null)
+        // {
+        //     OnTrashCollected += fishingLoop.ResetFishingLoop;
+        // }
     }
 
     private void Update()
     {
          if (hideTrashInfoPanelAction.triggered)
          {
-             DestroyTrash();
+            DestroyTrash();
+            //Reset the loop here instead, does reset the fishingloop twice if u walk away from fishingspot since that also triggers ResetFishingLoop
+            //playerInteraction.currentFishingSpot.ResetFishingLoop();
          }
     }
 
