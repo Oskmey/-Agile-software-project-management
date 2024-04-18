@@ -112,7 +112,7 @@ public class PlayerController : MonoBehaviour
     //Måste lägga till minigames, cant be arsed
     private void Catch(InputAction.CallbackContext context)
     {
-        if (playerInteraction.currentFishingSpot != null){
+        if (playerInteraction.currentFishingSpot.GetIsPlaying() == true){
         minigame = GameObject.FindGameObjectWithTag("Minigame Manager").GetComponent<MinigameManager>().getCurrentMinigame();
         resultOfCatch = minigame.HandleCatch();
         canMove=true;
