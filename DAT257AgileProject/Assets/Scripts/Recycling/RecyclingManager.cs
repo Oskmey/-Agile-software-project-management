@@ -11,6 +11,7 @@ public class RecyclingManager : MonoBehaviour
     // TEMP: list to store the trash that the player has to recycle
     private List<TrashScript> trashToRecycle;
     private bool trashWasRecycled;
+    private TrashHandler TrashHandler;
     public IReadOnlyList<TrashScript> TrashToRecycle
     {
         get
@@ -42,7 +43,7 @@ public class RecyclingManager : MonoBehaviour
     {
         
         trashWasRecycled = false;
-
+        TrashHandler = FindObjectOfType<TrashHandler>().GetComponent<TrashHandler>();
         recyclingMachines = GetRecyclingMachines();
         playerStatsManager = FindObjectOfType<PlayerStatsManager>();
     }
@@ -75,7 +76,6 @@ public class RecyclingManager : MonoBehaviour
     public void RecycleAtNearestMachine()
     {
         trashToRecycle = LoadTrash();
-        Debug.Log(trashToRecycle.Count);
         if (trashToRecycle.Count > 0)
         {
             
@@ -94,7 +94,6 @@ public class RecyclingManager : MonoBehaviour
             // if (recyclingMachine.IsPlayerInRange(player.transform.position))
             if (recyclingMachine.IsPlayerInRange())
             {
-                Debug.Log("Player is in range of recycling machine");
                 // NOTE: Trash is not recyclable by default, needs to be RecycableTrash
                 if (trash.IsRecyclable)
                 {
@@ -103,8 +102,7 @@ public class RecyclingManager : MonoBehaviour
                     playerStatsManager.RecycledTrashList.Add(trash);
                     trashToRecycle.Remove(trash);
                     trashWasRecycled = true;
-                    Debug.Log("Sold!");
-                    Debug.Log(playerStatsManager.Money);
+                    TrashHandler.DestroyTrash();
                     PlayerPrefs.SetInt("RecycledTrashLeft", PlayerPrefs.GetInt("RecycledTrashLeft")-1);
                 }
                 else
