@@ -57,8 +57,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
-        movementAction.performed += OnMovment;
-        movementAction.canceled += OnMovmentStopped;
+        movementAction.performed += OnMovement;
+        movementAction.canceled += OnMovementStopped;
         recycleAction.performed += Recycle;
         fishingAction.performed += Fishing;
         shopAction.performed += Shopping;
@@ -67,8 +67,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnDisable()
     {
-        movementAction.performed -= OnMovment;
-        movementAction.canceled -= OnMovmentStopped;
+        movementAction.performed -= OnMovement;
+        movementAction.canceled -= OnMovementStopped;
         recycleAction.performed -= Recycle;
         shopAction.performed -= Shopping;
         catchingAction.performed -= Catch;
@@ -99,13 +99,13 @@ public class PlayerController : MonoBehaviour
         shoppingManager.ShopAtNearestSpot();
     }
 
-    private void OnMovment(InputAction.CallbackContext value)
+    private void OnMovement(InputAction.CallbackContext value)
     {
         if(canMove){
         rb.velocity = value.ReadValue<Vector2>() * speed;}
     }
 
-    private void OnMovmentStopped(InputAction.CallbackContext value)
+    private void OnMovementStopped(InputAction.CallbackContext value)
     {
         rb.velocity = Vector2.zero;
     }
