@@ -129,8 +129,6 @@ public void HandleFishingPlaying()
     public void OnMinigameWonHandler()
     {
         // TODO: fix trashHandler being null when event invoked
-        Debug.Log("U won minigame");
-        Debug.Log(transform.position.x);
         Vector2 trashSpawnPosition = new(transform.position.x, transform.position.y);
         trashHandler.CreateTrash(TrashType.TrashBag, trashSpawnPosition);
     }
