@@ -15,6 +15,9 @@ public class UIInventoryPage : MonoBehaviour
     private UIInventoryDescription itemDescription;
 
     private  List<UIInventoryItem> listOfUIitems = new();
+
+    [SerializeField]
+    private MouseFollower mouseFollower;
     // Test mock variables for items
     public Sprite image;
     public int quantity;
@@ -22,7 +25,8 @@ public class UIInventoryPage : MonoBehaviour
 
     private void Awake()
     {
-        //Hide();
+        Hide();
+        mouseFollower.Toggle(false);
         itemDescription.ResetDescription();
     }
 
@@ -49,14 +53,18 @@ public class UIInventoryPage : MonoBehaviour
 
     private void HandleEndDrag(UIInventoryItem item)
     {
+        mouseFollower.Toggle(false);
     }
 
     private void HandleSwap(UIInventoryItem item)
     {
+
     }
 
     private void HandleBeginDrag(UIInventoryItem item)
     {
+        mouseFollower.Toggle(true);
+        mouseFollower.SetData(image, quantity);
     }
 
     private void HandleItemSelection(UIInventoryItem item)
