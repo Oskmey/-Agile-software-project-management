@@ -14,7 +14,7 @@ public class FishingSpot : MonoBehaviour
     [SerializeField] 
     private GameObject exclamationMarkPrefab;
 
-    public static bool isFishing = true;
+    private static bool isFishing = true;
     public bool isPlayingMinigame { get; private set; }
     private bool canCatchTrash = false;
     private float elapsedTime = 0f;
