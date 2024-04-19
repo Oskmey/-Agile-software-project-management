@@ -128,5 +128,4 @@ public void HandleFishingPlaying()
     {
         Debug.Log("Minigame lost! Implement your logic here...");
     }
-
 }

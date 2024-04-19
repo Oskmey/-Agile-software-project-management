@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Old/MVP Scene.unity
     guid: 0263688e4c7d44f4ba7d5183485938c5
   - enabled: 1
-    path: Assets/Scenes/TestCollisionScene.unity
+    path: Assets/Scenes/Old/TestCollisionScene.unity
     guid: 9b231ba15774633468d1c01f511fb5aa
   - enabled: 1
     path: Assets/Scenes/Game/World.unity
