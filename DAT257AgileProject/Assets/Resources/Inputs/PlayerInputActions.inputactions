@@ -165,6 +165,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ShowInventory",
+                    "type": "Button",
+                    "id": "4996fb85-be70-48f5-ba0f-8a6347ed8f67",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -198,6 +207,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "HideTrashInfoPanel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ac4a0d61-65f7-4b0c-9df8-a92d03ecc60c",
+                    "path": "<Keyboard>/i",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShowInventory",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -27,4 +27,4 @@ EditorBuildSettings:
     path: Assets/Scenes/Oskar's World.unity
     guid: a7c719cc03914c24389c4bd10fc5e446
   m_configObjects:
-    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: d8bbbf5c4ce4f0c4eb65e95938a73eba, type: 3}
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: d6756452ac383fd41805ec29c01212ec, type: 3}
