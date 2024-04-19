@@ -1412,6 +1412,17 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &847863012 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4204064313795749717, guid: 799b9d39c66793f42bbd2b326878340b, type: 3}
+  m_PrefabInstance: {fileID: 7167121071580977963}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 690072ae323c8f84ca3f962a38bef164, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &869271815
 GameObject:
   m_ObjectHideFlags: 0
@@ -16136,7 +16147,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: 475867ca-65f4-4138-b7b1-4d1599730c97
+  m_DefaultActionMap: UI
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &2064551922
@@ -16429,6 +16440,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -42.106102
       objectReference: {fileID: 0}
+    - target: {fileID: 1525051469784688475, guid: 799b9d39c66793f42bbd2b326878340b, type: 3}
+      propertyPath: image
+      value: 
+      objectReference: {fileID: 21300000, guid: 19c3c9b1bf223e545a65920bff0caac9, type: 3}
+    - target: {fileID: 1525051469784688475, guid: 799b9d39c66793f42bbd2b326878340b, type: 3}
+      propertyPath: title
+      value: Cigarette butt
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525051469784688475, guid: 799b9d39c66793f42bbd2b326878340b, type: 3}
+      propertyPath: quantity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1525051469784688475, guid: 799b9d39c66793f42bbd2b326878340b, type: 3}
+      propertyPath: description
+      value: Very smokey
+      objectReference: {fileID: 0}
     - target: {fileID: 1659165365896986634, guid: 799b9d39c66793f42bbd2b326878340b, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -16574,13 +16601,33 @@ PrefabInstance:
       value: -288.01166
       objectReference: {fileID: 0}
     - target: {fileID: 4751652508212095725, guid: 799b9d39c66793f42bbd2b326878340b, type: 3}
+      propertyPath: image
+      value: 
+      objectReference: {fileID: 21300000, guid: 19c3c9b1bf223e545a65920bff0caac9, type: 3}
+    - target: {fileID: 4751652508212095725, guid: 799b9d39c66793f42bbd2b326878340b, type: 3}
+      propertyPath: title
+      value: Cigarette butt
+      objectReference: {fileID: 0}
+    - target: {fileID: 4751652508212095725, guid: 799b9d39c66793f42bbd2b326878340b, type: 3}
+      propertyPath: quantity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4751652508212095725, guid: 799b9d39c66793f42bbd2b326878340b, type: 3}
       propertyPath: itemPrefab
       value: 
       objectReference: {fileID: 6928261015770870695, guid: 81b59685f1e164c42855f4de4fc3afa6, type: 3}
     - target: {fileID: 4751652508212095725, guid: 799b9d39c66793f42bbd2b326878340b, type: 3}
+      propertyPath: description
+      value: Very smokey
+      objectReference: {fileID: 0}
+    - target: {fileID: 4751652508212095725, guid: 799b9d39c66793f42bbd2b326878340b, type: 3}
       propertyPath: contentPanel
       value: 
       objectReference: {fileID: 892001626}
+    - target: {fileID: 4751652508212095725, guid: 799b9d39c66793f42bbd2b326878340b, type: 3}
+      propertyPath: itemDescription
+      value: 
+      objectReference: {fileID: 847863012}
     - target: {fileID: 5286112664361289115, guid: 799b9d39c66793f42bbd2b326878340b, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -16749,7 +16796,8 @@ PrefabInstance:
       propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4751652508212095725, guid: 799b9d39c66793f42bbd2b326878340b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
