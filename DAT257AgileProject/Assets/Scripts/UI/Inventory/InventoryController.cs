@@ -29,12 +29,15 @@ public class InventoryController : MonoBehaviour
     {
         if (showInventory.triggered)
         {
+            Debug.Log("triggered");
             if (inventoryUI.isActiveAndEnabled == false)
             {
+                Debug.Log("show");
                 inventoryUI.Show();
             }
             else
             {
+                Debug.Log("hide");
                 inventoryUI.Hide();
             }
         }

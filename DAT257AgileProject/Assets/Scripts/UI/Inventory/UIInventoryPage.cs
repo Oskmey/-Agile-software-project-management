@@ -15,14 +15,14 @@ public class UIInventoryPage : MonoBehaviour
     private UIInventoryDescription itemDescription;
 
     private  List<UIInventoryItem> listOfUIitems = new();
-    // test variables
+    // Test mock variables for items
     public Sprite image;
     public int quantity;
     public string title, description;
 
     private void Awake()
     {
-        Hide();
+        //Hide();
         itemDescription.ResetDescription();
     }
 
@@ -68,9 +68,14 @@ public class UIInventoryPage : MonoBehaviour
     public void Show()
     {
         gameObject.SetActive(true);
-        itemDescription.ResetDescription();
+        ResetSelection();
+    }
 
+    public void ResetSelection()
+    {
+        itemDescription.ResetDescription();
         listOfUIitems[0].SetData(image, quantity);
+        //DeselectAllItems();
     }
 
     public void Hide()

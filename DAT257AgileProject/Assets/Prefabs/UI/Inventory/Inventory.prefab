@@ -314,8 +314,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6983234153678542716}
   m_HandleRect: {fileID: 3412153368257970758}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 1
+  m_Value: 1
+  m_Size: 0
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -440,6 +440,10 @@ MonoBehaviour:
   itemPrefab: {fileID: 6928261015770870695, guid: 81b59685f1e164c42855f4de4fc3afa6, type: 3}
   contentPanel: {fileID: 7124482088128924004}
   itemDescription: {fileID: 8740378735812309364}
+  image: {fileID: 0}
+  quantity: 0
+  title: 
+  description: 
 --- !u!1 &1205812949966362022
 GameObject:
   m_ObjectHideFlags: 0
@@ -835,7 +839,7 @@ MonoBehaviour:
     m_Top: 30
     m_Bottom: 30
   m_ChildAlignment: 1
-  m_Spacing: 0
+  m_Spacing: 20
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
@@ -1459,10 +1463,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 681494124444774612}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 100, y: -100}
+  m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3276256008171254967
 CanvasRenderer:
