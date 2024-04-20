@@ -121,7 +121,7 @@ public void HandleFishingPlaying()
     {
         // TODO: fix trashHandler being null when event invoked
         Vector2 trashSpawnPosition = new(transform.position.x, transform.position.y);
-        TrashScript currentTrash = trashHandler.CreateRandomTrash(TrashRarity.Common, trashSpawnPosition);
+        TrashScript currentTrash = trashHandler.CreateRandomTrash(TrashRarityExtensions.GetRandomRarity(), trashSpawnPosition);
     }
 
     public void OnMinigameLostHandler()

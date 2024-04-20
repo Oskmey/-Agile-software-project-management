@@ -27,4 +27,13 @@ public static class TrashRarityExtensions
                 return "Unknown";
         }
     }
+
+    // Method which gives equal chance to get any rarity
+    // It is a placeholder for a more complex logic
+    // But could also be used for manual testing
+    public static TrashRarity GetRandomRarity()
+    {
+        var values = System.Enum.GetValues(typeof(TrashRarity));
+        return (TrashRarity)values.GetValue(UnityEngine.Random.Range(0, values.Length));
+    }
 }
