@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MouseFollower : MonoBehaviour
 {
@@ -34,8 +35,10 @@ public class MouseFollower : MonoBehaviour
     {
         // TODO: make use of new input system for mousePosition
         Vector2 position;
+        Vector2 mousePosition = Mouse.current.position.ReadValue();
+
         RectTransformUtility.ScreenPointToLocalPointInRectangle((RectTransform)canvas.transform,
-            Input.mousePosition, canvas.worldCamera, out position);
+            mousePosition, canvas.worldCamera, out position);
         transform.position = canvas.transform.TransformPoint(position);
     }
 

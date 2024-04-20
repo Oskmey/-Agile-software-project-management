@@ -8,7 +8,7 @@ public class InventoryController : MonoBehaviour
     [SerializeField]
     private UIInventoryPage inventoryUI;
 
-    private int inventorySize = 10;
+    private int inventorySize = 30;
     private PlayerInput playerInput;
     private InputAction showInventory;
 
@@ -29,15 +29,12 @@ public class InventoryController : MonoBehaviour
     {
         if (showInventory.triggered)
         {
-            Debug.Log("triggered");
             if (inventoryUI.isActiveAndEnabled == false)
             {
-                Debug.Log("show");
                 inventoryUI.Show();
             }
             else
             {
-                Debug.Log("hide");
                 inventoryUI.Hide();
             }
         }

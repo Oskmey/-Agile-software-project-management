@@ -14,14 +14,17 @@ public class UIInventoryPage : MonoBehaviour
     [SerializeField]
     private UIInventoryDescription itemDescription;
 
-    private  List<UIInventoryItem> listOfUIitems = new();
+    private  List<UIInventoryItem> listOfUIItems = new();
 
     [SerializeField]
     private MouseFollower mouseFollower;
+
     // Test mock variables for items
-    public Sprite image;
+    public Sprite image, image2;
     public int quantity;
     public string title, description;
+
+    public int currentlyDraggedItemIndex = -1;
 
     private void Awake()
     {
@@ -36,7 +39,7 @@ public class UIInventoryPage : MonoBehaviour
         {
             UIInventoryItem uiItem = Instantiate(itemPrefab, Vector3.zero, Quaternion.identity);
             uiItem.transform.SetParent(contentPanel);
-            listOfUIitems.Add(uiItem);
+            listOfUIItems.Add(uiItem);
 
             uiItem.OnItemClicked += HandleItemSelection;
             uiItem.OnItemBeginDrag += HandleBeginDrag;
@@ -46,31 +49,49 @@ public class UIInventoryPage : MonoBehaviour
         }
     }
 
-    private void HandleShowItemActions(UIInventoryItem item)
+    private void HandleShowItemActions(UIInventoryItem inventoryItemUI)
     {
+        int index = listOfUIItems.IndexOf(inventoryItemUI);
+        if (index == -1)
+        {
+            return;
+        }
 
+        currentlyDraggedItemIndex = index;
+        mouseFollower.Toggle(true);
+        mouseFollower.SetData(index == 0 ? image : image2, quantity);
     }
 
-    private void HandleEndDrag(UIInventoryItem item)
+    private void HandleEndDrag(UIInventoryItem inventoryItemUI)
     {
         mouseFollower.Toggle(false);
     }
 
-    private void HandleSwap(UIInventoryItem item)
+    private void HandleSwap(UIInventoryItem inventoryItemUI)
     {
-
+        int index = listOfUIItems.IndexOf(inventoryItemUI);
+        if (index == -1)
+        {
+            mouseFollower.Toggle(false);
+            currentlyDraggedItemIndex = -1;
+            return;
+        }
+        listOfUIItems[currentlyDraggedItemIndex].SetData(index == 0 ? image : image2, quantity);
+        listOfUIItems[currentlyDraggedItemIndex].SetData(currentlyDraggedItemIndex == 0 ? image : image2, quantity);
+        mouseFollower.Toggle(false);
+        currentlyDraggedItemIndex = -1;
     }
 
-    private void HandleBeginDrag(UIInventoryItem item)
+    private void HandleBeginDrag(UIInventoryItem inventoryItemUI)
     {
         mouseFollower.Toggle(true);
         mouseFollower.SetData(image, quantity);
     }
 
-    private void HandleItemSelection(UIInventoryItem item)
+    private void HandleItemSelection(UIInventoryItem inventoryItemUI)
     {
         itemDescription.SetDescription(image, title, description);
-        listOfUIitems[0].Select();
+        listOfUIItems[0].Select();
     }
 
     public void Show()
@@ -82,7 +103,8 @@ public class UIInventoryPage : MonoBehaviour
     public void ResetSelection()
     {
         itemDescription.ResetDescription();
-        listOfUIitems[0].SetData(image, quantity);
+        listOfUIItems[0].SetData(image, quantity);
+        listOfUIItems[1].SetData(image2, quantity);
         //DeselectAllItems();
     }
 
