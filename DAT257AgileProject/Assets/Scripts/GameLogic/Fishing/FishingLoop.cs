@@ -84,7 +84,8 @@ public class FishingLoop : MonoBehaviour
         if (fishAction.triggered && !isPlayingMinigame && canCatchTrash)
         {
             playerSpriteRenderer.sprite = fishingSprite2;
-            minigameManager.StartMinigame(MinigameType.ArrowBoxMinigame);
+            
+            //minigameManager.StartMinigame(MinigameType.ArrowBoxMinigame);
             
             isPlayingMinigame = true;
             isFishing = false;

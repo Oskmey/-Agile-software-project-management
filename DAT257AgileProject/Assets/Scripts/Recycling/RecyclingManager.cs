@@ -9,8 +9,9 @@ public class RecyclingManager : MonoBehaviour
     private IReadOnlyList<RecyclingMachine> recyclingMachines;
     private PlayerStatsManager playerStatsManager;
     // TEMP: list to store the trash that the player has to recycle
-    private List<TrashScript> trashToRecycle;
+    private static List<TrashScript> trashToRecycle;
     private bool trashWasRecycled;
+    private TrashHandler TrashHandler;
     public IReadOnlyList<TrashScript> TrashToRecycle
     {
         get
@@ -34,12 +35,14 @@ public class RecyclingManager : MonoBehaviour
         }
     }
 
+    void Start(){
+        trashToRecycle = LoadTrash();
+    }
+
     void Awake()
     {
-        trashToRecycle = LoadTrash();
-
         trashWasRecycled = false;
-
+        TrashHandler = FindObjectOfType<TrashHandler>().GetComponent<TrashHandler>();
         recyclingMachines = GetRecyclingMachines();
         playerStatsManager = FindObjectOfType<PlayerStatsManager>();
     }
@@ -71,10 +74,14 @@ public class RecyclingManager : MonoBehaviour
 
     public void RecycleAtNearestMachine()
     {
-        if (TrashToRecycle.Count > 0)
+        trashToRecycle = LoadTrash();
+        if (trashToRecycle.Count > 0)
         {
-            RecycleAtNearestMachine(TrashToRecycle[0]);
-        } 
+            RecycleAtNearestMachine(trashToRecycle[0]);
+        }
+        else{
+            Debug.Log("No trash to recycle");
+        }
     }
 
     private void RecycleAtNearestMachine(TrashScript trash)
@@ -83,15 +90,18 @@ public class RecyclingManager : MonoBehaviour
         {
             // TODO: Make it so player can only recycle trash to nearest recycling machine
             // if (recyclingMachine.IsPlayerInRange(player.transform.position))
+            if (recyclingMachine.IsPlayerInRange())
             {
                 // NOTE: Trash is not recyclable by default, needs to be RecycableTrash
-
                 if (trash.IsRecyclable)
                 {
+                    Debug.Log(trash.MoneyValue);
                     playerStatsManager.Money += trash.MoneyValue;
                     playerStatsManager.RecycledTrashList.Add(trash);
                     trashToRecycle.Remove(trash);
                     trashWasRecycled = true;
+                    TrashHandler.DestroyTrash();
+                    PlayerPrefs.SetInt("RecycledTrashLeft", PlayerPrefs.GetInt("RecycledTrashLeft")-1);
                 }
                 else
                 {

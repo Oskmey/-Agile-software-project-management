@@ -16,12 +16,15 @@ public class MinigameManager : MonoBehaviour
     private MinigameType currentMinigameType;
     private Minigame currentMinigame;
     private TextMeshProUGUI promptText;
-
+ 
     private bool minigameStarted = false;
+
+    private GameObject currentTrash;
 
     private void Awake()
     {
         trashHandler = GameObject.FindGameObjectWithTag("TrashHandler").GetComponent<TrashHandler>();
+        promptText = GameObject.FindGameObjectWithTag("TutorialText").GetComponent<TextMeshProUGUI>();
     }
 
     public bool MinigameStarted
@@ -32,8 +35,14 @@ public class MinigameManager : MonoBehaviour
         }
     }
 
+    public Minigame getCurrentMinigame()
+    {
+        return currentMinigame;
+    }
+
     public void StartMinigame(MinigameType minigameType)
     {
+        //currentTrash = trashPrefab;
         minigameStarted = true;
         currentMinigameType = minigameType;
         InitMinigame(currentMinigameType);
@@ -42,7 +51,8 @@ public class MinigameManager : MonoBehaviour
     void InitMinigame(MinigameType minigameType)
     {
         CreateMinigame(minigameType);
-        promptText = GameObject.FindGameObjectWithTag("TutorialText").GetComponent<TextMeshProUGUI>();
+        
+        //promptText = GameObject.FindGameObjectWithTag("TutorialText").GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
@@ -54,12 +64,16 @@ public class MinigameManager : MonoBehaviour
         }
     }
 
+
+//Bör skicka med trashprefaben som ska spawnas aswell om man vill göra olika fishing tiles
     private void CreateMinigame(MinigameType type)
     {
         switch (type)
         {
             case MinigameType.ArrowBoxMinigame:
                 currentMinigame = Instantiate(arrowBoxMinigame).GetComponent<Minigame>();
+            
+                // arrowBoxMinigame.transform.position = 
                 break;
             case MinigameType.AnotherMinigame:
                 //Instantiate(anotherPrefab);
@@ -74,15 +88,15 @@ public class MinigameManager : MonoBehaviour
     {
         minigameStarted = false;
         promptText.text = "";
-
-        Vector2 trashSpawnPosition = new(transform.position.x, transform.position.y + 1);
-        trashHandler.CreateRandomTrash(TrashRarity.Common, trashSpawnPosition);
+        PlayerPrefs.SetInt("RecycledTrashLeft", PlayerPrefs.GetInt("RecycledTrashLeft")+1);
     }
 
     public void HandleMinigameLost()
     {
+        //currentMinigame.DestroyMinigame();
         minigameStarted = false;
-        Debug.Log("Minigame lost! Implement your logic here...");
+        //Debug.Log("Minigame lost! Implement your logic here...");
+        
     }
 
     private void UpdateMinigamePromptText()
