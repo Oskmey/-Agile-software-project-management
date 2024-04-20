@@ -11,7 +11,7 @@ public class PauseMenu : MonoBehaviour
     // Start is called before the first frame update
     private static bool GamePaused = false;
 
-    public GameObject pauseMenuUI;
+    [SerializeField] private GameObject pauseMenuUI;
     private InputAction PauseAction;
 
     private PlayerInputActions playerInputActions;
