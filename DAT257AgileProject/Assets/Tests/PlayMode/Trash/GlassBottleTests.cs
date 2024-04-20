@@ -76,6 +76,16 @@ public class GlassBottleTests
         Assert.IsNotNull(trashFact);
     }
 
+    [Test]
+    public void GlassBottle_GivenGlassEffect_HasTransparency()
+    {
+        GlassEffect glassEffect = glassBottleScript.GetComponent<GlassEffect>();
+        Assert.IsNotNull(glassEffect);
+
+        Color glassBottleColor = glassBottleScript.GetComponent<SpriteRenderer>().color;
+        Assert.LessOrEqual(glassBottleColor.a, 0.9f);
+    }
+
     [TearDown]
     public void TearDown()
     {
