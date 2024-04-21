@@ -4,15 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class InventorySO : MonoBehaviour
+public class InventorySO : ScriptableObject
 {
     [SerializeField]
     private List<InventoryItem> inventoryItems;
 
     [field: SerializeField]
     public int Size { get; private set; } = 10;
-
-    InventorySO val = null;
 
     public void Initialize()
     {
@@ -49,19 +47,39 @@ public class InventorySO : MonoBehaviour
         }
         return returnValue;
     }
+
+    public InventoryItem GetItemAt(int itemIndex)
+    {
+       return inventoryItems[itemIndex];
+    }
 }
 
 [Serializable]
 public struct InventoryItem
 {
-    public int Quantity { get; private set; }
-    public ItemSO Item { get; private set; }
+    [SerializeField]
+    private int quantity;
+    [SerializeField]
+    private ItemSO item;
+
+
+    public int Quantity
+    {
+        get { return quantity; }
+        private set { quantity = Mathf.Max(0, value); } 
+    }
+
+    public ItemSO Item
+    {
+        get { return item; }
+        private set { item = value; }
+    }
     public bool IsEmpty => Item == null;
 
     public InventoryItem(ItemSO item, int quantity)
     {
-        Item = item;
-        Quantity = Mathf.Max(0, quantity);
+        this.item = item;
+        this.quantity = Mathf.Max(0, quantity);
     }
 
     public InventoryItem ChangeQuantity(int newQuantity)
