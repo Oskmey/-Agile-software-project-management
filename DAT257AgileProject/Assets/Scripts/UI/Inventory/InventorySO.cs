@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 namespace Inventory.Model
 {
     [CreateAssetMenu]
@@ -12,6 +13,8 @@ namespace Inventory.Model
 
         [field: SerializeField]
         public int Size { get; private set; } = 10;
+
+        public event Action<Dictionary<int, InventoryItem>> OnInventoryUpdated;
 
         public void Initialize()
         {
@@ -24,19 +27,25 @@ namespace Inventory.Model
 
         public void Additem(ItemSO item, int quantity)
         {
+            
             for (int i = 0; i < inventoryItems.Count; i++)
             {
                 if (inventoryItems[i].IsEmpty)
                 {
                     inventoryItems[i] = new InventoryItem(item, quantity);
-                    break;
-                }
+                    return;
+                }   
             }
+        }
+
+        public void Additem(InventoryItem item)
+        {
+            Additem(item.Item, item.Quantity);
         }
 
         public Dictionary<int, InventoryItem> GetCurrentInventoryState()
         {
-            Dictionary<int, InventoryItem> returnValue = new Dictionary<int, InventoryItem>();
+            Dictionary<int, InventoryItem> returnValue = new();
 
             for (int i = 0; i < inventoryItems.Count; i++)
             {
@@ -53,6 +62,19 @@ namespace Inventory.Model
         {
             return inventoryItems[itemIndex];
         }
+
+        public void SwapItems(int itemIndex_1, int itemIndex_2)
+        {
+            InventoryItem item1 = inventoryItems[itemIndex_1];
+            inventoryItems[itemIndex_1] = inventoryItems[itemIndex_2];
+            inventoryItems[itemIndex_2] = item1;
+            InformAboutChange();
+        }
+
+        private void InformAboutChange()
+        {
+            OnInventoryUpdated?.Invoke(GetCurrentInventoryState());
+        }
     }
 
     [Serializable]
@@ -62,10 +84,11 @@ namespace Inventory.Model
         private int quantity;
         [SerializeField]
         private ItemSO item;
+
         public int Quantity
         {
             get { return quantity; }
-            private set { quantity = Mathf.Max(0, value); }
+            private set { quantity = Mathf.Max(0, value); } // Ensure quantity is never negative
         }
 
         public ItemSO Item
@@ -73,12 +96,14 @@ namespace Inventory.Model
             get { return item; }
             private set { item = value; }
         }
+
         public bool IsEmpty => Item == null;
+
 
         public InventoryItem(ItemSO item, int quantity)
         {
             this.item = item;
-            this.quantity = Mathf.Max(0, quantity);
+            this.quantity = quantity;
         }
 
         public InventoryItem ChangeQuantity(int newQuantity)
@@ -86,11 +111,6 @@ namespace Inventory.Model
             return new InventoryItem(Item, newQuantity);
         }
 
-        public static InventoryItem GetEmptyItem()
-        => new InventoryItem
-        {
-            Item = null,
-            Quantity = 0,
-        };
+        public static InventoryItem GetEmptyItem() => new InventoryItem(null, 0);
     }
 }

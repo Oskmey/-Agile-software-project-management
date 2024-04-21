@@ -55,6 +55,7 @@ namespace Inventory.UI
         {
             if (listOfUIItems.Count > itemIndex)
             {
+                Debug.Log("item" + itemQuantity);
                 listOfUIItems[itemIndex].SetData(itemImage, itemQuantity);
             }
         }
@@ -79,6 +80,7 @@ namespace Inventory.UI
             }
 
             OnSwapItems?.Invoke(currentlyDraggedItemIndex, index);
+            HandleItemSelection(inventoryItemUI);
         }
 
         private void ResetDraggedItem()
@@ -145,6 +147,15 @@ namespace Inventory.UI
             itemDescription.SetDescription(itemImage, name, description);
             DeselectAllItems();
             listOfUIItems[itemIndex].Select();
+        }
+
+        internal void ResetAllItems()
+        {
+            foreach (var item in listOfUIItems)
+            {
+                item.ResetData();
+                item.Deselect();
+            }
         }
     }
 }
