@@ -26,7 +26,7 @@ namespace Inventory.Model
             }
         }
 
-        public int Additem(ItemSO item, int quantity)
+        public int AddItem(ItemSO item, int quantity)
         {
             if(item.IsStackable == false)
             {
@@ -101,9 +101,9 @@ namespace Inventory.Model
             return quantity;
         }
 
-        public void Additem(InventoryItem item)
+        public void AddItem(InventoryItem item)
         {
-            Additem(item.Item, item.Quantity);
+            AddItem(item.Item, item.Quantity);
         }
 
         public Dictionary<int, InventoryItem> GetCurrentInventoryState()

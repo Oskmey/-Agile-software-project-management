@@ -40,7 +40,7 @@ namespace Inventory
                     Debug.Log("item empty quant " + item.Quantity);
                     continue;
                 }
-                inventoryData.Additem(item);
+                inventoryData.AddItem(item);
             }
         }
 
