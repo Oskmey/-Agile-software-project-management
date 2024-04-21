@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Inventory.Model
@@ -25,17 +26,79 @@ namespace Inventory.Model
             }
         }
 
-        public void Additem(ItemSO item, int quantity)
+        public int Additem(ItemSO item, int quantity)
         {
-            
+            if(item.IsStackable == false)
+            {
+                for (int i = 0; i < inventoryItems.Count; i++)
+                {
+                    while(quantity > 0 && IsInventoryFull() == false)
+                    {
+                        if (inventoryItems[i].IsEmpty)
+                        {
+                            quantity -= AddItemToFirstFreeSlot(item, 1);
+                        }
+                    }
+                    InformAboutChange();
+                    return quantity;
+                }
+            }
+            quantity = AddStackableItem(item, quantity);
+            InformAboutChange();
+            return quantity;
+        }
+
+        private int AddItemToFirstFreeSlot(ItemSO item, int quantity)
+        {
+            InventoryItem newItem = new InventoryItem(item, quantity);
             for (int i = 0; i < inventoryItems.Count; i++)
             {
                 if (inventoryItems[i].IsEmpty)
                 {
-                    inventoryItems[i] = new InventoryItem(item, quantity);
-                    return;
-                }   
+                    inventoryItems[i] = newItem;
+                    return quantity;
+                }
             }
+            return 0;
+        }
+
+        private bool IsInventoryFull() => inventoryItems.Where(item => item.IsEmpty).Any() == false;
+
+        private int AddStackableItem(ItemSO item, int quantity)
+        {
+            for (int i = 0; i < inventoryItems.Count; i++)
+            {
+                if (inventoryItems[i].IsEmpty)
+                {
+                    continue;
+                }
+
+                if (inventoryItems[i].Item.ID == item.ID)
+                {
+                    int amountPossibleToTake = inventoryItems[i].Item.MaxStackSize - inventoryItems[i].Quantity;
+
+                    if (quantity > amountPossibleToTake)
+                    {
+                        inventoryItems[i] = inventoryItems[i].ChangeQuantity(inventoryItems[i].Item.MaxStackSize);
+                        quantity -= amountPossibleToTake;
+                    }
+                    else
+                    {
+                        inventoryItems[i] = inventoryItems[i].ChangeQuantity(inventoryItems[i].Quantity + quantity);
+                        InformAboutChange();
+                        return 0;
+                    }
+                }
+
+            }
+
+            while(quantity > 0 && IsInventoryFull() == false)
+            {
+                int newQuantity = Mathf.Clamp(quantity, 0, item.MaxStackSize);
+                quantity -= newQuantity;
+                AddItemToFirstFreeSlot(item, newQuantity);
+            }
+            return quantity;
         }
 
         public void Additem(InventoryItem item)
@@ -65,9 +128,7 @@ namespace Inventory.Model
 
         public void SwapItems(int itemIndex_1, int itemIndex_2)
         {
-            InventoryItem item1 = inventoryItems[itemIndex_1];
-            inventoryItems[itemIndex_1] = inventoryItems[itemIndex_2];
-            inventoryItems[itemIndex_2] = item1;
+            (inventoryItems[itemIndex_2], inventoryItems[itemIndex_1]) = (inventoryItems[itemIndex_1], inventoryItems[itemIndex_2]);
             InformAboutChange();
         }
 
@@ -88,7 +149,7 @@ namespace Inventory.Model
         public int Quantity
         {
             get { return quantity; }
-            private set { quantity = Mathf.Max(0, value); } // Ensure quantity is never negative
+            private set { quantity = Mathf.Max(0, value); } 
         }
 
         public ItemSO Item
