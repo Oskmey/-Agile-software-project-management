@@ -4114,7 +4114,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2940093268561770078}
   m_HandleRect: {fileID: 8508662654238952101}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -5924,6 +5924,7 @@ GameObject:
   - component: {fileID: 3343678294135038701}
   - component: {fileID: 8074740587927424653}
   - component: {fileID: 5112774859587760238}
+  - component: {fileID: 7422215796516408647}
   m_Layer: 5
   m_Name: Container
   m_TagString: Untagged
@@ -5949,7 +5950,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -0.000002304052, y: 0}
+  m_AnchoredPosition: {x: -0.000002304052, y: 0.000015258789}
   m_SizeDelta: {x: 550, y: 141.4}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &8074740587927424653
@@ -5992,6 +5993,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 2
+--- !u!114 &7422215796516408647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7124408554442707325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b64c0c55b27bbe43af51b1ab37f360d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wikiItemPrefab: {fileID: 4345660624359762762, guid: 277db2d9b25078b47aafcda2ba25758f, type: 3}
+  subheaderPrefab: {fileID: 8134672734332571741, guid: e94c431f24a890e49a282231527558a9, type: 3}
 --- !u!1 &7233094747235736640
 GameObject:
   m_ObjectHideFlags: 0

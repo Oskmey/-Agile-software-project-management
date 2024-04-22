@@ -351,6 +351,7 @@ GameObject:
   - component: {fileID: 5001091259754943674}
   - component: {fileID: 7108100271928640005}
   - component: {fileID: 1082702438986308673}
+  - component: {fileID: 3428577335375032736}
   m_Layer: 5
   m_Name: Wiki Item
   m_TagString: Untagged
@@ -457,3 +458,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 2
+--- !u!114 &3428577335375032736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4345660624359762762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 904150d6bc84d6c4db3156ce8ecceeb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FactText: {fileID: 3455438345054998671}
+  SourceText: {fileID: 4204429504310611159}
