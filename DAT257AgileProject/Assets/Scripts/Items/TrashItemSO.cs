@@ -7,9 +7,9 @@ namespace Inventory.Model
     [CreateAssetMenu(menuName = "Inventory/Items/Trash item")]
     public class TrashItemSO : ItemSO, IDestroyableItem, IItemAction
     {
-        public string Actioname => throw new System.NotImplementedException();
+        public string ActionName => throw new System.NotImplementedException();
 
-        public bool PerformAction(GameObject character)
+        public bool PerformAction(GameObject character, List<ItemParameter> itemState = null)
         {
             throw new System.NotImplementedException();
         }
