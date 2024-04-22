@@ -37,7 +37,6 @@ namespace Inventory
             {
                 if (item.IsEmpty)
                 {
-                    Debug.Log("item empty quant " + item.Quantity);
                     continue;
                 }
                 inventoryData.AddItem(item);
@@ -49,7 +48,6 @@ namespace Inventory
             inventoryUI.ResetAllItems();
             foreach (var item in inventoryState)    
             {
-                Debug.Log("item.Value.quantity" + item.Value.Quantity);
                 inventoryUI.UpdateData(item.Key, item.Value.Item.ItemImage, item.Value.Quantity);
             }
         }
