@@ -38,6 +38,7 @@ public class WikiContainer : MonoBehaviour
             go.transform.parent = transform;
             go.transform.localScale = Vector3.one;
             wikiHandler.SetFactText(trash.TrashFact);
+            wikiHandler.SetSourceText(trash.SourcesInformation);
         }
     }
 }

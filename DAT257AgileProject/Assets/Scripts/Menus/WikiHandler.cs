@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WikiHandler : MonoBehaviour
 {
@@ -29,7 +30,15 @@ public class WikiHandler : MonoBehaviour
         foreach (SourceData source in sources)
         {
             sourcesText += $"\n- {source.SourceName} ({source.Date}) <i>{source.Title}</i> {source.Website}";
+            Button btn = sourceInfoText.GetComponent<Button>();
+            btn.onClick.AddListener(delegate() { OpenLink(source.Link); });
         }
         sourceInfoText.text = sourcesText;
+        
+    }
+
+    void OpenLink(string link)
+    {
+        Application.OpenURL(link);
     }
 }
