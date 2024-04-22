@@ -10,6 +10,7 @@ public class WikiContainer : MonoBehaviour
     [SerializeField]
     private GameObject subheaderPrefab;
     private SubheaderHandler subheaderHandler;
+    private WikiHandler wikiHandler;
 
     // Start is called before the first frame update
     void Start()
@@ -23,12 +24,20 @@ public class WikiContainer : MonoBehaviour
             go.transform.parent = transform;
             subheaderHandler.SetHeaderText(folderName);
             go.transform.localScale = Vector3.one;
-
+            GenerateWikiItems(folderName);
         }
     }
-    // Update is called once per frame
-    void Update()
+    
+    private void GenerateWikiItems(string subFolder)
     {
-        
+        TrashFactData[] trashData = Resources.LoadAll<TrashFactData>($"ScriptableObjects/TrashFacts/{subFolder}");
+        foreach (TrashFactData trash in trashData)
+        {
+            GameObject go = Instantiate(wikiItemPrefab);
+            wikiHandler = go.GetComponent<WikiHandler>();
+            go.transform.parent = transform;
+            go.transform.localScale = Vector3.one;
+            wikiHandler.SetFactText(trash.TrashFact);
+        }
     }
 }

@@ -470,5 +470,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 904150d6bc84d6c4db3156ce8ecceeb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FactText: {fileID: 3455438345054998671}
-  SourceText: {fileID: 4204429504310611159}
+  factText: {fileID: 3455438345054998671}
+  sourceInfoText: {fileID: 4204429504310611159}
