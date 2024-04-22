@@ -9,6 +9,7 @@ public class WikiContainer : MonoBehaviour
     private GameObject wikiItemPrefab;
     [SerializeField]
     private GameObject subheaderPrefab;
+    private SubheaderHandler subheaderHandler;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +18,11 @@ public class WikiContainer : MonoBehaviour
         foreach (string folderPath in folderPaths)
         {
             string folderName = System.IO.Path.GetFileName(folderPath);
+            GameObject go = Instantiate(subheaderPrefab);
+            subheaderHandler = go.GetComponent<SubheaderHandler>();
+            go.transform.parent = transform;
+            subheaderHandler.SetHeaderText(folderName);
+            go.transform.localScale = Vector3.one;
 
         }
     }

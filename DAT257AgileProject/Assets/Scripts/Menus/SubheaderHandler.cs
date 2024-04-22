@@ -8,7 +8,7 @@ public class SubheaderHandler : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI subheader;
 
-    public void SetFactText(string factInfo)
+    public void SetHeaderText(string factInfo)
     {
         subheader.text = $"{factInfo}";
     }
