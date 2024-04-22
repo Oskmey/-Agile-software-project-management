@@ -44,4 +44,16 @@ public class PurchasableItem
             return null;
         }
     }
+
+    public static string GetName(Type type)
+    {
+        switch (type)
+        {
+            case Type.Egg1: return "Egg 1";
+            case Type.Egg2: return "Egg 2";
+            default:
+                Debug.LogError("Name not found for PurchasableItem.Type: " + type);
+                return "";
+        }
+    }
 }

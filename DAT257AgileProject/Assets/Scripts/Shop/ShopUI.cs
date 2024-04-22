@@ -1,3 +1,4 @@
+using Codice.Client.BaseCommands.Merge.Xml;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -16,19 +17,17 @@ public class ShopUI : MonoBehaviour
 
     private void Start()
     {
-        CreateShopButton(PurchasableItem.GetSprite(PurchasableItem.Type.Egg1), "Egg1", PurchasableItem.GetCost(PurchasableItem.Type.Egg1), 0);
-        CreateShopButton(PurchasableItem.GetSprite(PurchasableItem.Type.Egg2), "Egg2", PurchasableItem.GetCost(PurchasableItem.Type.Egg2), 1);
-        CreateShopButton(PurchasableItem.GetSprite(PurchasableItem.Type.Egg1), "Egg1", PurchasableItem.GetCost(PurchasableItem.Type.Egg1), 2);
-        CreateShopButton(PurchasableItem.GetSprite(PurchasableItem.Type.Egg2), "Egg2", PurchasableItem.GetCost(PurchasableItem.Type.Egg2), 3);
-        CreateShopButton(PurchasableItem.GetSprite(PurchasableItem.Type.Egg1), "Egg1", PurchasableItem.GetCost(PurchasableItem.Type.Egg1), 4);
-        CreateShopButton(PurchasableItem.GetSprite(PurchasableItem.Type.Egg2), "Egg2", PurchasableItem.GetCost(PurchasableItem.Type.Egg2), 5);
-        CreateShopButton(PurchasableItem.GetSprite(PurchasableItem.Type.Egg2), "Egg2", PurchasableItem.GetCost(PurchasableItem.Type.Egg2), 6);
-        CreateShopButton(PurchasableItem.GetSprite(PurchasableItem.Type.Egg2), "Egg2", PurchasableItem.GetCost(PurchasableItem.Type.Egg2), 7);
-        CreateShopButton(PurchasableItem.GetSprite(PurchasableItem.Type.Egg2), "Egg2", PurchasableItem.GetCost(PurchasableItem.Type.Egg2), 8);
-        CreateShopButton(PurchasableItem.GetSprite(PurchasableItem.Type.Egg2), "Egg2", PurchasableItem.GetCost(PurchasableItem.Type.Egg2), 9);
+        CreateShopButton(PurchasableItem.Type.Egg1, 0);
+        CreateShopButton(PurchasableItem.Type.Egg2, 1);
+        CreateShopButton(PurchasableItem.Type.Egg2, 2);
+        CreateShopButton(PurchasableItem.Type.Egg1, 3);
+        CreateShopButton(PurchasableItem.Type.Egg1, 4);
+        CreateShopButton(PurchasableItem.Type.Egg2, 5);
+        CreateShopButton(PurchasableItem.Type.Egg1, 6);
+        CreateShopButton(PurchasableItem.Type.Egg2, 7);
     }
 
-    private void CreateShopButton(Sprite itemSprite, string itemName, int itemCost, int positionIndex)
+    private void CreateShopButton(PurchasableItem.Type type, int positionIndex)
     {
         Transform shopButton = Instantiate(shopItemTemplate, container);
         RectTransform shopItemRectTransform = shopButton.GetComponent<RectTransform>();
@@ -42,8 +41,21 @@ public class ShopUI : MonoBehaviour
         shopItemRectTransform.anchoredPosition = new Vector2 (offsetX, offsetY);
 
         // Text & Image setup
+        string itemName = PurchasableItem.GetName(type);
+        int itemCost = PurchasableItem.GetCost(type);
+        Sprite itemSprite = PurchasableItem.GetSprite(type);
+
         shopButton.Find("NameText").GetComponent<TextMeshProUGUI>().SetText(itemName);
         shopButton.Find("GoldText").GetComponent<TextMeshProUGUI>().SetText(itemCost.ToString());
         shopButton.Find("ItemIcon").GetComponent<Image>().sprite = itemSprite;
+
+        // Add onClick listener to the button
+        Button buttonComponent = shopButton.GetComponent<Button>();
+        buttonComponent.onClick.AddListener(() => TryBuyItem(type));
+    }
+
+    private void TryBuyItem(PurchasableItem.Type type)
+    {
+        // code
     }
 }
