@@ -7,11 +7,11 @@ using UnityEngine.UI;
 public class ShopUI : MonoBehaviour
 {
     private Transform container;
+    [SerializeField]
     private Transform shopItemTemplate;
     void Awake()
     {
         container = transform.Find("Container");
-        shopItemTemplate = container.Find("ShopItemTemplate");
     }
 
     private void Start()
