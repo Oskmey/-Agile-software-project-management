@@ -84,11 +84,9 @@ public class PlayerController : MonoBehaviour
     {
         if (playerInteraction.currentFishingSpot != null){
             canMove=false;
-        rb.velocity = Vector2.zero;
-        playerInteraction.currentFishingSpot.HandleMinigameStart();
-        
+            rb.velocity = Vector2.zero;
+            playerInteraction.currentFishingSpot.HandleMinigameStart();
         }
-        
     }
 
         private void Shopping(InputAction.CallbackContext context)
