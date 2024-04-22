@@ -11,7 +11,7 @@ public class PurchasableItem
     {
         // Loads the sprite to each Type
         ItemSprites[Type.Egg1] = Resources.Load<Sprite>("PurchasableItemSprites/Egg1");
-        ItemSprites[Type.Egg2] = Resources.Load<Sprite>("PurchasableItemSprites/Egg1");
+        ItemSprites[Type.Egg2] = Resources.Load<Sprite>("PurchasableItemSprites/Egg2");
 
     }
     public enum Type
