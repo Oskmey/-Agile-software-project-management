@@ -51,11 +51,19 @@ public class ShopUI : MonoBehaviour
 
         // Add onClick listener to the button
         Button buttonComponent = shopButton.GetComponent<Button>();
-        buttonComponent.onClick.AddListener(() => TryBuyItem(type));
+        if (buttonComponent != null)
+        {
+            buttonComponent.onClick.AddListener(() => TryBuyItem(type));
+            Debug.Log("Added onClick listener to button for type: " + type);
+        }
+        else
+        {
+            Debug.LogWarning("Button component not found on shopButton.");
+        }
     }
 
     private void TryBuyItem(PurchasableItem.Type type)
     {
-        // code
+        Debug.Log("You bought an item:" + type);
     }
 }
