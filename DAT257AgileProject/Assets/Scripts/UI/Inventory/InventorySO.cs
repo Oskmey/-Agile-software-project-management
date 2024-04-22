@@ -26,7 +26,7 @@ namespace Inventory.Model
             }
         }
 
-        public int AddItem(ItemSO item, int quantity)
+        public int AddItem(ItemSO item, int quantity, List<ItemParameter> itemState = null)
         {
             if(item.IsStackable == false)
             {
@@ -36,7 +36,7 @@ namespace Inventory.Model
                     {
                         if (inventoryItems[i].IsEmpty)
                         {
-                            quantity -= AddItemToFirstFreeSlot(item, 1);
+                            quantity -= AddItemToFirstFreeSlot(item, 1, itemState);
                         }
                     }
                     InformAboutChange();
@@ -48,9 +48,9 @@ namespace Inventory.Model
             return quantity;
         }
 
-        private int AddItemToFirstFreeSlot(ItemSO item, int quantity)
+        private int AddItemToFirstFreeSlot(ItemSO item, int quantity, List<ItemParameter> itemState = null)
         {
-            InventoryItem newItem = new InventoryItem(item, quantity);
+            InventoryItem newItem = new(item, quantity, new List<ItemParameter>(itemState == null ? item.DefaultParametersList : itemState));
             for (int i = 0; i < inventoryItems.Count; i++)
             {
                 if (inventoryItems[i].IsEmpty)
@@ -136,8 +136,30 @@ namespace Inventory.Model
         {
             OnInventoryUpdated?.Invoke(GetCurrentInventoryState());
         }
-    }
 
+        public void RemoveItem(int itemIndex, int amount)
+        {
+            if (inventoryItems.Count > itemIndex)
+            {
+                if (inventoryItems[itemIndex].IsEmpty)
+                {
+                    return;
+                }
+
+                int reminder = inventoryItems[itemIndex].Quantity - amount;
+                if (reminder <= 0)
+                {
+                    inventoryItems[itemIndex] = InventoryItem.GetEmptyItem();
+                }
+                else
+                {
+                    inventoryItems[itemIndex] = inventoryItems[itemIndex].ChangeQuantity(reminder);
+                }
+
+                InformAboutChange();
+            }
+        }
+    }
     [Serializable]
     public struct InventoryItem
     {
@@ -145,6 +167,8 @@ namespace Inventory.Model
         private int quantity;
         [SerializeField]
         private ItemSO item;
+        [SerializeField]
+        private List<ItemParameter> itemState;
 
         public int Quantity
         {
@@ -160,18 +184,25 @@ namespace Inventory.Model
 
         public bool IsEmpty => Item == null;
 
+        public List<ItemParameter> ItemState
+        {
+            get { return itemState; }
+            private set { itemState = value; }
+        }
 
-        public InventoryItem(ItemSO item, int quantity)
+
+        public InventoryItem(ItemSO item, int quantity, List<ItemParameter> itemState)
         {
             this.item = item;
             this.quantity = quantity;
+            this.itemState = itemState;
         }
 
         public InventoryItem ChangeQuantity(int newQuantity)
         {
-            return new InventoryItem(Item, newQuantity);
+            return new InventoryItem(Item, newQuantity, new(this.itemState));
         }
 
-        public static InventoryItem GetEmptyItem() => new InventoryItem(null, 0);
+        public static InventoryItem GetEmptyItem() => new InventoryItem(null, 0, new());
     }
 }

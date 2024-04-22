@@ -3,6 +3,7 @@ using Inventory.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -63,7 +64,24 @@ namespace Inventory
 
         private void HandleItemActionRequest(int itemIndex)
         {
+            InventoryItem inventoryItem = inventoryData.GetItemAt(itemIndex);
+            if (inventoryItem.IsEmpty)
+            {
+                return;
 
+            }
+
+            IDestroyableItem destroyableItem = inventoryItem.Item as IDestroyableItem;
+            if (destroyableItem != null)
+            {
+                inventoryData.RemoveItem(itemIndex, 1);
+            }
+
+            IItemAction itemAction = inventoryItem.Item as IItemAction;
+            if(itemAction != null)
+            {
+                itemAction.PerformAction(gameObject, inventoryItem.ItemState);
+            }
         }
 
         private void HandleDragging(int itemIndex)
@@ -90,7 +108,23 @@ namespace Inventory
                 return;
             }
             ItemSO item = inventoryItem.Item;
-            inventoryUI.UpdateDescription(itemIndex, item.ItemImage, item.name, item.Description);
+            string description = PrepareDescription(inventoryItem);
+            inventoryUI.UpdateDescription(itemIndex, item.ItemImage, item.name, description);
+        }
+
+        private string PrepareDescription(InventoryItem inventoryItem)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(inventoryItem.Item.Description);
+            sb.AppendLine();
+            for (int i = 0; i < inventoryItem.ItemState.Count; i++)
+            {
+                sb.Append($"{inventoryItem.ItemState[i].GetItemParameter().ParameterName} " +
+                    $": {inventoryItem.ItemState[i].Value} / " +
+                    $"{inventoryItem.Item.DefaultParametersList[i].Value}");
+                sb.AppendLine();
+            }
+            return sb.ToString();
         }
 
         public void Update()
