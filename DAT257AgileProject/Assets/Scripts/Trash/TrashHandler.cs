@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -48,7 +49,11 @@ public class TrashHandler : MonoBehaviour
          {
             DestroyTrash();
             //Reset the loop here instead, does reset the fishingloop twice if u walk away from fishingspot since that also triggers ResetFishingLoop
-            playerInteraction.currentFishingSpot.ResetFishingLoop();
+            try{
+            playerInteraction.currentFishingSpot.ResetFishingLoop();}
+            catch(Exception e){
+                
+            }
          }
     }
 
