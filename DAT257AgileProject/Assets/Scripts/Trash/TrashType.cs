@@ -7,7 +7,8 @@ public enum TrashType
     ElectricScooter,
     CigaretteButt,
     CarTire,
-    PlasticSpoon
+    PlasticSpoon,
+    GlassBottle
 }
 
 public static class TrashTypeExtensions
@@ -28,6 +29,8 @@ public static class TrashTypeExtensions
                 return "Car Tire";
             case TrashType.PlasticSpoon:
                 return "Plastic Spoon";
+            case TrashType.GlassBottle:
+                return "Glass Bottle";
             default:
                 throw new ArgumentOutOfRangeException(nameof(trashType), trashType, $"Trash type not found {trashType}");
         }
