@@ -10,10 +10,10 @@ using UnityEngine;
 
     
     Common = 1,
-    Uncommon = 2,
-    Rare = 4,
-    Epic = 8,
-    Legendary = 16,
+    Uncommon = 2, //| Common,
+    Rare = 4 ,//| Common,
+    Epic = 8, //| Common,
+    Legendary = 16, //| Common,
 
     DoNotUseEverything = 32
 

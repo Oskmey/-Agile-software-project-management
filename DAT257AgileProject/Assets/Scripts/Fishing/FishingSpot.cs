@@ -68,7 +68,7 @@ private void GetPercentages(){
     rarityPercentages.Add(TrashRarity.Legendary, 0.10);
 }
 
-//Har någon nån smart idé gällande uträkningen för rarity percentage vid varje "fishing"  på fishingspots? t.ex att common är 25%, legendary 10%,
+
 //Triggered when walking close, borde vara collider grejs
 public void HandleFishingPlaying()
 {
@@ -171,10 +171,7 @@ public void HandleFishingPlaying()
 
     public List<TrashRarity> GetRarities(FishingSpotRarities fishingSpotRarities){
         List<TrashRarity> tempList = new List<TrashRarity>();
-        int tempIntCount = 0;
-        foreach(FishingSpotRarities countRar in Enum.GetValues(typeof(FishingSpotRarities))){
-            if(fishingSpotRarities.HasFlag(countRar)){tempIntCount+=1;}}
-
+        
         foreach(FishingSpotRarities rarity in Enum.GetValues(typeof(FishingSpotRarities))){
             if(fishingSpotRarities.HasFlag(rarity)){
                 
@@ -189,7 +186,6 @@ public void HandleFishingPlaying()
                     case FishingSpotRarities.Uncommon: 
                     for (int i = 0; i < (rarityPercentages[TrashRarity.Uncommon]*10); i++) {
                     tempList.Add(TrashRarity.Uncommon);}
-                    
                     break;
 
                     case FishingSpotRarities.Rare: 
@@ -199,7 +195,6 @@ public void HandleFishingPlaying()
 
                     case FishingSpotRarities.Epic: 
                     for (int i = 0; i < (rarityPercentages[TrashRarity.Epic]*10); i++) {
-                        
                     tempList.Add(TrashRarity.Epic);}
                     break;
 
