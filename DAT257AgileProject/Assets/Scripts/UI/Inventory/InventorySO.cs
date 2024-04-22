@@ -147,14 +147,14 @@ namespace Inventory.Model
                     return;
                 }
 
-                int reminder = inventoryItems[itemIndex].Quantity - amount;
-                if (reminder <= 0)
+                int remainder = inventoryItems[itemIndex].Quantity - amount;
+                if (remainder <= 0)
                 {
                     inventoryItems[itemIndex] = InventoryItem.GetEmptyItem();
                 }
                 else
                 {
-                    inventoryItems[itemIndex] = inventoryItems[itemIndex].ChangeQuantity(reminder);
+                    inventoryItems[itemIndex] = inventoryItems[itemIndex].ChangeQuantity(remainder);
                 }
 
                 InformAboutChange();

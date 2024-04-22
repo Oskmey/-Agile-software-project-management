@@ -1,3 +1,4 @@
+using Inventory.Model;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -18,6 +19,9 @@ public class TrashHandler : MonoBehaviour
     private event TrashEvent OnTrashCollected;
 
     private FishingLoop fishingLoop;
+
+    [SerializeField]
+    private InventorySO inventoryData;
 
     private void Start()
     {
@@ -114,7 +118,22 @@ public class TrashHandler : MonoBehaviour
             recyclingManager.AddTrashToRecycle(trash);
 
             TrashCollected();
-            Destroy(currentTrashObject);
+            //Destroy(currentTrashObject);
+
+            Item item = currentTrashObject.GetComponent<Item>();
+
+            if (item != null)
+            {
+                int remainder = inventoryData.AddItem(item.InventoryItem, item.Quantity);
+                if (remainder == 0)
+                {
+                    item.DestroyItem();
+                }
+                else
+                {
+                    item.Quantity = remainder;
+                }
+            }
         }
     }
 

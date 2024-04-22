@@ -1,4 +1,5 @@
 
+using Inventory.Model;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -33,8 +34,7 @@ public class FishingSpot : MonoBehaviour
     private TrashHandler trashHandler;
 
 
-
-void Start()
+    void Start()
     {
         fishSpot = GetComponent<FishingSpot>();
         promptText = GameObject.FindGameObjectWithTag("TutorialText").GetComponent<TextMeshProUGUI>();
@@ -42,40 +42,40 @@ void Start()
         trashHandler = GameObject.FindGameObjectWithTag("TrashHandler").GetComponent<TrashHandler>();
     }
     
-//Triggered when walking close, borde vara collider grejs
-public void HandleFishingPlaying()
-{
-    
-    if (isFishing)
+    //Triggered when walking close, borde vara collider grejs
+    public void HandleFishingPlaying()
     {
-        promptText.text = "Press F to Fish";
-        //playerSpriteRenderer.sprite = fishingSprite1;
-        elapsedTime += Time.deltaTime;
-
-        if (elapsedTime >= delayTime)
+    
+        if (isFishing)
         {
-            //Debug.Log("Player is in range of fishing");
-            
+            promptText.text = "Press F to Fish";
+            //playerSpriteRenderer.sprite = fishingSprite1;
+            elapsedTime += Time.deltaTime;
+
             if (elapsedTime >= delayTime)
             {
-                if (!canCatchTrash)
+                //Debug.Log("Player is in range of fishing");
+            
+                if (elapsedTime >= delayTime)
                 {
+                    if (!canCatchTrash)
+                    {
                     
-                    SpawnExclamationMark();
-                }
-                canCatchTrash = true;
-                canCatchTime += Time.deltaTime;
+                        SpawnExclamationMark();
+                    }
+                    canCatchTrash = true;
+                    canCatchTime += Time.deltaTime;
 
-                if (canCatchTime >= canCatchDelay)
-                {
-                    canCatchTrash = false;
-                    elapsedTime = 0f;
-                    canCatchTime = 0f;
+                    if (canCatchTime >= canCatchDelay)
+                    {
+                        canCatchTrash = false;
+                        elapsedTime = 0f;
+                        canCatchTime = 0f;
+                    }
                 }
             }
         }
     }
-}
     public void HandleMinigameStart()
     {
         if (!isPlayingMinigame && canCatchTrash)
@@ -113,8 +113,6 @@ public void HandleFishingPlaying()
 
         promptText.text = "";
     }
-
-
 
 //Should spawn the trashPrefab for each spot
     public void OnMinigameWonHandler()
