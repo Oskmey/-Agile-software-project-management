@@ -17,4 +17,7 @@ MonoBehaviour:
   <Name>k__BackingField: Water
   <Description>k__BackingField: Restores HP
   <ItemImage>k__BackingField: {fileID: 21300000, guid: 8af99caca6628e04d84410f3ab3bea7b, type: 3}
-  modifiersData: []
+  <DefaultParametersList>k__BackingField: []
+  modifiersData:
+  - statModifier: {fileID: 11400000, guid: c672daead9c0a9a47bf06adc1c78fcba, type: 2}
+    value: 1

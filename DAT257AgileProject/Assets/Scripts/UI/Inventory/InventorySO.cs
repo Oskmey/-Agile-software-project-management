@@ -42,6 +42,7 @@ namespace Inventory.Model
                     InformAboutChange();
                     return quantity;
                 }
+                //return quantity;
             }
             quantity = AddStackableItem(item, quantity);
             InformAboutChange();

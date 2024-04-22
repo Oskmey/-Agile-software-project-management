@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 namespace Inventory
 {
@@ -21,6 +22,12 @@ namespace Inventory
         private InputAction showInventory;
 
         public List<InventoryItem> initialItems = new();
+
+        [SerializeField]
+        private AudioClip dropClip;
+
+        [SerializeField]
+        private AudioSource audioSource;
 
         private void Start()
         {
@@ -71,6 +78,35 @@ namespace Inventory
 
             }
 
+            IItemAction itemAction = inventoryItem.Item as IItemAction;
+            if(itemAction != null)
+            {
+                inventoryUI.ShowItemAction(itemIndex);
+                inventoryUI.AddAction(itemAction.ActionName, () => PerformAction(itemIndex));
+            }
+
+            IDestroyableItem destroyableItem = inventoryItem.Item as IDestroyableItem;
+            if (destroyableItem != null)
+            {
+                inventoryUI.AddAction("Drop", () => DropItem(itemIndex, inventoryItem.Quantity));
+            }
+        }
+
+        private void DropItem(int itemIndex, int quantity)
+        {
+            inventoryData.RemoveItem(itemIndex, quantity);
+            inventoryUI.ResetSelection();
+            //audioSource.PlayOneShot(dropClip);
+        }
+
+        public void PerformAction(int itemIndex)
+        {
+            InventoryItem inventoryItem = inventoryData.GetItemAt(itemIndex);
+            if (inventoryItem.IsEmpty)
+            {
+                return;
+            }
+
             IDestroyableItem destroyableItem = inventoryItem.Item as IDestroyableItem;
             if (destroyableItem != null)
             {
@@ -78,9 +114,14 @@ namespace Inventory
             }
 
             IItemAction itemAction = inventoryItem.Item as IItemAction;
-            if(itemAction != null)
+            if (itemAction != null)
             {
                 itemAction.PerformAction(gameObject, inventoryItem.ItemState);
+                //audioSource.PlayOneShot(itemAction.actionSFX);
+                if (inventoryData.GetItemAt(itemIndex).IsEmpty)
+                {
+                    inventoryUI.ResetSelection();
+                }
             }
         }
 
