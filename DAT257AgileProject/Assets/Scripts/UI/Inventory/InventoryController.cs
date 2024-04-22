@@ -97,7 +97,7 @@ namespace Inventory
             inventoryData.RemoveItem(itemIndex, quantity);
             inventoryUI.ResetSelection();
             //audioSource.PlayOneShot(dropClip);
-        }
+        } 
 
         public void PerformAction(int itemIndex)
         {
@@ -155,16 +155,37 @@ namespace Inventory
 
         private string PrepareDescription(InventoryItem inventoryItem)
         {
-            StringBuilder sb = new StringBuilder();
+            StringBuilder sb = new();
             sb.Append(inventoryItem.Item.Description);
             sb.AppendLine();
-            for (int i = 0; i < inventoryItem.ItemState.Count; i++)
+            if(inventoryItem.Item is TrashItemSO trashItem)
             {
-                sb.Append($"{inventoryItem.ItemState[i].GetItemParameter().ParameterName} " +
-                    $": {inventoryItem.ItemState[i].Value} / " +
-                    $"{inventoryItem.Item.DefaultParametersList[i].Value}");
+                sb.Append($"Money value: {trashItem.TrashData.MoneyValue} ");
                 sb.AppendLine();
+                sb.Append($"Rarity: TEMP ");
+                sb.AppendLine();
+
+                if(trashItem.TrashData.IsRecyclable)
+                {
+                    sb.Append("Is recycable");
+                }
+                else
+                {
+                    sb.Append("Is not recycable");
+                }
+                
             }
+            else
+            {
+                for (int i = 0; i < inventoryItem.ItemState.Count; i++)
+                {
+                    sb.Append($"{inventoryItem.ItemState[i].GetItemParameter().ParameterName} " +
+                        $": {inventoryItem.ItemState[i].Value} / " +
+                        $"{inventoryItem.Item.DefaultParametersList[i].Value}");
+                    sb.AppendLine();
+                }
+            }
+
             return sb.ToString();
         }
 

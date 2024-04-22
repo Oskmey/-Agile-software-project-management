@@ -115,7 +115,7 @@ public class TrashHandler : MonoBehaviour
         if (currentTrashObject != null)
         {
             TrashScript trash = currentTrashObject.GetComponent<TrashScript>();
-            recyclingManager.AddTrashToRecycle(trash);
+            //recyclingManager.AddTrashToRecycle(trash);
 
             TrashCollected();
             //Destroy(currentTrashObject);

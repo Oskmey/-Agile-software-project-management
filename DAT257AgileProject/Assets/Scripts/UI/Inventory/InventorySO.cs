@@ -1,3 +1,4 @@
+using Inventory.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -40,10 +41,11 @@ namespace Inventory.Model
                         }
                     }
                     InformAboutChange();
-                    return quantity;
+                   // return quantity;
                 }
-                //return quantity;
+                return quantity;
             }
+
             quantity = AddStackableItem(item, quantity);
             InformAboutChange();
             return quantity;
@@ -90,7 +92,6 @@ namespace Inventory.Model
                         return 0;
                     }
                 }
-
             }
 
             while(quantity > 0 && IsInventoryFull() == false)
@@ -131,6 +132,27 @@ namespace Inventory.Model
         {
             (inventoryItems[itemIndex_2], inventoryItems[itemIndex_1]) = (inventoryItems[itemIndex_1], inventoryItems[itemIndex_2]);
             InformAboutChange();
+        }
+
+        public List<TrashData> GetAndRemoveTrashItems()
+        {
+            List<TrashData> recycableTrashItems = new();
+
+            for (int i = inventoryItems.Count - 1; i >= 0; i--)
+            {
+                if (inventoryItems[i].Item is TrashItemSO trashItem)
+                {
+                    // This item is a TrashItemSO, remove it from the list
+                    TrashData trashData = trashItem.TrashData;
+                    recycableTrashItems.Add(trashData);
+                    //inventoryItems.RemoveAt(i);
+                    inventoryItems[i] = InventoryItem.GetEmptyItem();
+                }
+            }
+
+            Debug.Log("Recycled trash");
+            InformAboutChange();
+            return recycableTrashItems;
         }
 
         private void InformAboutChange()

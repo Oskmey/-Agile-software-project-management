@@ -1,3 +1,4 @@
+using Inventory.Model;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,14 @@ public class RecyclingManager : MonoBehaviour
     private IReadOnlyList<RecyclingMachine> recyclingMachines;
     private PlayerStatsManager playerStatsManager;
     // TEMP: list to store the trash that the player has to recycle
-    private static List<TrashScript> trashToRecycle;
+    private static List<TrashData> trashToRecycle;
     private bool trashWasRecycled;
     private TrashHandler TrashHandler;
-    public IReadOnlyList<TrashScript> TrashToRecycle
+
+    [SerializeField]
+    private InventorySO playerInventory;
+
+    public IReadOnlyList<TrashData> TrashToRecycle
     {
         get
         {
@@ -36,7 +41,7 @@ public class RecyclingManager : MonoBehaviour
     }
 
     void Start(){
-        trashToRecycle = LoadTrash();
+        //trashToRecycle = LoadTrash();
     }
 
     void Awake()
@@ -74,17 +79,24 @@ public class RecyclingManager : MonoBehaviour
 
     public void RecycleAtNearestMachine()
     {
-        trashToRecycle = LoadTrash();
+        trashToRecycle = playerInventory.GetAndRemoveTrashItems();
         if (trashToRecycle.Count > 0)
         {
-            RecycleAtNearestMachine(trashToRecycle[0]);
+            foreach(TrashData trash in trashToRecycle)
+            {
+                if (trash.IsRecyclable)
+                {
+                    RecycleAtNearestMachine(trash);
+                }
+            }
+           
         }
         else{
             Debug.Log("No trash to recycle");
         }
     }
 
-    private void RecycleAtNearestMachine(TrashScript trash)
+    private void RecycleAtNearestMachine(TrashData trash)
     {
         foreach (RecyclingMachine recyclingMachine in recyclingMachines)
         {
@@ -92,6 +104,9 @@ public class RecyclingManager : MonoBehaviour
             // if (recyclingMachine.IsPlayerInRange(player.transform.position))
             if (recyclingMachine.IsPlayerInRange())
             {
+                playerStatsManager.Money += trash.MoneyValue;
+
+                /*
                 // NOTE: Trash is not recyclable by default, needs to be RecycableTrash
                 if (trash.IsRecyclable)
                 {
@@ -106,7 +121,7 @@ public class RecyclingManager : MonoBehaviour
                 else
                 {
                     trashWasRecycled = false;
-                }
+                }*/
             }
             // else
             // {
@@ -114,6 +129,7 @@ public class RecyclingManager : MonoBehaviour
             // }
         }
     }
+
 
     public IReadOnlyList<RecyclingMachine> GetRecyclingMachines()
     {
@@ -129,8 +145,8 @@ public class RecyclingManager : MonoBehaviour
         return recyclingMachines;
     }
 
-    public void AddTrashToRecycle(TrashScript trash)
-    {
-        trashToRecycle.Add(trash);
-    }
+    //public void AddTrashToRecycle(TrashScript trash)
+    //{
+        //trashToRecycle.Add(trash);
+    //}
 }

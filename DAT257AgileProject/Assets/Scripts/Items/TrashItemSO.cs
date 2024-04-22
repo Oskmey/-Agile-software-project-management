@@ -14,6 +14,11 @@ namespace Inventory.Model
         [SerializeField]
         private TrashData trashData;
 
+        public TrashData TrashData
+        {
+            get { return trashData; }
+        }
+
         public string ActionName => "Temp";
         //public AudioClip actionSFX { get; private set; }
 
