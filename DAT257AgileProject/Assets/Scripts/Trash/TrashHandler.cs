@@ -39,20 +39,18 @@ public class TrashHandler : MonoBehaviour
         // }
     }
 
-    private void calc(){
-        
-    }
-
     private void Update()
     {
          if (hideTrashInfoPanelAction.triggered)
          {
             DestroyTrash();
-            //Reset the loop here instead, does reset the fishingloop twice if u walk away from fishingspot since that also triggers ResetFishingLoop
-            try{
-            playerInteraction.currentFishingSpot.ResetFishingLoop();}
+            //Reset the loop here instead, does reset the fishingloop twice if u walk away from fishingspot since that also triggers ResetFishingLoop, doesnt really matter tho.
+            try
+            {
+                playerInteraction.currentFishingSpot.ResetFishingLoop();
+            }
             catch(Exception e){
-                
+
             }
          }
     }

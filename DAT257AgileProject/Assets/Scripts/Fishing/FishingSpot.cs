@@ -20,9 +20,6 @@ public class FishingSpot : MonoBehaviour
     private FishingSpotRarities trashRarity;
     [SerializeField] 
     private GameObject exclamationMarkPrefab;
-
-
-    private FishingSpotRarities fs;
     private static bool isFishing = true;
     private bool isPlayingMinigame = false;
     private bool canCatchTrash = false;
@@ -48,17 +45,18 @@ public class FishingSpot : MonoBehaviour
     private static System.Random rnd = new System.Random();
 //Need to add percentages I guess
 void Start()
-    {
-        GetPercentages();
-        listOfRarities = GetRarities(trashRarity);
-        currentRarity=rnd.Next(listOfRarities.Count);
-        fishSpot = GetComponent<FishingSpot>();
-        promptText = GameObject.FindGameObjectWithTag("TutorialText").GetComponent<TextMeshProUGUI>();
-        minigameManager = GameObject.FindGameObjectWithTag("Minigame Manager").GetComponent<MinigameManager>();
-        trashHandler = GameObject.FindGameObjectWithTag("TrashHandler").GetComponent<TrashHandler>();
-    }
+{
+    GetPercentages();
+    listOfRarities = GetRarities(trashRarity);
+    currentRarity=rnd.Next(listOfRarities.Count);
+    fishSpot = GetComponent<FishingSpot>();
+    promptText = GameObject.FindGameObjectWithTag("TutorialText").GetComponent<TextMeshProUGUI>();
+    minigameManager = GameObject.FindGameObjectWithTag("Minigame Manager").GetComponent<MinigameManager>();
+    trashHandler = GameObject.FindGameObjectWithTag("TrashHandler").GetComponent<TrashHandler>();
+}
 
-private void GetPercentages(){
+private void GetPercentages()
+{
     //Använder common som alltid i tickad
     //Går såklart att ändra rarity percentages
     //rarityPercentages.Add(TrashRarity.Common, 0.30);
@@ -129,7 +127,8 @@ public void HandleFishingPlaying()
         Destroy(exclamationMark, 1.5f);
     }
 
-    public bool GetIsPlaying(){
+    public bool GetIsPlaying()
+    {
         return isPlayingMinigame;
     }
 
@@ -169,13 +168,17 @@ public void HandleFishingPlaying()
 
 //Add them to list as many times as their percentage represent, then randomize the list when u fish, idk how to do this otherwise, might not be most efficient but it works :=).
 
-    public List<TrashRarity> GetRarities(FishingSpotRarities fishingSpotRarities){
+    public List<TrashRarity> GetRarities(FishingSpotRarities fishingSpotRarities)
+    {
         List<TrashRarity> tempList = new List<TrashRarity>();
         
-        foreach(FishingSpotRarities rarity in Enum.GetValues(typeof(FishingSpotRarities))){
-            if(fishingSpotRarities.HasFlag(rarity)){
+        foreach(FishingSpotRarities rarity in Enum.GetValues(typeof(FishingSpotRarities)))
+        {
+            if(fishingSpotRarities.HasFlag(rarity))
+            {
                 
-                switch(rarity){
+                switch(rarity)
+                {
                     
                     // case FishingSpotRarities.Common:
                     // for (int i = 0; i < (rarityPercentages[TrashRarity.Common]*tempIntCount*10); i++) {
@@ -184,31 +187,38 @@ public void HandleFishingPlaying()
                     
 
                     case FishingSpotRarities.Uncommon: 
-                    for (int i = 0; i < (rarityPercentages[TrashRarity.Uncommon]*10); i++) {
-                    tempList.Add(TrashRarity.Uncommon);}
+                    for (int i = 0; i < (rarityPercentages[TrashRarity.Uncommon]*10); i++) 
+                    {
+                        tempList.Add(TrashRarity.Uncommon);
+                    }
                     break;
 
                     case FishingSpotRarities.Rare: 
-                    for (int i = 0; i < (rarityPercentages[TrashRarity.Rare]*10); i++) {
-                    tempList.Add(TrashRarity.Rare);}
+                    for (int i = 0; i < (rarityPercentages[TrashRarity.Rare]*10); i++) 
+                    {
+                        tempList.Add(TrashRarity.Rare);
+                    }
                     break;
 
                     case FishingSpotRarities.Epic: 
-                    for (int i = 0; i < (rarityPercentages[TrashRarity.Epic]*10); i++) {
-                    tempList.Add(TrashRarity.Epic);}
+                    for (int i = 0; i < (rarityPercentages[TrashRarity.Epic]*10); i++) 
+                    {
+                        tempList.Add(TrashRarity.Epic);
+                    }
                     break;
 
                     case FishingSpotRarities.Legendary: 
-                    for (int i = 0; i < (rarityPercentages[TrashRarity.Legendary]*10); i++) {
-                    tempList.Add(TrashRarity.Legendary);
+                    for (int i = 0; i < (rarityPercentages[TrashRarity.Legendary]*10); i++) 
+                    {
+                        tempList.Add(TrashRarity.Legendary);
                     }
                     break;
 
                 }
             }
         }
-        while(tempList.Count < 10){
-            
+        while(tempList.Count < 10)
+        {
             tempList.Add(TrashRarity.Common);
         }
         return tempList;

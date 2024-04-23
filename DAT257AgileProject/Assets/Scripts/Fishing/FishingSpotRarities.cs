@@ -4,17 +4,14 @@ using UnityEditor;
 using UnityEngine;
 
 
-[Flags]public enum FishingSpotRarities
+[Flags]
+public enum FishingSpotRarities
 
 {
-
-    
     Common = 1,
-    Uncommon = 2, //| Common,
-    Rare = 4 ,//| Common,
-    Epic = 8, //| Common,
-    Legendary = 16, //| Common,
-
+    Uncommon = 2, 
+    Rare = 4,
+    Epic = 8, 
+    Legendary = 16, 
     DoNotUseEverything = 32
-
 }
