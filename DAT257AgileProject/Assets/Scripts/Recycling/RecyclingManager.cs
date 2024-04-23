@@ -11,6 +11,7 @@ public class RecyclingManager : MonoBehaviour
     // TEMP: list to store the trash that the player has to recycle
     private static List<TrashScript> trashToRecycle;
     private bool trashWasRecycled;
+    private bool isRecycling;
     private TrashHandler TrashHandler;
     public IReadOnlyList<TrashScript> TrashToRecycle
     {
@@ -35,13 +36,22 @@ public class RecyclingManager : MonoBehaviour
         }
     }
 
-    void Start(){
+    public bool IsRecycling
+    {
+        get
+        {
+            return isRecycling;
+        }
+    }
+
+    void Start() {
         trashToRecycle = LoadTrash();
     }
 
     void Awake()
     {
         trashWasRecycled = false;
+        isRecycling = false;
         TrashHandler = FindObjectOfType<TrashHandler>().GetComponent<TrashHandler>();
         recyclingMachines = GetRecyclingMachines();
         playerStatsManager = FindObjectOfType<PlayerStatsManager>();
@@ -78,8 +88,9 @@ public class RecyclingManager : MonoBehaviour
         if (trashToRecycle.Count > 0)
         {
             RecycleAtNearestMachine(trashToRecycle[0]);
+
         }
-        else{
+        else {
             Debug.Log("No trash to recycle");
         }
     }
@@ -100,8 +111,9 @@ public class RecyclingManager : MonoBehaviour
                     playerStatsManager.RecycledTrashList.Add(trash);
                     trashToRecycle.Remove(trash);
                     trashWasRecycled = true;
+                    StartCoroutine(RecyclingInteraction());
                     TrashHandler.DestroyTrash();
-                    PlayerPrefs.SetInt("RecycledTrashLeft", PlayerPrefs.GetInt("RecycledTrashLeft")-1);
+                    PlayerPrefs.SetInt("RecycledTrashLeft", PlayerPrefs.GetInt("RecycledTrashLeft") - 1);
                 }
                 else
                 {
@@ -133,4 +145,12 @@ public class RecyclingManager : MonoBehaviour
     {
         trashToRecycle.Add(trash);
     }
+
+    IEnumerator RecyclingInteraction()
+    {
+        isRecycling = true;
+        yield return new WaitForSeconds(2);
+        isRecycling = false;
+    }
+
 }

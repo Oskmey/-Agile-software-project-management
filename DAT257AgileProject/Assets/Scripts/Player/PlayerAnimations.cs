@@ -36,18 +36,18 @@ public class PlayerAnimations : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(isRecycling);
         foreach (RecyclingMachine recyclingMachine in recyclingMachines)
         {
             if (recyclingMachine.IsPlayerInRange())
             {
-                isRecycling = recyclingManager.TrashWasRecycled;
+                isRecycling = recyclingManager.IsRecycling;
                 if (isRecycling)
                 {
                     recyclingMachineSpotPos = recyclingMachine.transform.position;
                     directionToRecyclingMachineSpot = recyclingMachineSpotPos - transform.position;
                 }
             }
+            Debug.Log(isRecycling);
         }
 
         if (playerInteraction.currentFishingSpot != null)
@@ -65,7 +65,7 @@ public class PlayerAnimations : MonoBehaviour
         {
             directionToFishingSpot = fishingSpotPos - transform.position;
         }
-      
+
         UpdateAnimator();
     }
 
