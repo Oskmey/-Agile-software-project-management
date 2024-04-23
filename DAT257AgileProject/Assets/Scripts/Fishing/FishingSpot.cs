@@ -164,27 +164,27 @@ public TrashRarity GetCurrentRarity(List<float> listOfRarityPercentages)
     //You yourself have to make sure it adds up to 100% or 1.0
     float randomNumber = UnityEngine.Random.Range((float)0.0,(float)1.0);
 
-    if(randomNumber < listOfRarityPercentages[0])
+    if(randomNumber <= listOfRarityPercentages[0])
     {
         return TrashRarity.Common;
     }
 
-    if(randomNumber < listOfRarityPercentages[1] && randomNumber > listOfRarityPercentages[0])
+    if(randomNumber <= listOfRarityPercentages[1] && randomNumber > listOfRarityPercentages[0])
     {
         return TrashRarity.Uncommon;
     }
 
-    if(randomNumber < listOfRarityPercentages[2] && randomNumber > listOfRarityPercentages[1])
+    if(randomNumber <= listOfRarityPercentages[2] && randomNumber > listOfRarityPercentages[1])
     {
         return TrashRarity.Rare;
     }
 
-    if(randomNumber < listOfRarityPercentages[3] && randomNumber > listOfRarityPercentages[2])
+    if(randomNumber <= listOfRarityPercentages[3] && randomNumber > listOfRarityPercentages[2])
     {
         return TrashRarity.Epic;
     }
 
-    if(randomNumber < listOfRarityPercentages[4] && randomNumber > listOfRarityPercentages[3])
+    if(randomNumber <= listOfRarityPercentages[4] && randomNumber > listOfRarityPercentages[3])
     {
         return TrashRarity.Legendary;
     }
