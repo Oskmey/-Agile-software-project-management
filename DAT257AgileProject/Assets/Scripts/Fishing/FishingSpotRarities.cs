@@ -4,14 +4,30 @@ using UnityEditor;
 using UnityEngine;
 
 
-[Flags]
-public enum FishingSpotRarities
+ [Serializable] 
+ public class FishingSpotRarities{
 
+ public List<RarityPercentageData> trashRarityPercentages;
+
+}
+
+public static class FishingSpotRaritiesExtensions
 {
-    Common = 1,
-    Uncommon = 2, 
-    Rare = 4,
-    Epic = 8, 
-    Legendary = 16, 
-    DoNotUseEverything = 32
+public static List<float> ToList(this FishingSpotRarities rarities)
+{
+    List<float> tempList = new List<float>();
+
+    foreach(RarityPercentageData data in rarities.trashRarityPercentages)
+    {
+        tempList.Add(data.percentage);
+
+    }
+
+    for (int i = 1; i < tempList.Count ; i++)
+    {
+        tempList[i] = tempList[i] + tempList[i - 1];
+    }
+    return tempList;
+}
+
 }

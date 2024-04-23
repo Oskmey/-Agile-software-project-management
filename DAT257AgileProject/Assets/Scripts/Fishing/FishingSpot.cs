@@ -16,9 +16,12 @@ public class FishingSpot : MonoBehaviour
 
     [SerializeField] 
     private Sprite fishingSprite1, fishingSprite2;
+
     [SerializeField] 
-    private FishingSpotRarities trashRarity;
+    private FishingSpotRarities fishingSpotRarities;
     [SerializeField] 
+
+    //[SerializeField] 
     private GameObject exclamationMarkPrefab;
     private static bool isFishing = true;
     private bool isPlayingMinigame = false;
@@ -36,35 +39,23 @@ public class FishingSpot : MonoBehaviour
 
     private TrashHandler trashHandler;
 
-    private List<TrashRarity> listOfRarities;
+    private List<float> listOfRarities;
 
-    private int currentRarity;
+    private TrashRarity currentRarity;
 
-    private static Dictionary<TrashRarity, double> rarityPercentages = new Dictionary<TrashRarity, double>();
     
-    private static System.Random rnd = new System.Random();
+
 //Need to add percentages I guess
 void Start()
 {
-    GetPercentages();
-    listOfRarities = GetRarities(trashRarity);
-    currentRarity=rnd.Next(listOfRarities.Count);
+    listOfRarities = fishingSpotRarities.ToList();
+    currentRarity = GetCurrentRarity(listOfRarities);
     fishSpot = GetComponent<FishingSpot>();
     promptText = GameObject.FindGameObjectWithTag("TutorialText").GetComponent<TextMeshProUGUI>();
     minigameManager = GameObject.FindGameObjectWithTag("Minigame Manager").GetComponent<MinigameManager>();
     trashHandler = GameObject.FindGameObjectWithTag("TrashHandler").GetComponent<TrashHandler>();
 }
 
-private void GetPercentages()
-{
-    //Använder common som alltid i tickad
-    //Går såklart att ändra rarity percentages
-    //rarityPercentages.Add(TrashRarity.Common, 0.30);
-    rarityPercentages.Add(TrashRarity.Uncommon, 0.4);
-    rarityPercentages.Add(TrashRarity.Rare, 0.3);
-    rarityPercentages.Add(TrashRarity.Epic, 0.2);
-    rarityPercentages.Add(TrashRarity.Legendary, 0.10);
-}
 
 
 //Triggered when walking close, borde vara collider grejs
@@ -135,7 +126,7 @@ public void HandleFishingPlaying()
     public void ResetFishingLoop()
     {
         // Reset the game state
-        currentRarity = rnd.Next(listOfRarities.Count);
+        currentRarity = GetCurrentRarity(listOfRarities);
         isFishing = true;
         isPlayingMinigame = false;
         canCatchTrash = false;
@@ -155,7 +146,7 @@ public void HandleFishingPlaying()
         // TODO: fix trashHandler being null when event invoked
         isPlayingMinigame=false;
         Vector2 trashSpawnPosition = new(transform.position.x, transform.position.y);
-        TrashScript currentTrash = trashHandler.CreateRandomTrash(listOfRarities[currentRarity], trashSpawnPosition);
+        TrashScript currentTrash = trashHandler.CreateRandomTrash(currentRarity, trashSpawnPosition);
     }
 
     public void OnMinigameLostHandler()
@@ -166,64 +157,42 @@ public void HandleFishingPlaying()
 
 
 
-//Add them to list as many times as their percentage represent, then randomize the list when u fish, idk how to do this otherwise, might not be most efficient but it works :=).
 
-    public List<TrashRarity> GetRarities(FishingSpotRarities fishingSpotRarities)
+public TrashRarity GetCurrentRarity(List<float> listOfRarityPercentages)
+{
+
+    //You yourself have to make sure it adds up to 100% or 1.0
+    float randomNumber = UnityEngine.Random.Range((float)0.0,(float)1.0);
+
+    if(randomNumber < listOfRarityPercentages[0])
     {
-        List<TrashRarity> tempList = new List<TrashRarity>();
-        
-        foreach(FishingSpotRarities rarity in Enum.GetValues(typeof(FishingSpotRarities)))
-        {
-            if(fishingSpotRarities.HasFlag(rarity))
-            {
-                
-                switch(rarity)
-                {
-                    
-                    // case FishingSpotRarities.Common:
-                    // for (int i = 0; i < (rarityPercentages[TrashRarity.Common]*tempIntCount*10); i++) {
-                    // tempList.Add(TrashRarity.Common);}
-                    // break;
-                    
-
-                    case FishingSpotRarities.Uncommon: 
-                    for (int i = 0; i < (rarityPercentages[TrashRarity.Uncommon]*10); i++) 
-                    {
-                        tempList.Add(TrashRarity.Uncommon);
-                    }
-                    break;
-
-                    case FishingSpotRarities.Rare: 
-                    for (int i = 0; i < (rarityPercentages[TrashRarity.Rare]*10); i++) 
-                    {
-                        tempList.Add(TrashRarity.Rare);
-                    }
-                    break;
-
-                    case FishingSpotRarities.Epic: 
-                    for (int i = 0; i < (rarityPercentages[TrashRarity.Epic]*10); i++) 
-                    {
-                        tempList.Add(TrashRarity.Epic);
-                    }
-                    break;
-
-                    case FishingSpotRarities.Legendary: 
-                    for (int i = 0; i < (rarityPercentages[TrashRarity.Legendary]*10); i++) 
-                    {
-                        tempList.Add(TrashRarity.Legendary);
-                    }
-                    break;
-
-                }
-            }
-        }
-        while(tempList.Count < 10)
-        {
-            tempList.Add(TrashRarity.Common);
-        }
-        return tempList;
-        
-
+        return TrashRarity.Common;
     }
 
+    if(randomNumber < listOfRarityPercentages[1] && randomNumber > listOfRarityPercentages[0])
+    {
+        return TrashRarity.Uncommon;
+    }
+
+    if(randomNumber < listOfRarityPercentages[2] && randomNumber > listOfRarityPercentages[1])
+    {
+        return TrashRarity.Rare;
+    }
+
+    if(randomNumber < listOfRarityPercentages[3] && randomNumber > listOfRarityPercentages[2])
+    {
+        return TrashRarity.Epic;
+    }
+
+    if(randomNumber < listOfRarityPercentages[4] && randomNumber > listOfRarityPercentages[3])
+    {
+        return TrashRarity.Legendary;
+    }
+
+    //Will never get here, in the best of worlds where it adds up to 100% :-).
+    return TrashRarity.Common;
+
 }
+
+}
+

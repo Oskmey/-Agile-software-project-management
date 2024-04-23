@@ -100,7 +100,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fishingSprite1: {fileID: 0}
   fishingSprite2: {fileID: 0}
-  trashRarity: 4
+  fishingSpotRarities:
+    trashRarityPercentages:
+    - Name: Common
+      percentage: 0.2
+    - Name: Uncommon
+      percentage: 0.2
+    - Name: Rare
+      percentage: 0.2
+    - Name: Epic
+      percentage: 0.2
+    - Name: Legendary
+      percentage: 0.2
   exclamationMarkPrefab: {fileID: 8678099781156329870, guid: ea15b8ae6ec919142b49b5f63fe71c11, type: 3}
 --- !u!61 &4582509056629564299
 BoxCollider2D:
