@@ -196,8 +196,8 @@ BlendTree:
     m_CycleOffset: 0
     m_DirectBlendParameter: Horizontal
     m_Mirror: 0
-  m_BlendParameter: Distance_Rm_x
-  m_BlendParameterY: Distance_Rm_y
+  m_BlendParameter: Distance_rm_x
+  m_BlendParameterY: Distance_rm_y
   m_MinThreshold: 0
   m_MaxThreshold: 1
   m_UseAutomaticThresholds: 1
@@ -301,13 +301,13 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: Distance_Rm_x
+  - m_Name: Distance_rm_x
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: Distance_Rm_y
+  - m_Name: Distance_rm_y
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -317,7 +317,7 @@ AnimatorController:
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
-    m_DefaultBool: 1
+    m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
