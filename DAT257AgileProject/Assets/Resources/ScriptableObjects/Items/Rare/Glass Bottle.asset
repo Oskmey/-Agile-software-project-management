@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce1cbf96045d7a94d9eac182b91e89ba, type: 3}
-  m_Name: Electric Scooter
+  m_Name: Glass Bottle
   m_EditorClassIdentifier: 
   <IsStackable>k__BackingField: 1
   <MaxStackSize>k__BackingField: 99
-  <Name>k__BackingField: Electric scooter
-  <Description>k__BackingField: Is scooter
-  <ItemImage>k__BackingField: {fileID: 21300000, guid: c69a2c8cf0a0f1e498f68120dcc4e7fe, type: 3}
+  <Name>k__BackingField: Glass Bottle
+  <Description>k__BackingField: Is glass bottle
+  <ItemImage>k__BackingField: {fileID: 21300000, guid: 0a81ff68a57bbf448a9624baef0638c1, type: 3}
   <DefaultParametersList>k__BackingField: []
   trashModifierData:
     statModifier: {fileID: 11400000, guid: f101ccd8bda098a4689135b0ccc91986, type: 2}
-  trashData: {fileID: 11400000, guid: 724ee7c8b9c58604a93cf34bfd97f96b, type: 2}
+  trashData: {fileID: 11400000, guid: f491dce6f85cd2348ad6b9b227438671, type: 2}
+  trashRarity: 2

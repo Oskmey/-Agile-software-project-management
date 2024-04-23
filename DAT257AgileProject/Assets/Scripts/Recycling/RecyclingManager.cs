@@ -91,9 +91,6 @@ public class RecyclingManager : MonoBehaviour
             }
            
         }
-        else{
-            Debug.Log("No trash to recycle");
-        }
     }
 
     private void RecycleAtNearestMachine(TrashData trash)

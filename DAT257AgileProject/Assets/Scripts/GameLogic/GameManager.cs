@@ -79,6 +79,6 @@ public class GameManager : MonoBehaviour
 
     void UpdateMoneyGenerated()
     {
-        moneyGeneratedText.text = "Money Generated: " + playerStatsManager.Money.ToString();
+        moneyGeneratedText.text = "Money: " + playerStatsManager.Money.ToString();
     }
 }

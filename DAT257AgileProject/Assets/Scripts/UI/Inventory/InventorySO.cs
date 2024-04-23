@@ -41,7 +41,6 @@ namespace Inventory.Model
                         }
                     }
                     InformAboutChange();
-                   // return quantity;
                 }
                 return quantity;
             }
@@ -142,10 +141,8 @@ namespace Inventory.Model
             {
                 if (inventoryItems[i].Item is TrashItemSO trashItem)
                 {
-                    // This item is a TrashItemSO, remove it from the list
                     TrashData trashData = trashItem.TrashData;
                     recycableTrashItems.Add(trashData);
-                    //inventoryItems.RemoveAt(i);
                     inventoryItems[i] = InventoryItem.GetEmptyItem();
                 }
             }

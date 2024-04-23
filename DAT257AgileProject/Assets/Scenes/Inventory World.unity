@@ -165,19 +165,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7026660009190821743, guid: 81b59685f1e164c42855f4de4fc3afa6, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7026660009190821743, guid: 81b59685f1e164c42855f4de4fc3afa6, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7026660009190821743, guid: 81b59685f1e164c42855f4de4fc3afa6, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 43.26265
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7026660009190821743, guid: 81b59685f1e164c42855f4de4fc3afa6, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -42.106102
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7874049959138204781, guid: 81b59685f1e164c42855f4de4fc3afa6, type: 3}
       propertyPath: m_Pivot.x
@@ -787,19 +787,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentFishingSpot: {fileID: 0}
---- !u!114 &398766603
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 398766577}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b86399e88d3b694b9d9342f8659ab10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inventoryData: {fileID: 11400000, guid: 61539fd28ea43fd42aa4e22c1a71ffb7, type: 2}
 --- !u!1 &600578046
 GameObject:
   m_ObjectHideFlags: 0
@@ -16958,9 +16945,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6477538420710758391, guid: 346d51c3f49dac9418edefc51782e853, type: 3}
       insertIndex: -1
       addedObject: {fileID: 398766594}
-    - targetCorrespondingSourceObject: {fileID: 6477538420710758391, guid: 346d51c3f49dac9418edefc51782e853, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 398766603}
   m_SourcePrefab: {fileID: 100100000, guid: 346d51c3f49dac9418edefc51782e853, type: 3}
 --- !u!1001 &7167121071580977963
 PrefabInstance:

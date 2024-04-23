@@ -19,6 +19,14 @@ namespace Inventory.Model
             get { return trashData; }
         }
 
+        [SerializeField]
+        private TrashRarity trashRarity;
+
+        public TrashRarity TrashRarity
+        {
+            get { return trashRarity; }
+        }
+
         public string ActionName => "Temp";
         //public AudioClip actionSFX { get; private set; }
 

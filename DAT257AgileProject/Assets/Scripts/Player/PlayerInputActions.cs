@@ -197,6 +197,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ShowInventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""83209bc8-f7ff-4bfe-97da-0d60f572b8a1"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -243,6 +252,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""99d184a3-04f6-4761-9938-4a9a652eaf11"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowInventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -260,6 +280,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_HideTrashInfoPanel = m_UI.FindAction("HideTrashInfoPanel", throwIfNotFound: true);
         m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
+        m_UI_ShowInventory = m_UI.FindAction("ShowInventory", throwIfNotFound: true);
     }
 
     ~@PlayerInputActions()
@@ -407,12 +428,14 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
     private readonly InputAction m_UI_HideTrashInfoPanel;
     private readonly InputAction m_UI_Pause;
+    private readonly InputAction m_UI_ShowInventory;
     public struct UIActions
     {
         private @PlayerInputActions m_Wrapper;
         public UIActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @HideTrashInfoPanel => m_Wrapper.m_UI_HideTrashInfoPanel;
         public InputAction @Pause => m_Wrapper.m_UI_Pause;
+        public InputAction @ShowInventory => m_Wrapper.m_UI_ShowInventory;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -428,6 +451,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
+            @ShowInventory.started += instance.OnShowInventory;
+            @ShowInventory.performed += instance.OnShowInventory;
+            @ShowInventory.canceled += instance.OnShowInventory;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -438,6 +464,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
+            @ShowInventory.started -= instance.OnShowInventory;
+            @ShowInventory.performed -= instance.OnShowInventory;
+            @ShowInventory.canceled -= instance.OnShowInventory;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -467,5 +496,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     {
         void OnHideTrashInfoPanel(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnShowInventory(InputAction.CallbackContext context);
     }
 }
