@@ -308,37 +308,9 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1990927}
-    - target: {fileID: 2390586089348840050, guid: 1267cf81ccdd19346b7308418228a595, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2390586089348840050, guid: 1267cf81ccdd19346b7308418228a595, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -153
-      objectReference: {fileID: 0}
-    - target: {fileID: 2824286938534577195, guid: 1267cf81ccdd19346b7308418228a595, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -0.99998516
-      objectReference: {fileID: 0}
-    - target: {fileID: 2824286938534577195, guid: 1267cf81ccdd19346b7308418228a595, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -194
-      objectReference: {fileID: 0}
     - target: {fileID: 3187649615701991856, guid: 1267cf81ccdd19346b7308418228a595, type: 3}
       propertyPath: m_Name
       value: Canvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 3202047296040716894, guid: 1267cf81ccdd19346b7308418228a595, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5222368578688869202, guid: 1267cf81ccdd19346b7308418228a595, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0.000015259
-      objectReference: {fileID: 0}
-    - target: {fileID: 5222368578688869202, guid: 1267cf81ccdd19346b7308418228a595, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -116
       objectReference: {fileID: 0}
     - target: {fileID: 5533620931282651767, guid: 1267cf81ccdd19346b7308418228a595, type: 3}
       propertyPath: m_Pivot.x
@@ -420,31 +392,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6273864353989640458, guid: 1267cf81ccdd19346b7308418228a595, type: 3}
-      propertyPath: m_text
-      value: "These are the facts and sources we have used for the pop-ups in the
-        game. \n(Click the source to go to the website)"
-      objectReference: {fileID: 0}
-    - target: {fileID: 6273864353989640458, guid: 1267cf81ccdd19346b7308418228a595, type: 3}
-      propertyPath: m_fontSize
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 6273864353989640458, guid: 1267cf81ccdd19346b7308418228a595, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 12
-      objectReference: {fileID: 0}
     - target: {fileID: 7542684815748462366, guid: 1267cf81ccdd19346b7308418228a595, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1990927}
-    - target: {fileID: 8508662654238952101, guid: 1267cf81ccdd19346b7308418228a595, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8508662654238952101, guid: 1267cf81ccdd19346b7308418228a595, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
