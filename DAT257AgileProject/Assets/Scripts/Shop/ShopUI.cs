@@ -10,6 +10,7 @@ public class ShopUI : MonoBehaviour
     private Transform container;
     [SerializeField]
     private Transform shopItemTemplate;
+    private IShopCustomer shopCustomer;
     void Awake()
     {
         container = transform.Find("Container");
@@ -46,16 +47,11 @@ public class ShopUI : MonoBehaviour
         if (buttonComponent != null)
         {
             buttonComponent.onClick.AddListener(() => TryBuyItem(type));
-            Debug.Log("Added onClick listener to button for type: " + type);
-        }
-        else
-        {
-            Debug.LogWarning("Button component not found on shopButton.");
         }
     }
 
     private void TryBuyItem(PurchasableItem.Type type)
     {
-        Debug.Log("You bought an item:" + type);
+        shopCustomer.BoughtItem(type);
     }
 }

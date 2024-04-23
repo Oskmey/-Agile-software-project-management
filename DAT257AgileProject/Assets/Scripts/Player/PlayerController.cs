@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static RecyclingMachine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IShopCustomer
 {
     [SerializeField] private float speed = 5f;
 
@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     private ShopManager shoppingManager;
 
     private PlayerInteraction playerInteraction;
+
+    private PlayerStatsManager playerStatsManager;
 
     private InputAction catchingAction; 
 
@@ -50,9 +52,11 @@ public class PlayerController : MonoBehaviour
         catchingAction = GetComponent<PlayerInput>().actions["Catch"];
         minigame = GameObject.FindGameObjectWithTag("Minigame Manager").GetComponent<MinigameManager>().getCurrentMinigame();
 
-        
+     
 
         playerInteraction = GetComponentInChildren<PlayerInteraction>();
+
+        playerStatsManager = GetComponent<PlayerStatsManager>();
     }
 
     private void OnEnable()
@@ -91,10 +95,15 @@ public class PlayerController : MonoBehaviour
         
     }
 
-        private void Shopping(InputAction.CallbackContext context)
+    private void Shopping(InputAction.CallbackContext context)
     {
         Debug.Log("Shopping if in range");
         shoppingManager.ShopAtNearestSpot();
+    }
+
+    public void BoughtItem(PurchasableItem.Type type)
+    {
+        Debug.Log("Bought: " + type);
     }
 
     private void OnMovement(InputAction.CallbackContext value)
@@ -123,6 +132,5 @@ public class PlayerController : MonoBehaviour
         }
         }
     }
-    
 
 }
