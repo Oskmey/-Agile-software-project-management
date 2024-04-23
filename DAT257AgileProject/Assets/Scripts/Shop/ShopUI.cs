@@ -32,14 +32,6 @@ public class ShopUI : MonoBehaviour
         Transform shopButton = Instantiate(shopItemTemplate, container);
         RectTransform shopItemRectTransform = shopButton.GetComponent<RectTransform>();
 
-        // Positioning the button
-        float shopItemSize = 300f;
-        int row = positionIndex % 3; 
-        int column = positionIndex / 3;
-        float offsetX = column * shopItemSize;
-        float offsetY = -row * shopItemSize;
-        shopItemRectTransform.anchoredPosition = new Vector2 (offsetX, offsetY);
-
         // Text & Image setup
         string itemName = PurchasableItem.GetName(type);
         int itemCost = PurchasableItem.GetCost(type);
