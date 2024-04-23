@@ -14,25 +14,28 @@ public class ShopUI : MonoBehaviour
     private Transform shopItemTemplate;
     [SerializeField]
     private string worldSceneName = "First World";
-    private IShopCustomer shopCustomer;
+
+    [SerializeField]
+    private ShopPlayer shopPlayer;
     void Awake()
     {
         container = transform.Find("Container");
+        shopPlayer = GameObject.FindGameObjectWithTag("Shop Player").GetComponent<ShopPlayer>();
     }
 
     private void Start()
     {
-        CreateShopButton(PurchasableItem.Type.Egg1, 0);
-        CreateShopButton(PurchasableItem.Type.Egg2, 1);
-        CreateShopButton(PurchasableItem.Type.Egg2, 2);
-        CreateShopButton(PurchasableItem.Type.Egg1, 3);
-        CreateShopButton(PurchasableItem.Type.Egg1, 4);
-        CreateShopButton(PurchasableItem.Type.Egg2, 5);
-        CreateShopButton(PurchasableItem.Type.Egg1, 6);
-        CreateShopButton(PurchasableItem.Type.Egg2, 7);
+        CreateShopButton(PurchasableItem.Type.Egg1);
+        CreateShopButton(PurchasableItem.Type.Egg2);
+        CreateShopButton(PurchasableItem.Type.Egg2);
+        CreateShopButton(PurchasableItem.Type.Egg1);
+        CreateShopButton(PurchasableItem.Type.Egg1);
+        CreateShopButton(PurchasableItem.Type.Egg2);
+        CreateShopButton(PurchasableItem.Type.Egg1);
+        CreateShopButton(PurchasableItem.Type.Egg2);
     }
 
-    private void CreateShopButton(PurchasableItem.Type type, int positionIndex)
+    private void CreateShopButton(PurchasableItem.Type type)
     {
         Transform shopButton = Instantiate(shopItemTemplate, container);
         RectTransform shopItemRectTransform = shopButton.GetComponent<RectTransform>();
@@ -50,15 +53,9 @@ public class ShopUI : MonoBehaviour
         Button buttonComponent = shopButton.GetComponent<Button>();
         if (buttonComponent != null)
         {
-            buttonComponent.onClick.AddListener(() => TryBuyItem(type));
+            buttonComponent.onClick.AddListener(() => shopPlayer.TryToBuy(type));
         }
     }
-
-    private void TryBuyItem(PurchasableItem.Type type)
-    {
-        shopCustomer.BoughtItem(type);
-    }
-
 
     public void ExitShop()
     {

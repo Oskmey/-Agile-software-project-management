@@ -18,6 +18,7 @@ TagManager:
   - Minigame
   - Minigame Manager
   - ShopItemPrefab
+  - Shop Player
   layers:
   - Default
   - TransparentFX

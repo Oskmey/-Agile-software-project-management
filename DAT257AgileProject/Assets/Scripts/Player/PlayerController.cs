@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static RecyclingMachine;
 
-public class PlayerController : MonoBehaviour, IShopCustomer
+public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
 
@@ -99,11 +99,6 @@ public class PlayerController : MonoBehaviour, IShopCustomer
     {
         Debug.Log("Shopping if in range");
         shoppingManager.ShopAtNearestSpot();
-    }
-
-    public void BoughtItem(PurchasableItem.Type type)
-    {
-        Debug.Log("Bought: " + type);
     }
 
     private void OnMovement(InputAction.CallbackContext value)
