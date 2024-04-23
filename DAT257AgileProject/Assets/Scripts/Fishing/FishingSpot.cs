@@ -12,12 +12,10 @@ public class FishingSpot : MonoBehaviour
 {
 
     [SerializeField] 
-    private Sprite fishingSprite1, fishingSprite2;
-    [SerializeField] 
     private GameObject exclamationMarkPrefab;
 
     private static bool isFishing = true;
-    private bool isPlayingMinigame = false;
+    public bool isPlayingMinigame { get; private set; }
     private bool canCatchTrash = false;
     private float elapsedTime = 0f;
     private float delayTime = 2f;
@@ -34,48 +32,50 @@ public class FishingSpot : MonoBehaviour
 
 
 
-void Start()
+    void Start()
     {
+        isPlayingMinigame = false;
+
         fishSpot = GetComponent<FishingSpot>();
         promptText = GameObject.FindGameObjectWithTag("TutorialText").GetComponent<TextMeshProUGUI>();
         minigameManager = GameObject.FindGameObjectWithTag("Minigame Manager").GetComponent<MinigameManager>();
         trashHandler = GameObject.FindGameObjectWithTag("TrashHandler").GetComponent<TrashHandler>();
     }
     
-//Triggered when walking close, borde vara collider grejs
-public void HandleFishingPlaying()
-{
-    
-    if (isFishing)
+    //Triggered when walking close, borde vara collider grejs
+    public void HandleFishingPlaying()
     {
-        promptText.text = "Press F to Fish";
-        //playerSpriteRenderer.sprite = fishingSprite1;
-        elapsedTime += Time.deltaTime;
-
-        if (elapsedTime >= delayTime)
+    
+        if (isFishing)
         {
-            //Debug.Log("Player is in range of fishing");
-            
+            promptText.text = "Press F to Fish";
+            //playerSpriteRenderer.sprite = fishingSprite1;
+            elapsedTime += Time.deltaTime;
+
             if (elapsedTime >= delayTime)
             {
-                if (!canCatchTrash)
+                //Debug.Log("Player is in range of fishing");
+            
+                if (elapsedTime >= delayTime)
                 {
+                    if (!canCatchTrash)
+                    {
                     
-                    SpawnExclamationMark();
-                }
-                canCatchTrash = true;
-                canCatchTime += Time.deltaTime;
+                        SpawnExclamationMark();
+                    }
+                    canCatchTrash = true;
+                    canCatchTime += Time.deltaTime;
 
-                if (canCatchTime >= canCatchDelay)
-                {
-                    canCatchTrash = false;
-                    elapsedTime = 0f;
-                    canCatchTime = 0f;
+                    if (canCatchTime >= canCatchDelay)
+                    {
+                        canCatchTrash = false;
+                        elapsedTime = 0f;
+                        canCatchTime = 0f;
+                    }
                 }
             }
         }
     }
-}
     public void HandleMinigameStart()
     {
         if (!isPlayingMinigame && canCatchTrash)
@@ -116,17 +116,16 @@ public void HandleFishingPlaying()
 
 
 
-//Should spawn the trashPrefab for each spot
+    //Should spawn the trashPrefab for each spot
     public void OnMinigameWonHandler()
     {
         // TODO: fix trashHandler being null when event invoked
         Vector2 trashSpawnPosition = new(transform.position.x, transform.position.y);
-        TrashScript currentTrash = trashHandler.CreateRandomTrash(TrashRarity.Common, trashSpawnPosition);
+        TrashScript currentTrash = trashHandler.CreateRandomTrash(TrashRarityExtensions.GetRandomRarity(), trashSpawnPosition);
     }
 
     public void OnMinigameLostHandler()
     {
         Debug.Log("Minigame lost! Implement your logic here...");
     }
-
 }
