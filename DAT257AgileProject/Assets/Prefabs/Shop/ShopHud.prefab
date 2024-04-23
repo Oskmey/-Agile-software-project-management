@@ -181,7 +181,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6260114822250096524}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5018870901405522255}
+        m_TargetAssemblyTypeName: ShopUI, Main
+        m_MethodName: ExitShop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8686555406504895236
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,7 +447,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shopItemTemplate: {fileID: 58612011180820459, guid: 84092e6ee748cf64c8d0798885047bda, type: 3}
-  ExitShopSceneName: First World
 --- !u!1001 &2564017315662936355
 PrefabInstance:
   m_ObjectHideFlags: 0

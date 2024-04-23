@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Experimental.AI;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ShopUI : MonoBehaviour
@@ -10,6 +12,8 @@ public class ShopUI : MonoBehaviour
     private Transform container;
     [SerializeField]
     private Transform shopItemTemplate;
+    [SerializeField]
+    private string worldSceneName = "First World";
     private IShopCustomer shopCustomer;
     void Awake()
     {
@@ -54,4 +58,11 @@ public class ShopUI : MonoBehaviour
     {
         shopCustomer.BoughtItem(type);
     }
+
+
+    public void ExitShop()
+    {
+        SceneManager.LoadScene(worldSceneName);
+    }
+
 }
