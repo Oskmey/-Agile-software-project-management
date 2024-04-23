@@ -51,10 +51,7 @@ public class TrashHandler : MonoBehaviour
     // Method to trigger the events
     private void TrashCollected()
     {   
-        if (Time.timeScale > 0)
-        {
             OnTrashCollected?.Invoke();
-        }
     }
 
     // Creates trash at the center of the screen
