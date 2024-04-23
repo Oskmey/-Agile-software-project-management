@@ -190,9 +190,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""ShowInventory"",
+                    ""name"": ""Pause"",
                     ""type"": ""Button"",
-                    ""id"": ""4996fb85-be70-48f5-ba0f-8a6347ed8f67"",
+                    ""id"": ""0bb7ada2-ce4b-4027-bda1-c9b6197f59e2"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -235,12 +235,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""ac4a0d61-65f7-4b0c-9df8-a92d03ecc60c"",
-                    ""path"": ""<Keyboard>/i"",
+                    ""id"": ""db439bc0-5f9d-4d1f-a782-2be15b7e9009"",
+                    ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""ShowInventory"",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -259,7 +259,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_HideTrashInfoPanel = m_UI.FindAction("HideTrashInfoPanel", throwIfNotFound: true);
-        m_UI_ShowInventory = m_UI.FindAction("ShowInventory", throwIfNotFound: true);
+        m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
     }
 
     ~@PlayerInputActions()
@@ -406,13 +406,13 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_UI;
     private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
     private readonly InputAction m_UI_HideTrashInfoPanel;
-    private readonly InputAction m_UI_ShowInventory;
+    private readonly InputAction m_UI_Pause;
     public struct UIActions
     {
         private @PlayerInputActions m_Wrapper;
         public UIActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @HideTrashInfoPanel => m_Wrapper.m_UI_HideTrashInfoPanel;
-        public InputAction @ShowInventory => m_Wrapper.m_UI_ShowInventory;
+        public InputAction @Pause => m_Wrapper.m_UI_Pause;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -425,9 +425,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @HideTrashInfoPanel.started += instance.OnHideTrashInfoPanel;
             @HideTrashInfoPanel.performed += instance.OnHideTrashInfoPanel;
             @HideTrashInfoPanel.canceled += instance.OnHideTrashInfoPanel;
-            @ShowInventory.started += instance.OnShowInventory;
-            @ShowInventory.performed += instance.OnShowInventory;
-            @ShowInventory.canceled += instance.OnShowInventory;
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -435,9 +435,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @HideTrashInfoPanel.started -= instance.OnHideTrashInfoPanel;
             @HideTrashInfoPanel.performed -= instance.OnHideTrashInfoPanel;
             @HideTrashInfoPanel.canceled -= instance.OnHideTrashInfoPanel;
-            @ShowInventory.started -= instance.OnShowInventory;
-            @ShowInventory.performed -= instance.OnShowInventory;
-            @ShowInventory.canceled -= instance.OnShowInventory;
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -466,6 +466,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     public interface IUIActions
     {
         void OnHideTrashInfoPanel(InputAction.CallbackContext context);
-        void OnShowInventory(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }

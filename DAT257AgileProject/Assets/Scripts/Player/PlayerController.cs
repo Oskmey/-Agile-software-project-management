@@ -77,24 +77,36 @@ public class PlayerController : MonoBehaviour
     // Test method to recycle trash due to no inventory system
     private void Recycle(InputAction.CallbackContext context)
     {
-        recyclingManager.RecycleAtNearestMachine();
+        if (Time.timeScale > 0)
+        {
+            recyclingManager.RecycleAtNearestMachine();
+        }
     }
 
     private void Fishing(InputAction.CallbackContext context)
-    {
-        if (playerInteraction.currentFishingSpot != null){
-            canMove=false;
-        rb.velocity = Vector2.zero;
-        playerInteraction.currentFishingSpot.HandleMinigameStart();
-        
+    {   
+        if (Time.timeScale > 0)
+        {
+            if (playerInteraction.currentFishingSpot != null)
+            {
+                canMove = false;
+                rb.velocity = Vector2.zero;
+                playerInteraction.currentFishingSpot.HandleMinigameStart();
+
+            }
+
         }
         
     }
 
         private void Shopping(InputAction.CallbackContext context)
-    {
-        Debug.Log("Shopping if in range");
-        shoppingManager.ShopAtNearestSpot();
+    {   
+        if (Time.timeScale > 0)
+        {
+            Debug.Log("Shopping if in range");
+            shoppingManager.ShopAtNearestSpot();
+        }
+
     }
 
     private void OnMovement(InputAction.CallbackContext value)
@@ -111,16 +123,23 @@ public class PlayerController : MonoBehaviour
     //Måste lägga till minigames, cant be arsed
     private void Catch(InputAction.CallbackContext context)
     {
-        if (playerInteraction.currentFishingSpot != null){
-        minigame = GameObject.FindGameObjectWithTag("Minigame Manager").GetComponent<MinigameManager>().getCurrentMinigame();
-        resultOfCatch = minigame.HandleCatch();
-        canMove=true;
-        if (resultOfCatch){
-            playerInteraction.currentFishingSpot.OnMinigameWonHandler();
-        }
-        else{
-            playerInteraction.currentFishingSpot.OnMinigameLostHandler();
-        }
+        if (Time.timeScale > 0)
+        {
+            if (playerInteraction.currentFishingSpot != null)
+            {
+                minigame = GameObject.FindGameObjectWithTag("Minigame Manager").GetComponent<MinigameManager>().getCurrentMinigame();
+                resultOfCatch = minigame.HandleCatch();
+                canMove = true;
+                if (resultOfCatch)
+                {
+                    playerInteraction.currentFishingSpot.OnMinigameWonHandler();
+                }
+                else
+                {
+                    playerInteraction.currentFishingSpot.OnMinigameLostHandler();
+                }
+            }
+    
         }
     }
     

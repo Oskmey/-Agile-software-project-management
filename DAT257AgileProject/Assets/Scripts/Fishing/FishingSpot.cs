@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
-
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
@@ -13,12 +12,10 @@ public class FishingSpot : MonoBehaviour
 {
 
     [SerializeField] 
-    private Sprite fishingSprite1, fishingSprite2;
-    [SerializeField] 
     private GameObject exclamationMarkPrefab;
 
     private static bool isFishing = true;
-    private bool isPlayingMinigame = false;
+    public bool isPlayingMinigame { get; private set; }
     private bool canCatchTrash = false;
     private float elapsedTime = 0f;
     private float delayTime = 2f;
@@ -33,9 +30,10 @@ public class FishingSpot : MonoBehaviour
 
     private TrashHandler trashHandler;
 
-
     void Start()
     {
+        isPlayingMinigame = false;
+
         fishSpot = GetComponent<FishingSpot>();
         promptText = GameObject.FindGameObjectWithTag("TutorialText").GetComponent<TextMeshProUGUI>();
         minigameManager = GameObject.FindGameObjectWithTag("Minigame Manager").GetComponent<MinigameManager>();
@@ -114,12 +112,12 @@ public class FishingSpot : MonoBehaviour
         promptText.text = "";
     }
 
-//Should spawn the trashPrefab for each spot
+    //Should spawn the trashPrefab for each spot
     public void OnMinigameWonHandler()
     {
         // TODO: fix trashHandler being null when event invoked
         Vector2 trashSpawnPosition = new(transform.position.x, transform.position.y);
-        TrashScript currentTrash = trashHandler.CreateRandomTrash(TrashRarity.Common, trashSpawnPosition);
+        TrashScript currentTrash = trashHandler.CreateRandomTrash(TrashRarityExtensions.GetRandomRarity(), trashSpawnPosition);
     }
 
     public void OnMinigameLostHandler()

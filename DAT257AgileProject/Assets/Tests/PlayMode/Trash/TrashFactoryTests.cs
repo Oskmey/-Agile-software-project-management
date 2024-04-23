@@ -26,6 +26,11 @@ public class TrashFactoryTests
         get { return Enum.GetValues(typeof(TrashType)).Cast<TrashType>(); }
     }
 
+    private static IEnumerable<TrashRarity> TrashRarityTestCases
+    {
+        get { return Enum.GetValues(typeof(TrashRarity)).Cast<TrashRarity>(); }
+    }
+
     [Test]
     public void TrashFactory_HasTrashPrefabs_ReturnsTrue()
     {
@@ -58,6 +63,21 @@ public class TrashFactoryTests
         GameObject createdTrash = TrashFactory.CreateTrash(trashType);
         TrashScript createdTrashScript = createdTrash.GetComponent<TrashScript>();
         Assert.AreEqual(trashType, createdTrashScript.TrashType);
+    }
+
+    [Test, TestCaseSource(nameof(TrashRarityTestCases))]
+    public void EachTrashRarity_CanBeCreated(TrashRarity trashRarity)
+    {
+        GameObject createdTrash = TrashFactory.CreateRandomTrashBasedOnRarity(trashRarity);
+        Assert.IsNotNull(createdTrash);
+    }
+
+    [Test, TestCaseSource(nameof(TrashRarityTestCases))]
+    public void EachTrashRarity_CanBeCreatedWithCorrectRarity(TrashRarity trashRarity)
+    {
+        GameObject createdTrash = TrashFactory.CreateRandomTrashBasedOnRarity(trashRarity);
+        TrashScript createdTrashScript = createdTrash.GetComponent<TrashScript>();
+        Assert.AreEqual(trashRarity, createdTrashScript.Rarity);
     }
 
     [TearDown]

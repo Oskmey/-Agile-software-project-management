@@ -54,8 +54,8 @@ public class TrashHandler : MonoBehaviour
 
     // Method to trigger the events
     private void TrashCollected()
-    {
-        OnTrashCollected?.Invoke();
+    {   
+            OnTrashCollected?.Invoke();
     }
 
     // Creates trash at the center of the screen
@@ -103,38 +103,40 @@ public class TrashHandler : MonoBehaviour
 
     public void DestroyTrash()
     {
-        if (gameplayHudHandler != null)
+        if (Time.timeScale > 0)
         {
-            gameplayHudHandler.HideTrashInfoHandler();
-        }
-        else
-        {
-            Debug.LogError("GameplayHudHandler not found.");
-        }
-
-        if (currentTrashObject != null)
-        {
-            TrashScript trash = currentTrashObject.GetComponent<TrashScript>();
-            //recyclingManager.AddTrashToRecycle(trash);
-
-            TrashCollected();
-            //Destroy(currentTrashObject);
-
-            Item item = currentTrashObject.GetComponent<Item>();
-
-            if (item != null)
+            if (gameplayHudHandler != null)
             {
-                int remainder = inventoryData.AddItem(item.InventoryItem, item.Quantity);
-                if (remainder == 0)
-                {
-                    item.DestroyItem();
-                }
-                else
-                {
-                    item.Quantity = remainder;
-                }
+                gameplayHudHandler.HideTrashInfoHandler();
             }
-        }
+            else
+            {
+                Debug.LogError("GameplayHudHandler not found.");
+            }
+
+            if (currentTrashObject != null)
+            {
+                TrashScript trash = currentTrashObject.GetComponent<TrashScript>();
+                //recyclingManager.AddTrashToRecycle(trash);
+
+                TrashCollected();
+                //Destroy(currentTrashObject);
+
+                Item item = currentTrashObject.GetComponent<Item>();
+
+                if (item != null)
+                {
+                    int remainder = inventoryData.AddItem(item.InventoryItem, item.Quantity);
+                    if (remainder == 0)
+                    {
+                        item.DestroyItem();
+                    }
+                    else
+                    {
+                        item.Quantity = remainder;
+                    }
+                }
+        }    }
     }
 
     public GameObject CurrentTrashObject => currentTrashObject;

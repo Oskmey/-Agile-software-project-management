@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ecc9f7c16042e14a9a71ef19b86e438, type: 3}
+  m_Name: Hogge, K.
+  m_EditorClassIdentifier: 
+  sourceName: Hogge, K.
+  dateAsString: 30-10-2019
+  title: Why Quitting Plastic Cutlery Helps Save our Ocean
+  website: Ocean Conservancy
+  link: https://oceanconservancy.org/blog/2019/10/30/quitting-plastic-cutlery-helps-save-ocean/
+  retrievalDateAsString: 15-04-2024
