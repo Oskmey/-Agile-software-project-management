@@ -162,7 +162,7 @@ public TrashRarity GetCurrentRarity(List<float> listOfRarityPercentages)
 {
 
     //You yourself have to make sure it adds up to 100% or 1.0
-    float randomNumber = UnityEngine.Random.Range((float)0.0,(float)1.0);
+    float randomNumber = UnityEngine.Random.value;
 
     if(randomNumber <= listOfRarityPercentages[0])
     {
