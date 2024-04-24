@@ -27,6 +27,7 @@ public void ShopAtNearestSpot()
         
         if (shop.IsPlayerInRange())
         {
+            playerStatsManager.Save();  //Venne om denna borde ligga här???
             SceneManager.LoadScene("Shop");
         }
         
