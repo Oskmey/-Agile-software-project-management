@@ -5,7 +5,8 @@ using UnityEngine;
 
 
  [Serializable] 
- public class FishingSpotRarities{
+ public class FishingSpotRarities
+ {
 
  public List<RarityPercentageData> trashRarityPercentages;
 
