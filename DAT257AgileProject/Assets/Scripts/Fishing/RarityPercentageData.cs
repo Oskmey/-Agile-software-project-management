@@ -5,9 +5,8 @@ using UnityEngine;
  
  
  [Serializable] 
- public class RarityPercentageData{
-
-    public string Name;
+ public class RarityPercentageData
+{
+    public TrashRarity trashRarity;
     public float percentage;
-
  }

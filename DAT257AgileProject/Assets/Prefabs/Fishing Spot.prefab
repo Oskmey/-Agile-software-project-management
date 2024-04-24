@@ -102,15 +102,15 @@ MonoBehaviour:
   fishingSprite2: {fileID: 0}
   fishingSpotRarities:
     trashRarityPercentages:
-    - Name: Common
+    - trashRarity: 0
       percentage: 0.2
-    - Name: Uncommon
+    - trashRarity: 1
       percentage: 0.2
-    - Name: Rare
+    - trashRarity: 2
       percentage: 0.2
-    - Name: Epic
+    - trashRarity: 3
       percentage: 0.2
-    - Name: Legendary
+    - trashRarity: 4
       percentage: 0.2
   exclamationMarkPrefab: {fileID: 8678099781156329870, guid: ea15b8ae6ec919142b49b5f63fe71c11, type: 3}
 --- !u!61 &4582509056629564299
