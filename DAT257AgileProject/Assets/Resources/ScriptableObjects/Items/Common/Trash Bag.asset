@@ -21,3 +21,5 @@ MonoBehaviour:
   trashModifierData:
     statModifier: {fileID: 11400000, guid: f101ccd8bda098a4689135b0ccc91986, type: 2}
   trashData: {fileID: 11400000, guid: 7edf8182ae623eb499c067bc8f009867, type: 2}
+  trashRarity: 0
+  trashScript: {fileID: 4280939727050352008, guid: e832d922162442b4c9349cd219bcfa0b, type: 3}

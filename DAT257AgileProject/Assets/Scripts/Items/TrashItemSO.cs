@@ -19,12 +19,18 @@ namespace Inventory.Model
             get { return trashData; }
         }
 
+        // needs trash script from respective trash prefab
         [SerializeField]
-        private TrashRarity trashRarity;
+        private TrashScript trashScript;
+
+        public TrashType TrashType
+        {
+            get { return trashScript.TrashType; }
+        }
 
         public TrashRarity TrashRarity
         {
-            get { return trashRarity; }
+            get { return trashScript.Rarity; }
         }
 
         public string ActionName => "Temp";

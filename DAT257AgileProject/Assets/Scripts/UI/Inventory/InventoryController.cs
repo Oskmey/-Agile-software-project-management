@@ -160,19 +160,21 @@ namespace Inventory
             sb.AppendLine();
             if(inventoryItem.Item is TrashItemSO trashItem)
             {
+                sb.Append($"Trash Type: {trashItem.TrashType}");
+                sb.AppendLine();
+
                 if (trashItem.TrashData.IsRecyclable)
                 {
-                    sb.Append("Is recycable");
+                    sb.Append("Is recyclable");
                 }
                 else
                 {
-                    sb.Append("Is not recycable");
+                    sb.Append("Is not recyclable");
                 }
 
+                sb.AppendLine();
                 sb.Append($"Money value: {trashItem.TrashData.MoneyValue}");
                 sb.AppendLine();
-
-                // TODO: dont know how to get trash rarity without trashrarity in TrashItemSO
                 sb.Append($"Rarity: {TrashRarityExtensions.ToReadableString(trashItem.TrashRarity)}");
                 sb.AppendLine();
 
