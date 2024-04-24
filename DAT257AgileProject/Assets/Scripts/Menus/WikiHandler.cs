@@ -30,6 +30,7 @@ public class WikiHandler : MonoBehaviour
         foreach (SourceData source in sources)
         {
             sourcesText += $"\n- {source.SourceName} ({source.Date}) <i>{source.Title}</i> {source.Website}";
+            sourcesText += $"\n Retrieval date: {source.RetrievalDate}";
             Button btn = sourceInfoText.GetComponent<Button>();
             btn.onClick.AddListener(delegate() { OpenLink(source.Link); });
         }
