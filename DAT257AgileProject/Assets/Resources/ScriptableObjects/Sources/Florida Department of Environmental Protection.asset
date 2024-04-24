@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ecc9f7c16042e14a9a71ef19b86e438, type: 3}
+  m_Name: Florida Department of Environmental Protection
+  m_EditorClassIdentifier: 
+  sourceName: Florida Department of Environmental Protection
+  dateAsString: 31-01-2024
+  title: Osborne Reef Waste Tire Removal Project
+  website: floridadep
+  link: https://floridadep.gov/waste/permitting-compliance-assistance/content/osborne-reef-waste-tire-removal-project
+  retrievalDateAsString: 18-04-2024

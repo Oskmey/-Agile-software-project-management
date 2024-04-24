@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
+using static Minigame;
 using static RecyclingMachine;
 
 public class TrashHandler : MonoBehaviour
@@ -13,12 +14,18 @@ public class TrashHandler : MonoBehaviour
     private InputAction hideTrashInfoPanelAction;
     private RecyclingManager recyclingManager;
 
-    private UnityEvent onTrashCollected;
+    private delegate void TrashEvent();
+    private event TrashEvent OnTrashCollected;
+
+    private FishingLoop fishingLoop;
 
     private void Start()
     {
-        onTrashCollected = new UnityEvent();
-        onTrashCollected.AddListener(FindObjectOfType<FishingLoop>().ResetFishingLoop);
+        fishingLoop = FindObjectOfType<FishingLoop>();
+        if (fishingLoop != null)
+        {
+            OnTrashCollected += fishingLoop.ResetFishingLoop;
+        }
         gameplayHudHandler = GameObject.FindGameObjectWithTag("GameplayHUD").GetComponent<GameplayHudHandler>();
         playerInput = GetComponent<PlayerInput>();
         hideTrashInfoPanelAction = playerInput.actions["HideTrashInfoPanel"];
@@ -27,10 +34,24 @@ public class TrashHandler : MonoBehaviour
 
     private void Update()
     {
-        if (hideTrashInfoPanelAction.triggered)
+         if (hideTrashInfoPanelAction.triggered)
+         {
+             DestroyTrash();
+         }
+    }
+
+    void OnDestroy()
+    {
+        if(fishingLoop != null)
         {
-            DestroyTrash();
+            OnTrashCollected -= fishingLoop.ResetFishingLoop;
         }
+    }
+
+    // Method to trigger the events
+    private void TrashCollected()
+    {   
+            OnTrashCollected?.Invoke();
     }
 
     // Creates trash at the center of the screen
@@ -45,9 +66,6 @@ public class TrashHandler : MonoBehaviour
         currentTrashObject = TrashFactory.CreateTrash(trashType);
         currentTrashObject.transform.position = position;
         TrashScript currentTrashScript = currentTrashObject.GetComponent<TrashScript>();
-        // TODO: Fix gameplayHudHandler being null, so we dont have to find it again, something to do with event invoke
-
-        gameplayHudHandler = GameObject.FindGameObjectWithTag("GameplayHUD").GetComponent<GameplayHudHandler>();
 
         if (gameplayHudHandler != null)
         {
@@ -60,7 +78,7 @@ public class TrashHandler : MonoBehaviour
         }
     }
 
-    public void CreateRandomTrash(TrashRarity trashRarity, Vector2 position)
+    public TrashScript CreateRandomTrash(TrashRarity trashRarity, Vector2 position)
     {
         currentTrashObject = TrashFactory.CreateRandomTrashBasedOnRarity(trashRarity);
         currentTrashObject.transform.position = position;
@@ -76,26 +94,31 @@ public class TrashHandler : MonoBehaviour
         {
             Debug.LogError("GameplayHudHandler not found.");
         }
+        return currentTrashScript;
     }
 
     public void DestroyTrash()
     {
-        if (gameplayHudHandler != null)
+        if (Time.timeScale > 0)
         {
-            gameplayHudHandler.HideTrashInfoHandler();
-        }
-        else
-        {
-            Debug.LogError("GameplayHudHandler not found.");
-        }
+            if (gameplayHudHandler != null)
+            {
+                gameplayHudHandler.HideTrashInfoHandler();
+            }
+            else
+            {
+                Debug.LogError("GameplayHudHandler not found.");
+            }
 
-        if (currentTrashObject != null)
-        {
-            TrashScript trash = currentTrashObject.GetComponent<TrashScript>();
-            recyclingManager.AddTrashToRecycle(trash);
+            if (currentTrashObject != null)
+            {
+                TrashScript trash = currentTrashObject.GetComponent<TrashScript>();
+                recyclingManager.AddTrashToRecycle(trash);
 
-            onTrashCollected.Invoke();
-            Destroy(currentTrashObject);
+                TrashCollected();
+                Destroy(currentTrashObject);
+            }
+  
         }
     }
 

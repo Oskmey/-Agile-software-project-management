@@ -30,6 +30,11 @@ public class PlayerStatsManager : MonoBehaviour
         recycledTrashList = LoadTrashRecycled();
 
         money = PlayerPrefs.GetInt("Money");
+
+        if (money == 0)
+        {
+            PlayerPrefs.SetInt("Money", 0);
+        }
     }
 
     // TEMP: basic temporary saving system between scenes

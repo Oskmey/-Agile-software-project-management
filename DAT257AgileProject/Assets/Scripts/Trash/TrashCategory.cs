@@ -7,7 +7,8 @@ public enum TrashCategory
     Plastic,
     Glass,
     Metal,
-    Electronic
+    Electronic,
+    Rubber
 }
 
 public static class TrashCategoryExtensions
@@ -28,6 +29,8 @@ public static class TrashCategoryExtensions
                 return "Metal";
             case TrashCategory.Electronic:
                 return "Electronic";
+            case TrashCategory.Rubber:
+                return "Rubber";
             default:
                 throw new ArgumentOutOfRangeException(nameof(trashCategory), trashCategory, $"Trash category not found {trashCategory}");
         }

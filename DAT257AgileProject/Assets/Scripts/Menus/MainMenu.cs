@@ -19,7 +19,7 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame() 
     {
-        SceneManager.LoadSceneAsync("World");
+        SceneManager.LoadSceneAsync("Oskar's World");
     }
 
     public void QuitGame()
