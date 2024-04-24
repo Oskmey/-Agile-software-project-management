@@ -20,7 +20,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Game/World.unity
     guid: 98037e9a5efe6624694133cbcd5cc7e6
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Game/Main Menu.unity
     guid: 8464bd0c4fec2314eb545d3c7fb4bdb2
   - enabled: 0
@@ -29,5 +29,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Inventory World.unity
     guid: 505b660ce7e1e674e9fa53c360a7f9c8
+  - enabled: 1
+    path: Assets/Scenes/Inventory With Pause.unity
+    guid: 8822c5f00e183b74f9191e9150f53f48
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: d6756452ac383fd41805ec29c01212ec, type: 3}
