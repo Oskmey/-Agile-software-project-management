@@ -24,7 +24,7 @@ public class FishingSpot : MonoBehaviour
     //[SerializeField] 
     private GameObject exclamationMarkPrefab;
     private static bool isFishing = true;
-    private bool isPlayingMinigame = false;
+    public bool isPlayingMinigame { get; private set; }
     private bool canCatchTrash = false;
     private float elapsedTime = 0f;
     private float delayTime = 2f;
@@ -70,30 +70,30 @@ public void HandleFishingPlaying()
         //playerSpriteRenderer.sprite = fishingSprite1;
         elapsedTime += Time.deltaTime;
 
-        if (elapsedTime >= delayTime)
-        {
-            //Debug.Log("Player is in range of fishing");
-            
             if (elapsedTime >= delayTime)
             {
-                if (!canCatchTrash)
+                //Debug.Log("Player is in range of fishing");
+            
+                if (elapsedTime >= delayTime)
                 {
+                    if (!canCatchTrash)
+                    {
                     
-                    SpawnExclamationMark();
-                }
-                canCatchTrash = true;
-                canCatchTime += Time.deltaTime;
+                        SpawnExclamationMark();
+                    }
+                    canCatchTrash = true;
+                    canCatchTime += Time.deltaTime;
 
-                if (canCatchTime >= canCatchDelay)
-                {
-                    canCatchTrash = false;
-                    elapsedTime = 0f;
-                    canCatchTime = 0f;
+                    if (canCatchTime >= canCatchDelay)
+                    {
+                        canCatchTrash = false;
+                        elapsedTime = 0f;
+                        canCatchTime = 0f;
+                    }
                 }
             }
         }
     }
-}
     public void HandleMinigameStart()
     {
         if (!isPlayingMinigame && canCatchTrash)
@@ -140,7 +140,7 @@ public void HandleFishingPlaying()
 
 
 
-//Should spawn the trashPrefab for each spot
+    //Should spawn the trashPrefab for each spot
     public void OnMinigameWonHandler()
     {
         // TODO: fix trashHandler being null when event invoked

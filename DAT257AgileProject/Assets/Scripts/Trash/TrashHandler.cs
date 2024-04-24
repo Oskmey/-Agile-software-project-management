@@ -65,8 +65,8 @@ public class TrashHandler : MonoBehaviour
 
     // Method to trigger the events
     private void TrashCollected()
-    {
-        OnTrashCollected?.Invoke();
+    {   
+            OnTrashCollected?.Invoke();
     }
 
     // Creates trash at the center of the screen
@@ -114,22 +114,26 @@ public class TrashHandler : MonoBehaviour
 
     public void DestroyTrash()
     {
-        if (gameplayHudHandler != null)
+        if (Time.timeScale > 0)
         {
-            gameplayHudHandler.HideTrashInfoHandler();
-        }
-        else
-        {
-            Debug.LogError("GameplayHudHandler not found.");
-        }
+            if (gameplayHudHandler != null)
+            {
+                gameplayHudHandler.HideTrashInfoHandler();
+            }
+            else
+            {
+                Debug.LogError("GameplayHudHandler not found.");
+            }
 
-        if (currentTrashObject != null)
-        {
-            TrashScript trash = currentTrashObject.GetComponent<TrashScript>();
-            recyclingManager.AddTrashToRecycle(trash);
+            if (currentTrashObject != null)
+            {
+                TrashScript trash = currentTrashObject.GetComponent<TrashScript>();
+                recyclingManager.AddTrashToRecycle(trash);
 
-            TrashCollected();
-            Destroy(currentTrashObject);
+                TrashCollected();
+                Destroy(currentTrashObject);
+            }
+  
         }
     }
 

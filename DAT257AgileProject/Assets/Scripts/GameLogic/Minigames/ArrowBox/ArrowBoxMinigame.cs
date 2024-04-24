@@ -75,7 +75,7 @@ public class ArrowBoxMinigame : Minigame
     {
         arrow = Instantiate(arrowPrefab);
         box = Instantiate(boxPrefab);
-        offsetArrow = new Vector3(0,2f,0);
+        offsetArrow = new Vector3(0,2.15f,0);
         offsetBox = new Vector3(-2f,1.7f,0);
         arrow.transform.position = playerPos.position + offsetArrow;
         box.transform.position = playerPos.position + offsetBox;

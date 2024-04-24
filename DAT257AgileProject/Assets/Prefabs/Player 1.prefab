@@ -105,11 +105,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a160d838ff8b4b4693ac20007e008c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AssetsPPU: 100
+  m_AssetsPPU: 32
   m_RefResolutionX: 320
-  m_RefResolutionY: 180
-  m_UpscaleRT: 0
-  m_PixelSnapping: 0
+  m_RefResolutionY: 120
+  m_UpscaleRT: 1
+  m_PixelSnapping: 1
   m_CropFrameX: 0
   m_CropFrameY: 0
   m_StretchFill: 0
@@ -125,10 +125,13 @@ GameObject:
   - component: {fileID: 4286721807922610482}
   - component: {fileID: 8626880855034935133}
   - component: {fileID: 5054322788681438099}
+  - component: {fileID: 2688113165259540311}
   - component: {fileID: 7053045411036577771}
   - component: {fileID: 264798722180249524}
   - component: {fileID: 2718632994179517745}
   - component: {fileID: 1486155095398960345}
+  - component: {fileID: 4432090041502326126}
+  - component: {fileID: 4974297544954403209}
   m_Layer: 0
   m_Name: Player 1
   m_TagString: Player
@@ -193,7 +196,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -395957489, guid: 3df068a995afc6344972405cb3d502c6, type: 3}
+  m_Sprite: {fileID: 1935072020, guid: f3ab7c1b605834803826f61abef19d1a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -228,7 +231,7 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &5054322788681438099
@@ -267,7 +270,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.5, y: 1.5}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -276,6 +279,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.1890378, y: 0.05603671}
   m_EdgeRadius: 0
+--- !u!95 &2688113165259540311
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6477538420710758391}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fd91bdbb4676a4d508e49591f31175f5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &7053045411036577771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -325,7 +349,31 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1211c2f0-512f-4b4a-92ed-2039cc40f68f
+    m_ActionName: Player/Recycle[/Keyboard/r]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 75140928-ae7a-4a62-aa37-f34510b5e900
+    m_ActionName: Player/Fish[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 85d3efaa-4f02-43f1-917a-313bb9bfd7f9
+    m_ActionName: Player/Catch[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5d285ed1-4205-42c0-9df7-25da581fc9ed
+    m_ActionName: Player/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7281573c-7408-433e-a7bf-e5ad9d62ecfa
+    m_ActionName: Player/Shop[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 43ba200c-8794-4bbb-9c45-d4dc049c71d9
+    m_ActionName: UI/HideTrashInfoPanel[/Mouse/leftButton,/Keyboard/enter,/Keyboard/z]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -343,3 +391,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d47a4f54d327434f84c1de40169ea65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4432090041502326126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6477538420710758391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58678ca833af76b43b21e20dfe0f46ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4974297544954403209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6477538420710758391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af33447c2c4af84f9f1c06627c00fa5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentFishingSpot: {fileID: 0}
