@@ -71,6 +71,7 @@ public class PlayerController : MonoBehaviour
         movementAction.canceled -= OnMovementStopped;
         recycleAction.performed -= Recycle;
         shopAction.performed -= Shopping;
+        fishingAction.performed -= Fishing;
         catchingAction.performed -= Catch;
     }
     
@@ -125,7 +126,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Time.timeScale > 0)
         {
-            if (playerInteraction.currentFishingSpot != null)
+            if (playerInteraction.currentFishingSpot != null && playerInteraction.currentFishingSpot.GetIsPlaying() == true)
             {
                 minigame = GameObject.FindGameObjectWithTag("Minigame Manager").GetComponent<MinigameManager>().getCurrentMinigame();
                 resultOfCatch = minigame.HandleCatch();
