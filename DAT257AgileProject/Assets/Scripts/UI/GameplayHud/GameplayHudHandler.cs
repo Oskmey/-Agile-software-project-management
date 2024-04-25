@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -7,11 +8,29 @@ using UnityEngine.InputSystem;
 public class GameplayHudHandler : MonoBehaviour
 {
     private InfoPanelHandler infoPanelHandler;
+    private PlayerStatsManager playerStatsManager;
+    [SerializeField]
+    private TextMeshProUGUI moneyGeneratedText;
 
     private void Start()
     {
+        playerStatsManager = FindObjectOfType<PlayerStatsManager>();
         infoPanelHandler = GetComponentInChildren<InfoPanelHandler>();
         infoPanelHandler.gameObject.SetActive(false);
+    }
+
+    void Update()
+    {
+        UpdateMoneyGenerated();
+    }
+
+    void UpdateMoneyGenerated()
+    {
+        if (moneyGeneratedText != null)
+        {
+            moneyGeneratedText.text = "Money: " + playerStatsManager.Money.ToString();
+
+        }
     }
 
     public void ShowTrashInfoHandler(TrashScript trash)

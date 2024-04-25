@@ -4386,6 +4386,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameplayHUD
       objectReference: {fileID: 0}
+    - target: {fileID: 1633566605763213701, guid: d4930d0dc155d6a4990c227b8e723320, type: 3}
+      propertyPath: moneyGeneratedText
+      value: 
+      objectReference: {fileID: 218297415}
     - target: {fileID: 6481272039014381094, guid: d4930d0dc155d6a4990c227b8e723320, type: 3}
       propertyPath: m_RenderMode
       value: 0
@@ -14470,17 +14474,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1531472384 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4785171992073122704, guid: 799b9d39c66793f42bbd2b326878340b, type: 3}
-  m_PrefabInstance: {fileID: 7167121071580977963}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62efcccf6422cf34f8d771fa31198b1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1678632047 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1394511631512588816, guid: f55b65426d73ed848a14015450b3c2b0, type: 3}
@@ -16668,7 +16661,7 @@ PrefabInstance:
     - target: {fileID: 1525051469784688475, guid: 799b9d39c66793f42bbd2b326878340b, type: 3}
       propertyPath: mouseFollower
       value: 
-      objectReference: {fileID: 1531472384}
+      objectReference: {fileID: 0}
     - target: {fileID: 1659165365896986634, guid: 799b9d39c66793f42bbd2b326878340b, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

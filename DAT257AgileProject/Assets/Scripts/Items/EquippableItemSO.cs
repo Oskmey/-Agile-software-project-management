@@ -16,7 +16,7 @@ namespace Inventory.Model
         {
             foreach (ModifierData data in modifiersData)
             {
-                data.statModifier.AffectCharacter(character, data.Amount);
+                data.StatModifier.AffectCharacter(character, data.Amount);
             }
             return true;
         }

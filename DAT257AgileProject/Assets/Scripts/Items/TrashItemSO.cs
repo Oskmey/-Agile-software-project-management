@@ -51,28 +51,4 @@ namespace Inventory.Model
             return true;
         }
     }
-
-    public class TrashModifierData
-    {
-        public CharacterStatMoneyModifierSO statModifier;
-        private int money;
-        public int Money
-        {
-            get { return money; }
-            set { this.money = value; }
-        }
-
-    }
-
-    [Serializable]
-    public class ModifierData
-    {
-        public CharacterStatModifierSO statModifier;
-        private float amount;
-        public float Amount
-        {
-            get { return amount; }
-            set { this.amount = value; }
-        }
-    }
 }

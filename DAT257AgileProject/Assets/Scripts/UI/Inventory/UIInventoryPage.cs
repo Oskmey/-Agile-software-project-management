@@ -26,7 +26,7 @@ namespace Inventory.UI
 
         public event Action<int, int> OnSwapItems;
 
-        public int currentlyDraggedItemIndex = -1;
+        private int currentlyDraggedItemIndex = -1;
 
         [SerializeField]
         private ItemActionPanel actionPanel;

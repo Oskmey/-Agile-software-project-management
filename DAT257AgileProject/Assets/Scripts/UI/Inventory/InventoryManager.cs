@@ -21,7 +21,8 @@ namespace Inventory
         private PlayerInput playerInput;
         private InputAction showInventory;
 
-        public List<InventoryItem> initialItems = new();
+        [SerializeField]
+        private List<InventoryItem> initialItems = new();
 
         [SerializeField]
         private AudioClip dropClip;
