@@ -21,7 +21,7 @@ public class WikiContainer : MonoBehaviour
             string folderName = System.IO.Path.GetFileName(folderPath);
             GameObject go = Instantiate(subheaderPrefab);
             subheaderHandler = go.GetComponent<SubheaderHandler>();
-            go.transform.parent = transform;
+            go.transform.SetParent(transform, false);
             subheaderHandler.SetHeaderText(folderName);
             go.transform.localScale = Vector3.one;
             GenerateWikiItems(folderName);
@@ -35,7 +35,7 @@ public class WikiContainer : MonoBehaviour
         {
             GameObject go = Instantiate(wikiItemPrefab);
             wikiHandler = go.GetComponent<WikiHandler>();
-            go.transform.parent = transform;
+            go.transform.SetParent(transform, false);
             go.transform.localScale = Vector3.one;
             wikiHandler.SetFactText(trash.TrashFact);
             wikiHandler.SetSourceText(trash.SourcesInformation);
