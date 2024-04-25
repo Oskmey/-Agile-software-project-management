@@ -49,8 +49,8 @@ public class FileDataHandler
             {
                 Debug.LogError($"Error occurred when trying to load file {fullPath} \n{e}");
             }
-            return loadedData;
         }
+        return loadedData;
     }
 
     // To support multiple save files, this would take in a profileId.
@@ -86,12 +86,11 @@ public class FileDataHandler
         }
     }
 
-
     // Simple implementation of XOR encryption. 
     private string EncryptDecrypt(string data)
     {
         string modifiedData = "";
-        for (var i = 0; i < data.Length; i++)
+        for (int i = 0; i < data.Length; i++)
         {
             modifiedData += (char)(data[i] ^ encryptionCodeWord[i % encryptionCodeWord.Length]);
         }

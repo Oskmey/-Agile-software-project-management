@@ -4,6 +4,9 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// Data persistence classes are based on:
+// https://www.youtube.com/playlist?list=PL3viUl9h9k7-tMGkSApPdu4hlUBagKial
+
 public class DataPersistenceManager : MonoBehaviour
 {
     [Header("File Storage Configuration")]
@@ -87,6 +90,7 @@ public class DataPersistenceManager : MonoBehaviour
             dataPersistenceObject.SaveData(gameData);
         }
 
+        // Timestamp when last saved.
         gameData.LastUpdated = System.DateTime.Now.ToBinary();
 
         dataHandler.Save(gameData);
