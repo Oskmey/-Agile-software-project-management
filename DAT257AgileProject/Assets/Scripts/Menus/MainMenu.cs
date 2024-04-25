@@ -20,6 +20,7 @@ public class MainMenu : MonoBehaviour
         }
     }
 
+    // Not needed anymore.
     public void PlayGame() 
     {
         LoadScene();
@@ -30,7 +31,7 @@ public class MainMenu : MonoBehaviour
         // Just to make sure the buttons aren't clicked more than once. 
         DisableMenuButtons();
         DataPersistenceManager.Instance.NewGame();
-        // TODO: Check if this is necessary.
+        // Save game before loading scene. 
         DataPersistenceManager.Instance.SaveGame();
         LoadScene();
     }
