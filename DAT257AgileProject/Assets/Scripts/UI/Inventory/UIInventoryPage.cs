@@ -50,7 +50,8 @@ namespace Inventory.UI
                 uiItem.OnItemBeginDrag += HandleBeginDrag;
                 uiItem.OnItemDroppedOn += HandleSwap;
                 uiItem.OnItemEndDrag += HandleEndDrag;
-                uiItem.OnRightMouseButtonClick += HandleShowItemActions;
+                // Note: Leftover code from tutorial for action buttons
+                //uiItem.OnRightMouseButtonClick += HandleShowItemActions;
             }
         }
 

@@ -160,9 +160,6 @@ namespace Inventory
             sb.AppendLine();
             if(inventoryItem.Item is TrashItemSO trashItem)
             {
-                sb.Append($"Trash Type: {trashItem.TrashType}");
-                sb.AppendLine();
-
                 if (trashItem.TrashData.IsRecyclable)
                 {
                     sb.Append("Is recyclable");

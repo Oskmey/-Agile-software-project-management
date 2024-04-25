@@ -8,8 +8,8 @@ namespace Inventory.Model
     [CreateAssetMenu(menuName = "Inventory/Items/TrashItemSO")]
     public class TrashItemSO : ItemSO, IDestroyableItem, IItemAction
     {
-        [SerializeField]
-        private ModifierData trashModifierData = new();
+        //[SerializeField]
+        //private ModifierData trashModifierData = new();
 
         [SerializeField]
         private TrashData trashData;
@@ -38,12 +38,12 @@ namespace Inventory.Model
 
         public void Awake()
         {
-            trashModifierData.Amount = trashData.MoneyValue;
+            //trashModifierData.Amount = trashData.MoneyValue;
         }
 
         public bool PerformAction(GameObject character, List<ItemParameter> itemState = null)
         {
-            trashModifierData.statModifier.AffectCharacter(character, trashModifierData.Amount);
+            //trashModifierData.statModifier.AffectCharacter(character, trashModifierData.Amount);
             //foreach (ModifierData data in modifiersData)
             //{
                // data.statModifier.AffectCharacter(character, data.Amount);
