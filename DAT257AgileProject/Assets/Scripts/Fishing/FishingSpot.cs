@@ -43,7 +43,7 @@ public class FishingSpot : MonoBehaviour
 
     private TrashRarity currentRarity;
 
-
+    
 
 //Need to add percentages I guess
 void Start()
