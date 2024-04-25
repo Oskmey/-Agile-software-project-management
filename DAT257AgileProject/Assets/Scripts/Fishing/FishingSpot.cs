@@ -11,7 +11,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-public class FishingSpot : MonoBehaviour, IDataPersistence
+public class FishingSpot : MonoBehaviour
 {
 
     [SerializeField] 
@@ -42,9 +42,6 @@ public class FishingSpot : MonoBehaviour, IDataPersistence
     private List<float> listOfRarities;
 
     private TrashRarity currentRarity;
-
-    private TrashScript lastFishedTrash;
-    private TrashScript lastSavedTrash;
 
 //Need to add percentages I guess
 void Start()
@@ -147,10 +144,7 @@ public void HandleFishingPlaying()
         // TODO: fix trashHandler being null when event invoked
         isPlayingMinigame=false;
         Vector2 trashSpawnPosition = new(transform.position.x, transform.position.y);
-        lastFishedTrash = trashHandler.CreateRandomTrash(currentRarity, trashSpawnPosition);
-        // The save exists to update the list keeping track of current trash. 
-        // When inventory gets implemented, this can hopefully be removed. 
-        DataPersistenceManager.Instance.SaveGame();
+        TrashScript currentTrash = trashHandler.CreateRandomTrash(currentRarity, trashSpawnPosition);
     }
 
     public void OnMinigameLostHandler()
@@ -197,24 +191,5 @@ public TrashRarity GetCurrentRarity(List<float> listOfRarityPercentages)
     return TrashRarity.Common;
 
 }
-
-    public void LoadData(GameData gameData)
-    {
-        // Doesn't need to load anything. 
-    }
-
-    public void SaveData(GameData gameData)
-    {
-        // This is the best solution that I could come up with.
-        // Hopefully when inventory gets implemented it can be less
-        // ugly and bad.
-
-        // Only add the trash to the list if it's a different instance from the last saved one
-        if (lastFishedTrash != lastSavedTrash)
-        {
-            gameData.FishedTrash.Add(lastFishedTrash);
-            lastSavedTrash = lastFishedTrash;
-        }
-    }
 }
 

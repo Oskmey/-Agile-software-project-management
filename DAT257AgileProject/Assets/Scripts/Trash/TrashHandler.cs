@@ -21,15 +21,16 @@ public class TrashHandler : MonoBehaviour
     private PlayerInteraction playerInteraction;
 
     private FishingSpot fishingLoop;
+    private PlayerStatsManager playerStatsManager;
 
     private void Start()
     {
-        
         playerInteraction = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<PlayerInteraction>();
         gameplayHudHandler = GameObject.FindGameObjectWithTag("GameplayHUD").GetComponent<GameplayHudHandler>();
         playerInput = GetComponent<PlayerInput>();
         hideTrashInfoPanelAction = playerInput.actions["HideTrashInfoPanel"];
         recyclingManager = GameObject.FindGameObjectWithTag("Recycling Manager").GetComponent<RecyclingManager>();
+        playerStatsManager = FindObjectOfType<PlayerStatsManager>();
 
         // Kommer alltid vara null vid start
         // fishingLoop = playerInteraction.currentFishingSpot;
@@ -128,7 +129,7 @@ public class TrashHandler : MonoBehaviour
             if (currentTrashObject != null)
             {
                 TrashScript trash = currentTrashObject.GetComponent<TrashScript>();
-                recyclingManager.AddTrashToRecycle(trash);
+                playerStatsManager.FishedTrash.Add(trash);
 
                 TrashCollected();
                 Destroy(currentTrashObject);

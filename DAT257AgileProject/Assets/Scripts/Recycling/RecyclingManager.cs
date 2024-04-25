@@ -4,21 +4,13 @@ using System.Linq;
 using UnityEngine;
 using static RecyclingMachine;
 
-public class RecyclingManager : MonoBehaviour, IDataPersistence
+public class RecyclingManager : MonoBehaviour
 {
     private IReadOnlyList<RecyclingMachine> recyclingMachines;
     private PlayerStatsManager playerStatsManager;
-    // TEMP: list to store the trash that the player has to recycle
-    private static List<TrashScript> trashToRecycle;
     private bool trashWasRecycled;
     private TrashHandler TrashHandler;
-    public IReadOnlyList<TrashScript> TrashToRecycle
-    {
-        get
-        {
-            return trashToRecycle;
-        }
-    }
+
     public IReadOnlyList<RecyclingMachine> RecyclingMachines
     {
         get
@@ -45,9 +37,9 @@ public class RecyclingManager : MonoBehaviour, IDataPersistence
 
     public void RecycleAtNearestMachine()
     {
-        if (trashToRecycle.Count > 0)
+        if (playerStatsManager.FishedTrash.Count > 0)
         {
-            RecycleAtNearestMachine(trashToRecycle[0]);
+            RecycleAtNearestMachine(playerStatsManager.FishedTrash[0]);
         }
         else
         {
@@ -69,7 +61,7 @@ public class RecyclingManager : MonoBehaviour, IDataPersistence
                     Debug.Log(trash.MoneyValue);
                     playerStatsManager.Money += trash.MoneyValue;
                     UpdateTrashDictionary(trash);
-                    trashToRecycle.Remove(trash);
+                    playerStatsManager.FishedTrash.Remove(trash);
                     trashWasRecycled = true;
                     TrashHandler.DestroyTrash();
                 }
@@ -109,20 +101,5 @@ public class RecyclingManager : MonoBehaviour, IDataPersistence
         }
 
         return recyclingMachines;
-    }
-
-    public void AddTrashToRecycle(TrashScript trash)
-    {
-        trashToRecycle.Add(trash);
-    }
-
-    public void LoadData(GameData gameData)
-    {
-        trashToRecycle = gameData.FishedTrash;
-    }
-
-    public void SaveData(GameData gameData)
-    {
-        gameData.FishedTrash = trashToRecycle;
     }
 }

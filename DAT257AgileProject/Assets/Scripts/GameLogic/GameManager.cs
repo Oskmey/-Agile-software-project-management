@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
 
     void UpdateTrashLeftText()
     {
-        recycleTrashLeftText.text = "Trash left to recycle: " + recyclingManager.TrashToRecycle.Count;
+        //recycleTrashLeftText.text = "Trash left to recycle: " + recyclingManager.TrashToRecycle.Count;
     }
 
     void UpdateMoneyGenerated()

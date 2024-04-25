@@ -24,15 +24,19 @@ public class PlayerStatsManager : MonoBehaviour, IDataPersistence
         set { money = value; }
     }
 
+    public List<TrashScript> FishedTrash { get; private set; }
+
     public void LoadData(GameData gameData)
     {
         recycledTrashDictionary = gameData.RecycledTrashCount;
         money = gameData.Money;
+        FishedTrash = gameData.FishedTrash;
     }
 
     public void SaveData(GameData gameData)
     {
         gameData.RecycledTrashCount = recycledTrashDictionary;
         gameData.Money = money;
+        gameData.FishedTrash = FishedTrash;
     }
 }
