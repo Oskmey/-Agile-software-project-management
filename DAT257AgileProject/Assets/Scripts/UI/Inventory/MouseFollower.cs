@@ -9,16 +9,12 @@ public class MouseFollower : MonoBehaviour
     [SerializeField]
     private Canvas canvas;
 
-    [SerializeField] 
-    private Camera mainCam;
-
     [SerializeField]
     private UIInventoryItem item;
 
     public void Awake()
     {
         canvas = transform.root.GetComponent<Canvas>();
-        mainCam = Camera.main;
         item = GetComponentInChildren<UIInventoryItem>();
     }
 
@@ -34,7 +30,6 @@ public class MouseFollower : MonoBehaviour
 
     private void FollowObject()
     {
-        // TODO: make use of new input system for mousePosition
         Vector2 position;
         Vector2 mousePosition = Mouse.current.position.ReadValue();
 

@@ -56,14 +56,11 @@ void Start()
     trashHandler = GameObject.FindGameObjectWithTag("TrashHandler").GetComponent<TrashHandler>();
 }
 
-
-
 //Triggered when walking close, borde vara collider grejs
 public void HandleFishingPlaying()
 {
     if (isFishing)
-    {
-        
+    {    
         promptText.text = "Press F to Fish";
         //playerSpriteRenderer.sprite = fishingSprite1;
         elapsedTime += Time.deltaTime;

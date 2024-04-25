@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     // TEMP savesystem
     private void ResetSave()
     {
-        PlayerPrefs.SetInt("RecycledTrashLeft", 0);
+        //PlayerPrefs.SetInt("RecycledTrashLeft", 0);
         PlayerPrefs.SetInt("RecycledTrashCount", 0);
         PlayerPrefs.SetInt("Money", 0);
     }
@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
         }
         else 
         {
-            recyclingManager.Save();
+            //recyclingManager.Save();
         }
     }
 
