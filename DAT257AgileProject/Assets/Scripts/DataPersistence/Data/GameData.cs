@@ -15,8 +15,8 @@ public class GameData
     public int Money { get { return money; } set { money = value; } }
 
     [SerializeField]
-    private List<TrashScript> fishedTrash;
-    public List<TrashScript> FishedTrash { get { return fishedTrash; } set { fishedTrash = value; } }
+    private List<TrashType> fishedTrash;
+    public List<TrashType> FishedTrash { get { return fishedTrash; } set { fishedTrash = value; } }
 
     [SerializeField]
     private SerializableDictionary<TrashType, int> recycledTrashCount;

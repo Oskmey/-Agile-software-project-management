@@ -129,7 +129,7 @@ public class TrashHandler : MonoBehaviour
             if (currentTrashObject != null)
             {
                 TrashScript trash = currentTrashObject.GetComponent<TrashScript>();
-                playerStatsManager.FishedTrash.Add(trash);
+                playerStatsManager.FishedTrash.Add(trash.TrashType);
 
                 TrashCollected();
                 Destroy(currentTrashObject);

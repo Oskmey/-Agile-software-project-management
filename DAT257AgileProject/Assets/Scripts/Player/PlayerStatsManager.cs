@@ -24,7 +24,7 @@ public class PlayerStatsManager : MonoBehaviour, IDataPersistence
         set { money = value; }
     }
 
-    public List<TrashScript> FishedTrash { get; private set; }
+    public List<TrashType> FishedTrash { get; private set; }
 
     public void LoadData(GameData gameData)
     {

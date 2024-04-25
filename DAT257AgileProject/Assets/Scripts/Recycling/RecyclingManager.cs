@@ -47,8 +47,9 @@ public class RecyclingManager : MonoBehaviour
         }
     }
 
-    private void RecycleAtNearestMachine(TrashScript trash)
+    private void RecycleAtNearestMachine(TrashType trashType)
     {
+        TrashScript trash = GetTrashScriptFromType(trashType);
         foreach (RecyclingMachine recyclingMachine in recyclingMachines)
         {
             // TODO: Make it so player can only recycle trash to nearest recycling machine
@@ -60,8 +61,9 @@ public class RecyclingManager : MonoBehaviour
                 {
                     Debug.Log(trash.MoneyValue);
                     playerStatsManager.Money += trash.MoneyValue;
+                    Debug.Log(playerStatsManager.Money);
                     UpdateTrashDictionary(trash);
-                    playerStatsManager.FishedTrash.Remove(trash);
+                    playerStatsManager.FishedTrash.Remove(trashType);
                     trashWasRecycled = true;
                     TrashHandler.DestroyTrash();
                 }
@@ -75,6 +77,18 @@ public class RecyclingManager : MonoBehaviour
             // Debug.Log("Player is not in range of recycling machine");
             // }
         }
+    }
+
+    // It is not possible to save scripts between sessions, so here
+    // is a method to convert the saved TrashTypes to TrashScripts by
+    // creating them using the factory, this will not affect other things, 
+    // which would have happened if trashHandler's create trash was used instead. 
+    private static TrashScript GetTrashScriptFromType(TrashType trashType)
+    {
+        GameObject trashObject = TrashFactory.CreateTrash(trashType);
+        TrashScript trash = trashObject.GetComponent<TrashScript>();
+        Destroy(trashObject);
+        return trash;
     }
 
     private void UpdateTrashDictionary(TrashScript trash)
