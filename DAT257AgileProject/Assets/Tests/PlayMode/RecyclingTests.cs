@@ -68,7 +68,7 @@ public class RecyclingTests : InputTestFixture
         // link: https://forum.unity.com/threads/i-cannot-make-unity-test-framework-work-with-inputtestfixture.1331400/
         // Object.Destroy(recyclingPlayerInput);
 
-        Assert.AreEqual(2, playerStatsManager.RecycledTrashList.Count);
+        Assert.AreEqual(2, playerStatsManager.RecycledTrashDictionary.Count);
         Assert.AreEqual(20, playerStatsManager.Money);
         Assert.IsTrue(recyclingManager.TrashWasRecycled);
     }

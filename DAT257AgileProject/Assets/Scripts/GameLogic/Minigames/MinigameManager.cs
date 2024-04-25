@@ -88,7 +88,7 @@ public class MinigameManager : MonoBehaviour
     {
         minigameStarted = false;
         promptText.text = "";
-        PlayerPrefs.SetInt("RecycledTrashLeft", PlayerPrefs.GetInt("RecycledTrashLeft")+1);
+        // PlayerPrefs.SetInt("RecycledTrashLeft", PlayerPrefs.GetInt("RecycledTrashLeft")+1);
     }
 
     public void HandleMinigameLost()

@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using static RecyclingMachine;
 
-public class RecyclingManager : MonoBehaviour
+public class RecyclingManager : MonoBehaviour, IDataPersistence
 {
     private IReadOnlyList<RecyclingMachine> recyclingMachines;
     private PlayerStatsManager playerStatsManager;
@@ -35,10 +35,6 @@ public class RecyclingManager : MonoBehaviour
         }
     }
 
-    void Start(){
-        trashToRecycle = LoadTrash();
-    }
-
     void Awake()
     {
         trashWasRecycled = false;
@@ -47,39 +43,14 @@ public class RecyclingManager : MonoBehaviour
         playerStatsManager = FindObjectOfType<PlayerStatsManager>();
     }
 
-    // TEMP: basic temporary saving system between scenes
-    private List<TrashScript> LoadTrash()
-    {
-        List<TrashScript> trashToRecycle = new();
-        int trashToRecycleLeft = PlayerPrefs.GetInt("RecycledTrashLeft");
-
-        if (trashToRecycleLeft > 0)
-        {
-            for (int i = 0; i < trashToRecycleLeft; i++)
-            {
-                GameObject tempTrash = TrashFactory.CreateTrash(TrashType.TrashBag);
-                trashToRecycle.Add(tempTrash.GetComponent<TrashScript>());
-                Destroy(tempTrash);
-            }
-        }
-
-        return trashToRecycle;
-    }
-
-    // TEMP SAVE
-    public void Save()
-    {
-        PlayerPrefs.SetInt("RecycledTrashLeft", trashToRecycle.Count);
-    }
-
     public void RecycleAtNearestMachine()
     {
-        trashToRecycle = LoadTrash();
         if (trashToRecycle.Count > 0)
         {
             RecycleAtNearestMachine(trashToRecycle[0]);
         }
-        else{
+        else
+        {
             Debug.Log("No trash to recycle");
         }
     }
@@ -97,11 +68,10 @@ public class RecyclingManager : MonoBehaviour
                 {
                     Debug.Log(trash.MoneyValue);
                     playerStatsManager.Money += trash.MoneyValue;
-                    playerStatsManager.RecycledTrashList.Add(trash);
+                    UpdateTrashDictionary(trash);
                     trashToRecycle.Remove(trash);
                     trashWasRecycled = true;
                     TrashHandler.DestroyTrash();
-                    PlayerPrefs.SetInt("RecycledTrashLeft", PlayerPrefs.GetInt("RecycledTrashLeft")-1);
                 }
                 else
                 {
@@ -112,6 +82,18 @@ public class RecyclingManager : MonoBehaviour
             // {
             // Debug.Log("Player is not in range of recycling machine");
             // }
+        }
+    }
+
+    private void UpdateTrashDictionary(TrashScript trash)
+    {
+        if (playerStatsManager.RecycledTrashDictionary.ContainsKey(trash.TrashType))
+        {
+            playerStatsManager.RecycledTrashDictionary[trash.TrashType]++;
+        }
+        else
+        {
+            playerStatsManager.RecycledTrashDictionary.Add(trash.TrashType, 1);
         }
     }
 
@@ -132,5 +114,15 @@ public class RecyclingManager : MonoBehaviour
     public void AddTrashToRecycle(TrashScript trash)
     {
         trashToRecycle.Add(trash);
+    }
+
+    public void LoadData(GameData gameData)
+    {
+        trashToRecycle = gameData.FishedTrash;
+    }
+
+    public void SaveData(GameData gameData)
+    {
+        gameData.FishedTrash = trashToRecycle;
     }
 }

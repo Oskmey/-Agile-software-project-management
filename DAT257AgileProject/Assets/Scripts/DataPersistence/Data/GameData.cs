@@ -15,8 +15,12 @@ public class GameData
     public int Money { get { return money; } set { money = value; } }
 
     [SerializeField]
-    private SerializableDictionary<TrashRarity, int> fishedTrash;
-    public SerializableDictionary<TrashRarity, int> FishedTrash { get { return fishedTrash; } set { fishedTrash = value; } }
+    private List<TrashScript> fishedTrash;
+    public List<TrashScript> FishedTrash { get { return fishedTrash; } set { fishedTrash = value; } }
+
+    [SerializeField]
+    private SerializableDictionary<TrashType, int> recycledTrashCount;
+    public SerializableDictionary<TrashType, int> RecycledTrashCount { get { return recycledTrashCount; } set { recycledTrashCount = value; } }
 
     // This field is relevant for multiple files and debugging.
     [SerializeField]

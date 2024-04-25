@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            playerStatsManager.Save();
+            //playerStatsManager.Save();
 
         }
 
@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
         }
         else 
         {
-            recyclingManager.Save();
+            //recyclingManager.Save();
         }
     }
 
@@ -95,6 +95,6 @@ public class GameManager : MonoBehaviour
 
     void UpdateRecycledTrashCountText()
     {
-        recycledTrashCountText.text = "Trash recycled: " + playerStatsManager.RecycledTrashList.Count.ToString();
+        recycledTrashCountText.text = "Trash recycled: " + playerStatsManager.RecycledTrashDictionary.Count.ToString();
     }
 }
