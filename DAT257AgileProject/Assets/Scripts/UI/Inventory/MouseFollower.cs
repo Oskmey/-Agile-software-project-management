@@ -43,7 +43,7 @@ public class MouseFollower : MonoBehaviour
         // Update to new position as last position can show
         // where item ui element was for mouse follower last for a frame
         if (val) Update();
-        Debug.Log($"Item toggled {val}");
+        //Debug.Log($"Item toggled {val}");
         gameObject.SetActive(val);
     }
 }

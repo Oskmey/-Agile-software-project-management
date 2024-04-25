@@ -27,7 +27,10 @@ public class RecyclingInteraction : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             isPlayerInRange = true;
-            promptText.text = "Press R to Recycle";
+            if (promptText != null)
+            {
+                promptText.text = "Press R to Recycle";
+            }
         }
     }
 
@@ -36,7 +39,10 @@ public class RecyclingInteraction : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             isPlayerInRange = false;
-            promptText.text = "";
+            if(promptText != null)
+            {
+                promptText.text = "";
+            }
         }
     }
 }

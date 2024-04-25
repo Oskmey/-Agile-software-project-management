@@ -10,7 +10,7 @@ using UnityEngine.UIElements;
 
 namespace Inventory
 {
-    public class InventoryController : MonoBehaviour
+    public class InventoryManager : MonoBehaviour
     {
         [SerializeField]
         private UIInventoryPage inventoryUI;
@@ -207,7 +207,14 @@ namespace Inventory
 
         public void Update()
         {
-            HandleInventoryShow();
+            if(Time.timeScale > 0)
+            {
+                HandleInventoryShow();
+            }
+            else
+            {
+                inventoryUI.Hide();
+            }
         }
 
         private void HandleInventoryShow()

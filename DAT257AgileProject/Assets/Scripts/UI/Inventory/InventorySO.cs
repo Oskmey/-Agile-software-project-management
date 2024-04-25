@@ -147,7 +147,6 @@ namespace Inventory.Model
                 }
             }
 
-            Debug.Log("Recycled trash");
             InformAboutChange();
             return recycableTrashItems;
         }

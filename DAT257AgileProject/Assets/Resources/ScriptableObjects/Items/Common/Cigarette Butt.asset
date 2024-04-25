@@ -15,11 +15,8 @@ MonoBehaviour:
   <IsStackable>k__BackingField: 1
   <MaxStackSize>k__BackingField: 99
   <Name>k__BackingField: Cigarette Butt
-  <Description>k__BackingField: Is very smokey
+  <Description>k__BackingField: Is a very smokey cigarette butt
   <ItemImage>k__BackingField: {fileID: 21300000, guid: 19c3c9b1bf223e545a65920bff0caac9, type: 3}
   <DefaultParametersList>k__BackingField: []
-  trashModifierData:
-    statModifier: {fileID: 11400000, guid: f101ccd8bda098a4689135b0ccc91986, type: 2}
   trashData: {fileID: 11400000, guid: 1ad4ef729f315e044b3e6a2326d94235, type: 2}
-  trashRarity: 0
   trashScript: {fileID: -565129392054802311, guid: b3eb4c006d570f440a866a60439ae0ee, type: 3}

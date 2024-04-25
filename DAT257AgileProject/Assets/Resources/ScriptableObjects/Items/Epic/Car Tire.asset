@@ -15,11 +15,8 @@ MonoBehaviour:
   <IsStackable>k__BackingField: 1
   <MaxStackSize>k__BackingField: 99
   <Name>k__BackingField: Car Tire
-  <Description>k__BackingField: Is bouncy
+  <Description>k__BackingField: Is a bouncy car tire
   <ItemImage>k__BackingField: {fileID: 21300000, guid: a82f191221829da4f9857f342fbdc29c, type: 3}
   <DefaultParametersList>k__BackingField: []
-  trashModifierData:
-    statModifier: {fileID: 11400000, guid: f101ccd8bda098a4689135b0ccc91986, type: 2}
   trashData: {fileID: 11400000, guid: dc440b4501e91004db9958a9c0d1d392, type: 2}
-  trashRarity: 3
   trashScript: {fileID: -3614313260051933767, guid: 95fc558e42d6dc84e808564417919055, type: 3}

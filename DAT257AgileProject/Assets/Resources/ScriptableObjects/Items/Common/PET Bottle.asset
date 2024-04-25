@@ -15,11 +15,8 @@ MonoBehaviour:
   <IsStackable>k__BackingField: 1
   <MaxStackSize>k__BackingField: 99
   <Name>k__BackingField: PET Bottle
-  <Description>k__BackingField: Is bottle
+  <Description>k__BackingField: Is a PET Bottle
   <ItemImage>k__BackingField: {fileID: 21300000, guid: 8af99caca6628e04d84410f3ab3bea7b, type: 3}
   <DefaultParametersList>k__BackingField: []
-  trashModifierData:
-    statModifier: {fileID: 11400000, guid: f101ccd8bda098a4689135b0ccc91986, type: 2}
   trashData: {fileID: 11400000, guid: 214d96c1d493c9744b745a7255d1e9af, type: 2}
-  trashRarity: 0
   trashScript: {fileID: -3034936081512340894, guid: ee436337835113146bf9ffd89ccb8002, type: 3}

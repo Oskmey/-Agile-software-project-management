@@ -15,11 +15,8 @@ MonoBehaviour:
   <IsStackable>k__BackingField: 1
   <MaxStackSize>k__BackingField: 99
   <Name>k__BackingField: Plastic Spoon
-  <Description>k__BackingField: Is plastic spoon
+  <Description>k__BackingField: Is a Plastic Spoon
   <ItemImage>k__BackingField: {fileID: 21300000, guid: 53ad163d1113bf8498f020462fe98f28, type: 3}
   <DefaultParametersList>k__BackingField: []
-  trashModifierData:
-    statModifier: {fileID: 11400000, guid: f101ccd8bda098a4689135b0ccc91986, type: 2}
   trashData: {fileID: 11400000, guid: 39f15ded6917f654b92210e287abbce5, type: 2}
-  trashRarity: 1
   trashScript: {fileID: -1211776597752391769, guid: 62eb59eddb2778144bad0fc5432dd699, type: 3}
