@@ -11,16 +11,16 @@ public class ShopPlayer : MonoBehaviour
 
     }
 
-    public void TryToBuy(PurchasableItem.Type type)
+    public void TryToBuy(AccessorySO type)
     {
         money = PlayerPrefs.GetInt("Money");
         Debug.Log("You have: " + money + " money");
 
-        if (money >= PurchasableItem.GetCost(type))
+        if (money >= type.cost)
         {
             Debug.Log("You had enough money!");
             addItemToInventory(type);
-            PlayerPrefs.SetInt("Money", money - PurchasableItem.GetCost(type));
+            PlayerPrefs.SetInt("Money", money - type.cost);
             Debug.Log("You know have: " + PlayerPrefs.GetInt("Money") + " money left");
         }
         else
@@ -29,9 +29,9 @@ public class ShopPlayer : MonoBehaviour
         }
     }
 
-    private void addItemToInventory(PurchasableItem.Type type)
+    private void addItemToInventory(AccessorySO type)
     {
         // TODO Add to inventory
-        Debug.Log(type + " is going to be added to your inventory");
+        Debug.Log(type.accessoryName + " is going to be added to your inventory");
     }
 }
