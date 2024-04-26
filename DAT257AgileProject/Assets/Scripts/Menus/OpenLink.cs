@@ -15,4 +15,8 @@ public class OpenLink : MonoBehaviour
     {   
        Application.OpenURL(text);
     }
+    public void OpenChannelLinked(string link) 
+    {
+        Application.OpenURL(link);
+    }
 }
