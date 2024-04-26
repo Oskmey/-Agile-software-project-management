@@ -44,6 +44,7 @@ namespace Inventory.UI
             {
                 UIInventoryItem uiItem = Instantiate(itemPrefab, Vector3.zero, Quaternion.identity);
                 uiItem.transform.SetParent(contentPanel);
+                uiItem.transform.localScale = new Vector3(1, 1, 1);
                 listOfUIItems.Add(uiItem);
 
                 uiItem.OnItemClicked += HandleItemSelection;
