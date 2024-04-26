@@ -64,6 +64,7 @@ public class PauseMenu : MonoBehaviour
     public void Menu()
     {
         TogglePause();
+        DataPersistenceManager.Instance.SaveGame();
         SceneManager.LoadSceneAsync("Main Menu");
     }
 
