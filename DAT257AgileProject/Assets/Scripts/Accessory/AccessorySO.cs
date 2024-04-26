@@ -15,7 +15,7 @@ public class AccessorySO : ScriptableObject
 
     [Header("Accessory Rarity")]
     [Tooltip("Rarity of the item")]
-    public rarity rarity;
+    public Rarity rarity;
 
 
     [Header("Accessory effects")]
@@ -26,13 +26,13 @@ public class AccessorySO : ScriptableObject
 
 
 
-    public enum rarity
-    {
-        Common = 50,
-        Uncommon = 30,
-        Rare = 15,
-        Epic = 10,
-        Legendary = 5
-    }
+public enum Rarity
+{
+     Common = 50,
+    Uncommon = 30,
+    Rare = 15,
+    Epic = 10,
+    Legendary = 5
+}
 
 

@@ -20,7 +20,17 @@ public class ShopUI : MonoBehaviour
 
     [SerializeField]
     private ShopPlayer shopPlayer;
-
+    [Header("Rarity Borders for the shop items")]
+    [SerializeField]
+    private Sprite commonBorder;
+    [SerializeField]
+    private Sprite uncommonBorder;
+    [SerializeField]
+    private Sprite rareBorder;
+    [SerializeField]
+    private Sprite epicBorder;
+    [SerializeField]
+    private Sprite legendaryBorder;
     [Header("Shop Items based on time of the day")]
     [SerializeField]
     private int minItems;
@@ -53,14 +63,38 @@ public class ShopUI : MonoBehaviour
         shopButton.Find("NameText").GetComponent<TextMeshProUGUI>().SetText(itemName);
         shopButton.Find("GoldText").GetComponent<TextMeshProUGUI>().SetText(itemCost.ToString());
         shopButton.Find("ItemIcon").GetComponent<Image>().sprite = itemSprite;
+        Image border = shopButton.GetComponent<Image>();
 
-        // Add onClick listener to the button
+        switch (type.rarity)
+        {
+            case Rarity.Common:
+                border.sprite = commonBorder;
+                break;
+            case Rarity.Uncommon:
+                border.sprite = uncommonBorder;
+                break;
+            case Rarity.Rare:
+                border.sprite = rareBorder;
+                break;
+            case Rarity.Epic:
+                border.sprite = epicBorder;
+                break;
+            case Rarity.Legendary:
+                border.sprite = legendaryBorder;
+                break;
+            default:
+                border.sprite = commonBorder;
+                break;
+        }
+
+
         Button buttonComponent = shopButton.GetComponent<Button>();
         if (buttonComponent != null)
         {
             buttonComponent.onClick.AddListener(() => shopPlayer.TryToBuy(type));
         }
     }
+
 
     public void ExitShop()
     {
@@ -101,5 +135,5 @@ public class ShopUI : MonoBehaviour
             CreateShopButton(shopingItems[0]);
         }
 
-    }   
+    }
 }
