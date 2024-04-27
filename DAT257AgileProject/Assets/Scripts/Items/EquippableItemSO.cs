@@ -10,6 +10,9 @@ namespace Inventory.Model
         [SerializeField]
         private List<ModifierData> modifiersData = new();
         public string ActionName => "Equip";
+
+        [field: SerializeField]
+        public string Name { get; private set; }
         //public AudioClip actionSFX { get; private set; }
 
         public bool PerformAction(GameObject character, List<ItemParameter> itemState = null)
