@@ -134,10 +134,8 @@ public class TrashHandler : MonoBehaviour
         if (currentTrashObject != null)
         {
             TrashCollected();
-
-            Item item = currentTrashObject.GetComponent<Item>();
-
-            if (item != null)
+            
+            if (currentTrashObject.TryGetComponent<Item>(out var item))
             {
                 int remainder = inventoryData.AddItem(item.InventoryItem, item.Quantity);
                 if (remainder == 0)
@@ -149,6 +147,8 @@ public class TrashHandler : MonoBehaviour
                     item.Quantity = remainder;
                 }
             }
+
+            currentTrashObject = null;
         }   
     }
 

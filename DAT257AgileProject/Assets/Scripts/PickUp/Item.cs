@@ -49,6 +49,7 @@ public class Item : MonoBehaviour
             transform.localScale = Vector3.Lerp(startScale, endScale, currentTime / duration);
             yield return null;
         }
+
         Destroy(gameObject);
     }
 }
