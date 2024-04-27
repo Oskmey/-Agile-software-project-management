@@ -40,26 +40,16 @@ public class RecyclingManager : MonoBehaviour
 
     public void RecycleAtNearestMachine()
     {
-        List<TrashData> trashToRecycle = playerInventory.GetAndRemoveTrashItems();
-        if (trashToRecycle.Count > 0)
-        {
-            foreach(TrashData trash in trashToRecycle)
-            {
-                if (trash.IsRecyclable)
-                {
-                    RecycleAtNearestMachine(trash);
-                }
-            } 
-        }
-    }
-
-    private void RecycleAtNearestMachine(TrashData trash)
-    {
         foreach (RecyclingMachine recyclingMachine in recyclingMachines)
         {
             if (recyclingMachine.IsPlayerInRange())
             {
-                playerStatsManager.Money += trash.MoneyValue;
+                List<TrashData> trashToRecycle = playerInventory.GetAndRemoveRecyclableTrashItems();
+
+                foreach (TrashData trash in trashToRecycle)
+                {
+                    playerStatsManager.Money += trash.MoneyValue;
+                }
             }
         }
     }

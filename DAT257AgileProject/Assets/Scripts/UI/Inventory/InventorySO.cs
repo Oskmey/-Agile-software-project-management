@@ -133,7 +133,7 @@ namespace Inventory.Model
             InformAboutChange();
         }
 
-        public List<TrashData> GetAndRemoveTrashItems()
+        public List<TrashData> GetAndRemoveRecyclableTrashItems()
         {
             List<TrashData> recycableTrashItems = new();
 
@@ -141,9 +141,12 @@ namespace Inventory.Model
             {
                 if (inventoryItems[i].Item is TrashItemSO trashItem)
                 {
-                    TrashData trashData = trashItem.TrashData;
-                    recycableTrashItems.Add(trashData);
-                    inventoryItems[i] = InventoryItem.GetEmptyItem();
+                    if (trashItem.TrashData.IsRecyclable)
+                    {
+                        TrashData trashData = trashItem.TrashData;
+                        recycableTrashItems.Add(trashData);
+                        inventoryItems[i] = InventoryItem.GetEmptyItem();
+                    }
                 }
             }
 
