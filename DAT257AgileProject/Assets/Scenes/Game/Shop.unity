@@ -337,6 +337,10 @@ PrefabInstance:
       propertyPath: m_CellSize.y
       value: 152
       objectReference: {fileID: 0}
+    - target: {fileID: 5230688703787899957, guid: f08559c084d56ee4c94dd4ec452a1f7a, type: 3}
+      propertyPath: m_ConstraintCount
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5377047372413942041, guid: f08559c084d56ee4c94dd4ec452a1f7a, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -417,12 +421,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5957954562286731403, guid: f08559c084d56ee4c94dd4ec452a1f7a, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 260
+      objectReference: {fileID: 0}
+    - target: {fileID: 5957954562286731403, guid: f08559c084d56ee4c94dd4ec452a1f7a, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6090951259243414616, guid: f08559c084d56ee4c94dd4ec452a1f7a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -800
+      objectReference: {fileID: 0}
+    - target: {fileID: 6260114822250096524, guid: f08559c084d56ee4c94dd4ec452a1f7a, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6260114822250096524, guid: f08559c084d56ee4c94dd4ec452a1f7a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 61bdf19d1446c4b488fbd7f2104d67e1, type: 3}
     - target: {fileID: 8863073780417213144, guid: f08559c084d56ee4c94dd4ec452a1f7a, type: 3}
       propertyPath: m_Name
       value: ShopHud
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8686555406504895236, guid: f08559c084d56ee4c94dd4ec452a1f7a, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f08559c084d56ee4c94dd4ec452a1f7a, type: 3}

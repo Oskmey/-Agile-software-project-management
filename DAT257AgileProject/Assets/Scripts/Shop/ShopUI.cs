@@ -12,11 +12,10 @@ using UnityEngine.UI;
 
 public class ShopUI : MonoBehaviour
 {
+    private string worldSceneName = "First World";
     private Transform container;
     [SerializeField]
     private Transform shopItemTemplate;
-    [SerializeField]
-    private string worldSceneName = "First World";
 
     [SerializeField]
     private ShopPlayer shopPlayer;
@@ -43,6 +42,25 @@ public class ShopUI : MonoBehaviour
     [SerializeField]
     private List<AccessorySO> shopingItems;
 
+
+    public string WorldSceneName
+    {
+        get { return worldSceneName; }
+        set
+        {
+            for (int i = 0; i < SceneManager.sceneCount; i++)
+            {
+                var scene = SceneManager.GetSceneAt(i);
+                if (scene.name == value)
+                {
+                    worldSceneName = value;
+                    return;
+                }
+            }
+            Debug.LogError("Scene with name " + value + " not found");
+        }
+    }
+
     void Awake()
     {
         container = transform.Find("Container");
@@ -54,15 +72,9 @@ public class ShopUI : MonoBehaviour
     {
         Transform shopButton = Instantiate(shopItemTemplate, container);
         RectTransform shopItemRectTransform = shopButton.GetComponent<RectTransform>();
-
-        // Text & Image setup
-        string itemName = type.accessoryName;
-        int itemCost = type.cost;
-        Sprite itemSprite = type.sprite;
-
-        shopButton.Find("NameText").GetComponent<TextMeshProUGUI>().SetText(itemName);
-        shopButton.Find("GoldText").GetComponent<TextMeshProUGUI>().SetText(itemCost.ToString());
-        shopButton.Find("ItemIcon").GetComponent<Image>().sprite = itemSprite;
+        shopButton.Find("NameText").GetComponent<TextMeshProUGUI>().SetText(type.accessoryName);
+        shopButton.Find("GoldText").GetComponent<TextMeshProUGUI>().SetText(type.cost.ToString());
+        shopButton.Find("ItemIcon").GetComponent<Image>().sprite = type.sprite;
         Image border = shopButton.GetComponent<Image>();
 
         switch (type.rarity)
@@ -136,4 +148,5 @@ public class ShopUI : MonoBehaviour
         }
 
     }
+
 }
