@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static RecyclingMachine;
 
 public class ShopManager : MonoBehaviour
@@ -25,9 +27,8 @@ public void ShopAtNearestSpot()
         
         if (shop.IsPlayerInRange())
         {
-            Debug.Log("Player is in range of shopping");
-            // NOTE: Trash is not recyclable by default, needs to be RecycableTrash
-            
+            playerStatsManager.Save();  //Venne om denna borde ligga här???
+            SceneManager.LoadScene("Shop");
         }
         
     }

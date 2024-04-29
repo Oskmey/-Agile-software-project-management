@@ -21,20 +21,18 @@ public class PlayerStatsManager : MonoBehaviour
     public int Money
     {
         get { return money; }
-        set { money = value; }
+        set 
+        { 
+            money = value; 
+            PlayerPrefs.SetInt("Money", money);
+        }
     }
 
     // Start is called before the first frame update
     void Awake()
     {
         recycledTrashList = LoadTrashRecycled();
-
-        money = PlayerPrefs.GetInt("Money");
-
-        if (money == 0)
-        {
-            PlayerPrefs.SetInt("Money", 0);
-        }
+        money = PlayerPrefs.GetInt("Money", 0);
     }
 
     // TEMP: basic temporary saving system between scenes
@@ -60,12 +58,6 @@ public class PlayerStatsManager : MonoBehaviour
     public void Save()
     {
         PlayerPrefs.SetInt("RecycledTrashCount", recycledTrashList.Count);
-        PlayerPrefs.SetInt("Money", money);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        PlayerPrefs.Save();
     }
 }
