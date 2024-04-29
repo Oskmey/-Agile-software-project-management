@@ -8,13 +8,14 @@ public class ShopPlayer : MonoBehaviour, IDataPersistence
 
     public void TryToBuy(AccessorySO type)
     {
-        Debug.Log("You have: " + money + " money");
+        Debug.Log($"You have: {money} money.");
 
         if (money >= type.cost)
         {
             Debug.Log("You had enough money!");
-            addItemToInventory(type);
-            Debug.Log("You know have: " + PlayerPrefs.GetInt("Money") + " money left");
+            money -= type.cost;
+            AddItemToInventory(type);
+            Debug.Log($"You know have: {money} money left.");
         }
         else
         {
@@ -22,7 +23,7 @@ public class ShopPlayer : MonoBehaviour, IDataPersistence
         }
     }
 
-    private void addItemToInventory(AccessorySO type)
+    private void AddItemToInventory(AccessorySO type)
     {
         // TODO Add to inventory
         Debug.Log(type.accessoryName + " is going to be added to your inventory");
