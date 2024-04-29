@@ -5,6 +5,7 @@ using UnityEngine;
 public class ShopPlayer : MonoBehaviour
 {
     private int money;
+    private PlayerStatsManager playerStatsManager;
 
     void Start()
     {
