@@ -16,7 +16,7 @@ namespace Inventory.UI
         [SerializeField]
         private UIInventoryDescription itemDescription;
 
-        private List<UIInventoryItem> listOfUIItems = new();
+        private List<UIInventoryItem> listOfUIItems;
 
         [SerializeField]
         private MouseFollower mouseFollower;
@@ -40,9 +40,18 @@ namespace Inventory.UI
 
         public void InitializeInventoryUI(int inventorySize)
         {
+            listOfUIItems = new();
             for (int i = 0; i < inventorySize; i++)
             {
                 UIInventoryItem uiItem = Instantiate(itemPrefab, Vector3.zero, Quaternion.identity);
+                if(uiItem is null)
+                {
+                    Debug.Log("ui item is null");
+                }
+                else
+                {
+                    Debug.Log("ui item is not null");
+                }
                 uiItem.transform.SetParent(contentPanel);
                 uiItem.transform.localScale = new Vector3(1, 1, 1);
                 listOfUIItems.Add(uiItem);
@@ -173,9 +182,14 @@ namespace Inventory.UI
             listOfUIItems[itemIndex].Select();
         }
 
+        private void OnDestroy()
+        {
+            listOfUIItems.Clear();
+        }
+
         internal void ResetAllItems()
         {
-            foreach (var item in listOfUIItems)
+            foreach (UIInventoryItem item in listOfUIItems)
             {
                 item.ResetData();
                 item.Deselect();

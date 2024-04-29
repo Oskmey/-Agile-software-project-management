@@ -573,6 +573,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5286112664361289115, guid: 799b9d39c66793f42bbd2b326878340b, type: 3}
+      propertyPath: m_TagString
+      value: InventoyUI
+      objectReference: {fileID: 0}
     - target: {fileID: 5432487176452385528, guid: 799b9d39c66793f42bbd2b326878340b, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -780,6 +784,10 @@ PrefabInstance:
     - target: {fileID: 5500311779573076676, guid: 97e618c5d2bd70442bfe7765ef82010e, type: 3}
       propertyPath: m_Name
       value: PauseCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 5747604307670197028, guid: 97e618c5d2bd70442bfe7765ef82010e, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6868882824325354727, guid: 97e618c5d2bd70442bfe7765ef82010e, type: 3}
       propertyPath: m_Pivot.x
@@ -1039,7 +1047,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1285921796}
-  - {fileID: 1724368618}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1372,10 +1379,13 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8378955101188755425, guid: d4930d0dc155d6a4990c227b8e723320, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 731588019}
+    - targetCorrespondingSourceObject: {fileID: 8378955101188755425, guid: d4930d0dc155d6a4990c227b8e723320, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 1703479758}
     - targetCorrespondingSourceObject: {fileID: 8378955101188755425, guid: d4930d0dc155d6a4990c227b8e723320, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 731588019}
+      addedObject: {fileID: 1724368618}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4930d0dc155d6a4990c227b8e723320, type: 3}
 --- !u!224 &1634133625 stripped
@@ -1575,7 +1585,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 997473137}
+  m_Father: {fileID: 1634133625}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

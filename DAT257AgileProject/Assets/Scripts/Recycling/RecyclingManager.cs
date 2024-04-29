@@ -40,6 +40,7 @@ public class RecyclingManager : MonoBehaviour
 
     public void RecycleAtNearestMachine()
     {
+        int money = PlayerPrefs.GetInt("Money");
         foreach (RecyclingMachine recyclingMachine in recyclingMachines)
         {
             if (recyclingMachine.IsPlayerInRange())
@@ -48,10 +49,11 @@ public class RecyclingManager : MonoBehaviour
 
                 foreach (TrashData trash in trashToRecycle)
                 {
-                    playerStatsManager.Money += trash.MoneyValue;
+                    money += trash.MoneyValue;
                 }
             }
         }
+        PlayerPrefs.SetInt("Money", money);
     }
 
     public IReadOnlyList<RecyclingMachine> GetRecyclingMachines()
