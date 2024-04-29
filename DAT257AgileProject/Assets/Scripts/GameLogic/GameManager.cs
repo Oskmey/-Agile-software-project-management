@@ -24,18 +24,9 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        ResetSave();
         // fishingLoop = FindObjectOfType<FishingLoop>();
         playerStatsManager = FindObjectOfType<PlayerStatsManager>();
         recyclingManager = FindObjectOfType<RecyclingManager>();
-    }
-
-    // TEMP savesystem
-    private void ResetSave()
-    {
-        PlayerPrefs.SetInt("RecycledTrashLeft", 0);
-        PlayerPrefs.SetInt("RecycledTrashCount", 0);
-        PlayerPrefs.SetInt("Money", 0);
     }
 
     private void Save()
