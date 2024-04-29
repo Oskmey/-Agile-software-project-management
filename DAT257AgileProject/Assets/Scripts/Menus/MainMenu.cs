@@ -31,13 +31,13 @@ public class MainMenu : MonoBehaviour
         // Just to make sure the buttons aren't clicked more than once. 
         DisableMenuButtons();
         DataPersistenceManager.Instance.NewGame();
-        // Save game before loading scene. 
-        DataPersistenceManager.Instance.SaveGame();
         LoadScene();
     }
 
     private static void LoadScene()
     {
+        // Save game before loading scene. 
+        DataPersistenceManager.Instance.SaveGame();
         // Loading the scene will load the game due to OnSceneLoaded in DataPersistenceManager.
         SceneManager.LoadSceneAsync("Oskar's World");
     }
@@ -46,8 +46,6 @@ public class MainMenu : MonoBehaviour
     {
         // Just to make sure the buttons aren't clicked more than once. 
         DisableMenuButtons();
-        // Save game before loading scene. 
-        DataPersistenceManager.Instance.SaveGame();
         LoadScene();
     }
 
