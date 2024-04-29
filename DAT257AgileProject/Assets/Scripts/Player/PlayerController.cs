@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
 
     private PlayerInteraction playerInteraction;
 
+    private PlayerStatsManager playerStatsManager;
+
     private InputAction catchingAction; 
 
     private Minigame minigame;
@@ -50,9 +52,11 @@ public class PlayerController : MonoBehaviour
         catchingAction = GetComponent<PlayerInput>().actions["Catch"];
         minigame = GameObject.FindGameObjectWithTag("Minigame Manager").GetComponent<MinigameManager>().getCurrentMinigame();
 
-        
+     
 
         playerInteraction = GetComponentInChildren<PlayerInteraction>();
+
+        playerStatsManager = GetComponent<PlayerStatsManager>();
     }
 
     private void OnEnable()
@@ -143,6 +147,5 @@ public class PlayerController : MonoBehaviour
     
         }
     }
-    
 
 }

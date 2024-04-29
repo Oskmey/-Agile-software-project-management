@@ -101,6 +101,8 @@ public class RecyclingManager : MonoBehaviour
                     trashToRecycle.Remove(trash);
                     trashWasRecycled = true;
                     TrashHandler.DestroyTrash();
+                    int playerMoney = playerStatsManager.Money;
+                    playerStatsManager.Money = playerMoney + trash.MoneyValue;
                     PlayerPrefs.SetInt("RecycledTrashLeft", PlayerPrefs.GetInt("RecycledTrashLeft")-1);
                 }
                 else
