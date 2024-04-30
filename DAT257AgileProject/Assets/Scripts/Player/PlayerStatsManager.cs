@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerStatsManager : MonoBehaviour, IDataPersistence
 {
     private int money;
-    public SerializableDictionary<TrashType, int> RecycledTrashDictionary { get; set; }
+    public SerializableDictionary<TrashType, int> RecycledTrashDictionary { get; private set; }
 
     public int Money
     {
