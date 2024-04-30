@@ -4,19 +4,8 @@ using UnityEngine;
 
 public class PlayerStatsManager : MonoBehaviour, IDataPersistence
 {
-    private SerializableDictionary<TrashType, int> recycledTrashDictionary;
     private int money;
-    public SerializableDictionary<TrashType, int> RecycledTrashDictionary
-    {
-        get
-        {
-            return recycledTrashDictionary;
-        }
-        set
-        {
-            recycledTrashDictionary = value;
-        }
-    }
+    public SerializableDictionary<TrashType, int> RecycledTrashDictionary { get; set; }
 
     public int Money
     {
@@ -28,14 +17,14 @@ public class PlayerStatsManager : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData gameData)
     {
-        recycledTrashDictionary = gameData.RecycledTrashCount;
+        RecycledTrashDictionary = gameData.RecycledTrashCount;
         money = gameData.Money;
         FishedTrash = gameData.FishedTrash;
     }
 
     public void SaveData(GameData gameData)
     {
-        gameData.RecycledTrashCount = recycledTrashDictionary;
+        gameData.RecycledTrashCount = RecycledTrashDictionary;
         gameData.Money = money;
         gameData.FishedTrash = FishedTrash;
     }
