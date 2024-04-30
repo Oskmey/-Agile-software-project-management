@@ -1805,6 +1805,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShopPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 6988859590413074970, guid: bd664f47e92d9a148884c6bc03d2c29f, type: 3}
+      propertyPath: inventoryData
+      value: 
+      objectReference: {fileID: 11400000, guid: 61539fd28ea43fd42aa4e22c1a71ffb7, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
