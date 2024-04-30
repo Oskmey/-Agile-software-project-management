@@ -5,10 +5,11 @@ using UnityEngine;
 public class ShopPlayer : MonoBehaviour
 {
     private int money;
+    private PlayerStatsManager playerStatsManager;
 
     void Start()
     {
-
+        playerStatsManager = FindAnyObjectByType<PlayerStatsManager>();
     }
 
     public void TryToBuy(AccessorySO type)
@@ -21,6 +22,7 @@ public class ShopPlayer : MonoBehaviour
             Debug.Log("You had enough money!");
             addItemToInventory(type);
             PlayerPrefs.SetInt("Money", money - type.cost);
+            playerStatsManager.Money -= type.cost;
             Debug.Log("You know have: " + PlayerPrefs.GetInt("Money") + " money left");
         }
         else

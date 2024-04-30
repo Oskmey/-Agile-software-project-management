@@ -28,8 +28,7 @@ public class GameplayHudHandler : MonoBehaviour
     {
         if (moneyGeneratedText != null)
         {
-            moneyGeneratedText.text = "Money: " + PlayerPrefs.GetInt("Money").ToString();
-
+            moneyGeneratedText.text = "Money: " + playerStatsManager.Money;
         }
     }
 
