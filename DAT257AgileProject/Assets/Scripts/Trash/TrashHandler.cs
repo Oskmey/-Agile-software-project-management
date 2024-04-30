@@ -140,10 +140,12 @@ public class TrashHandler : MonoBehaviour
                 int remainder = inventoryData.AddItem(item.InventoryItem, item.Quantity);
                 if (remainder == 0)
                 {
-                    item.DestroyItem();
+                    item.CollectItem();
                 }
                 else
                 {
+                    Debug.Log("Inventory full, cant collect trash item, it is back in the sea (destroyed)");
+                    item.DestroyItem();
                     item.Quantity = remainder;
                 }
             }

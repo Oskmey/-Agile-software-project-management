@@ -7,8 +7,8 @@ using UnityEngine;
 public class ShopPlayer : MonoBehaviour
 {
     private int money;
-    private InventorySO inventoryData;
     [SerializeField]
+    private InventorySO inventoryData;
     private PlayerStatsManager playerStatsManager;
 
     void Start()
