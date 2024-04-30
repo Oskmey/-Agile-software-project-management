@@ -11,8 +11,6 @@ namespace Inventory.Model
         //[SerializeField]
         //private ModifierData trashModifierData = new();
 
-        public string Name { get; private set; }
-
         [SerializeField]
         private TrashData trashData;
 

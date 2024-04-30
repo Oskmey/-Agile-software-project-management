@@ -32,6 +32,6 @@ public class ShopPlayer : MonoBehaviour
     private void addItemToInventory(AccessorySO type)
     {
         // TODO Add to inventory
-        Debug.Log(type.accessoryName + " is going to be added to your inventory");
+        Debug.Log(type.AccessoryName + " is going to be added to your inventory");
     }
 }

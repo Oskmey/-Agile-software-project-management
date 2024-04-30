@@ -1171,6 +1171,22 @@ PrefabInstance:
       propertyPath: inventoryUI
       value: 
       objectReference: {fileID: 212845577}
+    - target: {fileID: 171852961314016569, guid: 30ff80c249b9a54478d3728266ce02df, type: 3}
+      propertyPath: initialItems.Array.data[6].item
+      value: 
+      objectReference: {fileID: 11400000, guid: b3d485b21a8cca84e97d70a8b3971404, type: 2}
+    - target: {fileID: 171852961314016569, guid: 30ff80c249b9a54478d3728266ce02df, type: 3}
+      propertyPath: initialItems.Array.data[8].item
+      value: 
+      objectReference: {fileID: 11400000, guid: 702e06fe4c72b994f8d2f52beacda996, type: 2}
+    - target: {fileID: 171852961314016569, guid: 30ff80c249b9a54478d3728266ce02df, type: 3}
+      propertyPath: initialItems.Array.data[6].quantity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 171852961314016569, guid: 30ff80c249b9a54478d3728266ce02df, type: 3}
+      propertyPath: initialItems.Array.data[8].quantity
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 624719995333237826, guid: 30ff80c249b9a54478d3728266ce02df, type: 3}
       propertyPath: m_Name
       value: InventoryManager
@@ -1679,19 +1695,19 @@ PrefabInstance:
       objectReference: {fileID: 1122487445}
     - target: {fileID: 5918980391223807324, guid: 5898f2f23d9ceff41acfee786b0e46c4, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5918980391223807324, guid: 5898f2f23d9ceff41acfee786b0e46c4, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5918980391223807324, guid: 5898f2f23d9ceff41acfee786b0e46c4, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 43.26265
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5918980391223807324, guid: 5898f2f23d9ceff41acfee786b0e46c4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -42.106102
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

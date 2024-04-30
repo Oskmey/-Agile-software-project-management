@@ -3,6 +3,7 @@ using Inventory.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -151,6 +152,7 @@ namespace Inventory
             }
             ItemSO item = inventoryItem.Item;
             string description = PrepareDescription(inventoryItem);
+
             inventoryUI.UpdateDescription(itemIndex, item.ItemImage, item.name, description);
         }
 
@@ -159,7 +161,7 @@ namespace Inventory
             StringBuilder sb = new();
             sb.Append(inventoryItem.Item.Description);
             sb.AppendLine();
-            if(inventoryItem.Item is TrashItemSO trashItem)
+            if (inventoryItem.Item is TrashItemSO trashItem)
             {
                 if (trashItem.TrashData.IsRecyclable)
                 {
@@ -191,6 +193,38 @@ namespace Inventory
                 }
                 sb.Append($"Trash Categories: {categories} ");
                 sb.AppendLine();            
+            }
+            else if (inventoryItem.Item is EquippableItemSO equippableItem)
+            {
+                sb.Append($"Cost: {equippableItem.Accessory.cost} ");
+                sb.AppendLine();
+
+                sb.Append($"Rarity: {equippableItem.Accessory.rarity} ");
+                sb.AppendLine();
+
+                string effects = "";
+                if (equippableItem.Accessory.accessoryEffects.Count == 0)
+                {
+                    effects = " none";
+                }
+                else
+                {
+                    for (int i = 0; i < equippableItem.Accessory.accessoryEffects.Count; i++)
+                    {
+                        AEffect accessoryEffect = equippableItem.Accessory.accessoryEffects[i];
+                        if (i == equippableItem.Accessory.accessoryEffects.Count - 1)
+                        {
+                            effects += accessoryEffect;
+                        }
+                        else
+                        {
+                            effects += accessoryEffect + ", ";
+                        }
+                    }
+                }
+
+                sb.Append($"Accessory effects: {effects} ");
+                sb.AppendLine();
             }
             else
             {

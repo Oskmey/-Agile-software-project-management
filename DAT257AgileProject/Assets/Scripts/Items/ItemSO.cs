@@ -10,6 +10,12 @@ namespace Inventory.Model
         [field: SerializeField]
         public bool IsStackable { get; set; }
         public int ID => GetInstanceID();
+        private string itemName;
+        public string Name
+        {
+            get { return itemName; }
+            protected set { itemName = value; }
+        }
 
         [field: SerializeField]
         public int MaxStackSize { get; set; } = 1;

@@ -44,14 +44,7 @@ namespace Inventory.UI
             for (int i = 0; i < inventorySize; i++)
             {
                 UIInventoryItem uiItem = Instantiate(itemPrefab, Vector3.zero, Quaternion.identity);
-                if(uiItem is null)
-                {
-                    Debug.Log("ui item is null");
-                }
-                else
-                {
-                    Debug.Log("ui item is not null");
-                }
+
                 uiItem.transform.SetParent(contentPanel);
                 uiItem.transform.localScale = new Vector3(1, 1, 1);
                 listOfUIItems.Add(uiItem);
