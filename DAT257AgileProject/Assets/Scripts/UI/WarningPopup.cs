@@ -11,19 +11,23 @@ public class WarningPopup : MonoBehaviour
 
     void Start()
     {
-        warningText.enabled = false; // Hide the warning text initially
+        gameObject.SetActive(false);
+        warningText.enabled = false;
     }
 
     public void DisplayWarning(string message)
     {
-        warningText.text = message;
         warningText.enabled = true;
+        gameObject.SetActive(true);
+        warningText.text = message;
         StartCoroutine(HideWarningAfterTime());
     }
 
     private IEnumerator HideWarningAfterTime()
     {
         yield return new WaitForSeconds(displayTime);
+        warningText.text = "";
+        gameObject.SetActive(false);
         warningText.enabled = false;
     }
 }

@@ -12,8 +12,8 @@ public class ShopPlayer : MonoBehaviour
     private InventorySO inventoryData;
     private PlayerStatsManager playerStatsManager;
 
-    public delegate void ShopBuyEvent();
-    public event ShopBuyEvent OnBuyAttempt;
+    public delegate void ShopEvent();
+    public event ShopEvent OnBuyInvalid;
 
     void Start()
     {
@@ -24,10 +24,10 @@ public class ShopPlayer : MonoBehaviour
     {
         money = PlayerPrefs.GetInt("Money");
         Debug.Log("You have: " + money + " money");
-        OnBuyAttempt?.Invoke();
 
         if (inventoryData.IsInventoryFull())
         {
+            OnBuyInvalid?.Invoke();
             Debug.Log("Inventory is full, can not buy item");
         }
         else if (money >= type.cost)
