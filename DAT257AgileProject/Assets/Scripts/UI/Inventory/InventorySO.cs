@@ -107,6 +107,15 @@ namespace Inventory.Model
             AddItem(item.Item, item.Quantity);
         }
 
+        public void AddItemAt(InventoryItem item, int index)
+        {
+            if (inventoryItems[index].IsEmpty)
+            {
+                inventoryItems[index] = item;
+            }
+            InformAboutChange();
+        }
+
         public Dictionary<int, InventoryItem> GetCurrentInventoryState()
         {
             Dictionary<int, InventoryItem> returnValue = new();

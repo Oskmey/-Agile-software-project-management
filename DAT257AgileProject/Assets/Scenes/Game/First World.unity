@@ -1454,6 +1454,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 61539fd28ea43fd42aa4e22c1a71ffb7, type: 2}
     - target: {fileID: 1633566605763213701, guid: d4930d0dc155d6a4990c227b8e723320, type: 3}
+      propertyPath: inventoryManager
+      value: 
+      objectReference: {fileID: 2117162030}
+    - target: {fileID: 1633566605763213701, guid: d4930d0dc155d6a4990c227b8e723320, type: 3}
       propertyPath: moneyGeneratedText
       value: 
       objectReference: {fileID: 1724368619}
@@ -2061,7 +2065,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 171852961314016569, guid: 30ff80c249b9a54478d3728266ce02df, type: 3}
       propertyPath: initialInventoryItems.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 171852961314016569, guid: 30ff80c249b9a54478d3728266ce02df, type: 3}
       propertyPath: initialItems.Array.data[0].quantity
@@ -2078,7 +2082,7 @@ PrefabInstance:
     - target: {fileID: 171852961314016569, guid: 30ff80c249b9a54478d3728266ce02df, type: 3}
       propertyPath: initialAccessoryItems.Array.data[1].item
       value: 
-      objectReference: {fileID: 11400000, guid: b3d485b21a8cca84e97d70a8b3971404, type: 2}
+      objectReference: {fileID: 11400000, guid: 702e06fe4c72b994f8d2f52beacda996, type: 2}
     - target: {fileID: 171852961314016569, guid: 30ff80c249b9a54478d3728266ce02df, type: 3}
       propertyPath: initialInventoryItems.Array.data[0].item
       value: 
@@ -2086,7 +2090,11 @@ PrefabInstance:
     - target: {fileID: 171852961314016569, guid: 30ff80c249b9a54478d3728266ce02df, type: 3}
       propertyPath: initialInventoryItems.Array.data[1].item
       value: 
-      objectReference: {fileID: 11400000, guid: 91d48c6d46421764d900fc57cbac7e56, type: 2}
+      objectReference: {fileID: 11400000, guid: 7e40329d4494f9c43bf8d7f7d4d668a2, type: 2}
+    - target: {fileID: 171852961314016569, guid: 30ff80c249b9a54478d3728266ce02df, type: 3}
+      propertyPath: initialInventoryItems.Array.data[2].item
+      value: 
+      objectReference: {fileID: 11400000, guid: 702e06fe4c72b994f8d2f52beacda996, type: 2}
     - target: {fileID: 171852961314016569, guid: 30ff80c249b9a54478d3728266ce02df, type: 3}
       propertyPath: initialAccessoryItems.Array.data[0].quantity
       value: 1
@@ -2101,6 +2109,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 171852961314016569, guid: 30ff80c249b9a54478d3728266ce02df, type: 3}
       propertyPath: initialInventoryItems.Array.data[1].quantity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 171852961314016569, guid: 30ff80c249b9a54478d3728266ce02df, type: 3}
+      propertyPath: initialInventoryItems.Array.data[2].quantity
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 624719995333237826, guid: 30ff80c249b9a54478d3728266ce02df, type: 3}
@@ -2152,6 +2164,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30ff80c249b9a54478d3728266ce02df, type: 3}
+--- !u!114 &2117162030 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 171852961314016569, guid: 30ff80c249b9a54478d3728266ce02df, type: 3}
+  m_PrefabInstance: {fileID: 2117162029}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33e6cb6574af6474880e733f93a35f9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

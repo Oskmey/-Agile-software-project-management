@@ -24,6 +24,9 @@ namespace Inventory.UI
 
         private bool empty = true;
 
+        private int quantity;
+
+        public int Quantity { get => quantity; private set => quantity = value; }
         public void Awake()
         {
             ResetData();
@@ -47,6 +50,7 @@ namespace Inventory.UI
             itemImage.gameObject.SetActive(true);
             itemImage.sprite = sprite;
             quantityText.text = quantity.ToString();
+            Quantity = quantity;
             empty = false;
         }
 

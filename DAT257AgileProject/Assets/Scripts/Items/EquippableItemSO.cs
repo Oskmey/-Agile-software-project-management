@@ -9,13 +9,13 @@ namespace Inventory.Model
     {
         //[SerializeField]
         //private List<ModifierData> modifiersData = new();
-        public string ActionName => "Equip";
-
-
+        // TODO: equip to accessory from inventory action
+        public string ActionName => null;
+        
         [SerializeField]
         private AccessorySO accessory;
-
         public AccessorySO Accessory => accessory;
+
 
 
         //public AudioClip actionSFX { get; private set; }
@@ -28,10 +28,10 @@ namespace Inventory.Model
 
         public bool PerformAction(GameObject character, List<ItemParameter> itemState = null)
         {
-           // foreach (ModifierData data in modifiersData)
-           // {
-              //  data.StatModifier.AffectCharacter(character, data.Amount);
-           // }
+            // foreach (ModifierData data in modifiersData)
+            // {
+            //  data.StatModifier.AffectCharacter(character, data.Amount);
+            // }
             return true;
         }
     }

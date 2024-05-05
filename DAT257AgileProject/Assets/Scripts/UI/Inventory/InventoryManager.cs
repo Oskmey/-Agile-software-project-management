@@ -38,6 +38,9 @@ namespace Inventory
         [SerializeField]
         private AudioSource audioSource;
 
+        public delegate void SwapEvent();
+        public event SwapEvent SwapItemToAccessoryIncorrect;
+
         private void Start()
         {
             playerInput = GetComponent<PlayerInput>();
@@ -76,10 +79,18 @@ namespace Inventory
             }
         }
 
+        public Dictionary<int, InventoryItem> GetCurrentInventoryState()
+        {
+            return inventoryData.GetCurrentInventoryState();
+        }
+
+        public Dictionary<int, InventoryItem> GetCurrentAccessoriesState()
+        {
+            return accessoryData.GetCurrentInventoryState();
+        }
+
         private void UpdateInventoryUI(Dictionary<int, InventoryItem> inventoryState)
         {
-            Debug.Log("inventory ui updated");
-
             inventoryUI.ResetInventoryItems();
             foreach (var item in inventoryState)    
             {
@@ -89,7 +100,6 @@ namespace Inventory
 
         private void UpdateAccessoriesUI(Dictionary<int, InventoryItem> inventoryState)
         {
-            Debug.Log("accesories ui updated");
             inventoryUI.ResetAccessoryItems();
             foreach (var item in inventoryState)
             {
@@ -164,7 +174,6 @@ namespace Inventory
                 return;
             }
 
-            // equip här gör så att item tas bort
             IDestroyableItem destroyableItem = inventoryItem.Item as IDestroyableItem;
             if (destroyableItem != null)
             {
@@ -205,6 +214,8 @@ namespace Inventory
             inventoryUI.CreateDraggeditem(inventoryItem.Item.ItemImage, inventoryItem.Quantity);
         }
 
+        // item 1 is current
+        // item 2 is destination
         private void HandleSwapItems(int itemIndex_1, int itemIndex_2, UIItem itemUI_1, UIItem itemUI_2)
         {
             // TODO
@@ -217,9 +228,41 @@ namespace Inventory
             {
                 accessoryData.SwapItems(itemIndex_1, itemIndex_2);
             }
-            else if ((itemUI_1 is UIAccessoryItem && itemUI_2 is UIInventoryItem) || (itemUI_1 is UIInventoryItem && itemUI_2 is UIAccessoryItem))
+            else if (itemUI_1 is UIAccessoryItem && itemUI_2 is UIInventoryItem)
             {
+                InventoryItem currentItem = accessoryData.GetItemAt(itemIndex_1);
+                InventoryItem destinationItem = inventoryData.GetItemAt(itemIndex_2);
 
+                if (destinationItem.Item is EquippableItemSO)
+                {
+                    accessoryData.RemoveItem(itemIndex_1, itemUI_1.Quantity);
+                    inventoryData.RemoveItem(itemIndex_2, itemUI_2.Quantity);
+
+                    inventoryData.AddItemAt(currentItem, itemIndex_2);
+                    accessoryData.AddItemAt(destinationItem, itemIndex_1);
+                }
+                else
+                {
+                    SwapItemToAccessoryIncorrect?.Invoke();
+                }
+            }
+            else if (itemUI_1 is UIInventoryItem && itemUI_2 is UIAccessoryItem)
+            {
+                InventoryItem currentItem = inventoryData.GetItemAt(itemIndex_1);
+                InventoryItem destinationItem = accessoryData.GetItemAt(itemIndex_2);
+
+                if (currentItem.Item is EquippableItemSO)
+                {
+                    inventoryData.RemoveItem(itemIndex_1, itemUI_1.Quantity);
+                    accessoryData.RemoveItem(itemIndex_2, itemUI_2.Quantity);
+
+                    accessoryData.AddItemAt(currentItem, itemIndex_2);
+                    inventoryData.AddItemAt(destinationItem, itemIndex_1);
+                }
+                else
+                {
+                    SwapItemToAccessoryIncorrect?.Invoke();
+                }
             }
 
             // if both UIItem accessory

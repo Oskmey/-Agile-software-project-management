@@ -143,7 +143,6 @@ namespace Inventory.UI
                 return;
             }
 
-            //
             OnSwapItems?.Invoke(currentlyDraggedItemIndex, index, currentlyDraggedItemUI, itemUI);
             HandleItemSelection(itemUI);
         }

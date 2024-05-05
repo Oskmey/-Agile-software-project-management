@@ -1,3 +1,4 @@
+using Inventory;
 using Inventory.Model;
 using System;
 using System.Collections;
@@ -20,6 +21,8 @@ public class GameplayHudHandler : MonoBehaviour
     private WarningPopup warningPopup;
     [SerializeField]
     private ShopPlayer shopPlayer;
+    [SerializeField]
+    private InventoryManager inventoryManager;
 
     private void Start()
     {
@@ -27,9 +30,14 @@ public class GameplayHudHandler : MonoBehaviour
         infoPanelHandler = GetComponentInChildren<InfoPanelHandler>();
         infoPanelHandler.gameObject.SetActive(false);
 
-        if(shopPlayer != null)
+        if (shopPlayer != null)
         {
             shopPlayer.OnBuyAttempt += () => UpdateWarningPopup("Your buy was unsuccessful, inventory is full");
+        }
+
+        if (inventoryManager != null)
+        {
+            inventoryManager.SwapItemToAccessoryIncorrect += () => UpdateWarningPopup("Must equip valid items");
         }
     }
 
@@ -43,6 +51,11 @@ public class GameplayHudHandler : MonoBehaviour
         if(shopPlayer != null)
         {
             shopPlayer.OnBuyAttempt -= () => UpdateWarningPopup("Your buy was unsuccessful, inventory is full");
+        }
+
+        if (inventoryManager != null)
+        {
+            inventoryManager.SwapItemToAccessoryIncorrect -= () => UpdateWarningPopup("Must equip valid items");
         }
     }
 
