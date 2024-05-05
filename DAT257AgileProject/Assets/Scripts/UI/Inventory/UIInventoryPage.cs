@@ -1,6 +1,8 @@
+using Inventory.Model;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 namespace Inventory.UI
@@ -8,25 +10,33 @@ namespace Inventory.UI
     public class UIInventoryPage : MonoBehaviour
     {
         [SerializeField]
-        private UIInventoryItem itemPrefab;
+        private UIInventoryItem inventoryItemPrefab;
+
+        [SerializeField]
+        private UIAccessoryItem accessoryPrefab;
 
         [SerializeField]
         private RectTransform contentPanel;
 
         [SerializeField]
+        private RectTransform accessoryPanel;
+
+        [SerializeField]
         private UIInventoryDescription itemDescription;
 
-        private List<UIInventoryItem> listOfUIItems;
+        private List<UIItem> listOfInventoryUIItems;
+        private List<UIItem> listOfAccessoryUIItems;
 
         [SerializeField]
         private MouseFollower mouseFollower;
 
-        public event Action<int> OnDescriptionRequested,
+        public event Action<int, UIItem> OnDescriptionRequested,
             OnItemActionRequested, OnStartDragging;
 
-        public event Action<int, int> OnSwapItems;
+        public event Action<int, int, UIItem, UIItem> OnSwapItems;
 
         private int currentlyDraggedItemIndex = -1;
+        private UIItem currentlyDraggedItemUI;
 
         [SerializeField]
         private ItemActionPanel actionPanel;
@@ -40,78 +50,132 @@ namespace Inventory.UI
 
         public void InitializeInventoryUI(int inventorySize)
         {
-            listOfUIItems = new();
+            listOfInventoryUIItems = new();
             for (int i = 0; i < inventorySize; i++)
             {
-                UIInventoryItem uiItem = Instantiate(itemPrefab, Vector3.zero, Quaternion.identity);
+                UIInventoryItem uiItem = Instantiate(inventoryItemPrefab, Vector3.zero, Quaternion.identity);
 
                 uiItem.transform.SetParent(contentPanel);
                 uiItem.transform.localScale = new Vector3(1, 1, 1);
-                listOfUIItems.Add(uiItem);
+                listOfInventoryUIItems.Add(uiItem);
 
                 uiItem.OnItemClicked += HandleItemSelection;
                 uiItem.OnItemBeginDrag += HandleBeginDrag;
                 uiItem.OnItemDroppedOn += HandleSwap;
                 uiItem.OnItemEndDrag += HandleEndDrag;
                 // Note: Leftover code from tutorial for action buttons
-                //uiItem.OnRightMouseButtonClick += HandleShowItemActions;
+                uiItem.OnRightMouseButtonClick += HandleShowItemActions;
             }
         }
 
-        public void UpdateData(int itemIndex, Sprite itemImage, int itemQuantity)
+        public void InitializeAccessoryUI(int accessorySize)
         {
-            if (listOfUIItems.Count > itemIndex)
+            listOfAccessoryUIItems = new();
+            for (int i = 0; i < accessorySize; i++)
             {
-                listOfUIItems[itemIndex].SetData(itemImage, itemQuantity);
+                UIAccessoryItem uiItem = Instantiate(accessoryPrefab, Vector3.zero, Quaternion.identity);
+
+                uiItem.transform.SetParent(accessoryPanel);
+                uiItem.transform.localScale = new Vector3(1, 1, 1);
+                listOfAccessoryUIItems.Add(uiItem);
+
+                uiItem.OnItemClicked += HandleItemSelection;
+                uiItem.OnItemBeginDrag += HandleBeginDrag;
+                uiItem.OnItemDroppedOn += HandleSwap;
+                uiItem.OnItemEndDrag += HandleEndDrag;
+                uiItem.OnRightMouseButtonClick += HandleShowItemActions;
             }
         }
 
-        private void HandleShowItemActions(UIInventoryItem inventoryItemUI)
+        public void UpdateData(int itemIndex, Sprite itemImage, int itemQuantity, bool isAccessory)
         {
-            int index = listOfUIItems.IndexOf(inventoryItemUI);
+            Debug.Log("update data");
+            if (listOfInventoryUIItems.Count > itemIndex && !isAccessory)
+            {
+                listOfInventoryUIItems[itemIndex].SetData(itemImage, itemQuantity);
+            }
+            else if(listOfAccessoryUIItems.Count > itemIndex && isAccessory)
+            {
+                listOfAccessoryUIItems[itemIndex].SetData(itemImage, itemQuantity);
+            }
+        }
+
+        private void HandleShowItemActions(UIItem itemUI)
+        {
+            int index = -1;
+            if (itemUI is UIInventoryItem uIInventoryItem)
+            {
+                index = listOfInventoryUIItems.IndexOf(uIInventoryItem);
+            }
+            else if (itemUI is UIAccessoryItem uIAccessoryItem)
+            {
+                index = listOfAccessoryUIItems.IndexOf(uIAccessoryItem);
+            }
 
             if (index == -1)
             {
                 return;
             }
 
-            OnItemActionRequested?.Invoke(index);
+            //
+            OnItemActionRequested?.Invoke(index, itemUI);
         }
 
-        private void HandleEndDrag(UIInventoryItem inventoryItemUI)
+        private void HandleEndDrag(UIItem itemUI)
         {
             ResetDraggedItem();
         }
 
-        private void HandleSwap(UIInventoryItem inventoryItemUI)
+        private void HandleSwap(UIItem itemUI)
         {
-            int index = listOfUIItems.IndexOf(inventoryItemUI);
+            int index = -1;
+            if (itemUI is UIInventoryItem uIInventoryItem)
+            {
+                index = listOfInventoryUIItems.IndexOf(uIInventoryItem);
+            }
+            else if (itemUI is UIAccessoryItem uIAccessoryItem)
+            {
+                index = listOfAccessoryUIItems.IndexOf(uIAccessoryItem);
+            }
 
             if (index == -1)
             {
                 return;
             }
 
-            OnSwapItems?.Invoke(currentlyDraggedItemIndex, index);
-            HandleItemSelection(inventoryItemUI);
+            //
+            OnSwapItems?.Invoke(currentlyDraggedItemIndex, index, currentlyDraggedItemUI, itemUI);
+            HandleItemSelection(itemUI);
         }
 
         private void ResetDraggedItem()
         {
             mouseFollower.Toggle(false);
             currentlyDraggedItemIndex = -1;
+            currentlyDraggedItemUI = null;
         }
 
-        private void HandleBeginDrag(UIInventoryItem inventoryItemUI)
+        private void HandleBeginDrag(UIItem itemUI)
         {
-            int index = listOfUIItems.IndexOf(inventoryItemUI);
+            int index = -1;
+            if (itemUI is UIInventoryItem uIInventoryItem)
+            {
+                index = listOfInventoryUIItems.IndexOf(uIInventoryItem);
+            }
+            else if (itemUI is UIAccessoryItem uIAccessoryItem)
+            {
+                index = listOfAccessoryUIItems.IndexOf(uIAccessoryItem);
+            }
             if (index == -1)
             {
                 return;
             }
+            //
             currentlyDraggedItemIndex = index;
-            HandleItemSelection(inventoryItemUI);
-            OnStartDragging?.Invoke(index);
+            currentlyDraggedItemUI = itemUI;
+            HandleItemSelection(itemUI);
+            //
+            OnStartDragging?.Invoke(index, itemUI);
         }
 
         public void CreateDraggeditem(Sprite sprite, int quantity)
@@ -119,14 +183,24 @@ namespace Inventory.UI
             mouseFollower.Toggle(true);
             mouseFollower.SetData(sprite, quantity);
         }
-        private void HandleItemSelection(UIInventoryItem inventoryItemUI)
+        private void HandleItemSelection(UIItem itemUI)
         {
-            int index = listOfUIItems.IndexOf(inventoryItemUI);
+            int index = -1;
+            if (itemUI is UIInventoryItem uIInventoryItem)
+            {
+                index = listOfInventoryUIItems.IndexOf(uIInventoryItem);
+            }
+            else if (itemUI is UIAccessoryItem uIAccessoryItem)
+            {
+                index = listOfAccessoryUIItems.IndexOf(uIAccessoryItem);
+            }
+
             if (index == -1)
             {
                 return;
             }
-            OnDescriptionRequested?.Invoke(index);
+            //
+            OnDescriptionRequested?.Invoke(index, itemUI);
         }
 
         public void Show()
@@ -146,15 +220,27 @@ namespace Inventory.UI
             actionPanel.AddButon(actionName, performAction);
         }
 
-        public void ShowItemAction(int itemIndex)
+        public void ShowItemAction(int itemIndex, UIItem itemUI)
         {
             actionPanel.Toggle(true);
-            actionPanel.transform.position = listOfUIItems[itemIndex].transform.position;
+            if (itemUI is UIInventoryItem uIInventoryItem)
+            {
+                actionPanel.transform.position = listOfInventoryUIItems[itemIndex].transform.position;
+            }
+            else if (itemUI is UIAccessoryItem uIAccessoryItem)
+            {
+                actionPanel.transform.position = listOfAccessoryUIItems[itemIndex].transform.position;
+            }
         }
 
         private void DeselectAllItems()
         {
-            foreach (UIInventoryItem item in listOfUIItems)
+            foreach (UIItem item in listOfInventoryUIItems)
+            {
+                item.Deselect();
+            }
+
+            foreach (UIItem item in listOfAccessoryUIItems)
             {
                 item.Deselect();
             }
@@ -168,21 +254,41 @@ namespace Inventory.UI
             ResetDraggedItem();
         }
 
-        internal void UpdateDescription(int itemIndex, Sprite itemImage, string name, string description)
+        internal void UpdateDescription(int itemIndex, Sprite itemImage, string name, string description, UIItem itemUI)
         {
             itemDescription.SetDescription(itemImage, name, description);
             DeselectAllItems();
-            listOfUIItems[itemIndex].Select();
+
+            if (itemUI is UIInventoryItem uIInventoryItem)
+            {
+                listOfInventoryUIItems[itemIndex].Select();
+
+            }
+            else if (itemUI is UIAccessoryItem uIAccessoryItem)
+            {
+                listOfAccessoryUIItems[itemIndex].Select();
+
+            }
         }
 
         private void OnDestroy()
         {
-            listOfUIItems.Clear();
+            listOfAccessoryUIItems.Clear();
+            listOfInventoryUIItems.Clear();
         }
 
-        internal void ResetAllItems()
+        internal void ResetAccessoryItems()
         {
-            foreach (UIInventoryItem item in listOfUIItems)
+            foreach (UIItem item in listOfAccessoryUIItems)
+            {
+                item.ResetData();
+                item.Deselect();
+            }
+        }
+
+        internal void ResetInventoryItems()
+        {
+            foreach (UIItem item in listOfInventoryUIItems)
             {
                 item.ResetData();
                 item.Deselect();

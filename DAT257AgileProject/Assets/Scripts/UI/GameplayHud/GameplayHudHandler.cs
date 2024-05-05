@@ -1,5 +1,8 @@
+using Inventory.Model;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -11,17 +14,47 @@ public class GameplayHudHandler : MonoBehaviour
     private PlayerStatsManager playerStatsManager;
     [SerializeField]
     private TextMeshProUGUI moneyGeneratedText;
+    [SerializeField]
+    private InventorySO inventoryData;
+    [SerializeField]
+    private WarningPopup warningPopup;
+    [SerializeField]
+    private ShopPlayer shopPlayer;
 
     private void Start()
     {
         playerStatsManager = FindObjectOfType<PlayerStatsManager>();
         infoPanelHandler = GetComponentInChildren<InfoPanelHandler>();
         infoPanelHandler.gameObject.SetActive(false);
+
+        if(shopPlayer != null)
+        {
+            shopPlayer.OnBuyAttempt += () => UpdateWarningPopup("Your buy was unsuccessful, inventory is full");
+        }
     }
 
     void Update()
     {
         UpdateMoneyGenerated();
+    }
+
+    void OnDestroy()
+    {
+        if(shopPlayer != null)
+        {
+            shopPlayer.OnBuyAttempt -= () => UpdateWarningPopup("Your buy was unsuccessful, inventory is full");
+        }
+    }
+
+    public void UpdateWarningPopup(string warning)
+    {
+        // if inventory is full
+        // fishing while inventory is full
+        // while shopping
+        if (warningPopup != null)
+        {
+            warningPopup.DisplayWarning(warning);
+        }
     }
 
     void UpdateMoneyGenerated()

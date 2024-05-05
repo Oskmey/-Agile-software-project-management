@@ -33,7 +33,7 @@ namespace Inventory.Model
             get { return trashScript.Rarity; }
         }
 
-        public string ActionName => "Temp";
+        public string ActionName => null;
         //public AudioClip actionSFX { get; private set; }
 
         public void Awake()

@@ -19,6 +19,8 @@ public class TrashHandler : MonoBehaviour
     private delegate void TrashEvent();
     private event TrashEvent OnTrashCollected;
 
+    private event TrashEvent OnTrashCollectedAndInventoryFull;
+
     private PlayerInteraction playerInteraction;
 
     private FishingSpot fishingLoop;
@@ -34,7 +36,7 @@ public class TrashHandler : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         hideTrashInfoPanelAction = playerInput.actions["HideTrashInfoPanel"];
         recyclingManager = GameObject.FindGameObjectWithTag("Recycling Manager").GetComponent<RecyclingManager>();
-
+        OnTrashCollectedAndInventoryFull += () => gameplayHudHandler.UpdateWarningPopup("Can't collect the trash while your inventory is full");
         // Kommer alltid vara null vid start
         // fishingLoop = playerInteraction.currentFishingSpot;
         // if (fishingLoop != null)
@@ -65,7 +67,8 @@ public class TrashHandler : MonoBehaviour
 
     void OnDestroy()
     {
-        if(fishingLoop != null)
+        OnTrashCollectedAndInventoryFull -= () => gameplayHudHandler.UpdateWarningPopup("Can't collect the trash while your inventory is full");
+        if (fishingLoop != null)
         {
             OnTrashCollected -= fishingLoop.ResetFishingLoop;
         }
@@ -75,6 +78,11 @@ public class TrashHandler : MonoBehaviour
     private void TrashCollected()
     {   
         OnTrashCollected?.Invoke();
+    }
+
+    private void TrashCollectedWhileFullInventory()
+    {
+        OnTrashCollectedAndInventoryFull?.Invoke();
     }
 
     // Creates trash at the center of the screen
@@ -134,7 +142,6 @@ public class TrashHandler : MonoBehaviour
         if (currentTrashObject != null)
         {
             TrashCollected();
-            
             if (currentTrashObject.TryGetComponent<Item>(out var item))
             {
                 int remainder = inventoryData.AddItem(item.InventoryItem, item.Quantity);
@@ -144,6 +151,7 @@ public class TrashHandler : MonoBehaviour
                 }
                 else
                 {
+                    OnTrashCollectedAndInventoryFull();
                     Debug.Log("Inventory full, cant collect trash item, it is back in the sea (destroyed)");
                     item.DestroyItem();
                     item.Quantity = remainder;

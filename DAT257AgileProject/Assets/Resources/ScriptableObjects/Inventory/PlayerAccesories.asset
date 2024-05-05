@@ -10,13 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9932fa682c7add4d96ca885827582f7, type: 3}
-  m_Name: PlayerInventory
+  m_Name: PlayerAccesories
   m_EditorClassIdentifier: 
   inventoryItems:
-  - quantity: 6
-    item: {fileID: 11400000, guid: 91d48c6d46421764d900fc57cbac7e56, type: 2}
-    itemState: []
   - quantity: 1
-    item: {fileID: 11400000, guid: 702e06fe4c72b994f8d2f52beacda996, type: 2}
+    item: {fileID: 11400000, guid: b3d485b21a8cca84e97d70a8b3971404, type: 2}
     itemState: []
-  <Size>k__BackingField: 40
+  - quantity: 0
+    item: {fileID: 0}
+    itemState: []
+  - quantity: 0
+    item: {fileID: 0}
+    itemState: []
+  <Size>k__BackingField: 3

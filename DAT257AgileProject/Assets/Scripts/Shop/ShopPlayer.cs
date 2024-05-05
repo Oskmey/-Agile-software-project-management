@@ -1,4 +1,5 @@
 using Inventory.Model;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,9 @@ public class ShopPlayer : MonoBehaviour
     private InventorySO inventoryData;
     private PlayerStatsManager playerStatsManager;
 
+    public delegate void ShopBuyEvent();
+    public event ShopBuyEvent OnBuyAttempt;
+
     void Start()
     {
         playerStatsManager = FindAnyObjectByType<PlayerStatsManager>();
@@ -20,6 +24,7 @@ public class ShopPlayer : MonoBehaviour
     {
         money = PlayerPrefs.GetInt("Money");
         Debug.Log("You have: " + money + " money");
+        OnBuyAttempt?.Invoke();
 
         if (inventoryData.IsInventoryFull())
         {

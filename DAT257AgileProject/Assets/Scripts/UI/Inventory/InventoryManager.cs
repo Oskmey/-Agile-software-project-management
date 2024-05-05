@@ -19,11 +19,18 @@ namespace Inventory
         [SerializeField]
         private InventorySO inventoryData;
 
+        [SerializeField]
+        private InventorySO accessoryData;
+
         private PlayerInput playerInput;
         private InputAction showInventory;
 
         [SerializeField]
-        private List<InventoryItem> initialItems = new();
+        private List<InventoryItem> initialInventoryItems = new();
+
+
+        [SerializeField]
+        private List<InventoryItem> initialAccessoryItems = new();
 
         [SerializeField]
         private AudioClip dropClip;
@@ -37,13 +44,14 @@ namespace Inventory
             showInventory = playerInput.actions["ShowInventory"];
             PrepareUI();
             PrepareInventoryData();
+            PrepareAccessoryData();
         }
 
         private void PrepareInventoryData()
         {
             inventoryData.Initialize();
             inventoryData.OnInventoryUpdated += UpdateInventoryUI;
-            foreach (InventoryItem item in initialItems)
+            foreach (InventoryItem item in initialInventoryItems)
             {
                 if (item.IsEmpty)
                 {
@@ -53,27 +61,71 @@ namespace Inventory
             }
         }
 
+        private void PrepareAccessoryData()
+        {
+            accessoryData.Initialize();
+            accessoryData.OnInventoryUpdated += UpdateAccessoriesUI;
+
+            foreach (InventoryItem item in initialAccessoryItems)
+            {
+                if (item.IsEmpty)
+                {
+                    continue;
+                }
+                accessoryData.AddItem(item);
+            }
+        }
+
         private void UpdateInventoryUI(Dictionary<int, InventoryItem> inventoryState)
         {
-            inventoryUI.ResetAllItems();
+            Debug.Log("inventory ui updated");
+
+            inventoryUI.ResetInventoryItems();
             foreach (var item in inventoryState)    
             {
-                inventoryUI.UpdateData(item.Key, item.Value.Item.ItemImage, item.Value.Quantity);
+                inventoryUI.UpdateData(item.Key, item.Value.Item.ItemImage, item.Value.Quantity, false);
+            }
+        }
+
+        private void UpdateAccessoriesUI(Dictionary<int, InventoryItem> inventoryState)
+        {
+            Debug.Log("accesories ui updated");
+            inventoryUI.ResetAccessoryItems();
+            foreach (var item in inventoryState)
+            {
+                inventoryUI.UpdateData(item.Key, item.Value.Item.ItemImage, item.Value.Quantity, true);
             }
         }
 
         private void PrepareUI()
         {
             inventoryUI.InitializeInventoryUI(inventoryData.Size);
+            inventoryUI.InitializeAccessoryUI(accessoryData.Size);
             inventoryUI.OnDescriptionRequested += HandleDescriptionRequest;
             inventoryUI.OnSwapItems += HandleSwapItems;
             inventoryUI.OnStartDragging += HandleDragging;
             inventoryUI.OnItemActionRequested += HandleItemActionRequest;
         }
 
-        private void HandleItemActionRequest(int itemIndex)
+        private void HandleItemActionRequest(int itemIndex, UIItem itemUI)
         {
-            InventoryItem inventoryItem = inventoryData.GetItemAt(itemIndex);
+            //
+            UIItem itemSlot = null;
+            InventorySO items = null;
+            InventoryItem inventoryItem = default;
+            if (itemUI is UIInventoryItem uIInventoryItem)
+            {
+                itemSlot = uIInventoryItem;
+                items = inventoryData;
+                inventoryItem = inventoryData.GetItemAt(itemIndex);
+            }
+            else if (itemUI is UIAccessoryItem uIAccessoryItem)
+            {
+                itemSlot = uIAccessoryItem;
+                items = accessoryData;
+                inventoryItem = accessoryData.GetItemAt(itemIndex);
+            }
+
             if (inventoryItem.IsEmpty)
             {
                 return;
@@ -83,36 +135,40 @@ namespace Inventory
             IItemAction itemAction = inventoryItem.Item as IItemAction;
             if(itemAction != null)
             {
-                inventoryUI.ShowItemAction(itemIndex);
-                inventoryUI.AddAction(itemAction.ActionName, () => PerformAction(itemIndex));
+                inventoryUI.ShowItemAction(itemIndex, itemSlot);
+                if(itemAction.ActionName != null)
+                {
+                    inventoryUI.AddAction(itemAction.ActionName, () => PerformAction(itemIndex, items));
+                }
             }
 
             IDestroyableItem destroyableItem = inventoryItem.Item as IDestroyableItem;
             if (destroyableItem != null)
             {
-                inventoryUI.AddAction("Drop", () => DropItem(itemIndex, inventoryItem.Quantity));
+                inventoryUI.AddAction("Destroy all", () => DestroyItems(itemIndex, inventoryItem.Quantity, items));
             }
         }
 
-        private void DropItem(int itemIndex, int quantity)
+        private void DestroyItems(int itemIndex, int quantity, InventorySO items)
         {
-            inventoryData.RemoveItem(itemIndex, quantity);
+            items.RemoveItem(itemIndex, quantity);
             inventoryUI.ResetSelection();
             //audioSource.PlayOneShot(dropClip);
         } 
 
-        public void PerformAction(int itemIndex)
+        public void PerformAction(int itemIndex, InventorySO items)
         {
-            InventoryItem inventoryItem = inventoryData.GetItemAt(itemIndex);
+            InventoryItem inventoryItem = items.GetItemAt(itemIndex);
             if (inventoryItem.IsEmpty)
             {
                 return;
             }
 
+            // equip här gör så att item tas bort
             IDestroyableItem destroyableItem = inventoryItem.Item as IDestroyableItem;
             if (destroyableItem != null)
             {
-                inventoryData.RemoveItem(itemIndex, 1);
+                items.RemoveItem(itemIndex, 1);
             }
 
             IItemAction itemAction = inventoryItem.Item as IItemAction;
@@ -120,16 +176,28 @@ namespace Inventory
             {
                 itemAction.PerformAction(gameObject, inventoryItem.ItemState);
                 //audioSource.PlayOneShot(itemAction.actionSFX);
-                if (inventoryData.GetItemAt(itemIndex).IsEmpty)
+                if (items.GetItemAt(itemIndex).IsEmpty)
                 {
                     inventoryUI.ResetSelection();
                 }
             }
         }
 
-        private void HandleDragging(int itemIndex)
+        private void HandleDragging(int itemIndex, UIItem itemUI)
         {
-            InventoryItem inventoryItem = inventoryData.GetItemAt(itemIndex);
+            InventoryItem inventoryItem = default;
+
+            if (itemUI is UIInventoryItem)
+            {
+                inventoryItem = inventoryData.GetItemAt(itemIndex);
+
+            }
+            else if (itemUI is UIAccessoryItem)
+            {
+                inventoryItem = accessoryData.GetItemAt(itemIndex);
+
+            }
+
             if (inventoryItem.IsEmpty)
             {
                 return;
@@ -137,14 +205,43 @@ namespace Inventory
             inventoryUI.CreateDraggeditem(inventoryItem.Item.ItemImage, inventoryItem.Quantity);
         }
 
-        private void HandleSwapItems(int itemIndex_1, int itemIndex_2)
+        private void HandleSwapItems(int itemIndex_1, int itemIndex_2, UIItem itemUI_1, UIItem itemUI_2)
         {
-            inventoryData.SwapItems(itemIndex_1, itemIndex_2);
+            // TODO
+            // if both UIItem inventory
+            if(itemUI_1 is UIInventoryItem && itemUI_2 is UIInventoryItem)
+            {
+                inventoryData.SwapItems(itemIndex_1, itemIndex_2);
+            }
+            else if (itemUI_1 is UIAccessoryItem && itemUI_2 is UIAccessoryItem)
+            {
+                accessoryData.SwapItems(itemIndex_1, itemIndex_2);
+            }
+            else if ((itemUI_1 is UIAccessoryItem && itemUI_2 is UIInventoryItem) || (itemUI_1 is UIInventoryItem && itemUI_2 is UIAccessoryItem))
+            {
+
+            }
+
+            // if both UIItem accessory
+            // if one accessory and one inventory
+            // check which way, accessory to inventory or inventory to accessory
         }
 
-        private void HandleDescriptionRequest(int itemIndex)
+        private void HandleDescriptionRequest(int itemIndex, UIItem itemUI)
         {
-            InventoryItem inventoryItem = inventoryData.GetItemAt(itemIndex);
+            UIItem itemSlot = null;
+            InventoryItem inventoryItem = default;
+            if (itemUI is UIInventoryItem uIInventoryItem)
+            {
+                itemSlot = uIInventoryItem;
+                inventoryItem = inventoryData.GetItemAt(itemIndex);
+            }
+            else if (itemUI is UIAccessoryItem uIAccessoryItem)
+            {
+                itemSlot = uIAccessoryItem;
+                inventoryItem = accessoryData.GetItemAt(itemIndex);
+            }
+
             if (inventoryItem.IsEmpty)
             {
                 inventoryUI.ResetSelection();
@@ -153,7 +250,7 @@ namespace Inventory
             ItemSO item = inventoryItem.Item;
             string description = PrepareDescription(inventoryItem);
 
-            inventoryUI.UpdateDescription(itemIndex, item.ItemImage, item.name, description);
+            inventoryUI.UpdateDescription(itemIndex, item.ItemImage, item.name, description, itemSlot);
         }
 
         private string PrepareDescription(InventoryItem inventoryItem)
@@ -261,7 +358,12 @@ namespace Inventory
                     inventoryUI.Show();
                     foreach (var item in inventoryData.GetCurrentInventoryState())
                     {
-                        inventoryUI.UpdateData(item.Key, item.Value.Item.ItemImage, item.Value.Quantity);
+                        inventoryUI.UpdateData(item.Key, item.Value.Item.ItemImage, item.Value.Quantity, false);
+                    }
+                    //
+                    foreach (var item in accessoryData.GetCurrentInventoryState())
+                    {
+                        inventoryUI.UpdateData(item.Key, item.Value.Item.ItemImage, item.Value.Quantity, true);
                     }
                 }
                 else

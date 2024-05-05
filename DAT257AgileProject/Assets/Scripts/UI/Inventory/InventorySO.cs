@@ -129,6 +129,8 @@ namespace Inventory.Model
 
         public void SwapItems(int itemIndex_1, int itemIndex_2)
         {
+            //ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+
             (inventoryItems[itemIndex_2], inventoryItems[itemIndex_1]) = (inventoryItems[itemIndex_1], inventoryItems[itemIndex_2]);
             InformAboutChange();
         }
