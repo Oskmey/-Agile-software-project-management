@@ -160,7 +160,7 @@ namespace Inventory
             StringBuilder sb = new();
             sb.Append(inventoryItem.Item.Description);
             sb.AppendLine();
-            if(inventoryItem.Item is TrashItemSO trashItem)
+            if (inventoryItem.Item is TrashItemSO trashItem)
             {
                 if (trashItem.TrashData.IsRecyclable)
                 {
@@ -174,14 +174,14 @@ namespace Inventory
                 sb.AppendLine();
                 sb.Append($"Money value: {trashItem.TrashData.MoneyValue}");
                 sb.AppendLine();
-                sb.Append($"Rarity: {TrashRarityExtensions.ToReadableString(trashItem.TrashRarity)}");
+                sb.Append($"Rarity: {trashItem.TrashRarity.ToReadableString()}");
                 sb.AppendLine();
 
                 string categories = "";
                 for (int i = 0; i < trashItem.TrashData.TrashCategories.Count; i++)
                 {
                     TrashCategory trashCategory = trashItem.TrashData.TrashCategories[i];
-                    if(i == trashItem.TrashData.TrashCategories.Count - 1)
+                    if (i == trashItem.TrashData.TrashCategories.Count - 1)
                     {
                         categories += trashCategory;
                     }
@@ -209,7 +209,7 @@ namespace Inventory
 
         public void Update()
         {
-            if(Time.timeScale > 0)
+            if (Time.timeScale > 0)
             {
                 HandleInventoryShow();
             }
