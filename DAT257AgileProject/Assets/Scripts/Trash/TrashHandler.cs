@@ -56,7 +56,7 @@ public class TrashHandler : MonoBehaviour
                 }
                 catch (Exception e)
                 {
-
+                    Debug.LogWarning($"The following Exception occurred: {e}");
                 }
             }
         }
