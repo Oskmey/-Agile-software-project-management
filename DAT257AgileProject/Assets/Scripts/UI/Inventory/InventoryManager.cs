@@ -22,7 +22,6 @@ namespace Inventory
         private PlayerInput playerInput;
         private InputAction showInventory;
 
-        [SerializeField]
         private List<InventoryItem> initialItems = new();
 
         [SerializeField]
