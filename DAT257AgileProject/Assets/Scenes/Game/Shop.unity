@@ -1283,19 +1283,19 @@ PrefabInstance:
       objectReference: {fileID: 1115559111}
     - target: {fileID: 5918980391223807324, guid: 5898f2f23d9ceff41acfee786b0e46c4, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5918980391223807324, guid: 5898f2f23d9ceff41acfee786b0e46c4, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5918980391223807324, guid: 5898f2f23d9ceff41acfee786b0e46c4, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 43.26265
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5918980391223807324, guid: 5898f2f23d9ceff41acfee786b0e46c4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -42.106102
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1355,12 +1355,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: f04b20c8d26e9af42ac50411d981df58, type: 2}
     - target: {fileID: 5230688703787899957, guid: f08559c084d56ee4c94dd4ec452a1f7a, type: 3}
-      propertyPath: m_Spacing.x
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 5230688703787899957, guid: f08559c084d56ee4c94dd4ec452a1f7a, type: 3}
       propertyPath: m_CellSize.x
-      value: 370
+      value: 384
       objectReference: {fileID: 0}
     - target: {fileID: 5230688703787899957, guid: f08559c084d56ee4c94dd4ec452a1f7a, type: 3}
       propertyPath: m_CellSize.y
@@ -1460,11 +1456,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6090951259243414616, guid: f08559c084d56ee4c94dd4ec452a1f7a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -953
-      objectReference: {fileID: 0}
-    - target: {fileID: 6090951259243414616, guid: f08559c084d56ee4c94dd4ec452a1f7a, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 145
+      value: -800
       objectReference: {fileID: 0}
     - target: {fileID: 6260114822250096524, guid: f08559c084d56ee4c94dd4ec452a1f7a, type: 3}
       propertyPath: m_Type
