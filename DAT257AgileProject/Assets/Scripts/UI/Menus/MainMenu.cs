@@ -20,12 +20,6 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    // Not needed anymore.
-    public void PlayGame() 
-    {
-        LoadScene();
-    }
-
     public void OnNewGameClicked()
     {
         // Just to make sure the buttons aren't clicked more than once. 
