@@ -13,7 +13,8 @@ public class ShopPlayer : MonoBehaviour
     private PlayerStatsManager playerStatsManager;
 
     public delegate void ShopEvent();
-    public event ShopEvent OnBuyInvalid;
+    public event ShopEvent OnBuyNoFreeInventorySlot;
+    public event ShopEvent OnBuyNotEnoughMoney;
 
     void Start()
     {
@@ -23,24 +24,21 @@ public class ShopPlayer : MonoBehaviour
     public void TryToBuy(AccessorySO type)
     {
         money = PlayerPrefs.GetInt("Money");
-        Debug.Log("You have: " + money + " money");
 
         if (inventoryData.IsInventoryFull())
         {
-            OnBuyInvalid?.Invoke();
-            Debug.Log("Inventory is full, can not buy item");
+            OnBuyNoFreeInventorySlot?.Invoke();
         }
         else if (money >= type.cost)
         {
-            Debug.Log("You had enough money!");
             AddItemToInventory(type);
             PlayerPrefs.SetInt("Money", money - type.cost);
             playerStatsManager.Money -= type.cost;
-            Debug.Log("You know have: " + PlayerPrefs.GetInt("Money") + " money left");
         }
-        else
+        else if (money < type.cost)
         {
-            Debug.Log("You are poor!");
+            OnBuyNotEnoughMoney?.Invoke();
+            //Debug.Log("You are poor!");
         }
     }
 

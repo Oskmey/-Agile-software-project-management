@@ -32,7 +32,8 @@ public class GameplayHudHandler : MonoBehaviour
 
         if (shopPlayer != null)
         {
-            shopPlayer.OnBuyInvalid += () => UpdateWarningPopup("Your buy was unsuccessful, inventory is full");
+            shopPlayer.OnBuyNoFreeInventorySlot += () => UpdateWarningPopup("Your purchase was unsuccessful, inventory is full");
+            shopPlayer.OnBuyNotEnoughMoney += () => UpdateWarningPopup("Your purchase was unsuccessful, not enough money");
         }
 
         if (inventoryManager != null)
@@ -50,7 +51,8 @@ public class GameplayHudHandler : MonoBehaviour
     {
         if(shopPlayer != null)
         {
-            shopPlayer.OnBuyInvalid -= () => UpdateWarningPopup("Your buy was unsuccessful, inventory is full");
+            shopPlayer.OnBuyNoFreeInventorySlot -= () => UpdateWarningPopup("Your purchase was unsuccessful, inventory is full");
+            shopPlayer.OnBuyNotEnoughMoney -= () => UpdateWarningPopup("Your purchase was unsuccessful, not enough money");
         }
 
         if (inventoryManager != null)

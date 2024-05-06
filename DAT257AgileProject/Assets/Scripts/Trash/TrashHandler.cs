@@ -36,8 +36,7 @@ public class TrashHandler : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         hideTrashInfoPanelAction = playerInput.actions["HideTrashInfoPanel"];
         recyclingManager = GameObject.FindGameObjectWithTag("Recycling Manager").GetComponent<RecyclingManager>();
-        OnTrashCollectedAndInventoryFull += () => gameplayHudHandler.UpdateWarningPopup("Can't collect the trash while your inventory is full");
-        // Kommer alltid vara null vid start
+        OnTrashCollectedAndInventoryFull += () => gameplayHudHandler.UpdateWarningPopup("Can't collect the trash while there is no available slot in your inventory");        // Kommer alltid vara null vid start
         // fishingLoop = playerInteraction.currentFishingSpot;
         // if (fishingLoop != null)
         // {
@@ -67,7 +66,7 @@ public class TrashHandler : MonoBehaviour
 
     void OnDestroy()
     {
-        OnTrashCollectedAndInventoryFull -= () => gameplayHudHandler.UpdateWarningPopup("Can't collect the trash while your inventory is full");
+        OnTrashCollectedAndInventoryFull -= () => gameplayHudHandler.UpdateWarningPopup("Can't collect the trash while there is no available slot in your inventory");
         if (fishingLoop != null)
         {
             OnTrashCollected -= fishingLoop.ResetFishingLoop;
@@ -151,8 +150,7 @@ public class TrashHandler : MonoBehaviour
                 }
                 else
                 {
-                    OnTrashCollectedAndInventoryFull();
-                    Debug.Log("Inventory full, cant collect trash item, it is back in the sea (destroyed)");
+                    TrashCollectedWhileFullInventory();
                     item.DestroyItem();
                     item.Quantity = remainder;
                 }

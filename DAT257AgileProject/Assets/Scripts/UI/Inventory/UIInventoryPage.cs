@@ -89,7 +89,6 @@ namespace Inventory.UI
 
         public void UpdateData(int itemIndex, Sprite itemImage, int itemQuantity, bool isAccessory)
         {
-            Debug.Log("update data");
             if (listOfInventoryUIItems.Count > itemIndex && !isAccessory)
             {
                 listOfInventoryUIItems[itemIndex].SetData(itemImage, itemQuantity);
