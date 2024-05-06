@@ -22,7 +22,6 @@ public class TrashHandler : MonoBehaviour
     private PlayerInteraction playerInteraction;
 
     private FishingSpot fishingLoop;
-    private PlayerStatsManager playerStatsManager;
 
     [SerializeField]
     private InventorySO inventoryData;
@@ -34,7 +33,6 @@ public class TrashHandler : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         hideTrashInfoPanelAction = playerInput.actions["HideTrashInfoPanel"];
         recyclingManager = GameObject.FindGameObjectWithTag("Recycling Manager").GetComponent<RecyclingManager>();
-        playerStatsManager = FindObjectOfType<PlayerStatsManager>();
 
         // Kommer alltid vara null vid start
         // fishingLoop = playerInteraction.currentFishingSpot;
