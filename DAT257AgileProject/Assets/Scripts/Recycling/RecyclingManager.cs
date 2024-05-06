@@ -44,41 +44,29 @@ public class RecyclingManager : MonoBehaviour
         {
             if (recyclingMachine.IsPlayerInRange())
             {
-                List<TrashData> trashToRecycle = playerInventory.GetAndRemoveRecyclableTrashItems();
+                List<TrashItemSO> trashToRecycle = playerInventory.GetAndRemoveRecyclableTrashItems();
 
-                foreach (TrashData trash in trashToRecycle)
+                foreach (TrashItemSO trash in trashToRecycle)
                 {
-                    playerStatsManager.Money += trash.MoneyValue;
+                    playerStatsManager.Money += trash.TrashData.MoneyValue;
                     Debug.Log(playerStatsManager.Money);
-                    // UpdateTrashDictionary(trash);
+                    UpdateTrashDictionary(trash.TrashType);
                 }
             }
         }
     }
 
-    // It is not possible to save scripts between sessions, so here
-    // is a method to convert the saved TrashTypes to TrashScripts by
-    // creating them using the factory, this will not affect other things, 
-    // which would have happened if trashHandler's create trash was used instead. 
-    private static TrashScript GetTrashScriptFromType(TrashType trashType)
+    private void UpdateTrashDictionary(TrashType trashType)
     {
-        GameObject trashObject = TrashFactory.CreateTrash(trashType);
-        TrashScript trash = trashObject.GetComponent<TrashScript>();
-        Destroy(trashObject);
-        return trash;
+        if (playerStatsManager.RecycledTrashDictionary.ContainsKey(trashType))
+        {
+            playerStatsManager.RecycledTrashDictionary[trashType]++;
+        }
+        else
+        {
+            playerStatsManager.RecycledTrashDictionary.Add(trashType, 1);
+        }
     }
-
-    //private void UpdateTrashDictionary(TrashData trash)
-    //{
-    //    if (playerStatsManager.RecycledTrashDictionary.ContainsKey(trash.TrashType))
-    //    {
-    //        playerStatsManager.RecycledTrashDictionary[trash.TrashType]++;
-    //    }
-    //    else
-    //    {
-    //        playerStatsManager.RecycledTrashDictionary.Add(trash.TrashType, 1);
-    //    }
-    //}
 
     public IReadOnlyList<RecyclingMachine> GetRecyclingMachines()
     {
