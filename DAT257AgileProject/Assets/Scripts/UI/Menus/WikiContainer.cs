@@ -12,8 +12,7 @@ public class WikiContainer : MonoBehaviour
     private SubheaderHandler subheaderHandler;
     private WikiHandler wikiHandler;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         string[] folderPaths = AssetDatabase.GetSubFolders("Assets/Resources/ScriptableObjects/TrashFacts");
         foreach (string folderPath in folderPaths)

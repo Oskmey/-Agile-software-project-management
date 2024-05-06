@@ -5,12 +5,8 @@ using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
-
-
-public bool IsPlayerInRange()
-{
-    return GetComponentInChildren<ShopInteraction>().IsPlayerInRange;
-}
-
-
+    public bool IsPlayerInRange()
+    {
+        return GetComponentInChildren<ShopInteraction>().IsPlayerInRange;
+    }
 }

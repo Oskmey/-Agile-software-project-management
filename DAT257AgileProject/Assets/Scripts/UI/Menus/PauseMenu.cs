@@ -8,7 +8,6 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    // Start is called before the first frame update
     private static bool GamePaused = false;
 
     [SerializeField] private GameObject pauseMenuUI;
@@ -22,14 +21,6 @@ public class PauseMenu : MonoBehaviour
         playerInputActions = new PlayerInputActions();
 
     }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
 
     private void Pause(InputAction.CallbackContext contex)
     {
