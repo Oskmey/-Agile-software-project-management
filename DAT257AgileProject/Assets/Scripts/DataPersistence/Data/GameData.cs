@@ -19,14 +19,14 @@ public class GameData
     private SerializableDictionary<TrashType, int> recycledTrashCount;
     public SerializableDictionary<TrashType, int> RecycledTrashCount { get { return recycledTrashCount; } set { recycledTrashCount = value; } }
 
+    [SerializeField]
+    private List<InventoryItem> savedInventoryItems;
+    public List<InventoryItem> SavedInventoryItems { get { return savedInventoryItems; } set { savedInventoryItems = value; } }
+
     // This field is relevant for multiple files and debugging.
     [SerializeField]
     private long lastUpdated;
     public long LastUpdated { get { return lastUpdated; } set { lastUpdated = value; } }
-
-    [SerializeField]
-    private List<InventoryItem> savedInventoryItems;
-    public List<InventoryItem> SavedInventoryItems { get { return savedInventoryItems; } set { savedInventoryItems = value; } }
 
     public GameData()
     {
