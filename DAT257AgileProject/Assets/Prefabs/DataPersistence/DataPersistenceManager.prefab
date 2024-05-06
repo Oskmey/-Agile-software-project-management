@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4109886115465758984
+--- !u!1 &9172868826136238724
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,52 +8,41 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2236166545321069433}
-  - component: {fileID: 6988859590413074970}
-  - component: {fileID: 8704168045625705993}
+  - component: {fileID: 6216647353100184616}
+  - component: {fileID: -4095826208368994269}
   m_Layer: 0
-  m_Name: ShopPlayer
-  m_TagString: Shop Player
+  m_Name: DataPersistenceManager
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2236166545321069433
+--- !u!4 &6216647353100184616
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4109886115465758984}
+  m_GameObject: {fileID: 9172868826136238724}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.8384795, y: 2.3148541, z: 90}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6988859590413074970
+--- !u!114 &-4095826208368994269
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4109886115465758984}
+  m_GameObject: {fileID: 9172868826136238724}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 161e672ee3aa81f4e8eabdaa7710e3ff, type: 3}
+  m_Script: {fileID: 11500000, guid: c79bde70c95b637469f903828e3d15d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8704168045625705993
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4109886115465758984}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d47a4f54d327434f84c1de40169ea65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  fileName: save_data.game
+  useEncryption: 0
