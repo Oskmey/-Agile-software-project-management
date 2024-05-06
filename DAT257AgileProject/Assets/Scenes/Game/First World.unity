@@ -1202,6 +1202,14 @@ PrefabInstance:
       propertyPath: inventoryUI
       value: 
       objectReference: {fileID: 731588021}
+    - target: {fileID: 171852961314016569, guid: 30ff80c249b9a54478d3728266ce02df, type: 3}
+      propertyPath: initialInventoryItems.Array.data[0].quantity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 171852961314016569, guid: 30ff80c249b9a54478d3728266ce02df, type: 3}
+      propertyPath: initialInventoryItems.Array.data[1].quantity
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 624719995333237826, guid: 30ff80c249b9a54478d3728266ce02df, type: 3}
       propertyPath: m_Name
       value: InventoryManager

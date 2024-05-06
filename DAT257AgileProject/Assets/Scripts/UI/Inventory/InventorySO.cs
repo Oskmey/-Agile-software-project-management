@@ -155,7 +155,13 @@ namespace Inventory.Model
                     if (trashItem.TrashData.IsRecyclable)
                     {
                         TrashData trashData = trashItem.TrashData;
-                        recyclableTrashItems.Add(trashData);
+                        int trashAmount = inventoryItems[i].Quantity;
+
+                        for (int j = 0; j < trashAmount; j++)
+                        {
+                            recyclableTrashItems.Add(trashData);
+                        }
+
                         inventoryItems[i] = InventoryItem.GetEmptyItem();
                     }
                 }
