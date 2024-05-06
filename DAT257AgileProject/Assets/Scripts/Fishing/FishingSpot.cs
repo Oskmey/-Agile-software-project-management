@@ -37,7 +37,7 @@ public class FishingSpot : MonoBehaviour
     //Need to add percentages I guess
     void Start()
     {
-        listOfRarities = fishingSpotRarities.ToList();
+        listOfRarities = new List<float>(fishingSpotRarities.ToList());
         currentRarity = GetCurrentRarity(listOfRarities);
         promptText = GameObject.FindGameObjectWithTag("TutorialText").GetComponent<TextMeshProUGUI>();
         minigameManager = GameObject.FindGameObjectWithTag("Minigame Manager").GetComponent<MinigameManager>();

@@ -11,7 +11,7 @@ public class FishingSpotRarities
 
 public static class FishingSpotRaritiesExtensions
 {
-    public static List<float> ToList(this FishingSpotRarities rarities)
+    public static IReadOnlyList<float> ToList(this FishingSpotRarities rarities)
     {
         List<float> tempList = new();
 
