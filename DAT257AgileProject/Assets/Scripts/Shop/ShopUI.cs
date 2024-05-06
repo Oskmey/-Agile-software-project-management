@@ -111,7 +111,7 @@ public class ShopUI : MonoBehaviour
     public void ExitShop()
     {
         DataPersistenceManager.Instance.SaveGame();
-        SceneManager.LoadScene(worldSceneName);
+        SceneManager.LoadSceneAsync(worldSceneName);
     }
 
 

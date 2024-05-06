@@ -16,10 +16,6 @@ public class GameManager : MonoBehaviour
     [Header("UI Elements")]
     [SerializeField] 
     private TextMeshProUGUI moneyGeneratedText;
-    [SerializeField] 
-    private TextMeshProUGUI recycledTrashCountText;
-    [SerializeField]
-    private TextMeshProUGUI recycleTrashLeftText;
 
     // Start is called before the first frame update
     void Awake()
@@ -69,7 +65,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdateTrashLeftText();
         UpdateMoneyGenerated();
         UpdateRecycledTrashCountText();
     }
@@ -87,5 +82,6 @@ public class GameManager : MonoBehaviour
     void UpdateRecycledTrashCountText()
     {
         recycledTrashCountText.text = "Trash recycled: " + playerStatsManager.RecycledTrashDictionary.Count.ToString();
+        moneyGeneratedText.text = "Money: " + playerStatsManager.Money.ToString();
     }
 }

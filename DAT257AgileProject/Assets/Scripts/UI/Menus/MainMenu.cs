@@ -39,7 +39,7 @@ public class MainMenu : MonoBehaviour
         // Save game before loading scene. 
         DataPersistenceManager.Instance.SaveGame();
         // Loading the scene will load the game due to OnSceneLoaded in DataPersistenceManager.
-        SceneManager.LoadSceneAsync("Oskar's World");
+        SceneManager.LoadSceneAsync("First World");
     }
 
     public void OnContinueClicked()

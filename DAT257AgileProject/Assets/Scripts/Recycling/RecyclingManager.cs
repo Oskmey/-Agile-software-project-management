@@ -1,11 +1,16 @@
+using Inventory.Model;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using static RecyclingMachine;
 
 public class RecyclingManager : MonoBehaviour
 {
+    [SerializeField]
+    private InventorySO playerInventory;
+
     private IReadOnlyList<RecyclingMachine> recyclingMachines;
     private PlayerStatsManager playerStatsManager;
     private bool trashWasRecycled;
@@ -30,7 +35,6 @@ public class RecyclingManager : MonoBehaviour
     void Awake()
     {
         trashWasRecycled = false;
-        TrashHandler = FindObjectOfType<TrashHandler>().GetComponent<TrashHandler>();
         recyclingMachines = GetRecyclingMachines();
         playerStatsManager = FindObjectOfType<PlayerStatsManager>();
     }
@@ -52,14 +56,12 @@ public class RecyclingManager : MonoBehaviour
         TrashScript trash = GetTrashScriptFromType(trashType);
         foreach (RecyclingMachine recyclingMachine in recyclingMachines)
         {
-            // TODO: Make it so player can only recycle trash to nearest recycling machine
-            // if (recyclingMachine.IsPlayerInRange(player.transform.position))
             if (recyclingMachine.IsPlayerInRange())
             {
-                // NOTE: Trash is not recyclable by default, needs to be RecycableTrash
-                if (trash.IsRecyclable)
+                List<TrashData> trashToRecycle = playerInventory.GetAndRemoveRecyclableTrashItems();
+
+                foreach (TrashData trash in trashToRecycle)
                 {
-                    Debug.Log(trash.MoneyValue);
                     playerStatsManager.Money += trash.MoneyValue;
                     Debug.Log(playerStatsManager.Money);
                     UpdateTrashDictionary(trash);
@@ -72,10 +74,6 @@ public class RecyclingManager : MonoBehaviour
                     trashWasRecycled = false;
                 }
             }
-            // else
-            // {
-            // Debug.Log("Player is not in range of recycling machine");
-            // }
         }
     }
 

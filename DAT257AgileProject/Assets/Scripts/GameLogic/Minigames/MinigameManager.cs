@@ -64,7 +64,6 @@ public class MinigameManager : MonoBehaviour
         }
     }
 
-
 //Bör skicka med trashprefaben som ska spawnas aswell om man vill göra olika fishing tiles
     private void CreateMinigame(MinigameType type)
     {
@@ -95,7 +94,6 @@ public class MinigameManager : MonoBehaviour
         //currentMinigame.DestroyMinigame();
         minigameStarted = false;
         //Debug.Log("Minigame lost! Implement your logic here...");
-        
     }
 
     private void UpdateMinigamePromptText()

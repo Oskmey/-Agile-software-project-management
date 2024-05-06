@@ -5,6 +5,12 @@ using UnityEngine;
 public class ShopPlayer : MonoBehaviour, IDataPersistence
 {
     private int money;
+    private PlayerStatsManager playerStatsManager;
+
+    void Start()
+    {
+        playerStatsManager = FindAnyObjectByType<PlayerStatsManager>();
+    }
 
     public void TryToBuy(AccessorySO type)
     {

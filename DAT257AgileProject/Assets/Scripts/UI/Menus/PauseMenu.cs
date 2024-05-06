@@ -86,7 +86,6 @@ public class PauseMenu : MonoBehaviour
         
     }
 
-
     private void OnEnable()
     {
         PauseAction = playerInputActions.UI.Pause;
@@ -98,5 +97,4 @@ public class PauseMenu : MonoBehaviour
     {
         PauseAction.Disable();
     }
-
 }

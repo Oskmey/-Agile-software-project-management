@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 11975841895475516}
   - component: {fileID: 9166623018421820159}
   - component: {fileID: -1211776597752391769}
+  - component: {fileID: 8393738205035531341}
   m_Layer: 0
   m_Name: PlasticSpoon
   m_TagString: Untagged
@@ -100,3 +101,18 @@ MonoBehaviour:
   trashScriptableObject: {fileID: 11400000, guid: 39f15ded6917f654b92210e287abbce5, type: 2}
   trashType: 5
   rarity: 1
+--- !u!114 &8393738205035531341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 743655074027208390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d08d4003b24c5d2438a236fc21a1fbae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <InventoryItem>k__BackingField: {fileID: 11400000, guid: 42292407c8aede149a7561eec6bf6909, type: 2}
+  <Quantity>k__BackingField: 1
+  duration: 0.3

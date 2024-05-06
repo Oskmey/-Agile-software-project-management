@@ -1,3 +1,4 @@
+using Inventory.Model;
 using System;
 using UnityEngine;
 using UnityEngine.Events;
@@ -23,6 +24,9 @@ public class TrashHandler : MonoBehaviour
     private FishingSpot fishingLoop;
     private PlayerStatsManager playerStatsManager;
 
+    [SerializeField]
+    private InventorySO inventoryData;
+
     private void Start()
     {
         playerInteraction = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<PlayerInteraction>();
@@ -42,18 +46,22 @@ public class TrashHandler : MonoBehaviour
 
     private void Update()
     {
-         if (hideTrashInfoPanelAction.triggered)
-         {
-            DestroyTrash();
-            //Reset the loop here instead, does reset the fishingloop twice if u walk away from fishingspot since that also triggers ResetFishingLoop, doesnt really matter tho.
-            try
+        if (Time.timeScale > 0)
+        {
+            if (hideTrashInfoPanelAction.triggered)
             {
-                playerInteraction.currentFishingSpot.ResetFishingLoop();
-            }
-            catch(Exception e){
+                DestroyTrash();
+                //Reset the loop here instead, does reset the fishingloop twice if u walk away from fishingspot since that also triggers ResetFishingLoop, doesnt really matter tho.
+                try
+                {
+                    playerInteraction.currentFishingSpot.ResetFishingLoop();
+                }
+                catch (Exception e)
+                {
 
+                }
             }
-         }
+        }
     }
 
     void OnDestroy()
@@ -67,7 +75,7 @@ public class TrashHandler : MonoBehaviour
     // Method to trigger the events
     private void TrashCollected()
     {   
-            OnTrashCollected?.Invoke();
+        OnTrashCollected?.Invoke();
     }
 
     // Creates trash at the center of the screen
@@ -115,27 +123,34 @@ public class TrashHandler : MonoBehaviour
 
     public void DestroyTrash()
     {
-        if (Time.timeScale > 0)
+        if (gameplayHudHandler != null)
         {
-            if (gameplayHudHandler != null)
-            {
-                gameplayHudHandler.HideTrashInfoHandler();
-            }
-            else
-            {
-                Debug.LogError("GameplayHudHandler not found.");
-            }
-
-            if (currentTrashObject != null)
-            {
-                TrashScript trash = currentTrashObject.GetComponent<TrashScript>();
-                playerStatsManager.FishedTrash.Add(trash.TrashType);
-
-                TrashCollected();
-                Destroy(currentTrashObject);
-            }
-  
+            gameplayHudHandler.HideTrashInfoHandler();
         }
+        else
+        {
+            Debug.LogError("GameplayHudHandler not found.");
+        }
+
+        if (currentTrashObject != null)
+        {
+            TrashCollected();
+            
+            if (currentTrashObject.TryGetComponent<Item>(out var item))
+            {
+                int remainder = inventoryData.AddItem(item.InventoryItem, item.Quantity);
+                if (remainder == 0)
+                {
+                    item.DestroyItem();
+                }
+                else
+                {
+                    item.Quantity = remainder;
+                }
+            }
+
+            currentTrashObject = null;
+        }   
     }
 
     public GameObject CurrentTrashObject => currentTrashObject;
