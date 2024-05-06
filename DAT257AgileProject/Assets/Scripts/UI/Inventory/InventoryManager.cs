@@ -5,13 +5,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
 namespace Inventory
 {
-    public class InventoryManager : MonoBehaviour
+    public class InventoryManager : MonoBehaviour, IDataPersistence
     {
         [SerializeField]
         private UIInventoryPage inventoryUI;
@@ -31,6 +32,7 @@ namespace Inventory
 
         [SerializeField]
         private List<InventoryItem> initialAccessoryItems = new();
+        private List<InventoryItem> initialItems = new();
 
         [SerializeField]
         private AudioClip dropClip;
@@ -315,14 +317,14 @@ namespace Inventory
                 sb.AppendLine();
                 sb.Append($"Money value: {trashItem.TrashData.MoneyValue}");
                 sb.AppendLine();
-                sb.Append($"Rarity: {TrashRarityExtensions.ToReadableString(trashItem.TrashRarity)}");
+                sb.Append($"Rarity: {trashItem.TrashRarity.ToReadableString()}");
                 sb.AppendLine();
 
                 string categories = "";
                 for (int i = 0; i < trashItem.TrashData.TrashCategories.Count; i++)
                 {
                     TrashCategory trashCategory = trashItem.TrashData.TrashCategories[i];
-                    if(i == trashItem.TrashData.TrashCategories.Count - 1)
+                    if (i == trashItem.TrashData.TrashCategories.Count - 1)
                     {
                         categories += trashCategory;
                     }
@@ -382,7 +384,7 @@ namespace Inventory
 
         public void Update()
         {
-            if(Time.timeScale > 0)
+            if (Time.timeScale > 0)
             {
                 HandleInventoryShow();
             }
@@ -414,6 +416,23 @@ namespace Inventory
                     inventoryUI.Hide();
                 }
             }
+        }
+
+        public void LoadData(GameData gameData)
+        {
+            initialItems = gameData.SavedInventoryItems;
+        }
+
+        public void SaveData(GameData gameData)
+        {
+            List<InventoryItem> listToSave = new();
+            for (int i = 0; i < inventoryData.GetCurrentInventoryState().Count; i++)
+            {
+                InventoryItem itemToAdd = inventoryData.GetItemAt(i);
+                listToSave.Add(itemToAdd);
+            }
+
+            gameData.SavedInventoryItems = listToSave;
         }
     }
 }

@@ -135,50 +135,6 @@ MonoBehaviour:
   moneyGeneratedText: {fileID: 0}
   recycledTrashCountText: {fileID: 0}
   recycleTrashLeftText: {fileID: 0}
---- !u!1 &6072577512108168834
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4312372402304343322}
-  - component: {fileID: 9198498783531149080}
-  m_Layer: 0
-  m_Name: PlayerStatsManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4312372402304343322
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6072577512108168834}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6820110225701913069}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9198498783531149080
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6072577512108168834}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d47a4f54d327434f84c1de40169ea65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6319926939473160477
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,7 +166,6 @@ Transform:
   m_Children:
   - {fileID: 5395481829500439867}
   - {fileID: 8286941754092125252}
-  - {fileID: 4312372402304343322}
   - {fileID: 2413131442844211947}
   - {fileID: 4202101686630578186}
   m_Father: {fileID: 0}

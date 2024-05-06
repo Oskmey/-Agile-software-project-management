@@ -15,15 +15,15 @@ public class ShopPlayer : MonoBehaviour
     public delegate void ShopEvent();
     public event ShopEvent OnBuyNoFreeInventorySlot;
     public event ShopEvent OnBuyNotEnoughMoney;
-
-    void Start()
+    
+    private void Start()
     {
-        playerStatsManager = FindAnyObjectByType<PlayerStatsManager>();
+        playerStatsManager = GetComponent<PlayerStatsManager>();
     }
 
     public void TryToBuy(AccessorySO type)
     {
-        money = PlayerPrefs.GetInt("Money");
+        money = playerStatsManager.Money;
 
         if (inventoryData.IsInventoryFull())
         {
@@ -32,7 +32,6 @@ public class ShopPlayer : MonoBehaviour
         else if (money >= type.cost)
         {
             AddItemToInventory(type);
-            PlayerPrefs.SetInt("Money", money - type.cost);
             playerStatsManager.Money -= type.cost;
         }
         else if (money < type.cost)

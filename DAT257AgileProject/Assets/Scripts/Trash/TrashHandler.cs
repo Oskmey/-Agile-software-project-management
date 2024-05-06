@@ -30,7 +30,6 @@ public class TrashHandler : MonoBehaviour
 
     private void Start()
     {
-        
         playerInteraction = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<PlayerInteraction>();
         gameplayHudHandler = GameObject.FindGameObjectWithTag("GameplayHUD").GetComponent<GameplayHudHandler>();
         playerInput = GetComponent<PlayerInput>();
@@ -58,7 +57,7 @@ public class TrashHandler : MonoBehaviour
                 }
                 catch (Exception e)
                 {
-
+                    Debug.LogWarning($"The following Exception occurred: {e}");
                 }
             }
         }

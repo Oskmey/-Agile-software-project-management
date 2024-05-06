@@ -44,14 +44,27 @@ public class RecyclingManager : MonoBehaviour
         {
             if (recyclingMachine.IsPlayerInRange())
             {
-                List<TrashData> trashToRecycle = playerInventory.GetAndRemoveRecyclableTrashItems();
+                List<TrashItemSO> trashToRecycle = playerInventory.GetAndRemoveRecyclableTrashItems();
 
-                foreach (TrashData trash in trashToRecycle)
+                foreach (TrashItemSO trash in trashToRecycle)
                 {
-                    playerStatsManager.Money += trash.MoneyValue;
+                    playerStatsManager.Money += trash.TrashData.MoneyValue;
+                    UpdateTrashDictionary(trash.TrashType);
                 }
             }
-        }  
+        }
+    }
+
+    private void UpdateTrashDictionary(TrashType trashType)
+    {
+        if (playerStatsManager.RecycledTrashDictionary.ContainsKey(trashType))
+        {
+            playerStatsManager.RecycledTrashDictionary[trashType]++;
+        }
+        else
+        {
+            playerStatsManager.RecycledTrashDictionary.Add(trashType, 1);
+        }
     }
 
     public IReadOnlyList<RecyclingMachine> GetRecyclingMachines()
