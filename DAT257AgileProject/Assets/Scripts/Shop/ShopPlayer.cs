@@ -2,30 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShopPlayer : MonoBehaviour, IDataPersistence
+public class ShopPlayer : MonoBehaviour
 {
-    private int money;
     private PlayerStatsManager playerStatsManager;
 
-    void Start()
+    private void Start()
     {
-        playerStatsManager = FindAnyObjectByType<PlayerStatsManager>();
+        playerStatsManager = GetComponent<PlayerStatsManager>();
     }
 
     public void TryToBuy(AccessorySO type)
     {
-        Debug.Log($"You have: {money} money.");
-
-        if (money >= type.cost)
+        if (playerStatsManager.Money >= type.cost)
         {
-            Debug.Log("You had enough money!");
-            money -= type.cost;
+            playerStatsManager.Money -= type.cost;
             AddItemToInventory(type);
-            Debug.Log($"You know have: {money} money left.");
-        }
-        else
-        {
-            Debug.Log("You are poor!");
         }
     }
 
@@ -33,15 +24,5 @@ public class ShopPlayer : MonoBehaviour, IDataPersistence
     {
         // TODO Add to inventory
         Debug.Log(type.accessoryName + " is going to be added to your inventory");
-    }
-
-    public void LoadData(GameData gameData)
-    {
-        money = gameData.Money;
-    }
-
-    public void SaveData(GameData gameData)
-    {
-        gameData.Money = money;
     }
 }
