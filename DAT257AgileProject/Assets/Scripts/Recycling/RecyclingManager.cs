@@ -14,7 +14,6 @@ public class RecyclingManager : MonoBehaviour
     private IReadOnlyList<RecyclingMachine> recyclingMachines;
     private PlayerStatsManager playerStatsManager;
     private bool trashWasRecycled;
-    private TrashHandler TrashHandler;
 
     public IReadOnlyList<RecyclingMachine> RecyclingMachines
     {
@@ -41,19 +40,6 @@ public class RecyclingManager : MonoBehaviour
 
     public void RecycleAtNearestMachine()
     {
-        if (playerStatsManager.FishedTrash.Count > 0)
-        {
-            RecycleAtNearestMachine(playerStatsManager.FishedTrash[0]);
-        }
-        else
-        {
-            Debug.Log("No trash to recycle");
-        }
-    }
-
-    private void RecycleAtNearestMachine(TrashType trashType)
-    {
-        TrashScript trash = GetTrashScriptFromType(trashType);
         foreach (RecyclingMachine recyclingMachine in recyclingMachines)
         {
             if (recyclingMachine.IsPlayerInRange())
@@ -64,14 +50,7 @@ public class RecyclingManager : MonoBehaviour
                 {
                     playerStatsManager.Money += trash.MoneyValue;
                     Debug.Log(playerStatsManager.Money);
-                    UpdateTrashDictionary(trash);
-                    playerStatsManager.FishedTrash.Remove(trashType);
-                    trashWasRecycled = true;
-                    TrashHandler.DestroyTrash();
-                }
-                else
-                {
-                    trashWasRecycled = false;
+                    // UpdateTrashDictionary(trash);
                 }
             }
         }
@@ -89,17 +68,17 @@ public class RecyclingManager : MonoBehaviour
         return trash;
     }
 
-    private void UpdateTrashDictionary(TrashScript trash)
-    {
-        if (playerStatsManager.RecycledTrashDictionary.ContainsKey(trash.TrashType))
-        {
-            playerStatsManager.RecycledTrashDictionary[trash.TrashType]++;
-        }
-        else
-        {
-            playerStatsManager.RecycledTrashDictionary.Add(trash.TrashType, 1);
-        }
-    }
+    //private void UpdateTrashDictionary(TrashData trash)
+    //{
+    //    if (playerStatsManager.RecycledTrashDictionary.ContainsKey(trash.TrashType))
+    //    {
+    //        playerStatsManager.RecycledTrashDictionary[trash.TrashType]++;
+    //    }
+    //    else
+    //    {
+    //        playerStatsManager.RecycledTrashDictionary.Add(trash.TrashType, 1);
+    //    }
+    //}
 
     public IReadOnlyList<RecyclingMachine> GetRecyclingMachines()
     {

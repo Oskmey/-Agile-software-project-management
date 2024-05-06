@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
 
     void UpdateRecycledTrashCountText()
     {
-        recycledTrashCountText.text = "Trash recycled: " + playerStatsManager.RecycledTrashDictionary.Count.ToString();
+        //recycledTrashCountText.text = "Trash recycled: " + playerStatsManager.RecycledTrashDictionary.Count.ToString();
         moneyGeneratedText.text = "Money: " + playerStatsManager.Money.ToString();
     }
 }
