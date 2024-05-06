@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: PlayerAccesories
   m_EditorClassIdentifier: 
   inventoryItems:
-  - quantity: 1
-    item: {fileID: 11400000, guid: b3d485b21a8cca84e97d70a8b3971404, type: 2}
+  - quantity: 0
+    item: {fileID: 0}
+    itemState: []
+  - quantity: 0
+    item: {fileID: 0}
     itemState: []
   - quantity: 0
     item: {fileID: 0}
@@ -22,4 +25,16 @@ MonoBehaviour:
   - quantity: 0
     item: {fileID: 0}
     itemState: []
-  <Size>k__BackingField: 3
+  - quantity: 0
+    item: {fileID: 0}
+    itemState: []
+  - quantity: 0
+    item: {fileID: 0}
+    itemState: []
+  - quantity: 0
+    item: {fileID: 0}
+    itemState: []
+  - quantity: 0
+    item: {fileID: 0}
+    itemState: []
+  <Size>k__BackingField: 8

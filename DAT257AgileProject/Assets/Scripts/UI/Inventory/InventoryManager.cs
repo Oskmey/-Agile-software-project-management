@@ -26,13 +26,8 @@ namespace Inventory
         private PlayerInput playerInput;
         private InputAction showInventory;
 
-        [SerializeField]
         private List<InventoryItem> initialInventoryItems = new();
-
-
-        [SerializeField]
         private List<InventoryItem> initialAccessoryItems = new();
-        private List<InventoryItem> initialItems = new();
 
         [SerializeField]
         private AudioClip dropClip;
@@ -56,13 +51,16 @@ namespace Inventory
         {
             inventoryData.Initialize();
             inventoryData.OnInventoryUpdated += UpdateInventoryUI;
-            foreach (InventoryItem item in initialInventoryItems)
+
+            for (int i = 0; i < initialInventoryItems.Count; i++)
             {
+                InventoryItem item = initialInventoryItems[i];
                 if (item.IsEmpty)
                 {
                     continue;
                 }
-                inventoryData.AddItem(item);
+
+                inventoryData.AddItemAt(item, i);
             }
         }
 
@@ -71,13 +69,15 @@ namespace Inventory
             accessoryData.Initialize();
             accessoryData.OnInventoryUpdated += UpdateAccessoriesUI;
 
-            foreach (InventoryItem item in initialAccessoryItems)
+            for (int i = 0; i < initialAccessoryItems.Count; i++)
             {
+                InventoryItem item = initialAccessoryItems[i];
                 if (item.IsEmpty)
                 {
                     continue;
                 }
-                accessoryData.AddItem(item);
+
+                accessoryData.AddItemAt(item, i);
             }
         }
 
@@ -420,19 +420,34 @@ namespace Inventory
 
         public void LoadData(GameData gameData)
         {
-            initialItems = gameData.SavedInventoryItems;
+            initialInventoryItems = gameData.SavedInventoryItems;
+            initialAccessoryItems = gameData.SavedAccessoryItems;
         }
 
         public void SaveData(GameData gameData)
         {
-            List<InventoryItem> listToSave = new();
-            for (int i = 0; i < inventoryData.GetCurrentInventoryState().Count; i++)
+            // Save inventory items
+            gameData.SavedInventoryItems = GetItemsInInventory(inventoryData);
+
+            // Save accessory items
+            gameData.SavedAccessoryItems = GetItemsInInventory(accessoryData);
+        }
+
+        private List<InventoryItem> GetItemsInInventory(InventorySO inventoryData)
+        {
+            List<InventoryItem> savedInventoryItems = new();
+
+            for (int i = 0; i < inventoryData.Size; i++)
             {
-                InventoryItem itemToAdd = inventoryData.GetItemAt(i);
-                listToSave.Add(itemToAdd);
+                savedInventoryItems.Add(InventoryItem.GetEmptyItem());
             }
 
-            gameData.SavedInventoryItems = listToSave;
+            foreach (var item in inventoryData.GetCurrentInventoryState())
+            {
+                savedInventoryItems[item.Key] = item.Value;
+            }
+
+            return savedInventoryItems;
         }
     }
 }

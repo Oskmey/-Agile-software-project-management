@@ -24,6 +24,8 @@ public class GameplayHudHandler : MonoBehaviour
     [SerializeField]
     private InventoryManager inventoryManager;
 
+    public event Action<bool> OnInfoPopupActive;
+
     private void Start()
     {
         playerStatsManager = FindObjectOfType<PlayerStatsManager>();
@@ -84,11 +86,13 @@ public class GameplayHudHandler : MonoBehaviour
     {
         SetTrashInfoPanel(trash);
         infoPanelHandler.gameObject.SetActive(true);
+        OnInfoPopupActive?.Invoke(true);
     }
 
     public void HideTrashInfoHandler()
     {
         infoPanelHandler.gameObject.SetActive(false);
+        OnInfoPopupActive?.Invoke(false);
     }
 
     private void SetTrashInfoPanel(TrashScript trash)

@@ -18,7 +18,6 @@ public class TrashHandler : MonoBehaviour
 
     private delegate void TrashEvent();
     private event TrashEvent OnTrashCollected;
-
     private event TrashEvent OnTrashCollectedAndInventoryFull;
 
     private PlayerInteraction playerInteraction;
@@ -28,6 +27,8 @@ public class TrashHandler : MonoBehaviour
     [SerializeField]
     private InventorySO inventoryData;
 
+    private bool infoPopupActive = false;
+
     private void Start()
     {
         playerInteraction = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<PlayerInteraction>();
@@ -35,7 +36,8 @@ public class TrashHandler : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         hideTrashInfoPanelAction = playerInput.actions["HideTrashInfoPanel"];
         recyclingManager = GameObject.FindGameObjectWithTag("Recycling Manager").GetComponent<RecyclingManager>();
-        OnTrashCollectedAndInventoryFull += () => gameplayHudHandler.UpdateWarningPopup("Can't collect the trash while there is no available slot in your inventory");        // Kommer alltid vara null vid start
+        OnTrashCollectedAndInventoryFull += () => gameplayHudHandler.UpdateWarningPopup("Can't collect the trash while there is no available slot in your inventory");
+        gameplayHudHandler.OnInfoPopupActive += SetInfoPopupActive;
         // fishingLoop = playerInteraction.currentFishingSpot;
         // if (fishingLoop != null)
         // {
@@ -43,22 +45,32 @@ public class TrashHandler : MonoBehaviour
         // }
     }
 
+    private void SetInfoPopupActive(bool isActive)
+    {
+        infoPopupActive = isActive;
+    }
+
     private void Update()
     {
         if (Time.timeScale > 0)
         {
-            if (hideTrashInfoPanelAction.triggered)
+            HandleFishingLoopReset();
+        }
+    }
+
+    private void HandleFishingLoopReset()
+    {
+        if (hideTrashInfoPanelAction.triggered && infoPopupActive)
+        {
+            DestroyTrash();
+            //Reset the loop here instead, does reset the fishingloop twice if u walk away from fishingspot since that also triggers ResetFishingLoop, doesnt really matter tho.
+            try
             {
-                DestroyTrash();
-                //Reset the loop here instead, does reset the fishingloop twice if u walk away from fishingspot since that also triggers ResetFishingLoop, doesnt really matter tho.
-                try
-                {
-                    playerInteraction.currentFishingSpot.ResetFishingLoop();
-                }
-                catch (Exception e)
-                {
-                    Debug.LogWarning($"The following Exception occurred: {e}");
-                }
+                playerInteraction.currentFishingSpot.ResetFishingLoop();
+            }
+            catch (Exception e)
+            {
+                Debug.LogWarning($"The following Exception occurred: {e}");
             }
         }
     }

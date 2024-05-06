@@ -31,6 +31,10 @@ public class GameData
     private List<InventoryItem> savedInventoryItems;
     public List<InventoryItem> SavedInventoryItems { get { return savedInventoryItems; } set { savedInventoryItems = value; } }
 
+    [SerializeField]
+    private List<InventoryItem> savedAccessoryItems;
+    public List<InventoryItem> SavedAccessoryItems { get { return savedAccessoryItems; } set { savedAccessoryItems = value; } }
+
     // This field is relevant for multiple files and debugging.
     [SerializeField]
     private long lastUpdated;
