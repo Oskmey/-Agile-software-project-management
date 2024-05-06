@@ -35,7 +35,7 @@ public class TestGameManager : MonoBehaviour
 
     void UpdateTrashLeftText()
     {
-        recycleTrashLeftText.text = "Recylcable trash Left: " + recyclingManager.TrashToRecycle.Count;
+        //recycleTrashLeftText.text = "Recylcable trash Left: " + recyclingManager.TrashToRecycle.Count;
     }
 
     void UpdateMoneyGenerated()

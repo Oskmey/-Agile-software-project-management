@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6042829080323119322}
   - component: {fileID: 7433965020610037955}
   - component: {fileID: 4280939727050352008}
+  - component: {fileID: -3287937225758579116}
   m_Layer: 0
   m_Name: TrashBag
   m_TagString: Untagged
@@ -100,3 +101,19 @@ MonoBehaviour:
   trashScriptableObject: {fileID: 11400000, guid: 7edf8182ae623eb499c067bc8f009867, type: 2}
   trashType: 0
   rarity: 0
+--- !u!114 &-3287937225758579116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 951709337480037534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d08d4003b24c5d2438a236fc21a1fbae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <InventoryItem>k__BackingField: {fileID: 11400000, guid: 056b97048a2ddc14c9a7ef3912bb7308, type: 2}
+  <Quantity>k__BackingField: 1
+  audioSource: {fileID: 0}
+  duration: 0.3

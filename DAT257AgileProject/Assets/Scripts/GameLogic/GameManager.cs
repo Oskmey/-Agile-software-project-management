@@ -16,10 +16,6 @@ public class GameManager : MonoBehaviour
     [Header("UI Elements")]
     [SerializeField] 
     private TextMeshProUGUI moneyGeneratedText;
-    [SerializeField] 
-    private TextMeshProUGUI recycledTrashCountText;
-    [SerializeField]
-    private TextMeshProUGUI recycleTrashLeftText;
 
     // Start is called before the first frame update
     void Awake()
@@ -33,7 +29,7 @@ public class GameManager : MonoBehaviour
     // TEMP savesystem
     private void ResetSave()
     {
-        PlayerPrefs.SetInt("RecycledTrashLeft", 0);
+        //PlayerPrefs.SetInt("RecycledTrashLeft", 0);
         PlayerPrefs.SetInt("RecycledTrashCount", 0);
         PlayerPrefs.SetInt("Money", 0);
     }
@@ -56,7 +52,7 @@ public class GameManager : MonoBehaviour
         }
         else 
         {
-            recyclingManager.Save();
+            //recyclingManager.Save();
         }
     }
 
@@ -78,23 +74,11 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdateTrashLeftText();
         UpdateMoneyGenerated();
-        UpdateRecycledTrashCountText();
-    }
-
-    void UpdateTrashLeftText()
-    {
-        recycleTrashLeftText.text = "Trash left to recycle: " + recyclingManager.TrashToRecycle.Count;
     }
 
     void UpdateMoneyGenerated()
     {
-        moneyGeneratedText.text = "Money Generated: " + playerStatsManager.Money.ToString();
-    }
-
-    void UpdateRecycledTrashCountText()
-    {
-        recycledTrashCountText.text = "Trash recycled: " + playerStatsManager.RecycledTrashList.Count.ToString();
+        moneyGeneratedText.text = "Money: " + playerStatsManager.Money.ToString();
     }
 }

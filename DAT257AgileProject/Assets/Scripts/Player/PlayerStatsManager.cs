@@ -29,7 +29,7 @@ public class PlayerStatsManager : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         recycledTrashList = LoadTrashRecycled();
         money = PlayerPrefs.GetInt("Money", 0);

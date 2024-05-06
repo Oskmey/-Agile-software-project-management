@@ -15,12 +15,9 @@ public class PlayerController : MonoBehaviour
     private PlayerInput playerControls;
     private RecyclingManager recyclingManager;
     private InputAction recycleAction;
-
     private InputAction fishingAction;
- 
     private InputAction shopAction;
     private ShopManager shoppingManager;
-
     private PlayerInteraction playerInteraction;
 
     private PlayerStatsManager playerStatsManager;
@@ -33,29 +30,18 @@ public class PlayerController : MonoBehaviour
 
     private bool resultOfCatch;
 
-
-
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         movementAction = GetComponent<PlayerInput>().actions["Movement"];
-
         recycleAction = GetComponent<PlayerInput>().actions["Recycle"];
         recyclingManager = GameObject.FindGameObjectWithTag("Recycling Manager").GetComponent<RecyclingManager>();
-
         fishingAction = GetComponent<PlayerInput>().actions["Fish"];
-        
-
         shopAction = GetComponent<PlayerInput>().actions["Shop"];
         shoppingManager = GameObject.FindGameObjectWithTag("Shop Manager").GetComponent<ShopManager>();
-
         catchingAction = GetComponent<PlayerInput>().actions["Catch"];
         minigame = GameObject.FindGameObjectWithTag("Minigame Manager").GetComponent<MinigameManager>().getCurrentMinigame();
-
-     
-
         playerInteraction = GetComponentInChildren<PlayerInteraction>();
-
         playerStatsManager = GetComponent<PlayerStatsManager>();
     }
 
@@ -99,12 +85,10 @@ public class PlayerController : MonoBehaviour
                 playerInteraction.currentFishingSpot.HandleMinigameStart();
 
             }
-
-        }
-        
+        }     
     }
 
-        private void Shopping(InputAction.CallbackContext context)
+    private void Shopping(InputAction.CallbackContext context)
     {   
         if (Time.timeScale > 0)
         {
