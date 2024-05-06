@@ -62,7 +62,7 @@ public static class FishingSpotRaritiesExtensions
     {
         if (rarities.trashRarityPercentages.Any(data => data == null))
         {
-            throw new ArgumentException($"{nameof(rarities.trashRarityPercentages)} contains null elements");
+            throw new ArgumentNullException($"{nameof(rarities.trashRarityPercentages)} contains null elements");
         }
     }
 
