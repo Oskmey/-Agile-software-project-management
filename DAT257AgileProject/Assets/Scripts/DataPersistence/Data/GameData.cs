@@ -16,10 +16,6 @@ public class GameData
     public int Money { get { return money; } set { money = value; } }
 
     [SerializeField]
-    private List<TrashType> fishedTrash;
-    public List<TrashType> FishedTrash { get { return fishedTrash; } set { fishedTrash = value; } }
-
-    [SerializeField]
     private SerializableDictionary<TrashType, int> recycledTrashCount;
     public SerializableDictionary<TrashType, int> RecycledTrashCount { get { return recycledTrashCount; } set { recycledTrashCount = value; } }
 
