@@ -13,12 +13,11 @@ public static class FishingSpotRaritiesExtensions
 {
     public static List<float> ToList(this FishingSpotRarities rarities)
     {
-        List<float> tempList = new List<float>();
+        List<float> tempList = new();
 
         foreach(RarityPercentageData data in rarities.trashRarityPercentages)
         {
-            tempList.Add(data.percentage);
-
+            tempList.Add(data.Percentage);
         }
 
         for (int i = 1; i < tempList.Count ; i++)

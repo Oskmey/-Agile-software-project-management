@@ -6,6 +6,10 @@ using UnityEngine;
 [Serializable] 
 public class RarityPercentageData
 {
-    public string Name;
-    public float percentage;
+    [SerializeField]
+    private string name;
+    public string Name => name;
+    [SerializeField]
+    private float percentage;
+    public float Percentage => percentage;
 }
