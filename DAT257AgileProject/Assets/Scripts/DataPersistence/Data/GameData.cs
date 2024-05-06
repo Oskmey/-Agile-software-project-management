@@ -1,3 +1,4 @@
+using Inventory.Model;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,6 +27,10 @@ public class GameData
     [SerializeField]
     private long lastUpdated;
     public long LastUpdated { get { return lastUpdated; } set { lastUpdated = value; } }
+
+    [SerializeField]
+    private List<InventoryItem> savedInventoryItems;
+    public List<InventoryItem> SavedInventoryItems { get { return savedInventoryItems; } set { savedInventoryItems = value; } }
 
     public GameData()
     {

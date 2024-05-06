@@ -4,13 +4,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
 namespace Inventory
 {
-    public class InventoryManager : MonoBehaviour
+    public class InventoryManager : MonoBehaviour, IDataPersistence
     {
         [SerializeField]
         private UIInventoryPage inventoryUI;
@@ -235,6 +236,23 @@ namespace Inventory
                     inventoryUI.Hide();
                 }
             }
+        }
+
+        public void LoadData(GameData gameData)
+        {
+            initialItems = gameData.SavedInventoryItems;
+        }
+
+        public void SaveData(GameData gameData)
+        {
+            List<InventoryItem> listToSave = new();
+            for (int i = 0; i < inventoryData.GetCurrentInventoryState().Count; i++)
+            {
+                InventoryItem itemToAdd = inventoryData.GetItemAt(i);
+                listToSave.Add(itemToAdd);
+            }
+
+            gameData.SavedInventoryItems = listToSave;
         }
     }
 }
