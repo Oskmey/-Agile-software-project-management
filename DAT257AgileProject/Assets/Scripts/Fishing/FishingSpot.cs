@@ -14,9 +14,6 @@ using UnityEngine.InputSystem;
 public class FishingSpot : MonoBehaviour
 {
     [SerializeField] 
-    private Sprite fishingSprite1, fishingSprite2;
-
-    [SerializeField] 
     private FishingSpotRarities fishingSpotRarities;
 
     [SerializeField] 
@@ -31,8 +28,6 @@ public class FishingSpot : MonoBehaviour
     private MinigameManager minigameManager;
     private TextMeshProUGUI promptText;
 
-    private FishingSpot fishSpot;
-
     private TrashHandler trashHandler;
 
     private List<float> listOfRarities;
@@ -44,7 +39,6 @@ public class FishingSpot : MonoBehaviour
     {
         listOfRarities = fishingSpotRarities.ToList();
         currentRarity = GetCurrentRarity(listOfRarities);
-        fishSpot = GetComponent<FishingSpot>();
         promptText = GameObject.FindGameObjectWithTag("TutorialText").GetComponent<TextMeshProUGUI>();
         minigameManager = GameObject.FindGameObjectWithTag("Minigame Manager").GetComponent<MinigameManager>();
         trashHandler = GameObject.FindGameObjectWithTag("TrashHandler").GetComponent<TrashHandler>();
@@ -99,7 +93,7 @@ public class FishingSpot : MonoBehaviour
     public void SpawnExclamationMark()
     {
         GameObject exclamationMark = Instantiate(exclamationMarkPrefab);
-        exclamationMark.transform.position = fishSpot.transform.position;
+        exclamationMark.transform.position = transform.position;
         Destroy(exclamationMark, 1.5f);
     }
 
