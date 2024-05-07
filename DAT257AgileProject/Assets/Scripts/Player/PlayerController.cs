@@ -8,7 +8,7 @@ using static RecyclingMachine;
 
 public class PlayerController : MonoBehaviour, IDataPersistence
 {
-    [SerializeField] private float speed = 5f;
+    public float speed { get; set; }
 
     private Rigidbody2D rb;
     private InputAction movementAction;
@@ -43,6 +43,11 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         minigame = GameObject.FindGameObjectWithTag("Minigame Manager").GetComponent<MinigameManager>().getCurrentMinigame();
         playerInteraction = GetComponentInChildren<PlayerInteraction>();
         playerStatsManager = GetComponent<PlayerStatsManager>();
+    }
+
+    void Start()
+    {
+        speed = 5f;    
     }
 
     private void OnEnable()
