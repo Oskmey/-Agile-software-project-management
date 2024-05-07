@@ -38,6 +38,9 @@ namespace Inventory
         public delegate void SwapEvent();
         public event SwapEvent SwapItemToAccessoryIncorrect;
 
+        public InventorySO InventoryData { get { return inventoryData; }}
+        public InventorySO AccessoryData { get { return accessoryData; }}
+
         private void Start()
         {
             playerInput = GetComponent<PlayerInput>();
