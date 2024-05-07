@@ -45,6 +45,9 @@ namespace Inventory
             PrepareUI();
             PrepareInventoryData();
             PrepareAccessoryData();
+
+            // List<AccessorySO> currentlyEquipped = GetCurrentlyEquippedAccessories();
+            // Debug.Log(currentlyEquipped.Count);
         }
 
         private void PrepareInventoryData()
@@ -89,6 +92,22 @@ namespace Inventory
         public Dictionary<int, InventoryItem> GetCurrentAccessoriesState()
         {
             return accessoryData.GetCurrentInventoryState();
+        }
+
+        public List<AccessorySO> GetCurrentlyEquippedAccessories()
+        {
+            List<AccessorySO> currentlyEquipped = new();
+
+            foreach (var inventoryItem in GetCurrentAccessoriesState())
+            {
+                ItemSO item = inventoryItem.Value.Item;
+                if(item is EquippableItemSO accessory)
+                {
+                    currentlyEquipped.Add(accessory.Accessory);
+                }
+            }
+
+            return currentlyEquipped;
         }
 
         private void UpdateInventoryUI(Dictionary<int, InventoryItem> inventoryState)
@@ -220,8 +239,6 @@ namespace Inventory
         // item 2 is destination
         private void HandleSwapItems(int itemIndex_1, int itemIndex_2, UIItem itemUI_1, UIItem itemUI_2)
         {
-            // TODO
-            // if both UIItem inventory
             if(itemUI_1 is UIInventoryItem && itemUI_2 is UIInventoryItem)
             {
                 inventoryData.SwapItems(itemIndex_1, itemIndex_2);
@@ -235,7 +252,7 @@ namespace Inventory
                 InventoryItem currentItem = accessoryData.GetItemAt(itemIndex_1);
                 InventoryItem destinationItem = inventoryData.GetItemAt(itemIndex_2);
 
-                if (destinationItem.Item is EquippableItemSO)
+                if (destinationItem.Item is EquippableItemSO || destinationItem.IsEmpty)
                 {
                     accessoryData.RemoveItem(itemIndex_1, itemUI_1.Quantity);
                     inventoryData.RemoveItem(itemIndex_2, itemUI_2.Quantity);
