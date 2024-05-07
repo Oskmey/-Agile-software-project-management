@@ -2,6 +2,7 @@ using Inventory.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using UnityEngine;
 
@@ -14,9 +15,14 @@ namespace Inventory.Model
         private List<InventoryItem> inventoryItems;
 
         [field: SerializeField]
-        public int Size { get; private set; } = 48;
+        public int Size { get; private set; } = 40;
 
         public event Action<Dictionary<int, InventoryItem>> OnInventoryUpdated;
+
+        public ReadOnlyCollection<InventoryItem> InventoryItems
+        {
+            get { return inventoryItems.AsReadOnly(); }
+        }
 
         public void Initialize()
         {
