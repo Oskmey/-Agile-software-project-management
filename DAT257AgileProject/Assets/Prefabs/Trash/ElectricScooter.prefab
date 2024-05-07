@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5619044876587710150}
   - component: {fileID: 1572562169387326991}
   - component: {fileID: -5712008190954711671}
+  - component: {fileID: -6220659798959580642}
   m_Layer: 0
   m_Name: ElectricScooter
   m_TagString: Untagged
@@ -100,3 +101,19 @@ MonoBehaviour:
   trashScriptableObject: {fileID: 11400000, guid: 724ee7c8b9c58604a93cf34bfd97f96b, type: 2}
   trashType: 2
   rarity: 4
+--- !u!114 &-6220659798959580642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8941772817073763933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d08d4003b24c5d2438a236fc21a1fbae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <InventoryItem>k__BackingField: {fileID: 11400000, guid: 0218d034ec536b64ba605649d2b26cbe, type: 2}
+  <Quantity>k__BackingField: 1
+  audioSource: {fileID: 0}
+  duration: 0.3

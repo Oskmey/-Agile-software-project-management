@@ -1,4 +1,5 @@
 
+using Inventory.Model;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,7 +8,6 @@ using Codice.Client.Common.GameUI;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
-
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
@@ -56,16 +56,11 @@ void Start()
     trashHandler = GameObject.FindGameObjectWithTag("TrashHandler").GetComponent<TrashHandler>();
 }
 
-
-
 //Triggered when walking close, borde vara collider grejs
 public void HandleFishingPlaying()
 {
-    
-
     if (isFishing)
-    {
-        
+    {    
         promptText.text = "Press F to Fish";
         //playerSpriteRenderer.sprite = fishingSprite1;
         elapsedTime += Time.deltaTime;
@@ -138,8 +133,6 @@ public void HandleFishingPlaying()
         promptText.text = "";
     }
 
-
-
     //Should spawn the trashPrefab for each spot
     public void OnMinigameWonHandler()
     {
@@ -154,45 +147,38 @@ public void HandleFishingPlaying()
         isPlayingMinigame=false;
         Debug.Log("Minigame lost! Implement your logic here...");
     }
-
-
-
-
-public TrashRarity GetCurrentRarity(List<float> listOfRarityPercentages)
-{
-
-    //You yourself have to make sure it adds up to 100% or 1.0
-    float randomNumber = UnityEngine.Random.value;
-
-    if(randomNumber <= listOfRarityPercentages[0])
+    public TrashRarity GetCurrentRarity(List<float> listOfRarityPercentages)
     {
+
+        //You yourself have to make sure it adds up to 100% or 1.0
+        float randomNumber = UnityEngine.Random.value;
+
+        if(randomNumber <= listOfRarityPercentages[0])
+        {
+            return TrashRarity.Common;
+        }
+
+        if(randomNumber <= listOfRarityPercentages[1] && randomNumber > listOfRarityPercentages[0])
+        {
+            return TrashRarity.Uncommon;
+        }
+
+        if(randomNumber <= listOfRarityPercentages[2] && randomNumber > listOfRarityPercentages[1])
+        {
+            return TrashRarity.Rare;
+        }
+
+        if(randomNumber <= listOfRarityPercentages[3] && randomNumber > listOfRarityPercentages[2])
+        {
+            return TrashRarity.Epic;
+        }
+
+        if(randomNumber <= listOfRarityPercentages[4] && randomNumber > listOfRarityPercentages[3])
+        {
+            return TrashRarity.Legendary;
+        }
+
+        //Will never get here, in the best of worlds where it adds up to 100% :-).
         return TrashRarity.Common;
     }
-
-    if(randomNumber <= listOfRarityPercentages[1] && randomNumber > listOfRarityPercentages[0])
-    {
-        return TrashRarity.Uncommon;
-    }
-
-    if(randomNumber <= listOfRarityPercentages[2] && randomNumber > listOfRarityPercentages[1])
-    {
-        return TrashRarity.Rare;
-    }
-
-    if(randomNumber <= listOfRarityPercentages[3] && randomNumber > listOfRarityPercentages[2])
-    {
-        return TrashRarity.Epic;
-    }
-
-    if(randomNumber <= listOfRarityPercentages[4] && randomNumber > listOfRarityPercentages[3])
-    {
-        return TrashRarity.Legendary;
-    }
-
-    //Will never get here, in the best of worlds where it adds up to 100% :-).
-    return TrashRarity.Common;
-
 }
-
-}
-

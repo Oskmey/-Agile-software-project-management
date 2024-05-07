@@ -64,6 +64,7 @@ public class PauseMenu : MonoBehaviour
     public void Menu()
     {
         TogglePause();
+        DataPersistenceManager.Instance.SaveGame();
         SceneManager.LoadSceneAsync("Main Menu");
     }
 
@@ -85,7 +86,6 @@ public class PauseMenu : MonoBehaviour
         
     }
 
-
     private void OnEnable()
     {
         PauseAction = playerInputActions.UI.Pause;
@@ -97,5 +97,4 @@ public class PauseMenu : MonoBehaviour
     {
         PauseAction.Disable();
     }
-
 }

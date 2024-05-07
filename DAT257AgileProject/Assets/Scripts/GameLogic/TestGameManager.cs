@@ -27,7 +27,7 @@ public class TestGameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        recycledTrashCount = playerStatsManager.RecycledTrashList.Count;
+        recycledTrashCount = playerStatsManager.RecycledTrashDictionary.Count;
         UpdateTrashLeftText();
         UpdateMoneyGenerated();
         UpdateRecycledTrashCountText();
@@ -35,7 +35,7 @@ public class TestGameManager : MonoBehaviour
 
     void UpdateTrashLeftText()
     {
-        recycleTrashLeftText.text = "Recylcable trash Left: " + recyclingManager.TrashToRecycle.Count;
+        //recycleTrashLeftText.text = "Recylcable trash Left: " + recyclingManager.TrashToRecycle.Count;
     }
 
     void UpdateMoneyGenerated()

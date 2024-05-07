@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce1cbf96045d7a94d9eac182b91e89ba, type: 3}
+  m_Name: Electric Scooter
+  m_EditorClassIdentifier: 
+  <IsStackable>k__BackingField: 1
+  <MaxStackSize>k__BackingField: 99
+  <Name>k__BackingField: Electric Scooter
+  <Description>k__BackingField: Is an Electric Scooter that is trash
+  <ItemImage>k__BackingField: {fileID: 21300000, guid: c69a2c8cf0a0f1e498f68120dcc4e7fe, type: 3}
+  <DefaultParametersList>k__BackingField: []
+  trashData: {fileID: 11400000, guid: 724ee7c8b9c58604a93cf34bfd97f96b, type: 2}
+  trashScript: {fileID: -5712008190954711671, guid: 7a3f7bd480d47dc48b440db56a7beabe, type: 3}
