@@ -18,6 +18,8 @@ MonoBehaviour:
   rarity: 15
   accessoryEffects:
   - effectType:
+      effectType: 1
       percentage: 0
   - effectType:
-      percentage: 0
+      effectType: 0
+      percentage: 0.5
