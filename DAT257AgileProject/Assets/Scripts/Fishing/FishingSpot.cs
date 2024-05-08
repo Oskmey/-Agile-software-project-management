@@ -43,22 +43,20 @@ public class FishingSpot : MonoBehaviour
 
     private TrashRarity currentRarity;
 
-    
+    //Need to add percentages I guess
+    void Start()
+    {
+        listOfRarities = fishingSpotRarities.ToList();
+        currentRarity = GetCurrentRarity(listOfRarities);
+        fishSpot = GetComponent<FishingSpot>();
+        promptText = GameObject.FindGameObjectWithTag("TutorialText").GetComponent<TextMeshProUGUI>();
+        minigameManager = GameObject.FindGameObjectWithTag("Minigame Manager").GetComponent<MinigameManager>();
+        trashHandler = GameObject.FindGameObjectWithTag("TrashHandler").GetComponent<TrashHandler>();
+    }
 
-//Need to add percentages I guess
-void Start()
-{
-    listOfRarities = fishingSpotRarities.ToList();
-    currentRarity = GetCurrentRarity(listOfRarities);
-    fishSpot = GetComponent<FishingSpot>();
-    promptText = GameObject.FindGameObjectWithTag("TutorialText").GetComponent<TextMeshProUGUI>();
-    minigameManager = GameObject.FindGameObjectWithTag("Minigame Manager").GetComponent<MinigameManager>();
-    trashHandler = GameObject.FindGameObjectWithTag("TrashHandler").GetComponent<TrashHandler>();
-}
-
-//Triggered when walking close, borde vara collider grejs
-public void HandleFishingPlaying()
-{
+    //Triggered when walking close, borde vara collider grejs
+    public void HandleFishingPlaying()
+    {
     if (isFishing)
     {    
         promptText.text = "Press F to Fish";

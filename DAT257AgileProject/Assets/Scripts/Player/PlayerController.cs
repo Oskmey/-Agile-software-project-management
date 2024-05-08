@@ -92,7 +92,6 @@ public class PlayerController : MonoBehaviour, IDataPersistence
     {   
         if (Time.timeScale > 0)
         {
-            Debug.Log("Shopping if in range");
             shoppingManager.ShopAtNearestSpot();
         }
 

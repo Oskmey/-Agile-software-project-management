@@ -11,8 +11,6 @@ namespace Inventory.Model
         //[SerializeField]
         //private ModifierData trashModifierData = new();
 
-        public string Name { get; private set; }
-
         [SerializeField]
         private TrashData trashData;
 
@@ -35,7 +33,7 @@ namespace Inventory.Model
             get { return trashScript.Rarity; }
         }
 
-        public string ActionName => "Temp";
+        public string ActionName => null;
         //public AudioClip actionSFX { get; private set; }
 
         public void Awake()

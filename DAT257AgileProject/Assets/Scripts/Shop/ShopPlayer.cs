@@ -1,11 +1,21 @@
+using Inventory.Model;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ShopPlayer : MonoBehaviour
 {
+    private int money;
+    [SerializeField]
+    private InventorySO inventoryData;
     private PlayerStatsManager playerStatsManager;
 
+    public delegate void ShopEvent();
+    public event ShopEvent OnBuyNoFreeInventorySlot;
+    public event ShopEvent OnBuyNotEnoughMoney;
+    
     private void Start()
     {
         playerStatsManager = GetComponent<PlayerStatsManager>();
@@ -13,16 +23,38 @@ public class ShopPlayer : MonoBehaviour
 
     public void TryToBuy(AccessorySO type)
     {
-        if (playerStatsManager.Money >= type.cost)
+        money = playerStatsManager.Money;
+
+        if (inventoryData.IsInventoryFull())
         {
-            playerStatsManager.Money -= type.cost;
+            OnBuyNoFreeInventorySlot?.Invoke();
+        }
+        else if (money >= type.cost)
+        {
             AddItemToInventory(type);
+            playerStatsManager.Money -= type.cost;
+        }
+        else if (money < type.cost)
+        {
+            OnBuyNotEnoughMoney?.Invoke();
+            //Debug.Log("You are poor!");
         }
     }
 
     private void AddItemToInventory(AccessorySO type)
     {
-        // TODO Add to inventory
-        Debug.Log(type.accessoryName + " is going to be added to your inventory");
+        EquippableItemSO[] equippableItems = Resources.LoadAll<EquippableItemSO>("");
+        List<EquippableItemSO> equippableItemsList = equippableItems.ToList();
+
+        EquippableItemSO matchingItem = equippableItemsList.Find(item => item.Accessory == type);
+
+        if (matchingItem != null)
+        {
+            int remainder = inventoryData.AddItem(matchingItem, 1);
+        }
+        else
+        {
+            Debug.LogError("No matching item found.");
+        }
     }
 }
