@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5942808211630923236}
   - component: {fileID: 7720395919705477355}
   - component: {fileID: -4450023143637048490}
+  - component: {fileID: -45452670581563820}
   m_Layer: 0
   m_Name: GlassBottle
   m_TagString: Untagged
@@ -113,3 +114,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e823c16d2fceb24c96f94d1d3704013, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-45452670581563820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3464683140163306389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d08d4003b24c5d2438a236fc21a1fbae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <InventoryItem>k__BackingField: {fileID: 11400000, guid: 0d0dc19d23a28c340a7e88af2e98edd7, type: 2}
+  <Quantity>k__BackingField: 1
+  duration: 0.3

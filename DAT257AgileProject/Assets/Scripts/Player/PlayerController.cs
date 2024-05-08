@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static RecyclingMachine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDataPersistence
 {
     [SerializeField] private float speed = 5f;
 
@@ -15,13 +15,12 @@ public class PlayerController : MonoBehaviour
     private PlayerInput playerControls;
     private RecyclingManager recyclingManager;
     private InputAction recycleAction;
-
     private InputAction fishingAction;
- 
     private InputAction shopAction;
     private ShopManager shoppingManager;
-
     private PlayerInteraction playerInteraction;
+
+    private PlayerStatsManager playerStatsManager;
 
     private InputAction catchingAction; 
 
@@ -31,28 +30,19 @@ public class PlayerController : MonoBehaviour
 
     private bool resultOfCatch;
 
-
-
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         movementAction = GetComponent<PlayerInput>().actions["Movement"];
-
         recycleAction = GetComponent<PlayerInput>().actions["Recycle"];
         recyclingManager = GameObject.FindGameObjectWithTag("Recycling Manager").GetComponent<RecyclingManager>();
-
         fishingAction = GetComponent<PlayerInput>().actions["Fish"];
-        
-
         shopAction = GetComponent<PlayerInput>().actions["Shop"];
         shoppingManager = GameObject.FindGameObjectWithTag("Shop Manager").GetComponent<ShopManager>();
-
         catchingAction = GetComponent<PlayerInput>().actions["Catch"];
         minigame = GameObject.FindGameObjectWithTag("Minigame Manager").GetComponent<MinigameManager>().getCurrentMinigame();
-
-        
-
         playerInteraction = GetComponentInChildren<PlayerInteraction>();
+        playerStatsManager = GetComponent<PlayerStatsManager>();
     }
 
     private void OnEnable()
@@ -71,6 +61,7 @@ public class PlayerController : MonoBehaviour
         movementAction.canceled -= OnMovementStopped;
         recycleAction.performed -= Recycle;
         shopAction.performed -= Shopping;
+        fishingAction.performed -= Fishing;
         catchingAction.performed -= Catch;
     }
     
@@ -94,16 +85,13 @@ public class PlayerController : MonoBehaviour
                 playerInteraction.currentFishingSpot.HandleMinigameStart();
 
             }
-
-        }
-        
+        }     
     }
 
-        private void Shopping(InputAction.CallbackContext context)
+    private void Shopping(InputAction.CallbackContext context)
     {   
         if (Time.timeScale > 0)
         {
-            Debug.Log("Shopping if in range");
             shoppingManager.ShopAtNearestSpot();
         }
 
@@ -125,7 +113,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Time.timeScale > 0)
         {
-            if (playerInteraction.currentFishingSpot != null)
+            if (playerInteraction.currentFishingSpot != null && playerInteraction.currentFishingSpot.GetIsPlaying() == true)
             {
                 minigame = GameObject.FindGameObjectWithTag("Minigame Manager").GetComponent<MinigameManager>().getCurrentMinigame();
                 resultOfCatch = minigame.HandleCatch();
@@ -142,6 +130,14 @@ public class PlayerController : MonoBehaviour
     
         }
     }
-    
 
+    public void LoadData(GameData gameData)
+    {
+        transform.position = gameData.PlayerPosition;
+    }
+
+    public void SaveData(GameData gameData)
+    {
+        gameData.PlayerPosition = transform.position;
+    }
 }

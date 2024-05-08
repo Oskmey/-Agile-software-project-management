@@ -16,26 +16,13 @@ public class GameManager : MonoBehaviour
     [Header("UI Elements")]
     [SerializeField] 
     private TextMeshProUGUI moneyGeneratedText;
-    [SerializeField] 
-    private TextMeshProUGUI recycledTrashCountText;
-    [SerializeField]
-    private TextMeshProUGUI recycleTrashLeftText;
 
     // Start is called before the first frame update
     void Awake()
     {
-        ResetSave();
         // fishingLoop = FindObjectOfType<FishingLoop>();
         playerStatsManager = FindObjectOfType<PlayerStatsManager>();
         recyclingManager = FindObjectOfType<RecyclingManager>();
-    }
-
-    // TEMP savesystem
-    private void ResetSave()
-    {
-        PlayerPrefs.SetInt("RecycledTrashLeft", 0);
-        PlayerPrefs.SetInt("RecycledTrashCount", 0);
-        PlayerPrefs.SetInt("Money", 0);
     }
 
     private void Save()
@@ -46,7 +33,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            playerStatsManager.Save();
+            //playerStatsManager.Save();
 
         }
 
@@ -56,7 +43,7 @@ public class GameManager : MonoBehaviour
         }
         else 
         {
-            recyclingManager.Save();
+            //recyclingManager.Save();
         }
     }
 
@@ -78,14 +65,13 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdateTrashLeftText();
         UpdateMoneyGenerated();
         UpdateRecycledTrashCountText();
     }
 
     void UpdateTrashLeftText()
     {
-        recycleTrashLeftText.text = "Trash left to recycle: " + recyclingManager.TrashToRecycle.Count;
+        //recycleTrashLeftText.text = "Trash left to recycle: " + recyclingManager.TrashToRecycle.Count;
     }
 
     void UpdateMoneyGenerated()
@@ -95,6 +81,7 @@ public class GameManager : MonoBehaviour
 
     void UpdateRecycledTrashCountText()
     {
-        recycledTrashCountText.text = "Trash recycled: " + playerStatsManager.RecycledTrashList.Count.ToString();
+        //recycledTrashCountText.text = "Trash recycled: " + playerStatsManager.RecycledTrashDictionary.Count.ToString();
+        moneyGeneratedText.text = "Money: " + playerStatsManager.Money.ToString();
     }
 }

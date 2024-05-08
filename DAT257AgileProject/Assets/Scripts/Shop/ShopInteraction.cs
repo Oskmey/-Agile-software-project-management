@@ -1,11 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using TMPro;
 using UnityEngine;
 
 public class ShopInteraction : MonoBehaviour
 {
     private bool isPlayerInRange;
+    private TextMeshProUGUI promtText;
+
+
+    private void Awake()
+    {
+        promtText = GameObject.FindGameObjectWithTag("TutorialText").GetComponent<TextMeshProUGUI>();
+    }
 
     public bool IsPlayerInRange
     {
@@ -19,6 +27,7 @@ public class ShopInteraction : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             isPlayerInRange = true;
+            promtText.text = "Press E to Shop";
         }
     }
 
@@ -27,6 +36,7 @@ public class ShopInteraction : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             isPlayerInRange = false;
+            promtText.text = "";
         }
     }
 }

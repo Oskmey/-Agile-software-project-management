@@ -2,70 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStatsManager : MonoBehaviour
+public class PlayerStatsManager : MonoBehaviour, IDataPersistence
 {
-    private List<TrashScript> recycledTrashList;
-    private int money;
-    public List<TrashScript> RecycledTrashList
+    public SerializableDictionary<TrashType, int> RecycledTrashDictionary { get; private set; }
+
+    public int Money { get; set; }
+
+    public void LoadData(GameData gameData)
     {
-        get
-        {
-            return recycledTrashList;
-        }
-        set
-        {
-            recycledTrashList = value;
-        }
+        RecycledTrashDictionary = gameData.RecycledTrashCount;
+        Money = gameData.Money;
     }
 
-    public int Money
+    public void SaveData(GameData gameData)
     {
-        get { return money; }
-        set { money = value; }
-    }
-
-    // Start is called before the first frame update
-    void Awake()
-    {
-        recycledTrashList = LoadTrashRecycled();
-
-        money = PlayerPrefs.GetInt("Money");
-
-        if (money == 0)
-        {
-            PlayerPrefs.SetInt("Money", 0);
-        }
-    }
-
-    // TEMP: basic temporary saving system between scenes
-
-    private List<TrashScript> LoadTrashRecycled()
-    {
-        List<TrashScript>  recycledTrashList = new();
-        int trashToRecycle = PlayerPrefs.GetInt("RecycledTrashCount");
-
-        if (trashToRecycle > 0)
-        {
-            for (int i = 0; i < trashToRecycle; i++)
-            {
-                GameObject tempTrash = TrashFactory.CreateTrash(TrashType.TrashBag);
-                recycledTrashList.Add(tempTrash.GetComponent<TrashScript>());
-                Destroy(tempTrash);
-            }
-        }
-        return recycledTrashList;
-    }
-
-    // TEMP SAVE
-    public void Save()
-    {
-        PlayerPrefs.SetInt("RecycledTrashCount", recycledTrashList.Count);
-        PlayerPrefs.SetInt("Money", money);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        gameData.RecycledTrashCount = RecycledTrashDictionary;
+        gameData.Money = Money;
     }
 }

@@ -32,8 +32,15 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Fishing Spot"))
         {
-            currentFishingSpot.ResetFishingLoop();
-            currentFishingSpot = null;
+            if (currentFishingSpot != null)
+            {
+                currentFishingSpot.ResetFishingLoop();
+                currentFishingSpot = null;
+            }
+            else
+            {
+                Debug.LogWarning("Current fishing spot was null");
+            }
         }
     }
 }
