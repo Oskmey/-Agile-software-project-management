@@ -77,36 +77,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryUI: {fileID: 0}
   inventoryData: {fileID: 11400000, guid: 61539fd28ea43fd42aa4e22c1a71ffb7, type: 2}
-  initialItems:
+  accessoryData: {fileID: 11400000, guid: 311443ef8d8d96143a526cf6ece1e05e, type: 2}
+  initialInventoryItems:
   - quantity: 1
     item: {fileID: 11400000, guid: 91d48c6d46421764d900fc57cbac7e56, type: 2}
-    itemState: []
-  - quantity: 1
-    item: {fileID: 11400000, guid: 056b97048a2ddc14c9a7ef3912bb7308, type: 2}
     itemState: []
   - quantity: 1
     item: {fileID: 11400000, guid: 7e40329d4494f9c43bf8d7f7d4d668a2, type: 2}
     itemState: []
   - quantity: 1
-    item: {fileID: 11400000, guid: 0218d034ec536b64ba605649d2b26cbe, type: 2}
+    item: {fileID: 11400000, guid: 702e06fe4c72b994f8d2f52beacda996, type: 2}
+    itemState: []
+  initialAccessoryItems:
+  - quantity: 1
+    item: {fileID: 11400000, guid: b3d485b21a8cca84e97d70a8b3971404, type: 2}
     itemState: []
   - quantity: 1
-    item: {fileID: 11400000, guid: e6e62809f6a4a7f4992bb963ab7e1a9a, type: 2}
-    itemState: []
-  - quantity: 1
-    item: {fileID: 11400000, guid: 0d0dc19d23a28c340a7e88af2e98edd7, type: 2}
-    itemState: []
-  - quantity: 0
-    item: {fileID: 0}
-    itemState: []
-  - quantity: 1
-    item: {fileID: 11400000, guid: 42292407c8aede149a7561eec6bf6909, type: 2}
-    itemState: []
-  - quantity: 0
-    item: {fileID: 0}
-    itemState: []
-  - quantity: 0
-    item: {fileID: 0}
+    item: {fileID: 11400000, guid: 702e06fe4c72b994f8d2f52beacda996, type: 2}
     itemState: []
   dropClip: {fileID: 0}
   audioSource: {fileID: 0}
