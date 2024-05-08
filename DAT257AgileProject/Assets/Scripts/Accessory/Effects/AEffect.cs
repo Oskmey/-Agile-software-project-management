@@ -2,18 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using PlasticGui.WorkspaceWindow;
 using UnityEngine;
+using System;
 
-public enum EffectType
-{
-    Speed,
-    Money, 
-    Luck
-}
 
-public abstract class AEffect : MonoBehaviour
+[Serializable] 
+public class AEffect
 {
     [SerializeField]
-    private EffectType effectType;
-    public EffectType EffectType => effectType;
-    public abstract void ApplyEffect();
+    private Effect effectType;
+    public Effect Effect => effectType;
+
 }
+
+public static class AEffectExtensions
+
+{
+    public static void ApplyEffect(){
+        //TODO
+    }
+
+}
+
+
+
