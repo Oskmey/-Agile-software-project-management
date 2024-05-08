@@ -2,6 +2,7 @@ using Inventory.UI;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using UnityEngine;
 
@@ -14,9 +15,14 @@ namespace Inventory.Model
         private List<InventoryItem> inventoryItems;
 
         [field: SerializeField]
-        public int Size { get; private set; } = 10;
+        public int Size { get; private set; } = 40;
 
         public event Action<Dictionary<int, InventoryItem>> OnInventoryUpdated;
+
+        public ReadOnlyCollection<InventoryItem> InventoryItems
+        {
+            get { return inventoryItems.AsReadOnly(); }
+        }
 
         public void Initialize()
         {
@@ -64,7 +70,7 @@ namespace Inventory.Model
             return 0;
         }
 
-        private bool IsInventoryFull() => inventoryItems.Where(item => item.IsEmpty).Any() == false;
+        public bool IsInventoryFull() => inventoryItems.Where(item => item.IsEmpty).Any() == false;
 
         private int AddStackableItem(ItemSO item, int quantity)
         {
@@ -107,6 +113,15 @@ namespace Inventory.Model
             AddItem(item.Item, item.Quantity);
         }
 
+        public void AddItemAt(InventoryItem item, int index)
+        {
+            if (inventoryItems[index].IsEmpty)
+            {
+                inventoryItems[index] = item;
+            }
+            InformAboutChange();
+        }
+
         public Dictionary<int, InventoryItem> GetCurrentInventoryState()
         {
             Dictionary<int, InventoryItem> returnValue = new();
@@ -129,13 +144,15 @@ namespace Inventory.Model
 
         public void SwapItems(int itemIndex_1, int itemIndex_2)
         {
+            //ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+
             (inventoryItems[itemIndex_2], inventoryItems[itemIndex_1]) = (inventoryItems[itemIndex_1], inventoryItems[itemIndex_2]);
             InformAboutChange();
         }
 
-        public List<TrashData> GetAndRemoveRecyclableTrashItems()
+        public List<TrashItemSO> GetAndRemoveRecyclableTrashItems()
         {
-            List<TrashData> recycableTrashItems = new();
+            List<TrashItemSO> recyclableTrashItems = new();
 
             for (int i = inventoryItems.Count - 1; i >= 0; i--)
             {
@@ -143,15 +160,18 @@ namespace Inventory.Model
                 {
                     if (trashItem.TrashData.IsRecyclable)
                     {
-                        TrashData trashData = trashItem.TrashData;
-                        recycableTrashItems.Add(trashData);
+                        int trashAmount = inventoryItems[i].Quantity;
+                        for (int j = 0; j < trashAmount; j++)
+                        {
+                            recyclableTrashItems.Add(trashItem);
+                        }
                         inventoryItems[i] = InventoryItem.GetEmptyItem();
                     }
                 }
             }
 
             InformAboutChange();
-            return recycableTrashItems;
+            return recyclableTrashItems;
         }
 
         private void InformAboutChange()

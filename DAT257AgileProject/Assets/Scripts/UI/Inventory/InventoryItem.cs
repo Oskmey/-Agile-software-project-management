@@ -35,7 +35,6 @@ namespace Inventory.Model
             private set { itemState = value; }
         }
 
-
         public InventoryItem(ItemSO item, int quantity, List<ItemParameter> itemState)
         {
             this.item = item;

@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static RecyclingMachine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDataPersistence
 {
     [SerializeField] private float speed = 5f;
 
@@ -92,7 +92,6 @@ public class PlayerController : MonoBehaviour
     {   
         if (Time.timeScale > 0)
         {
-            Debug.Log("Shopping if in range");
             shoppingManager.ShopAtNearestSpot();
         }
 
@@ -132,4 +131,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void LoadData(GameData gameData)
+    {
+        transform.position = gameData.PlayerPosition;
+    }
+
+    public void SaveData(GameData gameData)
+    {
+        gameData.PlayerPosition = transform.position;
+    }
 }

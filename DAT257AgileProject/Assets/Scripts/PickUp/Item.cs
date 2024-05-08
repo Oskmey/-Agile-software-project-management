@@ -22,21 +22,30 @@ public class Item : MonoBehaviour
         GetComponent<SpriteRenderer>().sprite = InventoryItem.ItemImage;
     }
 
+    public void CollectItem()
+    {
+        //GetComponent<Collider2D>().enabled = false;
+        StartCoroutine(AnimateItemPickup(true));
+    }
+
     public void DestroyItem()
     {
         //GetComponent<Collider2D>().enabled = false;
-        StartCoroutine(AnimateItemPickup());
+        StartCoroutine(AnimateItemPickup(false));
     }
 
-    private IEnumerator AnimateItemPickup()
+    private IEnumerator AnimateItemPickup(bool IsCollected)
     {
-        Transform playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-        float speed = 5f; // Adjust this value to change the speed of the item
-
-        while (Vector3.Distance(transform.position, playerTransform.position) > 0.1f)
+        if(IsCollected)
         {
-            transform.position = Vector3.MoveTowards(transform.position, playerTransform.position, speed * Time.deltaTime);
-            yield return null;
+            Transform playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+            float speed = 5f; // Adjust this value to change the speed of the item
+
+            while (Vector3.Distance(transform.position, playerTransform.position) > 0.1f)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, playerTransform.position, speed * Time.deltaTime);
+                yield return null;
+            }
         }
 
         // audioSource.Play();

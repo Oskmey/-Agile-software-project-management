@@ -20,18 +20,9 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        ResetSave();
         // fishingLoop = FindObjectOfType<FishingLoop>();
         playerStatsManager = FindObjectOfType<PlayerStatsManager>();
         recyclingManager = FindObjectOfType<RecyclingManager>();
-    }
-
-    // TEMP savesystem
-    private void ResetSave()
-    {
-        //PlayerPrefs.SetInt("RecycledTrashLeft", 0);
-        PlayerPrefs.SetInt("RecycledTrashCount", 0);
-        PlayerPrefs.SetInt("Money", 0);
     }
 
     private void Save()
@@ -42,7 +33,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            playerStatsManager.Save();
+            //playerStatsManager.Save();
 
         }
 
@@ -75,10 +66,22 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         UpdateMoneyGenerated();
+        UpdateRecycledTrashCountText();
+    }
+
+    void UpdateTrashLeftText()
+    {
+        //recycleTrashLeftText.text = "Trash left to recycle: " + recyclingManager.TrashToRecycle.Count;
     }
 
     void UpdateMoneyGenerated()
     {
+        moneyGeneratedText.text = "Money Generated: " + playerStatsManager.Money.ToString();
+    }
+
+    void UpdateRecycledTrashCountText()
+    {
+        //recycledTrashCountText.text = "Trash recycled: " + playerStatsManager.RecycledTrashDictionary.Count.ToString();
         moneyGeneratedText.text = "Money: " + playerStatsManager.Money.ToString();
     }
 }
