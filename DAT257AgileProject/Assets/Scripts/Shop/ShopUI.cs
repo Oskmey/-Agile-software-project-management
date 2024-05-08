@@ -72,26 +72,26 @@ public class ShopUI : MonoBehaviour
     {
         Transform shopButton = Instantiate(shopItemTemplate, container);
         RectTransform shopItemRectTransform = shopButton.GetComponent<RectTransform>();
-        shopButton.Find("NameText").GetComponent<TextMeshProUGUI>().SetText(type.accessoryName);
+        shopButton.Find("NameText").GetComponent<TextMeshProUGUI>().SetText(type.AccessoryName);
         shopButton.Find("GoldText").GetComponent<TextMeshProUGUI>().SetText(type.cost.ToString());
         shopButton.Find("ItemIcon").GetComponent<Image>().sprite = type.sprite;
         Image border = shopButton.GetComponent<Image>();
 
         switch (type.rarity)
         {
-            case Rarity.Common:
+            case AccessoryRarity.Common:
                 border.sprite = commonBorder;
                 break;
-            case Rarity.Uncommon:
+            case AccessoryRarity.Uncommon:
                 border.sprite = uncommonBorder;
                 break;
-            case Rarity.Rare:
+            case AccessoryRarity.Rare:
                 border.sprite = rareBorder;
                 break;
-            case Rarity.Epic:
+            case AccessoryRarity.Epic:
                 border.sprite = epicBorder;
                 break;
-            case Rarity.Legendary:
+            case AccessoryRarity.Legendary:
                 border.sprite = legendaryBorder;
                 break;
             default:

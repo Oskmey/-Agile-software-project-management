@@ -440,10 +440,8 @@ MonoBehaviour:
   itemPrefab: {fileID: 6928261015770870695, guid: 81b59685f1e164c42855f4de4fc3afa6, type: 3}
   contentPanel: {fileID: 7124482088128924004}
   itemDescription: {fileID: 8740378735812309364}
-  image: {fileID: 0}
-  quantity: 0
-  title: 
-  description: 
+  mouseFollower: {fileID: 0}
+  actionPanel: {fileID: 0}
 --- !u!1 &1205812949966362022
 GameObject:
   m_ObjectHideFlags: 0
@@ -1463,10 +1461,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 681494124444774612}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 100, y: -100}
-  m_SizeDelta: {x: 160, y: 160}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3276256008171254967
 CanvasRenderer:

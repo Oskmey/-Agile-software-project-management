@@ -34,6 +34,7 @@ public class ArrowBoxMinigame : Minigame
         // Subscribe to the events
         OnMinigameWon += FindObjectOfType<MinigameManager>().HandleMinigameWon;
         OnMinigameLost += FindObjectOfType<MinigameManager>().HandleMinigameLost;
+        OnMinigameLost += () => FindObjectOfType<GameplayHudHandler>().UpdateWarningPopup("You lost the minigame");
 
         StartMinigame();
     }
@@ -69,6 +70,7 @@ public class ArrowBoxMinigame : Minigame
     {
         OnMinigameWon -= FindObjectOfType<MinigameManager>().HandleMinigameWon;
         OnMinigameLost -= FindObjectOfType<MinigameManager>().HandleMinigameLost;
+        OnMinigameLost -= () => FindObjectOfType<GameplayHudHandler>().UpdateWarningPopup("You lost the minigame");
     }
 
     public override void StartMinigame()
