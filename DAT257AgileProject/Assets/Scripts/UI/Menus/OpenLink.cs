@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class OpenLink : MonoBehaviour
 {
-    string text;
+    private string text;
 
     private void Start()
     {
