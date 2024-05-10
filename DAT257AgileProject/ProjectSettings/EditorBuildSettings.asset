@@ -29,5 +29,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game/First World.unity
     guid: 559b4bfeb9cc23c48aef46c60d3046e5
+  - enabled: 1
+    path: Assets/Scenes/Settings Menu.unity
+    guid: ac7e3f1bc9e15284fbecfb30269253c5
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: d8bbbf5c4ce4f0c4eb65e95938a73eba, type: 3}

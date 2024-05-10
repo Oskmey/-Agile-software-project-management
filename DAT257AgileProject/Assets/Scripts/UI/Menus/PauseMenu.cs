@@ -4,22 +4,43 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 public class PauseMenu : MonoBehaviour
 {
     private static bool GamePaused = false;
 
-    [SerializeField] private GameObject pauseMenuUI;
+    [SerializeField] 
+    private GameObject pauseMenuUI;
     private InputAction PauseAction;
 
     private PlayerInputActions playerInputActions;
     private bool SettingsOpen = false;
 
+    [SerializeField]
+    private Button pauseButton;
+    [SerializeField]
+    private Button resumeButton;
+    //[SerializeField]
+    //private Button settingsButton;
+    [SerializeField]
+    private Button menuButton;
+    [SerializeField]
+    private Button quitButton;
+
     private void Awake()
     {
         playerInputActions = new PlayerInputActions();
+    }
 
+    private void Start()
+    {
+        pauseButton.onClick.AddListener(OnPauseButtonClicked);
+        resumeButton.onClick.AddListener(OnPauseButtonClicked);
+        //settingsButton.onClick.AddListener(Settings);
+        menuButton.onClick.AddListener(OnMenuButtonClicked);
+        quitButton.onClick.AddListener(OnQuitButtonClicked);
     }
 
     private void Pause(InputAction.CallbackContext contex)
@@ -28,7 +49,7 @@ public class PauseMenu : MonoBehaviour
 
     }
 
-    public void PauseButton()
+    private void OnPauseButtonClicked()
     {
         TogglePause();
     }
@@ -52,14 +73,14 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    public void Menu()
+    public void OnMenuButtonClicked()
     {
         TogglePause();
         DataPersistenceManager.Instance.SaveGame();
         SceneManager.LoadSceneAsync("Main Menu");
     }
 
-    public void Quit()
+    public void OnQuitButtonClicked()
     {
         Application.Quit();
     }
