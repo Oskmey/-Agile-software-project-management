@@ -55,7 +55,6 @@ public class MainMenu : MonoBehaviour
 
     private void OnSettingsButtonClicked()
     {
-        // Just to make sure the buttons aren't clicked more than once. 
         DisableMenuButtons();
         SceneManager.LoadSceneAsync("Settings Menu");
     }
