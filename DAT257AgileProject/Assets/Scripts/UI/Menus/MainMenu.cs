@@ -10,6 +10,8 @@ public class MainMenu : MonoBehaviour
     private Button newGameButton;
     [SerializeField]
     private Button continueButton;
+    [SerializeField]
+    private Button settingsButton;
 
     private void Start()
     {
@@ -18,6 +20,7 @@ public class MainMenu : MonoBehaviour
         {
             continueButton.interactable = false;
         }
+        settingsButton.onClick.AddListener(OnSettingsButtonClicked);
     }
 
     public void OnNewGameClicked()
@@ -47,6 +50,14 @@ public class MainMenu : MonoBehaviour
     {
         newGameButton.interactable = false;
         continueButton.interactable = false;
+        settingsButton.interactable = false;
+    }
+
+    private void OnSettingsButtonClicked()
+    {
+        // Just to make sure the buttons aren't clicked more than once. 
+        DisableMenuButtons();
+        SceneManager.LoadSceneAsync("Settings Menu");
     }
 
     public void QuitGame()

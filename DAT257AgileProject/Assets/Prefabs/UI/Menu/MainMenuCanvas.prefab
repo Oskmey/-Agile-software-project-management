@@ -3005,6 +3005,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   newGameButton: {fileID: 7858528354285870845}
   continueButton: {fileID: 78425507369944070}
+  settingsButton: {fileID: 8298814958039863901}
 --- !u!1 &3202047296040716894
 GameObject:
   m_ObjectHideFlags: 0
