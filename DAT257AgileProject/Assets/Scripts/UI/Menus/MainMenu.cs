@@ -13,6 +13,8 @@ public class MainMenu : MonoBehaviour
     [SerializeField]
     private Button settingsButton;
 
+    private SettingsMenu settingsMenu;
+
     private void Start()
     {
         // If there is no data shouldn't be able to continue.
@@ -20,6 +22,7 @@ public class MainMenu : MonoBehaviour
         {
             continueButton.interactable = false;
         }
+        settingsMenu = FindObjectOfType<SettingsMenu>(true);
         settingsButton.onClick.AddListener(OnSettingsButtonClicked);
     }
 
@@ -55,8 +58,7 @@ public class MainMenu : MonoBehaviour
 
     private void OnSettingsButtonClicked()
     {
-        DisableMenuButtons();
-        SceneManager.LoadSceneAsync("Settings Menu");
+        settingsMenu.gameObject.SetActive(true);
     }
 
     public void QuitGame()
