@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
-public class PauseMenu : MonoBehaviour
+public class PauseMenu : MenuWithSettings
 {
     private static bool GamePaused = false;
 
@@ -16,18 +16,19 @@ public class PauseMenu : MonoBehaviour
     private InputAction PauseAction;
 
     private PlayerInputActions playerInputActions;
-    private bool SettingsOpen = false;
 
     [SerializeField]
     private Button pauseButton;
     [SerializeField]
     private Button resumeButton;
-    //[SerializeField]
-    //private Button settingsButton;
+    [SerializeField]
+    private Button settingsButton;
     [SerializeField]
     private Button menuButton;
     [SerializeField]
     private Button quitButton;
+
+    private SettingsMenu settingsMenu;
 
     private void Awake()
     {
@@ -36,9 +37,10 @@ public class PauseMenu : MonoBehaviour
 
     private void Start()
     {
+        settingsMenu = FindObjectOfType<SettingsMenu>(true);
         pauseButton.onClick.AddListener(OnPauseButtonClicked);
         resumeButton.onClick.AddListener(OnPauseButtonClicked);
-        //settingsButton.onClick.AddListener(Settings);
+        settingsButton.onClick.AddListener(OnSettingsButtonClicked);
         menuButton.onClick.AddListener(OnMenuButtonClicked);
         quitButton.onClick.AddListener(OnQuitButtonClicked);
     }
@@ -58,7 +60,7 @@ public class PauseMenu : MonoBehaviour
     {
         if (GamePaused)
         {
-            if (SettingsOpen == false)
+            if (!settingsMenu.IsActive())
             pauseMenuUI.SetActive(false);
             Time.timeScale = 1f;
             GamePaused = false;
@@ -73,6 +75,12 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    private void OnSettingsButtonClicked()
+    {
+        gameObject.SetActive(false);
+        settingsMenu.gameObject.SetActive(true);
+    }
+
     public void OnMenuButtonClicked()
     {
         TogglePause();
@@ -83,19 +91,6 @@ public class PauseMenu : MonoBehaviour
     public void OnQuitButtonClicked()
     {
         Application.Quit();
-    }
-
-    public void Settings()
-    {
-        if (SettingsOpen == false)
-        {
-            SettingsOpen = true;
-        }
-        else
-        {
-            SettingsOpen = false;
-        }
-        
     }
 
     private void OnEnable()

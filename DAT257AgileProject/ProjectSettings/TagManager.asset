@@ -20,7 +20,7 @@ TagManager:
   - ShopItemPrefab
   - Shop Player
   - InventoyUI
-  - ParentHasSettings
+  - HasSettings
   layers:
   - Default
   - TransparentFX
