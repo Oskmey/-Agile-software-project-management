@@ -37,20 +37,19 @@ public class PauseMenu : MonoBehaviour
     {
         if (GamePaused)
         {
-            if (settingsOpen == false || gameStatsOpen)
+            if (settingsOpen == true || gameStatsOpen == true)
             {
-                pauseMenuUI.SetActive(false);
+                return;
             }
+            pauseMenuUI.SetActive(false);
             Time.timeScale = 1f;
             GamePaused = false;
-
         }
         else
         {   
             pauseMenuUI.SetActive(true);
             Time.timeScale = 0f;
             GamePaused = true;
-  
         }
     }
 
