@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
-public class PauseMenu : MenuWithSettings
+public class PauseMenu : MonoBehaviour, IMenuWithSettings
 {
     private static bool GamePaused = false;
 
@@ -103,5 +103,10 @@ public class PauseMenu : MenuWithSettings
     private void OnDisable()
     {
         PauseAction.Disable();
+    }
+
+    public GameObject GetGameObject()
+    {
+        return gameObject;
     }
 }

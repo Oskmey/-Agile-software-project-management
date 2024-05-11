@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MenuWithSettings : MonoBehaviour
+public interface IMenuWithSettings
 {
-
+    public GameObject GetGameObject();
 }

@@ -16,7 +16,7 @@ public class SettingsMenu : MonoBehaviour
     [SerializeField]
     private Button backButton;
 
-    private MenuWithSettings otherMenuGameObject;
+    private IMenuWithSettings otherMenuGameObject;
 
     private void Start()
     {
@@ -30,9 +30,9 @@ public class SettingsMenu : MonoBehaviour
         }
     }
 
-    private MenuWithSettings FindMenuWithSettings()
+    private IMenuWithSettings FindMenuWithSettings()
     {
-        MenuWithSettings menuWithSettings = FindObjectOfType<MainMenu>(true);
+        IMenuWithSettings menuWithSettings = FindObjectOfType<MainMenu>(true);
         if (menuWithSettings != null)
         {
             return menuWithSettings;
@@ -49,7 +49,7 @@ public class SettingsMenu : MonoBehaviour
 
     private void OnBackButtonClicked()
     {
-        otherMenuGameObject.gameObject.SetActive(true);
+        otherMenuGameObject.GetGameObject().SetActive(true);
         gameObject.SetActive(false);
     }
 

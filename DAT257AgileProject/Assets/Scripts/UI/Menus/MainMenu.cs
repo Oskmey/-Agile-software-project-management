@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MainMenu : MenuWithSettings
+public class MainMenu : MonoBehaviour, IMenuWithSettings
 {
     [SerializeField]
     private Button newGameButton;
@@ -64,5 +64,10 @@ public class MainMenu : MenuWithSettings
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public GameObject GetGameObject()
+    {
+        return gameObject;
     }
 }
