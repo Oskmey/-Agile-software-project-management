@@ -20,12 +20,32 @@ public class SettingsMenu : MonoBehaviour
 
     private void Start()
     {
-        backButton.onClick.AddListener(OnBackButtonClicked);
+        InitializeUIComponents();
+
         otherMenuGameObject = FindMenuWithSettings();
         if (otherMenuGameObject == null)
         {
             Debug.LogError("otherMenuGameObject was null");
         }
+    }
+
+    private void InitializeUIComponents()
+    {
+        backButton.onClick.AddListener(OnBackButtonClicked);
+        InitializeMusicSlider();
+        InitializeSoundSlider();
+    }
+
+    private void InitializeMusicSlider()
+    {
+        musicVolumeSlider.onValueChanged.AddListener(OnMusicVolumeSliderValueChanged);
+        musicVolumeSlider.value = AudioManager.Instance.GetMusicVolume();
+    }
+
+    private void InitializeSoundSlider()
+    {
+        soundVolumeSlider.onValueChanged.AddListener(OnSoundVolumeSliderValueChanged);
+        soundVolumeSlider.value = AudioManager.Instance.GetSoundVolume();
     }
 
     private IMenuWithSettings FindMenuWithSettings()
@@ -45,15 +65,24 @@ public class SettingsMenu : MonoBehaviour
         return null;
     }
 
+    public bool IsActive()
+    {
+        return gameObject.activeSelf;
+    }
+
     private void OnBackButtonClicked()
     {
         otherMenuGameObject.GetGameObject().SetActive(true);
         gameObject.SetActive(false);
     }
 
-    public bool IsActive()
+    private void OnMusicVolumeSliderValueChanged(float newVolume)
     {
-        return gameObject.activeSelf;
+        AudioManager.Instance.SetMusicVolume(newVolume);
     }
 
+    private void OnSoundVolumeSliderValueChanged(float newVolume)
+    {
+        AudioManager.Instance.SetSoundVolume(newVolume);
+    }
 }

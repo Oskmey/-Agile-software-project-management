@@ -45,6 +45,23 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public float GetMusicVolume()
+    {
+        return musicSource.volume;
+    }
+
+    public void SetMusicVolume(float newVolume)
+    {
+        if (0 <= newVolume && newVolume <= 1)
+        {
+            musicSource.volume = newVolume;
+        }
+        else
+        {
+            Debug.LogWarning($"New Volume: {newVolume}, has to be in [0,1]");
+        }
+    }
+
     public void PlaySound(SoundName soundName)
     {
         SoundData selectedSound = Array.Find(soundEffects, sound => sound.SoundName == soundName);
@@ -57,6 +74,23 @@ public class AudioManager : MonoBehaviour
         else
         {
             Debug.LogError("Selected Sound was null");
+        }
+    }
+
+    public float GetSoundVolume()
+    {
+        return soundSource.volume;
+    }
+
+    public void SetSoundVolume(float newVolume)
+    {
+        if (0 <= newVolume && newVolume <= 1)
+        {
+            soundSource.volume = newVolume;
+        }
+        else
+        {
+            Debug.LogWarning($"New Volume: {newVolume}, has to be in [0,1]");
         }
     }
 }
