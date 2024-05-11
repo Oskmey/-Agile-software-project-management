@@ -1,4 +1,8 @@
 public enum SoundName
 {
-    PlaceHolder
+    BeginFishing,
+    ExclamationMarkAppears,
+    TrashCaught,
+    ItemBought,
+    RecycleNoise
 }
