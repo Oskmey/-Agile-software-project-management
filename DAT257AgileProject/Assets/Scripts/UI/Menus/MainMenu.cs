@@ -24,6 +24,7 @@ public class MainMenu : MonoBehaviour, IMenuWithSettings
         }
         settingsMenu = FindObjectOfType<SettingsMenu>(true);
         settingsButton.onClick.AddListener(OnSettingsButtonClicked);
+        AudioManager.Instance.PlayMusic(MusicName.MenuTheme);
     }
 
     public void OnNewGameClicked()
