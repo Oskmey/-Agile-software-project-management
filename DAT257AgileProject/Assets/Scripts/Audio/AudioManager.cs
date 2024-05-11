@@ -13,8 +13,17 @@ public class AudioManager : MonoBehaviour
     private MusicData[] musicSongs;
     private SoundData[] soundEffects;
 
+    public float MasterVolume { get; private set; } 
+    public float MusicVolume { get; private set; } 
+    public float SoundVolume { get; private set; } 
+
     private void Awake()
     {
+        // TODO: load this from save.
+        MasterVolume = 1;
+        MusicVolume = 1;
+        SoundVolume = 1;
+
         if (Instance != null)
         {
             Debug.LogWarning("Found more than one Audio Manager in scene, destroying newest.");
@@ -44,24 +53,6 @@ public class AudioManager : MonoBehaviour
             Debug.LogError("Selected Song was null");
         }
     }
-
-    public float GetMusicVolume()
-    {
-        return musicSource.volume;
-    }
-
-    public void SetMusicVolume(float newVolume)
-    {
-        if (0 <= newVolume && newVolume <= 1)
-        {
-            musicSource.volume = newVolume;
-        }
-        else
-        {
-            Debug.LogWarning($"New Volume: {newVolume}, has to be in [0,1]");
-        }
-    }
-
     public void PlaySound(SoundName soundName)
     {
         SoundData selectedSound = Array.Find(soundEffects, sound => sound.SoundName == soundName);
@@ -77,12 +68,31 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public float GetSoundVolume()
+    public void SetMusicVolume(float newVolume)
     {
-        return soundSource.volume;
+        MusicVolume = newVolume;
+        UpdateMusicVolume(MusicVolume * MasterVolume);
+    }
+
+    private void UpdateMusicVolume(float newVolume)
+    {
+        if (0 <= newVolume && newVolume <= 1)
+        {
+            musicSource.volume = newVolume;
+        }
+        else
+        {
+            Debug.LogWarning($"New Volume: {newVolume}, has to be in [0,1]");
+        }
     }
 
     public void SetSoundVolume(float newVolume)
+    {
+        SoundVolume = newVolume;
+        UpdateSoundVolume(SoundVolume * MasterVolume);
+    }
+
+    private void UpdateSoundVolume(float newVolume)
     {
         if (0 <= newVolume && newVolume <= 1)
         {
@@ -92,5 +102,12 @@ public class AudioManager : MonoBehaviour
         {
             Debug.LogWarning($"New Volume: {newVolume}, has to be in [0,1]");
         }
+    }
+
+    public void SetMasterVolume(float newVolume)
+    {
+        MasterVolume = newVolume;
+        UpdateMusicVolume(MusicVolume * MasterVolume);
+        UpdateSoundVolume(SoundVolume * MasterVolume);
     }
 }

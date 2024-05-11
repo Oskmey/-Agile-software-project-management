@@ -32,20 +32,27 @@ public class SettingsMenu : MonoBehaviour
     private void InitializeUIComponents()
     {
         backButton.onClick.AddListener(OnBackButtonClicked);
+        InitializeMasterSlider();
         InitializeMusicSlider();
         InitializeSoundSlider();
+    }
+
+    private void InitializeMasterSlider()
+    {
+        masterVolumeSlider.onValueChanged.AddListener(OnMasterVolumeSliderValueChanged);
+        masterVolumeSlider.value = AudioManager.Instance.MasterVolume;
     }
 
     private void InitializeMusicSlider()
     {
         musicVolumeSlider.onValueChanged.AddListener(OnMusicVolumeSliderValueChanged);
-        musicVolumeSlider.value = AudioManager.Instance.GetMusicVolume();
+        musicVolumeSlider.value = AudioManager.Instance.MusicVolume;
     }
 
     private void InitializeSoundSlider()
     {
         soundVolumeSlider.onValueChanged.AddListener(OnSoundVolumeSliderValueChanged);
-        soundVolumeSlider.value = AudioManager.Instance.GetSoundVolume();
+        soundVolumeSlider.value = AudioManager.Instance.SoundVolume;
     }
 
     private IMenuWithSettings FindMenuWithSettings()
@@ -74,6 +81,11 @@ public class SettingsMenu : MonoBehaviour
     {
         otherMenuGameObject.GetGameObject().SetActive(true);
         gameObject.SetActive(false);
+    }
+
+    private void OnMasterVolumeSliderValueChanged(float newVolume)
+    {
+        AudioManager.Instance.SetMasterVolume(newVolume);
     }
 
     private void OnMusicVolumeSliderValueChanged(float newVolume)
