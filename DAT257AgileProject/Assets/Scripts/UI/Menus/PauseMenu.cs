@@ -14,8 +14,8 @@ public class PauseMenu : MonoBehaviour
     private InputAction PauseAction;
 
     private PlayerInputActions playerInputActions;
-    private bool SettingsOpen = false;
-
+    private bool settingsOpen = false;
+    private bool gameStatsOpen = false;
     private void Awake()
     {
         playerInputActions = new PlayerInputActions();
@@ -37,8 +37,10 @@ public class PauseMenu : MonoBehaviour
     {
         if (GamePaused)
         {
-            if (SettingsOpen == false)
-            pauseMenuUI.SetActive(false);
+            if (settingsOpen == false || gameStatsOpen)
+            {
+                pauseMenuUI.SetActive(false);
+            }
             Time.timeScale = 1f;
             GamePaused = false;
 
@@ -66,17 +68,26 @@ public class PauseMenu : MonoBehaviour
 
     public void Settings()
     {
-        if (SettingsOpen == false)
+        if (settingsOpen == false)
         {
-            SettingsOpen = true;
+            settingsOpen = true;
         }
         else
         {
-            SettingsOpen = false;
-        }
-        
+            settingsOpen = false;
+        }  
     }
-
+    public void GameStats()
+    {
+        if (gameStatsOpen == false)
+        {
+            gameStatsOpen = true;
+        }
+        else
+        {
+            gameStatsOpen = false;
+        }
+    }
     private void OnEnable()
     {
         PauseAction = playerInputActions.UI.Pause;
