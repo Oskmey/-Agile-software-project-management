@@ -21,8 +21,6 @@ public class SettingsMenu : MonoBehaviour
     private void Start()
     {
         backButton.onClick.AddListener(OnBackButtonClicked);
-        // Finding the gameObject using a dedicated child game object. 
-        // Since you can't have multiple tags on a single game object.
         otherMenuGameObject = FindMenuWithSettings();
         if (otherMenuGameObject == null)
         {
