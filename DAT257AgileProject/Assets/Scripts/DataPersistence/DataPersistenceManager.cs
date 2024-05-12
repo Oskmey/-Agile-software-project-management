@@ -17,7 +17,7 @@ public class DataPersistenceManager : MonoBehaviour
 
     private GameData gameData;
     private List<IDataPersistence> dataPersistenceObjects;
-    private FileDataHandler dataHandler;
+    private FileDataHandler<GameData> dataHandler;
     
     public static DataPersistenceManager Instance { get; private set; }
 
@@ -35,7 +35,7 @@ public class DataPersistenceManager : MonoBehaviour
         // So that it stays between scenes. 
         DontDestroyOnLoad(this.gameObject);
 
-        dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
+        dataHandler = new FileDataHandler<GameData>(Application.persistentDataPath, fileName, useEncryption);
     }
 
     private void OnEnable()

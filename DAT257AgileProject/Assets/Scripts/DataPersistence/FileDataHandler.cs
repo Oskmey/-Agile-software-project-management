@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using UnityEngine;
 
-public class FileDataHandler
+public class FileDataHandler<T>
 {
     private readonly string dataDirPath;
     private readonly string dataFileName;
@@ -18,12 +18,12 @@ public class FileDataHandler
     }
 
     // To support multiple save files, this would take in a profileId.
-    public GameData Load()
+    public T Load()
     {
         // if we add multiple save files this will then include then profileId. 
         string fullPath = Path.Combine(dataDirPath, dataFileName);
 
-        GameData loadedData = null;
+        T loadedData = default;
         if (File.Exists(fullPath))
         {
             try
@@ -43,7 +43,7 @@ public class FileDataHandler
                 }
 
                 // deserialize the data
-                loadedData = JsonUtility.FromJson<GameData>(dataToLoad);
+                loadedData = JsonUtility.FromJson<T>(dataToLoad);
             }
             catch (Exception e)
             {
@@ -54,7 +54,7 @@ public class FileDataHandler
     }
 
     // To support multiple save files, this would take in a profileId.
-    public void Save(GameData data)
+    public void Save(T data)
     {
         // if we add multiple save files this will then include then profileId. 
         string fullPath = Path.Combine(dataDirPath, dataFileName);
