@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Windows;
+using System.IO;
 
 public class WikiContainer : MonoBehaviour
 {
@@ -14,14 +17,26 @@ public class WikiContainer : MonoBehaviour
 
     private void Start()
     {
-        string[] folderPaths = AssetDatabase.GetSubFolders("Assets/Resources/ScriptableObjects/TrashFacts");
+        string[] folderPaths = {
+            "Assets/Resources/ScriptableObjects/TrashFacts/CarTire",
+            "Assets/Resources/ScriptableObjects/TrashFacts/CigaretteButt",
+            "Assets/Resources/ScriptableObjects/TrashFacts/ElectricScooter",
+            "Assets/Resources/ScriptableObjects/TrashFacts/GlassBottle",
+            "Assets/Resources/ScriptableObjects/TrashFacts/PETBottle",
+            "Assets/Resources/ScriptableObjects/TrashFacts/Plastic",
+            "Assets/Resources/ScriptableObjects/TrashFacts/PlasticSpoon",
+            "Assets/Resources/ScriptableObjects/TrashFacts/TrashBag"
+        };
+
         foreach (string folderPath in folderPaths)
         {
             string folderName = System.IO.Path.GetFileName(folderPath);
             GameObject go = Instantiate(subheaderPrefab);
             subheaderHandler = go.GetComponent<SubheaderHandler>();
             go.transform.SetParent(transform, false);
-            subheaderHandler.SetHeaderText(folderName);
+            string[] parts = Regex.Split(folderName, @"(?<!^)(?=[A-Z])");
+            string splitFolderName = string.Join(" ", parts);
+            subheaderHandler.SetHeaderText(splitFolderName);
             go.transform.localScale = Vector3.one;
             GenerateWikiItems(folderName);
         }
