@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioType: 1
   audioClip: {fileID: 8300000, guid: 7df1e562e2c03e24899c2dcabaca3f4e, type: 3}
+  audioBalancingValue: 1
   musicName: 0

@@ -15,7 +15,11 @@ public class AudioManager : MonoBehaviour
 
     public float MasterVolume { get; private set; } 
     public float MusicVolume { get; private set; } 
-    public float SoundVolume { get; private set; } 
+    public float SoundVolume { get; private set; }
+
+    // Default to one so that not affect sound when not changed value.
+    private float lastMusicBalancingValue = 1;
+    private float lastSoundBalancingValue = 1;
 
     private void Awake()
     {
@@ -43,6 +47,10 @@ public class AudioManager : MonoBehaviour
     {
         MusicData selectedSong = Array.Find(musicSongs, song => song.MusicName == musicName);
 
+        // Have to update the volume according to the balancing value in SO.
+        lastMusicBalancingValue = selectedSong.AudioBalancingValue;
+        UpdateMusicVolume(CalcMusicVolume());
+
         if (selectedSong != null)
         {
             musicSource.clip = selectedSong.AudioClip;
@@ -53,9 +61,14 @@ public class AudioManager : MonoBehaviour
             Debug.LogError("Selected Song was null");
         }
     }
+
     public void PlaySound(SoundName soundName)
     {
         SoundData selectedSound = Array.Find(soundEffects, sound => sound.SoundName == soundName);
+
+        // Have to update the volume according to the balancing value in SO.
+        lastSoundBalancingValue = selectedSound.AudioBalancingValue;
+        UpdateSoundVolume(CalcSoundVolume());
 
         if (selectedSound != null)
         {
@@ -68,10 +81,15 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    private float CalcMusicVolume()
+    {
+        return MusicVolume * MasterVolume * lastMusicBalancingValue;
+    }
+
     public void SetMusicVolume(float newVolume)
     {
         MusicVolume = newVolume;
-        UpdateMusicVolume(MusicVolume * MasterVolume);
+        UpdateMusicVolume(CalcMusicVolume());
     }
 
     private void UpdateMusicVolume(float newVolume)
@@ -85,11 +103,15 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning($"New Volume: {newVolume}, has to be in [0,1]");
         }
     }
+    private float CalcSoundVolume()
+    {
+        return SoundVolume * MasterVolume * lastSoundBalancingValue;
+    }
 
     public void SetSoundVolume(float newVolume)
     {
         SoundVolume = newVolume;
-        UpdateSoundVolume(SoundVolume * MasterVolume);
+        UpdateSoundVolume(CalcSoundVolume());
     }
 
     private void UpdateSoundVolume(float newVolume)
@@ -107,7 +129,7 @@ public class AudioManager : MonoBehaviour
     public void SetMasterVolume(float newVolume)
     {
         MasterVolume = newVolume;
-        UpdateMusicVolume(MusicVolume * MasterVolume);
-        UpdateSoundVolume(SoundVolume * MasterVolume);
+        UpdateMusicVolume(CalcMusicVolume());
+        UpdateSoundVolume(CalcSoundVolume());
     }
 }
