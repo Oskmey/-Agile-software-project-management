@@ -14,13 +14,13 @@ public class SettingsDataHandler : MonoBehaviour
     private List<IDataPersistence<SettingsData>> settingsDataPersistenceObjects;
     private FileDataHandler<SettingsData> settingsFileDataHandler;
     
-    public SettingsDataHandler Instance { get; private set; }
+    public static SettingsDataHandler Instance { get; private set; }
     
     private void Awake()
     {
         if (Instance != null)
         {
-            Debug.LogWarning("Found more than one Data Persistence Manager in scene, destroying newest.");
+            Debug.LogWarning("Found more than one Settings Data Handler in scene, destroying newest.");
             Destroy(this.gameObject);
             return;
         }
