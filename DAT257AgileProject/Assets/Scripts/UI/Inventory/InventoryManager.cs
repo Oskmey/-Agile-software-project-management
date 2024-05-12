@@ -12,7 +12,7 @@ using UnityEngine.UIElements;
 
 namespace Inventory
 {
-    public class InventoryManager : MonoBehaviour, IDataPersistence
+    public class InventoryManager : MonoBehaviour, IDataPersistence<GameData>
     {
         [SerializeField]
         private UIInventoryPage inventoryUI;

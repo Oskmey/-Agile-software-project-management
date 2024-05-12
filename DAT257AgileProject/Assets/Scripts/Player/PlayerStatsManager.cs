@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStatsManager : MonoBehaviour, IDataPersistence
+public class PlayerStatsManager : MonoBehaviour, IDataPersistence<GameData>
 {
     public SerializableDictionary<TrashType, int> RecycledTrashDictionary { get; private set; }
 

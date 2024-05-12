@@ -1,5 +1,5 @@
-public interface IDataPersistence
+public interface IDataPersistence<T>
 {
-    void LoadData(GameData gameData);
-    void SaveData(GameData gameData);
+    void LoadData(T gameData);
+    void SaveData(T gameData);
 }

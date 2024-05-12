@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static RecyclingMachine;
 
-public class PlayerController : MonoBehaviour, IDataPersistence
+public class PlayerController : MonoBehaviour, IDataPersistence<GameData>
 {
     [SerializeField] private float speed = 5f;
 
