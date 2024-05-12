@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class AudioManager : MonoBehaviour
+public class AudioManager : MonoBehaviour, IDataPersistence<VolumeData>
 {
     public static AudioManager Instance { get; private set; }
 
@@ -23,11 +23,6 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        // TODO: load this from save.
-        MasterVolume = 1;
-        MusicVolume = 1;
-        SoundVolume = 1;
-
         if (Instance != null)
         {
             Debug.LogWarning("Found more than one Audio Manager in scene, destroying newest.");
@@ -131,5 +126,19 @@ public class AudioManager : MonoBehaviour
         MasterVolume = newVolume;
         UpdateMusicVolume(CalcMusicVolume());
         UpdateSoundVolume(CalcSoundVolume());
+    }
+
+    public void LoadData(VolumeData data)
+    {
+        MasterVolume = data.MasterVolume;
+        MusicVolume = data.MusicVolume;
+        SoundVolume = data.SoundVolume;
+    }
+
+    public void SaveData(VolumeData data)
+    {
+        data.MasterVolume = MasterVolume;
+        data.MusicVolume = MusicVolume;
+        data.SoundVolume = SoundVolume;
     }
 }
