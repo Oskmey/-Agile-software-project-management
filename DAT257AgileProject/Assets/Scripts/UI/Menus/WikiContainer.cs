@@ -1,7 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Windows;
+using System.IO;
 
 public class WikiContainer : MonoBehaviour
 {
@@ -12,7 +15,6 @@ public class WikiContainer : MonoBehaviour
     private SubheaderHandler subheaderHandler;
     private WikiHandler wikiHandler;
 
-    // Start is called before the first frame update
     void Start()
     {
         string[] folderPaths = {
@@ -24,7 +26,7 @@ public class WikiContainer : MonoBehaviour
             "Assets/Resources/ScriptableObjects/TrashFacts/Plastic",
             "Assets/Resources/ScriptableObjects/TrashFacts/PlasticSpoon",
             "Assets/Resources/ScriptableObjects/TrashFacts/TrashBag"
-        };    
+        };
 
         foreach (string folderPath in folderPaths)
         {
@@ -32,7 +34,9 @@ public class WikiContainer : MonoBehaviour
             GameObject go = Instantiate(subheaderPrefab);
             subheaderHandler = go.GetComponent<SubheaderHandler>();
             go.transform.SetParent(transform, false);
-            subheaderHandler.SetHeaderText(folderName);
+            string[] parts = Regex.Split(folderName, @"(?<!^)(?=[A-Z])");
+            string splitFolderName = string.Join(" ", parts);
+            subheaderHandler.SetHeaderText(splitFolderName);
             go.transform.localScale = Vector3.one;
             GenerateWikiItems(folderName);
         }
