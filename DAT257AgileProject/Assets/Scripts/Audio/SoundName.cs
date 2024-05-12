@@ -4,5 +4,8 @@ public enum SoundName
     ExclamationMarkAppears,
     TrashCaught,
     ItemBought,
-    RecycleNoise
+    RecycleNoise,
+    SliderInteraction
 }
+
+// TODO: Created class extension for ToReadableString() for SoundName
