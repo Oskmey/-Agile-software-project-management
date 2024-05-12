@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -15,11 +15,22 @@ public class PauseMenu : MonoBehaviour
 
     private PlayerInputActions playerInputActions;
     private bool settingsOpen = false;
-    private bool gameStatsOpen = false;
+    [SerializeField]
+    private GameStatsUI gameStatsMenu;
+    [SerializeField]
+    private Button pauseButton;
+    [SerializeField]
+    private Button gameStatsButton;
     private void Awake()
     {
         playerInputActions = new PlayerInputActions();
 
+    }
+
+    private void Start()
+    {
+        gameStatsButton.onClick.AddListener(OnGameStatsButtonClicked);
+        pauseButton.onClick.AddListener(OnPauseButtonClicked);
     }
 
     private void Pause(InputAction.CallbackContext contex)
@@ -28,16 +39,11 @@ public class PauseMenu : MonoBehaviour
 
     }
 
-    public void PauseButton()
-    {
-        TogglePause();
-    }
-
     private void TogglePause()
     {
         if (GamePaused)
         {
-            if (settingsOpen == true || gameStatsOpen == true)
+            if (settingsOpen == true || gameStatsMenu.gameObject.activeSelf)
             {
                 return;
             }
@@ -51,6 +57,11 @@ public class PauseMenu : MonoBehaviour
             Time.timeScale = 0f;
             GamePaused = true;
         }
+    }
+
+    private void OnPauseButtonClicked()
+    {
+        TogglePause();
     }
 
     public void Menu()
@@ -76,17 +87,12 @@ public class PauseMenu : MonoBehaviour
             settingsOpen = false;
         }  
     }
-    public void GameStats()
+
+    public void OnGameStatsButtonClicked()
     {
-        if (gameStatsOpen == false)
-        {
-            gameStatsOpen = true;
-        }
-        else
-        {
-            gameStatsOpen = false;
-        }
+        gameStatsMenu.gameObject.SetActive(true);
     }
+
     private void OnEnable()
     {
         PauseAction = playerInputActions.UI.Pause;

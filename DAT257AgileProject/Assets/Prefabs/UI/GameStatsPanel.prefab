@@ -279,7 +279,7 @@ GameObject:
   - component: {fileID: 6284417857312769531}
   - component: {fileID: 7007791837720289662}
   m_Layer: 5
-  m_Name: Accessories purchased
+  m_Name: RecycledTrash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1035,7 +1035,7 @@ GameObject:
   - component: {fileID: 2393746501210473397}
   - component: {fileID: 9103771516525381360}
   m_Layer: 5
-  m_Name: Accessories purchased
+  m_Name: AccessoriesPurchased
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1632,6 +1632,7 @@ GameObject:
   - component: {fileID: 1396472998211504687}
   - component: {fileID: 1967526260355683355}
   - component: {fileID: 1795346702132881671}
+  - component: {fileID: 8807246999271910513}
   m_Layer: 5
   m_Name: GameStatsPanel
   m_TagString: Untagged
@@ -1699,6 +1700,26 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8807246999271910513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5555540515999694743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 920b1fd0dea829c44a7cfd1622b2a6c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentMoneyText: {fileID: 4731865704519354822}
+  totalMoneyGainedText: {fileID: 5053461654126671773}
+  totalMoneySpentText: {fileID: 3215600898695457980}
+  accessoriesPurchasedText: {fileID: 2393746501210473397}
+  trashCaughtText: {fileID: 7869017386525363034}
+  currentInventoryItemsText: {fileID: 4432893780136382102}
+  currentlyEquippedAccessoriesText: {fileID: 5708798490371728256}
+  recycledTrashText: {fileID: 6284417857312769531}
 --- !u!1 &5577978042332463508
 GameObject:
   m_ObjectHideFlags: 0
@@ -2120,30 +2141,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PauseMenu, Main
-        m_MethodName: GameStats
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
         m_CallState: 2
 --- !u!1 &6395793261727481971
 GameObject:
