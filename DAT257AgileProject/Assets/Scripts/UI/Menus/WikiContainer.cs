@@ -15,7 +15,17 @@ public class WikiContainer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        string[] folderPaths = AssetDatabase.GetSubFolders("Assets/Resources/ScriptableObjects/TrashFacts");
+        string[] folderPaths = {
+            "Assets/Resources/ScriptableObjects/TrashFacts/CarTire",
+            "Assets/Resources/ScriptableObjects/TrashFacts/CigaretteButt",
+            "Assets/Resources/ScriptableObjects/TrashFacts/ElectricScooter",
+            "Assets/Resources/ScriptableObjects/TrashFacts/GlassBottle",
+            "Assets/Resources/ScriptableObjects/TrashFacts/PETBottle",
+            "Assets/Resources/ScriptableObjects/TrashFacts/Plastic",
+            "Assets/Resources/ScriptableObjects/TrashFacts/PlasticSpoon",
+            "Assets/Resources/ScriptableObjects/TrashFacts/TrashBag"
+        };    
+
         foreach (string folderPath in folderPaths)
         {
             string folderName = System.IO.Path.GetFileName(folderPath);
