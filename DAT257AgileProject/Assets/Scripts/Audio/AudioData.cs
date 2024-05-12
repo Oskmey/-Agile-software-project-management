@@ -7,7 +7,7 @@ public class AudioData : ScriptableObject
     [SerializeField]
     private AudioClip audioClip;
 
-    [Tooltip("Value is [0,1], where 0 means no sound and 1 means no change. Values in between will lower the volume.")]
+    [Tooltip("Value is [0,1], where 0 means no sound and 1 means no change. Values in between will lower the volume. OBS: 0 is a pointless value for this variable.")]
     [SerializeField]
     private float audioBalancingValue;
 
