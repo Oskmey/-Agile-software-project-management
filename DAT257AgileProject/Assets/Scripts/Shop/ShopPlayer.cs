@@ -57,5 +57,14 @@ public class ShopPlayer : MonoBehaviour
         {
             Debug.LogError("No matching item found.");
         }
+
+        if (playerStatsManager.PurchasedAccessories.ContainsKey(matchingItem.Accessory))
+        {
+            playerStatsManager.PurchasedAccessories[matchingItem.Accessory]++;
+        }
+        else
+        {
+            playerStatsManager.PurchasedAccessories.Add(matchingItem.Accessory, 1);
+        }
     }
 }

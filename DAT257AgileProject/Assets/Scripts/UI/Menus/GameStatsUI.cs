@@ -46,13 +46,62 @@ public class GameStatsUI : MonoBehaviour
     }
     private void UpdateStats()
     {
-        Debug.Log("updating stats values");
         UpdateInventoryInfo();
         UpdateAccessoryInfo();
         UpdateMoneyInfo();
         UpdateRecycledTrashInfo();
+        UpdateTrashCaughtInfo();
+        UpdateAccessoriesPurchasedInfo();
+    }
+    
+    private void UpdateTrashCaughtInfo()
+    {
+        Dictionary<TrashType, int> recycledTrash = playerStatsManager.TrashCaughtDictionary;
+        StringBuilder sb = new();
+
+        sb.Append("Trash Caught:");
+        sb.AppendLine();
+        if (recycledTrash.Count > 0 )
+        {
+            foreach (var trash in recycledTrash)
+            {
+                sb.Append($"• {trash.Value}x {trash.Key.ToReadableString()}");
+                sb.AppendLine();
+            }
+        }
+        else
+        {
+            sb.Append("None");
+            sb.AppendLine();
+        }
+
+        trashCaughtText.text = sb.ToString();
     }
 
+    private void UpdateAccessoriesPurchasedInfo()
+    {
+        Dictionary<AccessorySO, int> purchasedAccessories = playerStatsManager.PurchasedAccessories;
+        StringBuilder sb = new();
+
+        sb.Append("Purchased accessories:");
+        sb.AppendLine();
+
+        if (purchasedAccessories.Count > 0)
+        {
+            foreach (var accessory in purchasedAccessories)
+            {
+                sb.Append($"• {accessory.Value}x {accessory.Key.AccessoryName}");
+                sb.AppendLine();
+            }
+        }
+        else
+        {
+            sb.Append("None");
+            sb.AppendLine();
+        }
+
+        accessoriesPurchasedText.text = sb.ToString();
+    }
     private void UpdateMoneyInfo()
     {
         currentMoneyText.text = $"Current Money: {playerStatsManager.CurrentMoney}";
@@ -68,9 +117,17 @@ public class GameStatsUI : MonoBehaviour
         sb.Append("Recycled from inventory:");
         sb.AppendLine();
 
-        foreach (var trash in recycledTrash)
+        if (recycledTrash.Count > 0)
         {
-            sb.Append($"• {trash.Value}x {trash.Key.ToReadableString()}");
+            foreach (var trash in recycledTrash)
+            {
+                sb.Append($"• {trash.Value}x {trash.Key.ToReadableString()}");
+                sb.AppendLine();
+            }
+        }
+        else
+        {
+            sb.Append("None");
             sb.AppendLine();
         }
 
@@ -86,24 +143,32 @@ public class GameStatsUI : MonoBehaviour
         sb.AppendLine();
         Dictionary<ItemSO, int> inventoryQuantity = new();
 
-        foreach (var inventoryItem in inventoryDetails)
+        if (inventoryDetails.Count > 0)
         {
-            ItemSO item = inventoryItem.Value.Item;
-            int quantity = inventoryItem.Value.Quantity;
+            foreach (var inventoryItem in inventoryDetails)
+            {
+                ItemSO item = inventoryItem.Value.Item;
+                int quantity = inventoryItem.Value.Quantity;
 
-            if (inventoryQuantity.ContainsKey(item))
-            {
-                inventoryQuantity[item] += quantity;
+                if (inventoryQuantity.ContainsKey(item))
+                {
+                    inventoryQuantity[item] += quantity;
+                }
+                else
+                {
+                    inventoryQuantity.Add(item, quantity);
+                }
             }
-            else
+
+            foreach (var item in inventoryQuantity)
             {
-                inventoryQuantity.Add(item, quantity);
+                sb.Append($"• {item.Value}x {item.Key.Name}");
+                sb.AppendLine();
             }
         }
-
-        foreach (var item in inventoryQuantity)
+        else
         {
-            sb.Append($"• {item.Value}x {item.Key.Name}");
+            sb.Append("None");
             sb.AppendLine();
         }
 
@@ -119,24 +184,32 @@ public class GameStatsUI : MonoBehaviour
         sb.AppendLine();
         Dictionary<ItemSO, int> inventoryQuantity = new();
 
-        foreach (var inventoryItem in inventoryDetails)
+        if (inventoryDetails.Count > 0)
         {
-            ItemSO item = inventoryItem.Value.Item;
-            int quantity = inventoryItem.Value.Quantity;
+            foreach (var inventoryItem in inventoryDetails)
+            {
+                ItemSO item = inventoryItem.Value.Item;
+                int quantity = inventoryItem.Value.Quantity;
 
-            if (inventoryQuantity.ContainsKey(item))
-            {
-                inventoryQuantity[item] += quantity;
+                if (inventoryQuantity.ContainsKey(item))
+                {
+                    inventoryQuantity[item] += quantity;
+                }
+                else
+                {
+                    inventoryQuantity.Add(item, quantity);
+                }
             }
-            else
+
+            foreach (var item in inventoryQuantity)
             {
-                inventoryQuantity.Add(item, quantity);
+                sb.Append($"• {item.Value}x {item.Key.Name}");
+                sb.AppendLine();
             }
         }
-
-        foreach (var item in inventoryQuantity)
+        else
         {
-            sb.Append($"• {item.Value}x {item.Key.Name}");
+            sb.Append("None");
             sb.AppendLine();
         }
 
