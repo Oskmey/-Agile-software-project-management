@@ -131,13 +131,13 @@ public class PlayerController : MonoBehaviour, IDataPersistence<GameData>
         }
     }
 
-    public void LoadData(GameData gameData)
+    public void LoadData(GameData data)
     {
-        transform.position = gameData.PlayerPosition;
+        transform.position = data.PlayerPosition;
     }
 
-    public void SaveData(GameData gameData)
+    public void SaveData(GameData data)
     {
-        gameData.PlayerPosition = transform.position;
+        data.PlayerPosition = transform.position;
     }
 }

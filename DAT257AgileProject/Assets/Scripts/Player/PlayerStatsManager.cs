@@ -8,15 +8,15 @@ public class PlayerStatsManager : MonoBehaviour, IDataPersistence<GameData>
 
     public int Money { get; set; }
 
-    public void LoadData(GameData gameData)
+    public void LoadData(GameData data)
     {
-        RecycledTrashDictionary = gameData.RecycledTrashCount;
-        Money = gameData.Money;
+        RecycledTrashDictionary = data.RecycledTrashCount;
+        Money = data.Money;
     }
 
-    public void SaveData(GameData gameData)
+    public void SaveData(GameData data)
     {
-        gameData.RecycledTrashCount = RecycledTrashDictionary;
-        gameData.Money = Money;
+        data.RecycledTrashCount = RecycledTrashDictionary;
+        data.Money = Money;
     }
 }
