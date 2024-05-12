@@ -42,12 +42,12 @@ public class AudioManager : MonoBehaviour, IDataPersistence<SettingsData>
     {
         MusicData selectedSong = Array.Find(musicSongs, song => song.MusicName == musicName);
 
-        // Have to update the volume according to the balancing value in SO.
-        lastMusicBalancingValue = selectedSong.AudioBalancingValue;
-        UpdateMusicVolume(CalcMusicVolume());
-
         if (selectedSong != null)
         {
+            // Have to update the volume according to the balancing value in SO.
+            lastMusicBalancingValue = selectedSong.AudioBalancingValue;
+            UpdateMusicVolume(CalcMusicVolume());
+
             musicSource.clip = selectedSong.AudioClip;
             musicSource.Play();
         }
@@ -61,12 +61,12 @@ public class AudioManager : MonoBehaviour, IDataPersistence<SettingsData>
     {
         SoundData selectedSound = Array.Find(soundEffects, sound => sound.SoundName == soundName);
 
-        // Have to update the volume according to the balancing value in SO.
-        lastSoundBalancingValue = selectedSound.AudioBalancingValue;
-        UpdateSoundVolume(CalcSoundVolume());
-
         if (selectedSound != null)
         {
+            // Have to update the volume according to the balancing value in SO.
+            lastSoundBalancingValue = selectedSound.AudioBalancingValue;
+            UpdateSoundVolume(CalcSoundVolume());
+
             AudioClip soundClip = selectedSound.AudioClip;
             soundSource.PlayOneShot(soundClip);
         }
