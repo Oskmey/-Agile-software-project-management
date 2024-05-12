@@ -20,6 +20,8 @@ public class PauseMenu : MonoBehaviour
     [SerializeField]
     private Button pauseButton;
     [SerializeField]
+    private Button resumeButton;
+    [SerializeField]
     private Button gameStatsButton;
     private void Awake()
     {
@@ -30,13 +32,15 @@ public class PauseMenu : MonoBehaviour
     private void Start()
     {
         gameStatsButton.onClick.AddListener(OnGameStatsButtonClicked);
+        resumeButton.onClick.AddListener(OnPauseButtonClicked);
         pauseButton.onClick.AddListener(OnPauseButtonClicked);
     }
 
     private void Pause(InputAction.CallbackContext contex)
     {
         TogglePause();
-
+        // To show current game stats for save file
+        //DataPersistenceManager.Instance.SaveGame();
     }
 
     private void TogglePause()

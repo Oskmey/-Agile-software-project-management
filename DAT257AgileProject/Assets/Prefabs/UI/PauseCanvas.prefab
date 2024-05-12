@@ -1269,6 +1269,7 @@ MonoBehaviour:
   pauseMenuUI: {fileID: 3375775119006560945}
   gameStatsMenu: {fileID: 4394693290248924354}
   pauseButton: {fileID: 1420814805934160440}
+  resumeButton: {fileID: 1775344661777810741}
   gameStatsButton: {fileID: 7478819049734684570}
 --- !u!1 &5822564832496570526
 GameObject:
@@ -1390,19 +1391,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4682273343753252259}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1193019108654229937}
-        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: PauseButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &6484451994811090002
 GameObject:
   m_ObjectHideFlags: 0

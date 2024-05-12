@@ -78,7 +78,7 @@ public class GameplayHudHandler : MonoBehaviour
     {
         if (moneyGeneratedText != null)
         {
-            moneyGeneratedText.text = $"Money: {playerStatsManager.Money}";
+            moneyGeneratedText.text = $"Money: {playerStatsManager.CurrentMoney}";
         }
     }
 
