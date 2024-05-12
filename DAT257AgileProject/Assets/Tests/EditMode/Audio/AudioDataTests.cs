@@ -49,7 +49,7 @@ public class AudioDataTests
     }
 
     [Test, TestCaseSource(nameof(AudioDataTestCases))]
-    public void EachAudioData_HasValueGreaterThanZero(AudioData audioData)
+    public void EachAudioData_HasAudioBalancingValueGreaterThanZero(AudioData audioData)
     {
         Assert.Greater(audioData.AudioBalancingValue, 0);
     }

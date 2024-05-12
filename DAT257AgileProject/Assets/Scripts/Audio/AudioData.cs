@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class AudioData : ScriptableObject
 {
-    // TODO: field is probably unnecessary, so should remove. 
-    [SerializeField]
-    private AudioType audioType;
-
     [SerializeField]
     private AudioClip audioClip;
 
@@ -15,7 +11,6 @@ public class AudioData : ScriptableObject
     [SerializeField]
     private float audioBalancingValue;
 
-    public AudioType AudioType => audioType;
     public AudioClip AudioClip => audioClip;
     public float AudioBalancingValue => audioBalancingValue;
 }
