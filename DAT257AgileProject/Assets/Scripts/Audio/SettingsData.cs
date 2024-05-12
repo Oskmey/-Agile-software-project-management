@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [System.Serializable]
-public class VolumeData
+public class SettingsData
 {
     [SerializeField]
     private float masterVolume;
@@ -13,7 +13,7 @@ public class VolumeData
     private float soundVolume;
     public float SoundVolume { get { return soundVolume; } set { soundVolume = value; } }
 
-    public VolumeData()
+    public SettingsData()
     {
         masterVolume = 1;
         musicVolume = 0.5f;

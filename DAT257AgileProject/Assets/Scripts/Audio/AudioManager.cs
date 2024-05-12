@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class AudioManager : MonoBehaviour, IDataPersistence<VolumeData>
+public class AudioManager : MonoBehaviour, IDataPersistence<SettingsData>
 {
     public static AudioManager Instance { get; private set; }
 
@@ -128,14 +128,14 @@ public class AudioManager : MonoBehaviour, IDataPersistence<VolumeData>
         UpdateSoundVolume(CalcSoundVolume());
     }
 
-    public void LoadData(VolumeData data)
+    public void LoadData(SettingsData data)
     {
         MasterVolume = data.MasterVolume;
         MusicVolume = data.MusicVolume;
         SoundVolume = data.SoundVolume;
     }
 
-    public void SaveData(VolumeData data)
+    public void SaveData(SettingsData data)
     {
         data.MasterVolume = MasterVolume;
         data.MusicVolume = MusicVolume;
