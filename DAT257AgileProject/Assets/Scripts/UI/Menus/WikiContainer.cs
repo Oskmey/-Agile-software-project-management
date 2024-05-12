@@ -15,7 +15,7 @@ public class WikiContainer : MonoBehaviour
     private SubheaderHandler subheaderHandler;
     private WikiHandler wikiHandler;
 
-    void Start()
+    private void Start()
     {
         string[] folderPaths = {
             "Assets/Resources/ScriptableObjects/TrashFacts/CarTire",
