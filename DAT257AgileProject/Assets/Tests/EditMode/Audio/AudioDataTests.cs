@@ -5,13 +5,13 @@ using UnityEngine;
 [TestFixture]
 public class AudioDataTests
 {
-    private static readonly AudioData[] audioData = Resources.LoadAll<AudioData>("ScriptableObjects");
+    private static readonly AudioData[] allAudioData = Resources.LoadAll<AudioData>("ScriptableObjects");
 
     public static IEnumerable<TestCaseData> AudioDataTestCases
     {
         get
         {
-            foreach (var audioDataEntry in audioData)
+            foreach (var audioDataEntry in allAudioData)
             {
                 yield return new TestCaseData(audioDataEntry);
             }
@@ -19,15 +19,15 @@ public class AudioDataTests
     }
 
     [Test]
-    public void AudioData_IsNotNull()
+    public void AllAudioData_IsNotNull()
     {
-        Assert.IsNotNull(audioData);
+        Assert.IsNotNull(allAudioData);
     }
 
     [Test]
-    public void AudioData_IsNotEmpty()
+    public void AllAudioData_IsNotEmpty()
     {
-        Assert.IsNotEmpty(audioData);
+        Assert.IsNotEmpty(allAudioData);
     }
 
     [Test, TestCaseSource(nameof(AudioDataTestCases))]
