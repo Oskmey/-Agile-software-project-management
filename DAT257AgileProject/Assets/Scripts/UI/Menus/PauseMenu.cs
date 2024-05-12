@@ -10,37 +10,71 @@ public class PauseMenu : MonoBehaviour
 {
     private static bool GamePaused = false;
 
-    [SerializeField] private GameObject pauseMenuUI;
+    [SerializeField] 
+    private GameObject pauseMenuUI;
     private InputAction PauseAction;
 
     private PlayerInputActions playerInputActions;
     private bool settingsOpen = false;
     [SerializeField]
     private GameStatsUI gameStatsMenu;
+
     [SerializeField]
     private Button pauseButton;
     [SerializeField]
     private Button resumeButton;
     [SerializeField]
+    private Button menuButton;
+    [SerializeField]
     private Button gameStatsButton;
+    [SerializeField]
+    private Button settingsButton;
+    [SerializeField]
+    private Button quitButton;
+
+    private List<Button> buttons;
     private void Awake()
     {
         playerInputActions = new PlayerInputActions();
-
     }
 
     private void Start()
     {
+        InitButtons();
+    }
+
+    private void InitButtons()
+    {
+        buttons = new List<Button>();
+
         gameStatsButton.onClick.AddListener(OnGameStatsButtonClicked);
         resumeButton.onClick.AddListener(OnPauseButtonClicked);
         pauseButton.onClick.AddListener(OnPauseButtonClicked);
+
+        buttons.Add(gameStatsButton);
+        buttons.Add(pauseButton);
+        buttons.Add(resumeButton);
     }
 
-    private void Pause(InputAction.CallbackContext contex)
+    public void HidePauseButtons()
+    {
+        foreach (Button button in buttons)
+        {
+            button.gameObject.SetActive(false);
+        }
+    }
+
+    public void ShowPauseButtons()
+    {
+        foreach (Button button in buttons)
+        {
+            button.gameObject.SetActive(true);
+        }
+    }
+
+    private void Pause(InputAction.CallbackContext context)
     {
         TogglePause();
-        // To show current game stats for save file
-        //DataPersistenceManager.Instance.SaveGame();
     }
 
     private void TogglePause()
@@ -94,6 +128,7 @@ public class PauseMenu : MonoBehaviour
 
     public void OnGameStatsButtonClicked()
     {
+        HidePauseButtons();
         gameStatsMenu.gameObject.SetActive(true);
     }
 

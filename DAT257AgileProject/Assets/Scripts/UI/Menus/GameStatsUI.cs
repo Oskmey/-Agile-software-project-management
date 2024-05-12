@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Text;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class GameStatsUI : MonoBehaviour
 {
@@ -35,15 +37,42 @@ public class GameStatsUI : MonoBehaviour
     private TextMeshProUGUI currentlyEquippedAccessoriesText;
     [SerializeField]
     private TextMeshProUGUI recycledTrashText;
+
+    [SerializeField]
+    private Button backButton;
+    private PauseMenu pauseMenu;
+    private PlayerInputActions playerInputActions;
+
+    private InputAction BackAction;
+
+
+
     private void Awake()
     {
+        playerInputActions = new PlayerInputActions();
         playerStatsManager = FindObjectOfType<PlayerStatsManager>();
-        UpdateStats();
+        pauseMenu = FindObjectOfType<PauseMenu>();
+        backButton.onClick.AddListener(BackToPauseMenu);
     }
+
     private void OnEnable()
     {
+        BackAction = playerInputActions.UI.Pause;
+        BackAction.Enable();
+        BackAction.performed += Back;
         UpdateStats();
     }
+
+    private void OnDisable()
+    {
+        BackAction.Disable();
+    }
+
+    private void Back(InputAction.CallbackContext context)
+    {
+        BackToPauseMenu();
+    }
+
     private void UpdateStats()
     {
         UpdateInventoryInfo();
@@ -52,6 +81,12 @@ public class GameStatsUI : MonoBehaviour
         UpdateRecycledTrashInfo();
         UpdateTrashCaughtInfo();
         UpdateAccessoriesPurchasedInfo();
+    }
+
+    private void BackToPauseMenu()
+    {
+        pauseMenu.ShowPauseButtons();
+        gameObject.SetActive(false);
     }
     
     private void UpdateTrashCaughtInfo()
