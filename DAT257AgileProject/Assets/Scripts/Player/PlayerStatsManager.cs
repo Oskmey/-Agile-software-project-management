@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStatsManager : MonoBehaviour, IDataPersistence
+public class PlayerStatsManager : MonoBehaviour, IDataPersistence<GameData>
 {
     public delegate void UpdateEvent();
     private SerializableDictionary<TrashType, int> recycledTrashDictionary;
@@ -67,23 +67,23 @@ public class PlayerStatsManager : MonoBehaviour, IDataPersistence
         }
     }
 
-    public void LoadData(GameData gameData)
+    public void LoadData(GameData data)
     {
-        RecycledTrashDictionary = gameData.RecycledTrashCount;
-        TrashCaughtDictionary = gameData.TrashCaught;
-        CurrentMoney = gameData.CurrentMoney;
-        TotalMoneyEarned = gameData.TotalMoneyEarned;
-        TotalMoneySpent = gameData.TotalMoneySpent;
-        PurchasedAccessories = gameData.PurchasedAccessories;
+        RecycledTrashDictionary = data.RecycledTrashCount;
+        TrashCaughtDictionary = data.TrashCaught;
+        CurrentMoney = data.CurrentMoney;
+        TotalMoneyEarned = data.TotalMoneyEarned;
+        TotalMoneySpent = data.TotalMoneySpent;
+        PurchasedAccessories = data.PurchasedAccessories;
     }
 
-    public void SaveData(GameData gameData)
+    public void SaveData(GameData data)
     {
-        gameData.RecycledTrashCount = RecycledTrashDictionary;
-        gameData.TrashCaught = TrashCaughtDictionary;
-        gameData.CurrentMoney = CurrentMoney;
-        gameData.TotalMoneyEarned = TotalMoneyEarned;
-        gameData.TotalMoneySpent = TotalMoneySpent;
-        gameData.PurchasedAccessories = PurchasedAccessories;
+        data.RecycledTrashCount = RecycledTrashDictionary;
+        data.TrashCaught = TrashCaughtDictionary;
+        data.CurrentMoney = CurrentMoney;
+        data.TotalMoneyEarned = TotalMoneyEarned;
+        data.TotalMoneySpent = TotalMoneySpent;
+        data.PurchasedAccessories = PurchasedAccessories;
     }
 }

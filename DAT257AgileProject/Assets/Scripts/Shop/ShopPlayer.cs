@@ -19,6 +19,7 @@ public class ShopPlayer : MonoBehaviour
     private void Start()
     {
         playerStatsManager = GetComponent<PlayerStatsManager>();
+        AudioManager.Instance.PlayMusic(MusicName.StoreTheme);
     }
 
     public void TryToBuy(AccessorySO type)

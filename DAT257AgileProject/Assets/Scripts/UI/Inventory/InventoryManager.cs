@@ -11,7 +11,7 @@ using UnityEngine.UIElements;
 
 namespace Inventory
 {
-    public class InventoryManager : MonoBehaviour, IDataPersistence
+    public class InventoryManager : MonoBehaviour, IDataPersistence<GameData>
     {
         [SerializeField]
         private UIInventoryPage inventoryUI;
@@ -436,19 +436,19 @@ namespace Inventory
             }
         }
 
-        public void LoadData(GameData gameData)
+        public void LoadData(GameData data)
         {
-            initialInventoryItems = gameData.SavedInventoryItems;
-            initialAccessoryItems = gameData.SavedAccessoryItems;
+            initialInventoryItems = data.SavedInventoryItems;
+            initialAccessoryItems = data.SavedAccessoryItems;
         }
 
-        public void SaveData(GameData gameData)
+        public void SaveData(GameData data)
         {
             // Save inventory items
-            gameData.SavedInventoryItems = GetItemsInInventory(inventoryData);
+            data.SavedInventoryItems = GetItemsInInventory(inventoryData);
 
             // Save accessory items
-            gameData.SavedAccessoryItems = GetItemsInInventory(accessoryData);
+            data.SavedAccessoryItems = GetItemsInInventory(accessoryData);
         }
 
         private List<InventoryItem> GetItemsInInventory(InventorySO inventoryData)

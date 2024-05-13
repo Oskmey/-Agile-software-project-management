@@ -29,14 +29,6 @@ public class GameData
     public SerializableDictionary<AccessorySO, int> PurchasedAccessories { get { return purchasedAccessories; } set { purchasedAccessories = value; } }
 
     [SerializeField]
-    private int musicVolume;
-    public int MusicVolume { get { return musicVolume; } set { musicVolume = value; } }
-
-    [SerializeField]
-    private int soundVolume;
-    public int SoundVolume { get { return soundVolume; } set { soundVolume = value; } }
-
-    [SerializeField]
     private SerializableDictionary<TrashType, int> recycledTrashCount;
     public SerializableDictionary<TrashType, int> RecycledTrashCount { get { return recycledTrashCount; } set { recycledTrashCount = value; } }
     
@@ -64,12 +56,5 @@ public class GameData
         currentMoney = 0;
         totalMoneyEarned = 0;
         totalMoneySpent = 0;
-        // TODO: Implement a way to change these. 
-        // Should probably have a VolumeManager like how
-        // The PlayerStatsManager works. 
-        // Also chose to have them as integers because that is how it usually is
-        // presented to the user. 
-        musicVolume = 50;
-        soundVolume = 50;
     }
 }

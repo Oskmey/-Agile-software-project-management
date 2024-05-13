@@ -4,12 +4,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MainMenu : MonoBehaviour
+public class MainMenu : MonoBehaviour, IMenuWithSettings
 {
     [SerializeField]
     private Button newGameButton;
     [SerializeField]
     private Button continueButton;
+    [SerializeField]
+    private Button settingsButton;
+
+    private SettingsMenu settingsMenu;
 
     private void Start()
     {
@@ -18,6 +22,9 @@ public class MainMenu : MonoBehaviour
         {
             continueButton.interactable = false;
         }
+        settingsMenu = FindObjectOfType<SettingsMenu>(true);
+        settingsButton.onClick.AddListener(OnSettingsButtonClicked);
+        AudioManager.Instance.PlayMusic(MusicName.MenuTheme);
     }
 
     public void OnNewGameClicked()
@@ -47,10 +54,21 @@ public class MainMenu : MonoBehaviour
     {
         newGameButton.interactable = false;
         continueButton.interactable = false;
+        settingsButton.interactable = false;
+    }
+
+    private void OnSettingsButtonClicked()
+    {
+        settingsMenu.gameObject.SetActive(true);
     }
 
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public GameObject GetGameObject()
+    {
+        return gameObject;
     }
 }
