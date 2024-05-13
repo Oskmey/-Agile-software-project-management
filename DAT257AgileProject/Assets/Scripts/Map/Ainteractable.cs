@@ -22,7 +22,8 @@ public abstract class Ainteractable : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player" && text != null)
         {
-            collision.gameObject.GetComponent<PlayerController>().AddInteractables(this);
+            player = collision;
+            collision.gameObject.GetComponent<PlayerController>().AddInteractable(this);
             promtText.text = text;
         }
         else
@@ -38,6 +39,7 @@ public abstract class Ainteractable : MonoBehaviour
         {
             player = null;
             promtText.text = "";
+            collision.gameObject.GetComponent<PlayerController>().RemoveInteractable(this);
         }
     }
 

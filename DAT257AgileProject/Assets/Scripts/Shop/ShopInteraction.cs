@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using TMPro;
-using UnityEngine;
+
+using UnityEngine.SceneManagement;
 
 public class ShopInteraction : Ainteractable
 {
@@ -10,7 +7,8 @@ public class ShopInteraction : Ainteractable
 
     public override void Interact()
     {
-        Debug.Log("Shop opened");
+        DataPersistenceManager.Instance.SaveGame();
+        SceneManager.LoadScene("Shop");
     }
-    
+
 }

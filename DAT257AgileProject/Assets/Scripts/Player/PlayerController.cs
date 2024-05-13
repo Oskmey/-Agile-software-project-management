@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence<GameData>
     private bool canMove = true;
 
     private bool resultOfCatch;
-    private Dictionary<Ainteractable, float> interactables;
+    private HashSet<Ainteractable> interactables = new HashSet<Ainteractable>();
 
 
 
@@ -87,7 +87,6 @@ public class PlayerController : MonoBehaviour, IDataPersistence<GameData>
                 canMove = false;
                 rb.velocity = Vector2.zero;
                 playerInteraction.currentFishingSpot.HandleMinigameStart();
-
             }
         }
     }
@@ -96,17 +95,24 @@ public class PlayerController : MonoBehaviour, IDataPersistence<GameData>
     {
         if (Time.timeScale > 0 && interactables != null)
         {
-            float closestInteractable = interactables.Values.Max(); // Get the closest interactable value
-            foreach (KeyValuePair<Ainteractable, float> interactable in interactables)
+            Ainteractable closestInteractable = null;
+            float smallestDistance = 1000000000;
+            foreach (Ainteractable interactable in interactables)
             {
-                if (interactable.Value == closestInteractable)
+                float distance = interactable.DistanceToPlayer();
+                if (distance < smallestDistance)
                 {
-                    interactable.Key.Interact();
-                    break;
+                    smallestDistance = distance;
+                    closestInteractable = interactable;
                 }
+            }
+            if (closestInteractable != null)
+            {
+                closestInteractable.Interact();
             }
         }
     }
+    
     private void OnMovement(InputAction.CallbackContext value)
     {
         if (canMove)
@@ -143,17 +149,14 @@ public class PlayerController : MonoBehaviour, IDataPersistence<GameData>
         }
     }
 
-    public void AddInteractables(Ainteractable ainteractable)
+    public void AddInteractable(Ainteractable ainteractable)
     {
-        float distanceToPlayer = ainteractable.DistanceToPlayer();
-        if (distanceToPlayer >= 0)
-        {
-            interactables.Add(ainteractable, distanceToPlayer);
-        }
-        else
-        {
-            Debug.LogWarning("Distance to player is negative please check the code");
-        }
+            interactables.Add(ainteractable);
+    }
+
+    public void RemoveInteractable(Ainteractable ainteractable)
+    {
+        interactables.Remove(ainteractable);
     }
 
     public void LoadData(GameData data)

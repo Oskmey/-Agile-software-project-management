@@ -7,6 +7,6 @@ public class Shop : MonoBehaviour
 {
     public bool IsPlayerInRange()
     {
-        return GetComponentInChildren<ShopInteraction>().IsPlayerInRange;
+        return true;
     }
 }
