@@ -4,39 +4,13 @@ using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 
-public class ShopInteraction : MonoBehaviour
+public class ShopInteraction : Ainteractable
 {
-    private bool isPlayerInRange;
-    private TextMeshProUGUI promtText;
+    public override string text => "Press E to Shop";
 
-
-    private void Awake()
+    public override void Interact()
     {
-        promtText = GameObject.FindGameObjectWithTag("TutorialText").GetComponent<TextMeshProUGUI>();
+        Debug.Log("Shop opened");
     }
-
-    public bool IsPlayerInRange
-    {
-        get
-        {
-            return isPlayerInRange;
-        }
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            isPlayerInRange = true;
-            promtText.text = "Press E to Shop";
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            isPlayerInRange = false;
-            promtText.text = "";
-        }
-    }
+    
 }

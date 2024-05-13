@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Codice.Client.BaseCommands;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static RecyclingMachine;
@@ -16,19 +17,22 @@ public class PlayerController : MonoBehaviour, IDataPersistence<GameData>
     private RecyclingManager recyclingManager;
     private InputAction recycleAction;
     private InputAction fishingAction;
-    private InputAction shopAction;
+    private InputAction intractionAction;
     private ShopManager shoppingManager;
     private PlayerInteraction playerInteraction;
 
     private PlayerStatsManager playerStatsManager;
 
-    private InputAction catchingAction; 
+    private InputAction catchingAction;
 
     private Minigame minigame;
 
     private bool canMove = true;
 
     private bool resultOfCatch;
+    private Dictionary<Ainteractable, float> interactables;
+
+
 
     void Awake()
     {
@@ -37,7 +41,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence<GameData>
         recycleAction = GetComponent<PlayerInput>().actions["Recycle"];
         recyclingManager = GameObject.FindGameObjectWithTag("Recycling Manager").GetComponent<RecyclingManager>();
         fishingAction = GetComponent<PlayerInput>().actions["Fish"];
-        shopAction = GetComponent<PlayerInput>().actions["Shop"];
+        intractionAction = GetComponent<PlayerInput>().actions["Shop"];
         shoppingManager = GameObject.FindGameObjectWithTag("Shop Manager").GetComponent<ShopManager>();
         catchingAction = GetComponent<PlayerInput>().actions["Catch"];
         minigame = GameObject.FindGameObjectWithTag("Minigame Manager").GetComponent<MinigameManager>().getCurrentMinigame();
@@ -51,7 +55,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence<GameData>
         movementAction.canceled += OnMovementStopped;
         recycleAction.performed += Recycle;
         fishingAction.performed += Fishing;
-        shopAction.performed += Shopping;
+        intractionAction.performed += Interact;
         catchingAction.performed += Catch;
     }
 
@@ -60,11 +64,11 @@ public class PlayerController : MonoBehaviour, IDataPersistence<GameData>
         movementAction.performed -= OnMovement;
         movementAction.canceled -= OnMovementStopped;
         recycleAction.performed -= Recycle;
-        shopAction.performed -= Shopping;
+        intractionAction.performed -= Interact;
         fishingAction.performed -= Fishing;
         catchingAction.performed -= Catch;
     }
-    
+
     // Test method to recycle trash due to no inventory system
     private void Recycle(InputAction.CallbackContext context)
     {
@@ -75,7 +79,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence<GameData>
     }
 
     private void Fishing(InputAction.CallbackContext context)
-    {   
+    {
         if (Time.timeScale > 0)
         {
             if (playerInteraction.currentFishingSpot != null)
@@ -85,22 +89,30 @@ public class PlayerController : MonoBehaviour, IDataPersistence<GameData>
                 playerInteraction.currentFishingSpot.HandleMinigameStart();
 
             }
-        }     
-    }
-
-    private void Shopping(InputAction.CallbackContext context)
-    {   
-        if (Time.timeScale > 0)
-        {
-            shoppingManager.ShopAtNearestSpot();
         }
-
     }
 
+    private void Interact(InputAction.CallbackContext context)
+    {
+        if (Time.timeScale > 0 && interactables != null)
+        {
+            float closestInteractable = interactables.Values.Max(); // Get the closest interactable value
+            foreach (KeyValuePair<Ainteractable, float> interactable in interactables)
+            {
+                if (interactable.Value == closestInteractable)
+                {
+                    interactable.Key.Interact();
+                    break;
+                }
+            }
+        }
+    }
     private void OnMovement(InputAction.CallbackContext value)
     {
-        if(canMove){
-        rb.velocity = value.ReadValue<Vector2>() * speed;}
+        if (canMove)
+        {
+            rb.velocity = value.ReadValue<Vector2>() * speed;
+        }
     }
 
     private void OnMovementStopped(InputAction.CallbackContext value)
@@ -127,7 +139,20 @@ public class PlayerController : MonoBehaviour, IDataPersistence<GameData>
                     playerInteraction.currentFishingSpot.OnMinigameLostHandler();
                 }
             }
-    
+
+        }
+    }
+
+    public void AddInteractables(Ainteractable ainteractable)
+    {
+        float distanceToPlayer = ainteractable.DistanceToPlayer();
+        if (distanceToPlayer >= 0)
+        {
+            interactables.Add(ainteractable, distanceToPlayer);
+        }
+        else
+        {
+            Debug.LogWarning("Distance to player is negative please check the code");
         }
     }
 
