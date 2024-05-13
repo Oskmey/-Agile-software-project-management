@@ -18,7 +18,6 @@ public class PlayerController : MonoBehaviour, IDataPersistence<GameData>
     private InputAction recycleAction;
     private InputAction fishingAction;
     private InputAction intractionAction;
-    private ShopManager shoppingManager;
     private PlayerInteraction playerInteraction;
 
     private PlayerStatsManager playerStatsManager;
@@ -41,8 +40,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence<GameData>
         recycleAction = GetComponent<PlayerInput>().actions["Recycle"];
         recyclingManager = GameObject.FindGameObjectWithTag("Recycling Manager").GetComponent<RecyclingManager>();
         fishingAction = GetComponent<PlayerInput>().actions["Fish"];
-        intractionAction = GetComponent<PlayerInput>().actions["Shop"];
-        shoppingManager = GameObject.FindGameObjectWithTag("Shop Manager").GetComponent<ShopManager>();
+        intractionAction = GetComponent<PlayerInput>().actions["Interact"];
         catchingAction = GetComponent<PlayerInput>().actions["Catch"];
         minigame = GameObject.FindGameObjectWithTag("Minigame Manager").GetComponent<MinigameManager>().getCurrentMinigame();
         playerInteraction = GetComponentInChildren<PlayerInteraction>();
@@ -112,7 +110,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence<GameData>
             }
         }
     }
-    
+
     private void OnMovement(InputAction.CallbackContext value)
     {
         if (canMove)
