@@ -60,6 +60,7 @@ public class PauseMenu : MonoBehaviour, IMenuWithSettings
         buttons.Add(resumeButton);
         buttons.Add(menuButton);
         buttons.Add(gameStatsButton);
+        buttons.Add(settingsButton);
         buttons.Add(quitButton);
     }
 
