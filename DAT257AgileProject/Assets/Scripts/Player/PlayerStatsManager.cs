@@ -5,68 +5,12 @@ using UnityEngine;
 public class PlayerStatsManager : MonoBehaviour, IDataPersistence<GameData>
 {
     public delegate void UpdateEvent();
-    private SerializableDictionary<TrashType, int> recycledTrashDictionary;
-    public SerializableDictionary<TrashType, int> RecycledTrashDictionary
-    {
-        get => recycledTrashDictionary;
-        private set 
-        { 
-            recycledTrashDictionary = value;
-        } 
-    }
-    private SerializableDictionary<TrashType, int> trashCaughtDictionary;
-
-    public SerializableDictionary<TrashType, int> TrashCaughtDictionary
-    {
-        get => trashCaughtDictionary;
-        private set
-        {
-            trashCaughtDictionary = value;
-        }
-    }
-    private int currentMoney;
-
-    public int CurrentMoney
-    {
-        get => currentMoney;
-        set
-        {
-            currentMoney = value;
-        }
-    }
-
-    private int totalMoneyEarned;
-
-    public int TotalMoneyEarned
-    {
-        get => totalMoneyEarned;
-        set
-        {
-            totalMoneyEarned = value;
-        }
-    }
-    private int totalMoneySpent;
-
-    public int TotalMoneySpent
-    {
-        get => totalMoneySpent;
-        set
-        {
-            totalMoneySpent = value;
-        }
-    }
-
-    private SerializableDictionary<AccessorySO, int> purchasedAccessories;
-
-    public SerializableDictionary<AccessorySO, int> PurchasedAccessories
-    {
-        get => purchasedAccessories;
-        private set
-        {
-            purchasedAccessories = value;
-        }
-    }
-
+    public SerializableDictionary<TrashType, int> RecycledTrashDictionary { get; private set; }
+    public SerializableDictionary<TrashType, int> TrashCaughtDictionary { get; private set; }
+    public int CurrentMoney { get; set; }
+    public int TotalMoneyEarned { get; set; }
+    public int TotalMoneySpent { get; set; }
+    public SerializableDictionary<AccessorySO, int> PurchasedAccessories { get; private set; }
     public void LoadData(GameData data)
     {
         RecycledTrashDictionary = data.RecycledTrashCount;
