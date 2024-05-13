@@ -4,22 +4,45 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
-public class PauseMenu : MonoBehaviour
+public class PauseMenu : MonoBehaviour, IMenuWithSettings
 {
     private static bool GamePaused = false;
 
-    [SerializeField] private GameObject pauseMenuUI;
+    [SerializeField] 
+    private GameObject pauseMenuUI;
     private InputAction PauseAction;
 
     private PlayerInputActions playerInputActions;
-    private bool SettingsOpen = false;
+
+    [SerializeField]
+    private Button pauseButton;
+    [SerializeField]
+    private Button resumeButton;
+    [SerializeField]
+    private Button settingsButton;
+    [SerializeField]
+    private Button menuButton;
+    [SerializeField]
+    private Button quitButton;
+
+    private SettingsMenu settingsMenu;
 
     private void Awake()
     {
         playerInputActions = new PlayerInputActions();
+    }
 
+    private void Start()
+    {
+        settingsMenu = FindObjectOfType<SettingsMenu>(true);
+        pauseButton.onClick.AddListener(OnPauseButtonClicked);
+        resumeButton.onClick.AddListener(OnPauseButtonClicked);
+        settingsButton.onClick.AddListener(OnSettingsButtonClicked);
+        menuButton.onClick.AddListener(OnMenuButtonClicked);
+        quitButton.onClick.AddListener(OnQuitButtonClicked);
     }
 
     private void Pause(InputAction.CallbackContext contex)
@@ -28,7 +51,7 @@ public class PauseMenu : MonoBehaviour
 
     }
 
-    public void PauseButton()
+    private void OnPauseButtonClicked()
     {
         TogglePause();
     }
@@ -37,7 +60,7 @@ public class PauseMenu : MonoBehaviour
     {
         if (GamePaused)
         {
-            if (SettingsOpen == false)
+            if (!settingsMenu.IsActive())
             pauseMenuUI.SetActive(false);
             Time.timeScale = 1f;
             GamePaused = false;
@@ -52,29 +75,22 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    public void Menu()
+    private void OnSettingsButtonClicked()
+    {
+        gameObject.SetActive(false);
+        settingsMenu.gameObject.SetActive(true);
+    }
+
+    public void OnMenuButtonClicked()
     {
         TogglePause();
         DataPersistenceManager.Instance.SaveGame();
         SceneManager.LoadSceneAsync("Main Menu");
     }
 
-    public void Quit()
+    public void OnQuitButtonClicked()
     {
         Application.Quit();
-    }
-
-    public void Settings()
-    {
-        if (SettingsOpen == false)
-        {
-            SettingsOpen = true;
-        }
-        else
-        {
-            SettingsOpen = false;
-        }
-        
     }
 
     private void OnEnable()
@@ -87,5 +103,10 @@ public class PauseMenu : MonoBehaviour
     private void OnDisable()
     {
         PauseAction.Disable();
+    }
+
+    public GameObject GetGameObject()
+    {
+        return gameObject;
     }
 }
