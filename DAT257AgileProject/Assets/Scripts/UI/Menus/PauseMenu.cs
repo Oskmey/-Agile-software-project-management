@@ -47,14 +47,17 @@ public class PauseMenu : MonoBehaviour
     {
         buttons = new List<Button>();
 
-        gameStatsButton.onClick.AddListener(OnGameStatsButtonClicked);
-        resumeButton.onClick.AddListener(OnPauseButtonClicked);
         pauseButton.onClick.AddListener(OnPauseButtonClicked);
+        resumeButton.onClick.AddListener(OnPauseButtonClicked);
+        menuButton.onClick.AddListener(Menu);
+        gameStatsButton.onClick.AddListener(OnGameStatsButtonClicked);
         quitButton.onClick.AddListener(Quit);
 
-        buttons.Add(gameStatsButton);
         buttons.Add(pauseButton);
         buttons.Add(resumeButton);
+        buttons.Add(menuButton);
+        buttons.Add(gameStatsButton);
+        buttons.Add(quitButton);
     }
 
     public void HidePauseButtons()

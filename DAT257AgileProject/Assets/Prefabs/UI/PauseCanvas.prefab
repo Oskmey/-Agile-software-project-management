@@ -697,7 +697,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3077582545277037250
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1014,19 +1014,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8845353923245879008}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1193019108654229937}
-        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: Menu
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &4544307045641687575
 GameObject:
   m_ObjectHideFlags: 0
@@ -1270,10 +1258,10 @@ MonoBehaviour:
   gameStatsMenu: {fileID: 4394693290248924354}
   pauseButton: {fileID: 1420814805934160440}
   resumeButton: {fileID: 1775344661777810741}
-  menuButton: {fileID: 0}
+  menuButton: {fileID: 2670872673383622400}
   gameStatsButton: {fileID: 7478819049734684570}
-  settingsButton: {fileID: 0}
-  quitButton: {fileID: 0}
+  settingsButton: {fileID: 2506923003151129719}
+  quitButton: {fileID: 727747839255616663}
 --- !u!1 &5822564832496570526
 GameObject:
   m_ObjectHideFlags: 0
