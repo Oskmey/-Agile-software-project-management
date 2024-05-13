@@ -61,7 +61,7 @@ public class PlayerStatsManager : MonoBehaviour, IDataPersistence<GameData>
     public SerializableDictionary<AccessorySO, int> PurchasedAccessories
     {
         get => purchasedAccessories;
-        set
+        private set
         {
             purchasedAccessories = value;
         }

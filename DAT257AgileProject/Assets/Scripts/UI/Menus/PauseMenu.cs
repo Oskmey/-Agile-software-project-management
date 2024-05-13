@@ -15,7 +15,6 @@ public class PauseMenu : MonoBehaviour, IMenuWithSettings
     private InputAction PauseAction;
 
     private PlayerInputActions playerInputActions;
-    private bool settingsOpen = false;
     [SerializeField]
     private GameStatsUI gameStatsMenu;
     private SettingsMenu settingsMenu;
