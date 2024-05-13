@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: SliderSoundEffect
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: 37dde2116888e8246b418a696fdfc082, type: 3}
-  audioBalancingValue: 1
+  audioBalancingValue: 0.3
   soundName: 5
