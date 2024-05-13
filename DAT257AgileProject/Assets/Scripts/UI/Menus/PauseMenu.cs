@@ -20,6 +20,7 @@ public class PauseMenu : MonoBehaviour, IMenuWithSettings
     private GameStatsUI gameStatsMenu;
     private SettingsMenu settingsMenu;
 
+    [Header("Buttons")]
     [SerializeField]
     private Button pauseButton;
     [SerializeField]
@@ -40,7 +41,7 @@ public class PauseMenu : MonoBehaviour, IMenuWithSettings
     }
 
     private void Start()
-    {        
+    {
         settingsMenu = FindObjectOfType<SettingsMenu>(true);
         InitButtons();
     }

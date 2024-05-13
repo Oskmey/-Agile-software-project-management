@@ -41,11 +41,9 @@ public class GameStatsUI : MonoBehaviour
     [SerializeField]
     private Button backButton;
     private PauseMenu pauseMenu;
+
     private PlayerInputActions playerInputActions;
-
     private InputAction BackAction;
-
-
 
     private void Awake()
     {
