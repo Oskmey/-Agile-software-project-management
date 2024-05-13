@@ -29,7 +29,7 @@ public static class SoundNameExtensions
             case SoundName.SliderInteraction:
                 return "Slider Interaction";
             default:
-                throw new ArgumentOutOfRangeException(nameof(soundName), soundName, $"¨Sound name not found {soundName}");
+                throw new ArgumentOutOfRangeException(nameof(soundName), soundName, $"Sound name not found {soundName}");
         }
     }
 }
