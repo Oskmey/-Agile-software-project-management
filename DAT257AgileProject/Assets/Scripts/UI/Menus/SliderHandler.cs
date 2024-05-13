@@ -31,9 +31,8 @@ public class SliderHandler : MonoBehaviour
         eventTrigger.triggers.Add(entry);
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    private void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("SliderHandler.OnPointerClick()");
         AudioManager.Instance.PlaySound(SoundName.SliderInteraction);
     }
 }
