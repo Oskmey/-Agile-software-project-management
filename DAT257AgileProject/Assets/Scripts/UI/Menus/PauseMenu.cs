@@ -50,6 +50,7 @@ public class PauseMenu : MonoBehaviour
         gameStatsButton.onClick.AddListener(OnGameStatsButtonClicked);
         resumeButton.onClick.AddListener(OnPauseButtonClicked);
         pauseButton.onClick.AddListener(OnPauseButtonClicked);
+        quitButton.onClick.AddListener(Quit);
 
         buttons.Add(gameStatsButton);
         buttons.Add(pauseButton);

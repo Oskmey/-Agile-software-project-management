@@ -118,7 +118,7 @@ public class GameStatsUI : MonoBehaviour
         Dictionary<AccessorySO, int> purchasedAccessories = playerStatsManager.PurchasedAccessories;
         StringBuilder sb = new();
 
-        sb.Append("Purchased accessories:");
+        sb.Append("Accessories Purchased:");
         sb.AppendLine();
 
         if (purchasedAccessories.Count > 0)

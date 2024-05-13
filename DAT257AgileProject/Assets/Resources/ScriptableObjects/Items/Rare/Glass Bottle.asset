@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Glass Bottle
   m_EditorClassIdentifier: 
   <IsStackable>k__BackingField: 1
-  <MaxStackSize>k__BackingField: 99
-  <Name>k__BackingField: Glass Bottle
+  <MaxStackSize>k__BackingField: 5
   <Description>k__BackingField: Is a Glass Bottle
   <ItemImage>k__BackingField: {fileID: 21300000, guid: 0a81ff68a57bbf448a9624baef0638c1, type: 3}
   <DefaultParametersList>k__BackingField: []
