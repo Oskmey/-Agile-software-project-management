@@ -45,12 +45,6 @@ public class HowToPlayMenu : MonoBehaviour
         SetHowToPlayScreenToDefualt();
     }
 
-    private void SetHowToPlayScreenToDefualt()
-    {
-        HowToPlayData defaultScreen = FindData(defaultScreenType);
-        ApplyDataToComponents(defaultScreen);
-    }
-
     private void InitializeButtonListeners()
     {
         controlsButton.onClick.AddListener(() => OnButtonClicked(HowToPlayScreenType.Controls));
@@ -63,11 +57,17 @@ public class HowToPlayMenu : MonoBehaviour
         backButton.onClick.AddListener(() => OnBackButtonClicked());
     }
 
+    private void SetHowToPlayScreenToDefualt()
+    {
+        HowToPlayData defaultScreen = FindData(defaultScreenType);
+        ApplyDataToUIComponents(defaultScreen);
+    }
+
     private void OnButtonClicked(HowToPlayScreenType screenType)
     {
         HowToPlayData selectedData = FindData(screenType);
 
-        ApplyDataToComponents(selectedData);
+        ApplyDataToUIComponents(selectedData);
     }
 
     private HowToPlayData FindData(HowToPlayScreenType screenType)
@@ -75,7 +75,7 @@ public class HowToPlayMenu : MonoBehaviour
         return System.Array.Find(howToPlayScreenInformation, data => data.ScreenType == screenType);
     }
 
-    private void ApplyDataToComponents(HowToPlayData selectedData)
+    private void ApplyDataToUIComponents(HowToPlayData selectedData)
     {
         if (selectedData != null)
         {
