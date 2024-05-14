@@ -5,4 +5,4 @@
 
 [Cat character](https://cupnooble.itch.io/sprout-lands-asset-pack) by [Cup Nooble](https://cupnooble.itch.io/). Free to download.
 
-The music we have is custom-made by Alfred Young.
+Some of the music (themes for World and Main Menu) we have is custom-made by someone outside of our group, Alfred Young.
