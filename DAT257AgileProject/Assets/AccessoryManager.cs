@@ -32,7 +32,7 @@ public class AccessoryManager : MonoBehaviour
 
     void ApplyEffect()
     {
-        //int speedEggs = 0;
+        int speedEggs = 0;
 
         foreach (AccessorySO acc in acc)
         {
@@ -40,11 +40,11 @@ public class AccessoryManager : MonoBehaviour
             {
                 //ae.Effect
             }
-            //// Temp solution for SpeedEffect
-            //if (acc.AccessoryName == "Egg")
-            //{
-            //    speedEggs++;
-            //}
+            // Temp solution for SpeedEffect
+            if (acc.AccessoryName == "Egg")
+            {
+                speedEggs++;
+            }
         }
 
         //playerController.speed = 5f + speedEggs;
