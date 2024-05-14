@@ -21,6 +21,7 @@ public class HowToPlayMenu : MonoBehaviour
     private Button accessoriesButton;
     [SerializeField]
     private Button mapButton;
+    private List<Button> howToPlayButtons;
 
     [SerializeField]
     private Button backButton;
@@ -41,6 +42,7 @@ public class HowToPlayMenu : MonoBehaviour
 
     private void Awake()
     {
+        howToPlayButtons = new(){ controlsButton, trashFishingButton, shopButton, inventoryButton, accessoriesButton, mapButton };
         playerInputActions = new PlayerInputActions();
         howToPlayScreenInformation = Resources.LoadAll<HowToPlayData>("ScriptableObjects");
     }
@@ -77,12 +79,12 @@ public class HowToPlayMenu : MonoBehaviour
 
     private void InitializeButtonListeners()
     {
-        controlsButton.onClick.AddListener(() => OnButtonClicked(HowToPlayScreenType.Controls));
-        trashFishingButton.onClick.AddListener(() => OnButtonClicked(HowToPlayScreenType.TrashFishing));
-        shopButton.onClick.AddListener(() => OnButtonClicked(HowToPlayScreenType.Shop));
-        inventoryButton.onClick.AddListener(() => OnButtonClicked(HowToPlayScreenType.Inventory));
-        accessoriesButton.onClick.AddListener(() => OnButtonClicked(HowToPlayScreenType.Accessories));
-        mapButton.onClick.AddListener(() => OnButtonClicked(HowToPlayScreenType.Map));
+        controlsButton.onClick.AddListener(() => OnButtonClicked(HowToPlayScreenType.Controls, controlsButton));
+        trashFishingButton.onClick.AddListener(() => OnButtonClicked(HowToPlayScreenType.TrashFishing, trashFishingButton));
+        shopButton.onClick.AddListener(() => OnButtonClicked(HowToPlayScreenType.Shop, shopButton));
+        inventoryButton.onClick.AddListener(() => OnButtonClicked(HowToPlayScreenType.Inventory, inventoryButton));
+        accessoriesButton.onClick.AddListener(() => OnButtonClicked(HowToPlayScreenType.Accessories, accessoriesButton));
+        mapButton.onClick.AddListener(() => OnButtonClicked(HowToPlayScreenType.Map, mapButton));
 
         backButton.onClick.AddListener(() => OnBackButtonClicked());
     }
@@ -105,11 +107,16 @@ public class HowToPlayMenu : MonoBehaviour
         return null;
     }
 
-    private void OnButtonClicked(HowToPlayScreenType screenType)
+    private void OnButtonClicked(HowToPlayScreenType screenType, Button clickedButton)
     {
         HowToPlayData selectedData = FindData(screenType);
 
         ApplyDataToUIComponents(selectedData);
+        // disable clicked button, enable all other buttons
+        foreach (Button button in howToPlayButtons)
+        {
+            button.interactable = button != clickedButton;
+        }
     }
 
     private HowToPlayData FindData(HowToPlayScreenType screenType)
