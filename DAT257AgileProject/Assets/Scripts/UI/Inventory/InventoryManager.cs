@@ -370,10 +370,10 @@ namespace Inventory
                 {
                     for (int i = 0; i < equippableItem.Accessory.accessoryEffects.Count; i++)
                     {
-                        AEffect accessoryEffect = equippableItem.Accessory.accessoryEffects[i];
+                        EffectSO accessoryEffect = equippableItem.Accessory.accessoryEffects[i];
                         if (i == equippableItem.Accessory.accessoryEffects.Count - 1)
                         {
-                            effects += accessoryEffect;
+                            effects += accessoryEffect.Effect;
                         }
                         else
                         {

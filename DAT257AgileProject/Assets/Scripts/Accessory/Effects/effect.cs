@@ -9,16 +9,16 @@ using System;
 [Serializable] 
 public class Effect{
 
-    [SerializeField]
-    public EffectType effectType;
-    [SerializeField]
-    public float percentage;
+    //[SerializeField]
+    //public EffectType effectType;
+    //[SerializeField]
+    //public float percentage;
 
 }
 
-public enum EffectType
-{
-    Speed,
-    Money, 
-    Luck
-}
+//public enum EffectType
+//{
+//    Speed,
+//    Money, 
+//    Luck
+//}
