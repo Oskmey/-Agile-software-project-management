@@ -44,13 +44,19 @@ public class ShopPlayer : MonoBehaviour
     private void AddItemToInventory(AccessorySO type)
     {
         EquippableItemSO[] equippableItems = Resources.LoadAll<EquippableItemSO>("");
+        mapItemSO[] mapItems = Resources.LoadAll<mapItemSO>("");
         List<EquippableItemSO> equippableItemsList = equippableItems.ToList();
-
+        Debug.Log(mapItems.Count());
         EquippableItemSO matchingItem = equippableItemsList.Find(item => item.Accessory == type);
+        mapItemSO matchingMap = mapItems.ToList().Find(item => item.Accessory == type);
 
         if (matchingItem != null)
         {
             int remainder = inventoryData.AddItem(matchingItem, 1);
+        }
+        else if (matchingMap != null)
+        {
+            int remainder = inventoryData.AddItem(matchingMap, 1);
         }
         else
         {

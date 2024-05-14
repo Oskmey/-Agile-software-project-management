@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Inventory;
+using Inventory.Model;
 using PlasticGui.WorkspaceWindow;
 using TMPro;
 using UnityEngine;
@@ -9,6 +11,7 @@ public class MapInteraction : Ainteractable
 {
     public override string text => "Press E to open map";
     private GameObject ui;
+    private Inventory.Model.InventorySO inventoryData;
     public override void interact()
     {
         ui = GameObject.Find("GameplayHUD").transform.Find("MapselectionUI").gameObject;
@@ -21,6 +24,7 @@ public class MapInteraction : Ainteractable
 
     public void Start()
     {
+        inventoryData = GameObject.Find("InventoryManager").GetComponent<InventoryManager>().InventoryData;
         PlayerExitHandler += playerExitEvent;
     }
 
@@ -40,7 +44,16 @@ public class MapInteraction : Ainteractable
 
     private void getPlayerMaps()
     {
-        // Get player maps
+        foreach (InventoryItem item in inventoryData.InventoryItems)
+        {
+            if (item.Item != null)
+            {
+                if (item.Item is mapItemSO)
+                {
+                    Debug.Log("Map found");
+                }
+            }
+        }
     }
 
 }
