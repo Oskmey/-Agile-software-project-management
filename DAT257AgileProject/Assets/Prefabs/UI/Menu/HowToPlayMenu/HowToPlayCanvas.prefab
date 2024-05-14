@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4656692604273716998
+--- !u!1 &4338535603754396490
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,23 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5940692796989088942}
-  - component: {fileID: 1426481662591842467}
-  - component: {fileID: 8605979201849993963}
+  - component: {fileID: 625789246571321681}
+  - component: {fileID: 151025120206968761}
+  - component: {fileID: 55501919801426411}
   m_Layer: 5
-  m_Name: Background
+  m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &5940692796989088942
+--- !u!224 &625789246571321681
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4656692604273716998}
+  m_GameObject: {fileID: 4338535603754396490}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -37,28 +37,28 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &1426481662591842467
+--- !u!222 &151025120206968761
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4656692604273716998}
+  m_GameObject: {fileID: 4338535603754396490}
   m_CullTransparentMesh: 1
---- !u!114 &8605979201849993963
+--- !u!114 &55501919801426411
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4656692604273716998}
+  m_GameObject: {fileID: 4338535603754396490}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5943396, g: 0.41503084, b: 0, a: 0.392}
+  m_Color: {r: 0.3962264, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -66,7 +66,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 0}
-  m_Type: 1
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -107,7 +107,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5940692796989088942}
+  - {fileID: 625789246571321681}
   - {fileID: 7566808853702071125}
   - {fileID: 688557306962227968}
   - {fileID: 3562040477706087476}
@@ -212,6 +212,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7693032433353199766}
     m_Modifications:
+    - target: {fileID: 2913524470233192552, guid: 699b8801db995b54ea76b10d7c28f127, type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3054284741544767123, guid: 699b8801db995b54ea76b10d7c28f127, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -318,11 +322,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4565698077894917329, guid: 699b8801db995b54ea76b10d7c28f127, type: 3}
       propertyPath: m_Size
-      value: 1
+      value: 0.99998134
       objectReference: {fileID: 0}
     - target: {fileID: 5090426429628239770, guid: 699b8801db995b54ea76b10d7c28f127, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000018663704
+      value: 0.0000020095752
       objectReference: {fileID: 0}
     - target: {fileID: 5268409325685068652, guid: 699b8801db995b54ea76b10d7c28f127, type: 3}
       propertyPath: m_AnchorMax.x
