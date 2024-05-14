@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -8,7 +9,7 @@ public abstract class Ainteractable : MonoBehaviour
     private Collider2D player;
     private TextMeshProUGUI promtText;
     public abstract string text { get;}
-
+    public Action PlayerExitHandler;
     public void Awake()
     {
         promtText = GameObject.FindGameObjectWithTag("TutorialText").GetComponent<TextMeshProUGUI>();
@@ -40,6 +41,7 @@ public abstract class Ainteractable : MonoBehaviour
             player = null;
             promtText.text = "";
             collision.gameObject.GetComponent<PlayerController>().RemoveInteractable(this);
+            PlayerExitHandler?.Invoke();
         }
     }
 

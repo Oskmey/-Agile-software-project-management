@@ -11,7 +11,6 @@ public class ShopPlayer : MonoBehaviour
     [SerializeField]
     private InventorySO inventoryData;
     private PlayerStatsManager playerStatsManager;
-
     public delegate void ShopEvent();
     public event ShopEvent OnBuyNoFreeInventorySlot;
     public event ShopEvent OnBuyNotEnoughMoney;
