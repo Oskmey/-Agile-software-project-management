@@ -31,6 +31,7 @@ public class HowToPlayMenu : MonoBehaviour
     private Image bottomImage;
 
     private HowToPlayData[] howToPlayScreenInformation;
+    private static readonly HowToPlayScreenType defaultScreenType = HowToPlayScreenType.Controls;
 
     private void Awake()
     {
@@ -38,6 +39,19 @@ public class HowToPlayMenu : MonoBehaviour
     }
 
     private void Start()
+    {
+        InitializeButtonListeners();
+
+        SetHowToPlayScreenToDefualt();
+    }
+
+    private void SetHowToPlayScreenToDefualt()
+    {
+        HowToPlayData defaultScreen = FindData(defaultScreenType);
+        ApplyDataToComponents(defaultScreen);
+    }
+
+    private void InitializeButtonListeners()
     {
         controlsButton.onClick.AddListener(() => OnButtonClicked(HowToPlayScreenType.Controls));
         trashFishingButton.onClick.AddListener(() => OnButtonClicked(HowToPlayScreenType.TrashFishing));
