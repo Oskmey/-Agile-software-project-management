@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class HowToPlayMenu : MonoBehaviour
@@ -30,21 +31,47 @@ public class HowToPlayMenu : MonoBehaviour
     private Image bottomImage;
 
     private HowToPlayData[] howToPlayScreenInformation;
-    private readonly Dictionary<Button, HowToPlayScreenType> buttonToScreenTypeDictionary = new();
 
     private void Awake()
     {
         howToPlayScreenInformation = Resources.LoadAll<HowToPlayData>("ScriptableObjects");
-        InitializeButtonToScreenTypeDictionary();
     }
 
-    private void InitializeButtonToScreenTypeDictionary()
+    private void Start()
     {
-        buttonToScreenTypeDictionary.Add(controlsButton, HowToPlayScreenType.Controls);
-        buttonToScreenTypeDictionary.Add(trashFishingButton, HowToPlayScreenType.TrashFishing);
-        buttonToScreenTypeDictionary.Add(shopButton, HowToPlayScreenType.Shop);
-        buttonToScreenTypeDictionary.Add(inventoryButton, HowToPlayScreenType.Inventory);
-        buttonToScreenTypeDictionary.Add(accessoriesButton, HowToPlayScreenType.Accessories);
-        buttonToScreenTypeDictionary.Add(mapButton, HowToPlayScreenType.Map);
+        controlsButton.onClick.AddListener(() => OnButtonClicked(HowToPlayScreenType.Controls));
+        trashFishingButton.onClick.AddListener(() => OnButtonClicked(HowToPlayScreenType.TrashFishing));
+        shopButton.onClick.AddListener(() => OnButtonClicked(HowToPlayScreenType.Shop));
+        inventoryButton.onClick.AddListener(() => OnButtonClicked(HowToPlayScreenType.Inventory));
+        accessoriesButton.onClick.AddListener(() => OnButtonClicked(HowToPlayScreenType.Accessories));
+        mapButton.onClick.AddListener(() => OnButtonClicked(HowToPlayScreenType.Map));
+
+        backButton.onClick.AddListener(() => OnBackButtonClicked());
+    }
+
+    private void OnButtonClicked(HowToPlayScreenType screenType)
+    {
+        HowToPlayData selectedData = FindData(screenType);
+
+        if (selectedData != null)
+        {
+            contentText.text = selectedData.ContentText;
+            topImage.sprite = selectedData.TopImage;
+            bottomImage.sprite = selectedData.BottomImage;
+        }
+        else
+        {
+            Debug.LogError("Selected Data was null");
+        }
+    }
+
+    private HowToPlayData FindData(HowToPlayScreenType screenType)
+    {
+        return System.Array.Find(howToPlayScreenInformation, data => data.ScreenType == screenType);
+    }
+
+    private void OnBackButtonClicked()
+    {
+        SceneManager.LoadSceneAsync("Main Menu");
     }
 }
