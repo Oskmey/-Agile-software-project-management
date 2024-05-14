@@ -6,7 +6,7 @@ public class HowToPlayData : ScriptableObject
     [SerializeField]
     private HowToPlayScreenType screenType;
 
-    [TextArea(5, 40)]
+    [TextArea(20, 40)]
     [SerializeField]
     private string contentText;
 
