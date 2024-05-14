@@ -14,5 +14,13 @@ namespace Inventory.Model
         [SerializeField]
         private AccessorySO accessory;
         public AccessorySO Accessory => accessory;
+
+        public string MapName => mapName;
+
+        public void Awake()
+        {
+            Name = accessory.AccessoryName;
+            //trashModifierData.Amount = trashData.MoneyValue;
+        }
     }
 }
