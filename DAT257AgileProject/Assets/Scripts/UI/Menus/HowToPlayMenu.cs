@@ -51,7 +51,7 @@ public class HowToPlayMenu : MonoBehaviour
     {
         InitializeButtonListeners();
 
-        SetHowToPlayScreenToDefualt();
+        SetHowToPlayScreenToDefualt(controlsButton);
 
         otherMenuGameObject = FindMenuWithHowToPlay();
         if (otherMenuGameObject == null)
@@ -89,10 +89,11 @@ public class HowToPlayMenu : MonoBehaviour
         backButton.onClick.AddListener(() => OnBackButtonClicked());
     }
 
-    private void SetHowToPlayScreenToDefualt()
+    private void SetHowToPlayScreenToDefualt(Button defaultButton)
     {
         HowToPlayData defaultScreen = FindData(defaultScreenType);
         ApplyDataToUIComponents(defaultScreen);
+        defaultButton.interactable = false;
     }
 
     private IMenuWithHowToPlay FindMenuWithHowToPlay()
