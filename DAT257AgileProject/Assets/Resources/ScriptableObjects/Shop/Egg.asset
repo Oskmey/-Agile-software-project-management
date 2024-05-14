@@ -16,4 +16,7 @@ MonoBehaviour:
   cost: 1
   sprite: {fileID: 21300000, guid: 2dc8a4d3440132a4b9a0099214c27ddc, type: 3}
   rarity: 50
-  accessoryEffects: []
+  accessoryEffects:
+  - effectType:
+      effectType: 0
+      percentage: 25

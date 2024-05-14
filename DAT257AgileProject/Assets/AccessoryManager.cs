@@ -27,21 +27,26 @@ public class AccessoryManager : MonoBehaviour
             ApplyEffect();
             itemCount = acc.Count;
         }
+        //Debug.Log(acc.Count);
     }
 
     void ApplyEffect()
     {
-        int speedEggs = 0;
+        //int speedEggs = 0;
 
-        foreach (AccessorySO egg in acc)
+        foreach (AccessorySO acc in acc)
         {
-            // Temp solution for SpeedEffect
-            if (egg.AccessoryName == "Egg")
+            foreach(AEffect ae in acc.accessoryEffects)
             {
-                speedEggs++;
+                //ae.Effect
             }
+            //// Temp solution for SpeedEffect
+            //if (acc.AccessoryName == "Egg")
+            //{
+            //    speedEggs++;
+            //}
         }
 
-        playerController.speed = 5f + speedEggs;
+        //playerController.speed = 5f + speedEggs;
     }
 }

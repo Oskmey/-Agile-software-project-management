@@ -6,12 +6,13 @@ using System;
 
 
 [Serializable] 
-public class AEffect
+public abstract class AEffect
 {
     [SerializeField]
     private Effect effectType;
     public Effect Effect => effectType;
 
+    public abstract void ApplyEffect();
 }
 
 public static class AEffectExtensions
