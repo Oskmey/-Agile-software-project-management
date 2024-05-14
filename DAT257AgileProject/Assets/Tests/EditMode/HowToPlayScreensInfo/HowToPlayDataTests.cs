@@ -59,4 +59,10 @@ public class HowToPlayDataTests
     {
         Assert.AreNotEqual('\r', howToPlayData.ContentText[^1]);
     }
+
+    [Test, TestCaseSource(nameof(HowToPlayDataTestCases))]
+    public void EachHowToPlayData_DoesNotHaveContentTextEndingWithNewLine(HowToPlayData howToPlayData)
+    {
+        Assert.AreNotEqual('\n', howToPlayData.ContentText[^1]);
+    }
 }

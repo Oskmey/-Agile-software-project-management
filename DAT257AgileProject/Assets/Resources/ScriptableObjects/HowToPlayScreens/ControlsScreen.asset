@@ -39,8 +39,6 @@ MonoBehaviour:
 
 
     Show your inventory with
-    I
-
-'
+    I'
   topImage: {fileID: 21300000, guid: a889cc37836d57f4a95cec7b64fde316, type: 3}
   bottomImage: {fileID: 21300000, guid: 6f82f39aea29cf846925bf2d9c5f3cf8, type: 3}
