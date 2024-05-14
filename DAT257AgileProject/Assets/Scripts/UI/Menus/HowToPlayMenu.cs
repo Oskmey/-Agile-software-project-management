@@ -53,21 +53,43 @@ public class HowToPlayMenu : MonoBehaviour
     {
         HowToPlayData selectedData = FindData(screenType);
 
-        if (selectedData != null)
-        {
-            contentText.text = selectedData.ContentText;
-            topImage.sprite = selectedData.TopImage;
-            bottomImage.sprite = selectedData.BottomImage;
-        }
-        else
-        {
-            Debug.LogError("Selected Data was null");
-        }
+        ApplyDataToComponents(selectedData);
     }
 
     private HowToPlayData FindData(HowToPlayScreenType screenType)
     {
         return System.Array.Find(howToPlayScreenInformation, data => data.ScreenType == screenType);
+    }
+
+    private void ApplyDataToComponents(HowToPlayData selectedData)
+    {
+        if (selectedData != null)
+        {
+            contentText.text = selectedData.ContentText;
+            if (selectedData.TopImage != null)
+            {
+                topImage.gameObject.SetActive(true);
+                topImage.sprite = selectedData.TopImage;
+            }
+            else
+            {
+                topImage.gameObject.SetActive(false);
+            }
+
+            if (selectedData.BottomImage != null)
+            {
+                bottomImage.gameObject.SetActive(true);
+                bottomImage.sprite = selectedData.BottomImage;
+            }
+            else
+            {
+                bottomImage.gameObject.SetActive(false);
+            }
+        }
+        else
+        {
+            Debug.LogError("Selected Data was null");
+        }
     }
 
     private void OnBackButtonClicked()
