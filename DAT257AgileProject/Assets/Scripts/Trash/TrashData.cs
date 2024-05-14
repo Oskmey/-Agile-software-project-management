@@ -14,7 +14,7 @@ public class TrashData : ScriptableObject
 
     [Tooltip("The money value of the trash")]
     [SerializeField] 
-    private int moneyValue;
+    public int moneyValue { get; set; } // I dunno if this is ok
 
     [Tooltip("Whether the trash is recyclable")]
     [SerializeField]
