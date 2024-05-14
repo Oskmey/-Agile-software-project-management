@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40e29ed274327ad4a88a09a960b98474, type: 3}
+  m_Name: AccessoriesScreen
+  m_EditorClassIdentifier: 
+  screenType: 4
+  contentText: Accessories are a way of changing the gameplay of the game in different
+    ways. There are some accessories that are purely for collecting and don't do
+    anything. See Figure 1 and 2 for some accessory examples.
+  topImage: {fileID: 21300000, guid: 2dc8a4d3440132a4b9a0099214c27ddc, type: 3}
+  bottomImage: {fileID: 21300000, guid: 8fcd1ca3dc1e4294dbade2f76c2bab2d, type: 3}
