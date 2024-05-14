@@ -355,6 +355,7 @@ GameObject:
   - component: {fileID: 4492612756794321424}
   - component: {fileID: 2957773838850207029}
   - component: {fileID: 6306962070583130588}
+  - component: {fileID: 1359957133427849954}
   m_Layer: 5
   m_Name: HowToPlayCanvas
   m_TagString: Untagged
@@ -449,6 +450,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &1359957133427849954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6196392409761285087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8e1f72a3b4822247af8a4134f5298db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2588656034638749075
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -563,19 +576,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4565698077894917329, guid: 699b8801db995b54ea76b10d7c28f127, type: 3}
       propertyPath: m_Size
-      value: 0.99989927
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4565698077894917329, guid: 699b8801db995b54ea76b10d7c28f127, type: 3}
       propertyPath: m_Value
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5090426429628239770, guid: 699b8801db995b54ea76b10d7c28f127, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.0000047683716
+      value: -0.000060081482
       objectReference: {fileID: 0}
     - target: {fileID: 5090426429628239770, guid: 699b8801db995b54ea76b10d7c28f127, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.00015419522
+      value: 0.000011412982
       objectReference: {fileID: 0}
     - target: {fileID: 5268409325685068652, guid: 699b8801db995b54ea76b10d7c28f127, type: 3}
       propertyPath: m_AnchorMax.x

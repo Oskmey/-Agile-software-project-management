@@ -362,7 +362,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2067256427198308674, guid: 7a26dad4d7341aa4bb144908247aebda, type: 3}
-      propertyPath: m_Size
+      propertyPath: m_Value
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2980198558549934725, guid: 7a26dad4d7341aa4bb144908247aebda, type: 3}
@@ -381,49 +381,17 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3898651113922881106, guid: 7a26dad4d7341aa4bb144908247aebda, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3898651113922881106, guid: 7a26dad4d7341aa4bb144908247aebda, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5423410013991201041, guid: 7a26dad4d7341aa4bb144908247aebda, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5423410013991201041, guid: 7a26dad4d7341aa4bb144908247aebda, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5423410013991201041, guid: 7a26dad4d7341aa4bb144908247aebda, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5423410013991201041, guid: 7a26dad4d7341aa4bb144908247aebda, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6109555034605012488, guid: 7a26dad4d7341aa4bb144908247aebda, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6109555034605012488, guid: 7a26dad4d7341aa4bb144908247aebda, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6196392409761285087, guid: 7a26dad4d7341aa4bb144908247aebda, type: 3}
       propertyPath: m_Name
       value: HowToPlayCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 7298104278723334665, guid: 7a26dad4d7341aa4bb144908247aebda, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.000060081482
+      value: -0.0000076293945
       objectReference: {fileID: 0}
     - target: {fileID: 7298104278723334665, guid: 7a26dad4d7341aa4bb144908247aebda, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000011412982
+      value: -0.0033045036
       objectReference: {fileID: 0}
     - target: {fileID: 7479820064495624601, guid: 7a26dad4d7341aa4bb144908247aebda, type: 3}
       propertyPath: m_AnchorMax.y
