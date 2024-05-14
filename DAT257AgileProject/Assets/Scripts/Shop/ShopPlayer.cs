@@ -32,8 +32,10 @@ public class ShopPlayer : MonoBehaviour
         }
         else if (money >= type.cost)
         {
+            AudioManager.Instance.PlaySound(SoundName.ItemBought);
             AddItemToInventory(type);
             playerStatsManager.Money -= type.cost;
+
         }
         else if (money < type.cost)
         {
