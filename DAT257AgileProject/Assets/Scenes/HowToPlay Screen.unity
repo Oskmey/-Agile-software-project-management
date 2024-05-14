@@ -381,6 +381,38 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3898651113922881106, guid: 7a26dad4d7341aa4bb144908247aebda, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3898651113922881106, guid: 7a26dad4d7341aa4bb144908247aebda, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423410013991201041, guid: 7a26dad4d7341aa4bb144908247aebda, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423410013991201041, guid: 7a26dad4d7341aa4bb144908247aebda, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423410013991201041, guid: 7a26dad4d7341aa4bb144908247aebda, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5423410013991201041, guid: 7a26dad4d7341aa4bb144908247aebda, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6109555034605012488, guid: 7a26dad4d7341aa4bb144908247aebda, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6109555034605012488, guid: 7a26dad4d7341aa4bb144908247aebda, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6196392409761285087, guid: 7a26dad4d7341aa4bb144908247aebda, type: 3}
       propertyPath: m_Name
       value: HowToPlayCanvas
