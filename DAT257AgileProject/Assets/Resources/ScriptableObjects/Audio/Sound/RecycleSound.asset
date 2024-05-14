@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: RecycleSound
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: 3490adeff32010b4d9579908aae2f881, type: 3}
-  audioBalancingValue: 0
-  soundName: 0
+  audioBalancingValue: 0.5
+  soundName: 4

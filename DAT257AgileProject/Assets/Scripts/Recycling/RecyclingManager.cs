@@ -6,11 +6,11 @@ using TMPro;
 using UnityEngine;
 using static RecyclingMachine;
 
+
 public class RecyclingManager : MonoBehaviour
 {
     [SerializeField]
     private InventorySO playerInventory;
-
     private IReadOnlyList<RecyclingMachine> recyclingMachines;
     private PlayerStatsManager playerStatsManager;
     private bool trashWasRecycled;
@@ -45,9 +45,10 @@ public class RecyclingManager : MonoBehaviour
             if (recyclingMachine.IsPlayerInRange())
             {
                 List<TrashItemSO> trashToRecycle = playerInventory.GetAndRemoveRecyclableTrashItems();
-
+                
                 foreach (TrashItemSO trash in trashToRecycle)
                 {
+                    AudioManager.Instance.PlaySound(SoundName.RecycleNoise);
                     playerStatsManager.Money += trash.TrashData.MoneyValue;
                     UpdateTrashDictionary(trash.TrashType);
                 }

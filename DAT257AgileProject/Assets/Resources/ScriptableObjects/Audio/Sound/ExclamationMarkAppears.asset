@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ExclamationMarkAppears
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: 42cfdedf6c2a9e04fb05fe850fd43550, type: 3}
-  audioBalancingValue: 0
+  audioBalancingValue: 0.5
   soundName: 1

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: TrashCaughtSound
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: 160f74efc530015448f2a06795621764, type: 3}
-  audioBalancingValue: 0
+  audioBalancingValue: 0.5
   soundName: 2

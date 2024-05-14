@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ItemBoughtSound
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: 745cf36075a36254dbe886214ee2bdc2, type: 3}
-  audioBalancingValue: 0
+  audioBalancingValue: 0.5
   soundName: 3

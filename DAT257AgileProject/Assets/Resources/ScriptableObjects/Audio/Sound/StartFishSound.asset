@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: StartFishSound
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: 64a2bc043fd68e247a8681424ab8643d, type: 3}
-  audioBalancingValue: 0
+  audioBalancingValue: 0.5
   soundName: 0
