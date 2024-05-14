@@ -14,7 +14,7 @@ public class PlayerAnimations : MonoBehaviour
     private Vector3 directionToFishingSpot;
     private Vector3 recyclingMachineSpotPos;
     private Vector3 directionToRecyclingMachineSpot;
-    private bool isRecycling = false;
+    //private bool isRecycling = false;
     private RecyclingManager recyclingManager;
     private IReadOnlyList<RecyclingMachine> recyclingMachines;
 
@@ -36,18 +36,18 @@ public class PlayerAnimations : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //isRecycling = recyclingManager.IsRecycling;
         foreach (RecyclingMachine recyclingMachine in recyclingMachines)
         {
             if (recyclingMachine.IsPlayerInRange())
             {
-                isRecycling = recyclingManager.IsRecycling;
-                if (isRecycling)
+               
+                if (recyclingManager.IsRecycling)
                 {
                     recyclingMachineSpotPos = recyclingMachine.transform.position;
                     directionToRecyclingMachineSpot = recyclingMachineSpotPos - transform.position;
                 }
             }
-            Debug.Log(isRecycling);
         }
 
         if (playerInteraction.currentFishingSpot != null)
@@ -78,7 +78,7 @@ public class PlayerAnimations : MonoBehaviour
         animator.SetBool("isPlaying", isPlaying);
         animator.SetFloat("Distance_x", directionToFishingSpot.x);
         animator.SetFloat("Distance_y", directionToFishingSpot.y);
-        animator.SetBool("isRecycling", isRecycling);
+        animator.SetBool("isRecycling", recyclingManager.IsRecycling);
         animator.SetFloat("Distance_rm_x", directionToRecyclingMachineSpot.x);
         animator.SetFloat("Distance_rm_y", directionToRecyclingMachineSpot.y);
     }
