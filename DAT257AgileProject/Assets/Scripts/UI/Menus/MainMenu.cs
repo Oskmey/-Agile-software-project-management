@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MainMenu : MonoBehaviour, IMenuWithSettings
+public class MainMenu : MonoBehaviour, IMenuWithSettings, IMenuWithHowToPlay
 {
     [SerializeField]
     private Button newGameButton;
@@ -12,8 +12,11 @@ public class MainMenu : MonoBehaviour, IMenuWithSettings
     private Button continueButton;
     [SerializeField]
     private Button settingsButton;
+    [SerializeField]
+    private Button howToPlayButton;
 
     private SettingsMenu settingsMenu;
+    private HowToPlayMenu howToPlayMenu;
 
     private void Start()
     {
@@ -23,7 +26,9 @@ public class MainMenu : MonoBehaviour, IMenuWithSettings
             continueButton.interactable = false;
         }
         settingsMenu = FindObjectOfType<SettingsMenu>(true);
+        howToPlayMenu = FindObjectOfType<HowToPlayMenu>(true);
         settingsButton.onClick.AddListener(OnSettingsButtonClicked);
+        howToPlayButton.onClick.AddListener(OnHowToPlayButtonClicked);
         AudioManager.Instance.PlayMusic(MusicName.MenuTheme);
     }
 
@@ -55,11 +60,17 @@ public class MainMenu : MonoBehaviour, IMenuWithSettings
         newGameButton.interactable = false;
         continueButton.interactable = false;
         settingsButton.interactable = false;
+        howToPlayButton.interactable = false;
     }
 
     private void OnSettingsButtonClicked()
     {
         settingsMenu.gameObject.SetActive(true);
+    }
+
+    private void OnHowToPlayButtonClicked()
+    {
+        howToPlayMenu.gameObject.SetActive(true);
     }
 
     public void QuitGame()

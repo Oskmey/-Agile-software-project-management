@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -32,6 +33,7 @@ public class HowToPlayMenu : MonoBehaviour
 
     private HowToPlayData[] howToPlayScreenInformation;
     private static readonly HowToPlayScreenType defaultScreenType = HowToPlayScreenType.Controls;
+    private IMenuWithHowToPlay otherMenuGameObject;
 
     private void Awake()
     {
@@ -43,6 +45,12 @@ public class HowToPlayMenu : MonoBehaviour
         InitializeButtonListeners();
 
         SetHowToPlayScreenToDefualt();
+
+        otherMenuGameObject = FindMenuWithHowToPlay();
+        if (otherMenuGameObject == null)
+        {
+            Debug.LogError("otherMenuGameObject was null");
+        }
     }
 
     private void InitializeButtonListeners()
@@ -61,6 +69,18 @@ public class HowToPlayMenu : MonoBehaviour
     {
         HowToPlayData defaultScreen = FindData(defaultScreenType);
         ApplyDataToUIComponents(defaultScreen);
+    }
+
+    private IMenuWithHowToPlay FindMenuWithHowToPlay()
+    {
+        IMenuWithHowToPlay menuWithHowToPlay = FindObjectOfType<MainMenu>(true);
+        if (menuWithHowToPlay != null)
+        {
+            return menuWithHowToPlay;
+        }
+
+        Debug.LogError("Could not find menu with how to play");
+        return null;
     }
 
     private void OnButtonClicked(HowToPlayScreenType screenType)
@@ -108,6 +128,7 @@ public class HowToPlayMenu : MonoBehaviour
 
     private void OnBackButtonClicked()
     {
-        SceneManager.LoadSceneAsync("Main Menu");
+        otherMenuGameObject.GetGameObject().SetActive(true);
+        gameObject.SetActive(false);
     }
 }
