@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   screenType: 4
   contentText: Accessories are a way of changing the gameplay of the game in different
-    ways. There are some accessories that are purely for collecting and don't do
-    anything. See Figure 1 and 2 for some accessory examples.
+    ways. For instance, they can modify your movement speed. See Figure 1 and 2 for
+    some accessory examples.
   topImage: {fileID: 21300000, guid: 2dc8a4d3440132a4b9a0099214c27ddc, type: 3}
   bottomImage: {fileID: 21300000, guid: 8fcd1ca3dc1e4294dbade2f76c2bab2d, type: 3}
