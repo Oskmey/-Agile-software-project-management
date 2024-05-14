@@ -392,7 +392,7 @@ GameObject:
   - component: {fileID: 6870493078292879692}
   - component: {fileID: 5248360361371819550}
   m_Layer: 5
-  m_Name: MapSelect
+  m_Name: MapselectionUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

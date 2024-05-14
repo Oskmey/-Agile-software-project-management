@@ -106,7 +106,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence<GameData>
             }
             if (closestInteractable != null)
             {
-                closestInteractable.Interact();
+                closestInteractable.interact();
             }
         }
     }
