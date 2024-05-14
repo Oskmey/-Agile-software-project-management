@@ -17,7 +17,7 @@ MonoBehaviour:
     as accessories and trash. You can drag and drop items around you inventory. Some
     items can stack, and others can't. \n\nTo discard any item you can right click
     on it and press the \"Destroy All\" option that appears see Figure 1.\n\nWhen
-    you inventory is full you have to either recycle your trash or discard items
+    your inventory is full you have to either recycle your trash or discard items
     to make room. "
   topImage: {fileID: 21300000, guid: 72f49a2eadbfd274e88af8d36f96e827, type: 3}
   bottomImage: {fileID: 0}

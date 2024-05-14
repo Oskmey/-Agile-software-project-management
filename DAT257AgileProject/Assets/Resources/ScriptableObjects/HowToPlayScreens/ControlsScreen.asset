@@ -27,18 +27,19 @@ MonoBehaviour:
     a recycle machine, see Figure 1
 
 
-    Enter the shop with E when near a shop,
-    see Figure 2
+    To interact with game objects such as the
+    shop, see Figure 2, press E when near it
 
 
-    Hide the trash info panel with LMB, Enter or Z
+    Hide the trash info panel with
+    LMB, Enter or Z
 
 
-    Pause
-    the game using ESC
+    Pause the game using ESC
 
 
-    Show your inventory with I
+    Show your inventory with
+    I
 
 '
   topImage: {fileID: 21300000, guid: a889cc37836d57f4a95cec7b64fde316, type: 3}

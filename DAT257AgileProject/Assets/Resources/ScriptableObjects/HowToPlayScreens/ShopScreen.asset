@@ -15,8 +15,8 @@ MonoBehaviour:
   screenType: 2
   contentText: "After fishing some trash, you will probably have some money. In the
     shop this money can be used to purchase various items. Depending on the time
-    of day different amount of items will available. \n\nTo purchase any item you
-    simply click on it, see Figure 1. Afterwards it will be added to your inventory
+    of day different amounts of items will be available. \n\nTo purchase any item
+    you simply click on it, see Figure 1. Afterwards it will be added to your inventory
     as long as there is space. \n\nTo exit the shop you press the exit button, see
     Figure 2."
   topImage: {fileID: 21300000, guid: ed80447f4723d0e4199101a8f9e2cee3, type: 3}
