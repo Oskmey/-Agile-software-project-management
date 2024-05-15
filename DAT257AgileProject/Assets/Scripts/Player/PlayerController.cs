@@ -107,7 +107,6 @@ public class PlayerController : MonoBehaviour, IDataPersistence<GameData>
             if (closestInteractable != null)
             {
                 closestInteractable.interact();
-                Debug.Log("Interacting with " + closestInteractable);
             }
         }
     }

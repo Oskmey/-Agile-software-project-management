@@ -19,7 +19,7 @@ public class MapInteraction : Ainteractable
     public override void interact()
     {
         ui = GameObject.Find("GameplayHUD").transform.Find("MapselectionUI").gameObject;
-        container = ui.transform.Find("Container");
+        container = ui.transform.Find("Scroll View").Find("Viewport").Find("Content").transform;
         if (ui != null)
         {
             ui.SetActive(true);
@@ -59,6 +59,7 @@ public class MapInteraction : Ainteractable
             {
                 if (item.Item is mapItemSO mapItemSO)
                 {
+                    Debug.Log(container);
                     Transform world = Instantiate(worldTemplate, container);
                     world.Find("NameText").GetComponent<TextMeshProUGUI>().SetText(mapItemSO.MapName);
                     world.Find("ItemIcon").GetComponent<Image>().sprite = mapItemSO.MapSprite;

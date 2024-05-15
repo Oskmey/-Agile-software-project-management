@@ -46,7 +46,6 @@ public class ShopPlayer : MonoBehaviour
         EquippableItemSO[] equippableItems = Resources.LoadAll<EquippableItemSO>("");
         mapItemSO[] mapItems = Resources.LoadAll<mapItemSO>("");
         List<EquippableItemSO> equippableItemsList = equippableItems.ToList();
-        Debug.Log(mapItems.Count());
         EquippableItemSO matchingItem = equippableItemsList.Find(item => item.Accessory == type);
         mapItemSO matchingMap = mapItems.ToList().Find(item => item.Accessory == type);
 
