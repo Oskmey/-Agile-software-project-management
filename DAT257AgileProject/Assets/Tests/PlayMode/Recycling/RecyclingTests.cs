@@ -60,7 +60,7 @@ public class RecyclingTests : InputTestFixture
 
         yield return null;
         inventoryManager.ResetInventories();
-        playerStatsManager.Money = 0;
+        playerStatsManager.CurrentMoney = 0;
         playerStatsManager.RecycledTrashDictionary.Clear();
         TrashItemSO trashItem = Resources.Load<TrashItemSO>("ScriptableObjects/Items/Common/PET Bottle");
 
@@ -69,16 +69,16 @@ public class RecyclingTests : InputTestFixture
         inventoryManager.InventoryData.AddItem(trashInventoryItem);
 
         yield return null;
-        Debug.Log("Money: " + playerStatsManager.Money.ToString());
+        Debug.Log("Money: " + playerStatsManager.CurrentMoney.ToString());
 
         PressAndRelease(keyboard.rKey);
         yield return null;
-        Debug.Log("Money: " + playerStatsManager.Money.ToString());
+        Debug.Log("Money: " + playerStatsManager.CurrentMoney.ToString());
 
         DataPersistenceManager.Instance.SaveGame();
         yield return null;
 
         Assert.AreEqual(1, playerStatsManager.RecycledTrashDictionary.Count);
-        Assert.AreEqual(trashItem.TrashData.MoneyValue, playerStatsManager.Money);
+        Assert.AreEqual(trashItem.TrashData.MoneyValue, playerStatsManager.CurrentMoney);
     }
 }
