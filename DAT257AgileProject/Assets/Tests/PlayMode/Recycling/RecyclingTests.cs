@@ -59,9 +59,9 @@ public class RecyclingTests : InputTestFixture
         trashHandler = GameObject.FindAnyObjectByType<TrashHandler>();
 
         yield return null;
-        // TODO: money wont load to be 0 at new game for test
+        inventoryManager.ResetInventories();
         playerStatsManager.Money = 0;
-        Debug.Log("Money: " + playerStatsManager.Money.ToString());
+        playerStatsManager.RecycledTrashDictionary.Clear();
         TrashItemSO trashItem = Resources.Load<TrashItemSO>("ScriptableObjects/Items/Common/PET Bottle");
 
         yield return null;
@@ -79,6 +79,6 @@ public class RecyclingTests : InputTestFixture
         yield return null;
 
         Assert.AreEqual(1, playerStatsManager.RecycledTrashDictionary.Count);
-        Assert.AreEqual(12, playerStatsManager.Money);
+        Assert.AreEqual(trashItem.TrashData.MoneyValue, playerStatsManager.Money);
     }
 }

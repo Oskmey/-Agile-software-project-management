@@ -23,7 +23,7 @@ public class MapCollision : InputTestFixture
     public override void Setup()
     {
         base.Setup();
-        SceneManager.LoadScene("TestCollisionScene");
+        SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
         keyboard = InputSystem.AddDevice<Keyboard>();
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
@@ -126,6 +126,8 @@ public class MapCollision : InputTestFixture
     public override void TearDown() 
     {
         base.TearDown();
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+
         foreach (var gameObject in Object.FindObjectsOfType<GameObject>()) 
         {
             Object.Destroy(gameObject);

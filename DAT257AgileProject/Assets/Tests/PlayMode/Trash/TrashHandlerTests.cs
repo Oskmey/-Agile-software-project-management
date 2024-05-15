@@ -1,3 +1,4 @@
+using Inventory;
 using NUnit.Framework;
 using System.Collections;
 using UnityEditor;
@@ -178,9 +179,12 @@ public class TrashHandlerTests : InputTestFixture
     [TearDown]
     public override void TearDown()
     {
+        InventoryManager inventoryManager = GameObject.FindAnyObjectByType<InventoryManager>();
+        inventoryManager.ResetInventories();
+
+        base.TearDown();
         DataPersistenceManager.Instance.NewGame();
         DataPersistenceManager.Instance.SaveGame();
-        base.TearDown();
         trashHandler = null;
     }
 }

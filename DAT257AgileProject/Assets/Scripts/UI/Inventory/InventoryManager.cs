@@ -52,6 +52,12 @@ namespace Inventory
             // Debug.Log(currentlyEquipped.Count);
         }
 
+        public void ResetInventories()
+        {
+            inventoryData.Initialize();
+            accessoryData.Initialize();
+        }
+
         private void PrepareInventoryData()
         {
             inventoryData.Initialize();
