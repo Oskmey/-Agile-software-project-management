@@ -9,9 +9,9 @@ using UnityEngine.Experimental.AI;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class ShopUI : MonoBehaviour
+public class ShopUI : MonoBehaviour, IDataPersistence<GameData>
 {
-    private string worldSceneName = "First World";
+
     private Transform container;
     [SerializeField]
     private Transform shopItemTemplate;
@@ -40,25 +40,7 @@ public class ShopUI : MonoBehaviour
     [Header("Shop Items that the player can buy in this shop")]
     [SerializeField]
     private List<AccessorySO> shopingItems;
-
-
-    public string WorldSceneName
-    {
-        get { return worldSceneName; }
-        set
-        {
-            for (int i = 0; i < SceneManager.sceneCount; i++)
-            {
-                var scene = SceneManager.GetSceneAt(i);
-                if (scene.name == value)
-                {
-                    worldSceneName = value;
-                    return;
-                }
-            }
-            Debug.LogError("Scene with name " + value + " not found");
-        }
-    }
+    private string sceneName;
 
     void Awake()
     {
@@ -110,7 +92,7 @@ public class ShopUI : MonoBehaviour
     public void ExitShop()
     {
         DataPersistenceManager.Instance.SaveGame();
-        SceneManager.LoadSceneAsync(worldSceneName);
+        SceneManager.LoadSceneAsync(sceneName);
     }
 
 
@@ -147,6 +129,16 @@ public class ShopUI : MonoBehaviour
             CreateShopButton(shopingItems[0]);
         }
 
+    }
+
+    public void LoadData(GameData data)
+    {
+        sceneName = data.CurrentLevel;
+    }
+
+    public void SaveData(GameData data)
+    {
+        // Unused in MainMenu
     }
 
 }

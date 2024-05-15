@@ -53,8 +53,13 @@ public class MapInteraction : Ainteractable
 
     private void PlayerExitEvent()
     {
-        ui.SetActive(false);
+        ui?.SetActive(false);
         isMapOpen = false;
+        ClearMapSelection();
+    }
+
+    private void ClearMapSelection()
+    {
         instantiatedTemplates.ForEach(m => Destroy(m.gameObject));
         instantiatedTemplates.Clear();
     }
@@ -130,7 +135,9 @@ public class MapInteraction : Ainteractable
     {
         if (sceneName != SceneManager.GetActiveScene().name)
         {
-            SceneManager.LoadScene(sceneName);
+            PlayerExitEvent();
+            DataPersistenceManager.Instance.SaveGame();
+            SceneManager.LoadSceneAsync(sceneName);
         }
         else
         {
