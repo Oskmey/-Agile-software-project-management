@@ -1,6 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 namespace Inventory.Model
@@ -9,6 +7,10 @@ namespace Inventory.Model
     public class mapItemSO : ItemSO, IDestroyableItem
     {
         [SerializeField]
+        private Sprite mapSprite;
+        [SerializeField]
+        private string sceneName;
+        [SerializeField]
         private string mapName;
 
         [SerializeField]
@@ -16,7 +18,8 @@ namespace Inventory.Model
         public AccessorySO Accessory => accessory;
 
         public string MapName => mapName;
-
+        public string SceneName => sceneName;
+        public Sprite MapSprite => mapSprite;
         public void Awake()
         {
             Name = accessory.AccessoryName;

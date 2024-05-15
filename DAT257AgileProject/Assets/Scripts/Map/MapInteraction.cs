@@ -1,17 +1,15 @@
-using System.Collections;
+
 using System.Collections.Generic;
-using System.ComponentModel;
 using Inventory;
 using Inventory.Model;
-using PlasticGui.WorkspaceWindow;
 using TMPro;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 public class MapInteraction : Ainteractable
 {
 
     private Transform container;
+    private List<Transform> instantiatedTemplates = new List<Transform>();
 
     [SerializeField]
     private Transform worldTemplate;
@@ -21,8 +19,6 @@ public class MapInteraction : Ainteractable
     public override void interact()
     {
         ui = GameObject.Find("GameplayHUD").transform.Find("MapselectionUI").gameObject;
-        container = GameObject.FindGameObjectWithTag("Content").GetComponent<RectTransform>();
-        Debug.Log(container);
         if (ui != null)
         {
             ui.SetActive(true);
@@ -30,7 +26,7 @@ public class MapInteraction : Ainteractable
         }
     }
 
-    
+
 
     public void Start()
     {
@@ -46,10 +42,12 @@ public class MapInteraction : Ainteractable
         }
     }
 
-    
+
     private void playerExitEvent()
     {
         ui.SetActive(false);
+        instantiatedTemplates.ForEach(m => Destroy(m.gameObject));
+        instantiatedTemplates.Clear();
     }
 
     private void getPlayerMaps()
@@ -58,19 +56,16 @@ public class MapInteraction : Ainteractable
         {
             if (item.Item != null)
             {
-                if (item.Item is mapItemSO)
+                if (item.Item is mapItemSO mapItemSO)
                 {
-                    Debug.Log(item.Item.Name);
-                    if(item.Item.Name == "Savannah Travel Object"){
-                        
-                        Transform worldButton = Instantiate(worldTemplate, container);
-                        RectTransform shopItemRectTransform = worldButton.GetComponent<RectTransform>();
-                        worldButton.Find("NameText").GetComponent<TextMeshProUGUI>().SetText("Savannah World");
-                        //worldButton.Find("ItemIcon").GetComponent<Image>().sprite = type.sprite;
-                        //Image border = worldButton.GetComponent<Image>();
-                    }
-                    Debug.Log("Map found");
-
+                    Transform world = Instantiate(worldTemplate, container);
+                    world.Find("NameText").GetComponent<TextMeshProUGUI>().SetText(mapItemSO.MapName);
+                    world.Find("ItemIcon").GetComponent<Image>().sprite = mapItemSO.MapSprite;
+                    instantiatedTemplates.Add(world);
+                    world.GetComponent<Button>().onClick.AddListener(() =>
+                    {
+                        //GameObject.Find("MapManager").GetComponent<MapManager>().LoadMap(mapItemSO.SceneName);
+                    });
                 }
             }
         }
