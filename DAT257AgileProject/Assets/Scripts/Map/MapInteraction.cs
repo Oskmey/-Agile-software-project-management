@@ -12,6 +12,7 @@ public class MapInteraction : Ainteractable
 
     private Transform container;
     private List<Transform> instantiatedTemplates = new List<Transform>();
+    private bool isMapOpen = false;
 
     [SerializeField]
     private Transform worldTemplate;
@@ -22,9 +23,10 @@ public class MapInteraction : Ainteractable
     {
         ui = GameObject.Find("GameplayHUD").transform.Find("MapselectionUI").gameObject;
         container = ui.transform.Find("Scroll View").Find("Viewport").Find("Content").transform;
-        if (ui != null)
+        if (ui != null && !isMapOpen)
         {
             ui.SetActive(true);
+            isMapOpen = true;
             getPlayerMaps();
         }
     }
@@ -49,6 +51,7 @@ public class MapInteraction : Ainteractable
     private void playerExitEvent()
     {
         ui.SetActive(false);
+        isMapOpen = false;
         instantiatedTemplates.ForEach(m => Destroy(m.gameObject));
         instantiatedTemplates.Clear();
     }
@@ -61,26 +64,62 @@ public class MapInteraction : Ainteractable
             {
                 if (item.Item is mapItemSO mapItemSO)
                 {
-                    Debug.Log(container);
-                    Transform world = Instantiate(worldTemplate, container);
-                    world.Find("NameText").GetComponent<TextMeshProUGUI>().SetText(mapItemSO.MapName);
-                    world.Find("ItemIcon").GetComponent<Image>().sprite = mapItemSO.MapSprite;
-                    instantiatedTemplates.Add(world);
-                    world.GetComponent<Button>().onClick.AddListener(() =>
-                    {
-                        LoadMap(mapItemSO.SceneName);
-                    });
+                    makeMapSelectFromItem(mapItemSO);
                 }
             }
         }
+        makeDefaultWorldSelect();
+    }
+    private void makeMapSelectFromItem(mapItemSO mapItemSO)
+    {
+        Transform world = Instantiate(worldTemplate, container);
+        TextMeshProUGUI nameText = world.Find("NameText").GetComponent<TextMeshProUGUI>();
+        Image itemIcon = world.Find("ItemIcon").GetComponent<Image>();
+        Button button = world.GetComponent<Button>();
+
+        
+        if (mapItemSO.MapSprite != null)
+        {
+            itemIcon.sprite = mapItemSO.MapSprite;
+        }
+        else
+        {
+            Debug.LogWarning("Missing map item image");
+            itemIcon.sprite = Resources.Load<Sprite>("Sprites/Map_sprites/Image_default_map");
+        }
+        if(mapItemSO.MapName != null)
+        {
+            nameText.SetText(mapItemSO.MapName);
+        }
+        else
+        {
+            Debug.LogWarning("Missing map item name");
+            nameText.SetText("Missing Map Name");
+        }
+        button.onClick.AddListener(() =>
+        {
+            LoadMap(mapItemSO.SceneName);
+        });
+        instantiatedTemplates.Add(world);
+    }
+
+
+
+    private void makeDefaultWorldSelect()
+    {
         Transform defaultWorld = Instantiate(worldTemplate, container);
-        defaultWorld.Find("NameText").GetComponent<TextMeshProUGUI>().SetText("Grassy grove");
-        defaultWorld.Find("ItemIcon").GetComponent<Image>().sprite = Resources.Load<Sprite>("Assets/Sprites/Map_sprites/Image_world_1");
-        instantiatedTemplates.Add(defaultWorld);
-        defaultWorld.GetComponent<Button>().onClick.AddListener(() =>
+        TextMeshProUGUI nameText = defaultWorld.Find("NameText").GetComponent<TextMeshProUGUI>();
+        Image itemIcon = defaultWorld.Find("ItemIcon").GetComponent<Image>();
+        Button button = defaultWorld.GetComponent<Button>();
+
+        nameText.SetText("Grassy Grove");
+        itemIcon.sprite = Resources.Load<Sprite>("Sprites/Map_sprites/Image_default_world");
+        button.onClick.AddListener(() =>
         {
             LoadMap("First World");
         });
+
+        instantiatedTemplates.Add(defaultWorld);
     }
 
     private void LoadMap(string sceneName)
