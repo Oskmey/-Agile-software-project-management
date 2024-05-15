@@ -35,12 +35,18 @@ public class PlayerController : MonoBehaviour, IDataPersistence<GameData>
         rb = GetComponent<Rigidbody2D>();
         movementAction = GetComponent<PlayerInput>().actions["Movement"];
         recycleAction = GetComponent<PlayerInput>().actions["Recycle"];
-        recyclingManager = GameObject.FindGameObjectWithTag("Recycling Manager").GetComponent<RecyclingManager>();
+        recyclingManager = FindObjectOfType<RecyclingManager>();
         fishingAction = GetComponent<PlayerInput>().actions["Fish"];
         shopAction = GetComponent<PlayerInput>().actions["Shop"];
-        shoppingManager = GameObject.FindGameObjectWithTag("Shop Manager").GetComponent<ShopManager>();
+        shoppingManager = FindObjectOfType<ShopManager>();
         catchingAction = GetComponent<PlayerInput>().actions["Catch"];
-        minigame = GameObject.FindGameObjectWithTag("Minigame Manager").GetComponent<MinigameManager>().getCurrentMinigame();
+        MinigameManager miniGameManager = FindObjectOfType<MinigameManager>(); 
+
+        if (miniGameManager != null)
+        {
+            minigame = miniGameManager.getCurrentMinigame();
+        }
+
         playerInteraction = GetComponentInChildren<PlayerInteraction>();
         playerStatsManager = GetComponent<PlayerStatsManager>();
     }

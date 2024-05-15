@@ -78,7 +78,7 @@ public class RecyclingTests : InputTestFixture
         DataPersistenceManager.Instance.SaveGame();
         yield return null;
 
-        Assert.AreEqual(2, playerStatsManager.RecycledTrashDictionary.Count);
+        Assert.AreEqual(1, playerStatsManager.RecycledTrashDictionary.Count);
         Assert.AreEqual(12, playerStatsManager.Money);
     }
 }

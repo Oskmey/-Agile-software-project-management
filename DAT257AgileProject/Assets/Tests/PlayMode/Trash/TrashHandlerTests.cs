@@ -22,7 +22,7 @@ public class TrashHandlerTests : InputTestFixture
         keyboard = InputSystem.AddDevice<Keyboard>();
         mouse = new Mouse();
         mouse = InputSystem.AddDevice<Mouse>();
-        SceneManager.LoadScene("RecyclingTest", LoadSceneMode.Single);
+        SceneManager.LoadScene("TrashHandlerTest", LoadSceneMode.Single);
     }
 
     [Test]
@@ -36,6 +36,12 @@ public class TrashHandlerTests : InputTestFixture
     public IEnumerator CreateTrash_WhenCalledWithTrashType_ShouldCreateTrash()
     {
         yield return null;
+        DataPersistenceManager.Instance.NewGame();
+        yield return null;
+        DataPersistenceManager.Instance.SaveGame();
+        yield return null;
+        DataPersistenceManager.Instance.LoadGame();
+        yield return null;
         trashHandler = GameObject.FindAnyObjectByType<TrashHandler>();
         yield return null;
         trashHandler.CreateTrash(TrashType.TrashBag);
@@ -46,6 +52,12 @@ public class TrashHandlerTests : InputTestFixture
     [UnityTest]
     public IEnumerator CreateTrash_WhenCalledWithTrashTypeAndPosition_ShouldCreateTrashAtPosition()
     {
+        yield return null;
+        DataPersistenceManager.Instance.NewGame();
+        yield return null;
+        DataPersistenceManager.Instance.SaveGame();
+        yield return null;
+        DataPersistenceManager.Instance.LoadGame();
         yield return null;
         trashHandler = GameObject.FindAnyObjectByType<TrashHandler>();
         Vector2 position = new(1, 1);
@@ -62,6 +74,12 @@ public class TrashHandlerTests : InputTestFixture
     public IEnumerator CreateRandomTrash_WhenCalledWithTrashRarityAndPosition_ShouldCreateTrash()
     {
         yield return null;
+        DataPersistenceManager.Instance.NewGame();
+        yield return null;
+        DataPersistenceManager.Instance.SaveGame();
+        yield return null;
+        DataPersistenceManager.Instance.LoadGame();
+        yield return null;
         trashHandler = GameObject.FindAnyObjectByType<TrashHandler>();
         Vector2 position = new(1, 1);
         trashHandler.CreateRandomTrash(TrashRarity.Common, position);
@@ -72,6 +90,12 @@ public class TrashHandlerTests : InputTestFixture
     [UnityTest]
     public IEnumerator CreateRandomTrash_WhenCalledWithTrashRarityAndPosition_ShouldCreateTrashAtPosition()
     {
+        yield return null;
+        DataPersistenceManager.Instance.NewGame();
+        yield return null;
+        DataPersistenceManager.Instance.SaveGame();
+        yield return null;
+        DataPersistenceManager.Instance.LoadGame();
         yield return null;
         trashHandler = GameObject.FindAnyObjectByType<TrashHandler>();
         playerInput = GameObject.FindAnyObjectByType<PlayerInput>();
@@ -90,6 +114,12 @@ public class TrashHandlerTests : InputTestFixture
     [UnityTest]
     public IEnumerator DestroyTrash_WhenCalled_ShouldDestroyTrash()
     {
+        yield return null;
+        DataPersistenceManager.Instance.NewGame();
+        yield return null;
+        DataPersistenceManager.Instance.SaveGame();
+        yield return null;
+        DataPersistenceManager.Instance.LoadGame();
         yield return null;
         trashHandler = GameObject.FindAnyObjectByType<TrashHandler>();
         yield return null;
@@ -114,6 +144,12 @@ public class TrashHandlerTests : InputTestFixture
     [UnityTest]
     public IEnumerator Update_WhenHideTrashInfoPanelActionTriggered_ShouldDestroyTrash()
     {
+        yield return null;
+        DataPersistenceManager.Instance.NewGame();
+        yield return null;
+        DataPersistenceManager.Instance.SaveGame();
+        yield return null;
+        DataPersistenceManager.Instance.LoadGame();
         yield return null;
         trashHandler = GameObject.FindAnyObjectByType<TrashHandler>();
         playerInput = GameObject.FindAnyObjectByType<PlayerInput>();
@@ -142,6 +178,8 @@ public class TrashHandlerTests : InputTestFixture
     [TearDown]
     public override void TearDown()
     {
+        DataPersistenceManager.Instance.NewGame();
+        DataPersistenceManager.Instance.SaveGame();
         base.TearDown();
         trashHandler = null;
     }

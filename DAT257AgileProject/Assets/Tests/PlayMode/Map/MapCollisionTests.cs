@@ -14,12 +14,10 @@ public class MapCollision : InputTestFixture
 {
     private GameObject player;
     private GameObject map;
-    GameObject managers;
+    private GameObject managers;
 
     private string sceneName = "TestCollisionScene"; 
     private Keyboard keyboard;
-
-
 
     [SetUp]
     public override void Setup()
@@ -132,6 +130,5 @@ public class MapCollision : InputTestFixture
         {
             Object.Destroy(gameObject);
         }
-}
-
+    }
 }
