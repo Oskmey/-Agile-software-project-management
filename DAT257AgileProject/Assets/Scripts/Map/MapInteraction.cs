@@ -10,15 +10,21 @@ using UnityEngine.UI;
 public class MapInteraction : Ainteractable
 {
 
-    private Transform container;
-    private List<Transform> instantiatedTemplates = new List<Transform>();
-    private bool isMapOpen = false;
 
     [SerializeField]
     private Transform worldTemplate;
+    
+    [SerializeField]
+    private Sprite defaultMapSprite;
+
+    private Transform container;
+    private List<Transform> instantiatedTemplates = new List<Transform>();
+    private bool isMapOpen = false;
     public override string text => "Press E to open map";
     private GameObject ui;
     private Inventory.Model.InventorySO inventoryData;
+    public bool IsMapOpen => isMapOpen;
+
     public override void interact()
     {
         ui = GameObject.Find("GameplayHUD").transform.Find("MapselectionUI").gameObject;
@@ -85,7 +91,7 @@ public class MapInteraction : Ainteractable
         else
         {
             Debug.LogWarning("Missing map item image");
-            itemIcon.sprite = Resources.Load<Sprite>("Sprites/Map_sprites/Image_default_map");
+            itemIcon.sprite = defaultMapSprite;
         }
         if(mapItemSO.MapName != null)
         {
@@ -113,7 +119,7 @@ public class MapInteraction : Ainteractable
         Button button = defaultWorld.GetComponent<Button>();
 
         nameText.SetText("Grassy Grove");
-        itemIcon.sprite = Resources.Load<Sprite>("Sprites/Map_sprites/Image_default_world");
+        itemIcon.sprite = defaultMapSprite;
         button.onClick.AddListener(() =>
         {
             LoadMap("First World");
