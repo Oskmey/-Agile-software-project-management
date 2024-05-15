@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static RecyclingMachine;
 
-public class PlayerController : MonoBehaviour, IDataPersistence
+public class PlayerController : MonoBehaviour, IDataPersistence<GameData>
 {
     public float speed { get; set; }
 
@@ -136,13 +136,13 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         }
     }
 
-    public void LoadData(GameData gameData)
+    public void LoadData(GameData data)
     {
-        transform.position = gameData.PlayerPosition;
+        transform.position = data.PlayerPosition;
     }
 
-    public void SaveData(GameData gameData)
+    public void SaveData(GameData data)
     {
-        gameData.PlayerPosition = transform.position;
+        data.PlayerPosition = transform.position;
     }
 }

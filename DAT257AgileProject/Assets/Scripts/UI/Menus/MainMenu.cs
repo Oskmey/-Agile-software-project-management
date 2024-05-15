@@ -4,12 +4,19 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MainMenu : MonoBehaviour
+public class MainMenu : MonoBehaviour, IMenuWithSettings, IMenuWithHowToPlay
 {
     [SerializeField]
     private Button newGameButton;
     [SerializeField]
     private Button continueButton;
+    [SerializeField]
+    private Button settingsButton;
+    [SerializeField]
+    private Button howToPlayButton;
+
+    private SettingsMenu settingsMenu;
+    private HowToPlayMenu howToPlayMenu;
 
     private void Start()
     {
@@ -18,6 +25,11 @@ public class MainMenu : MonoBehaviour
         {
             continueButton.interactable = false;
         }
+        settingsMenu = FindObjectOfType<SettingsMenu>(true);
+        howToPlayMenu = FindObjectOfType<HowToPlayMenu>(true);
+        settingsButton.onClick.AddListener(OnSettingsButtonClicked);
+        howToPlayButton.onClick.AddListener(OnHowToPlayButtonClicked);
+        AudioManager.Instance.PlayMusic(MusicName.MenuTheme);
     }
 
     public void OnNewGameClicked()
@@ -47,10 +59,27 @@ public class MainMenu : MonoBehaviour
     {
         newGameButton.interactable = false;
         continueButton.interactable = false;
+        settingsButton.interactable = false;
+        howToPlayButton.interactable = false;
+    }
+
+    private void OnSettingsButtonClicked()
+    {
+        settingsMenu.gameObject.SetActive(true);
+    }
+
+    private void OnHowToPlayButtonClicked()
+    {
+        howToPlayMenu.gameObject.SetActive(true);
     }
 
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public GameObject GetGameObject()
+    {
+        return gameObject;
     }
 }

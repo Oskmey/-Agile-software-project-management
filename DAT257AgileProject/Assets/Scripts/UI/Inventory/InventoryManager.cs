@@ -5,14 +5,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
 namespace Inventory
 {
-    public class InventoryManager : MonoBehaviour, IDataPersistence
+    public class InventoryManager : MonoBehaviour, IDataPersistence<GameData>
     {
         [SerializeField]
         private UIInventoryPage inventoryUI;
@@ -41,6 +40,9 @@ namespace Inventory
         public event EquipEvent AccessoryUnEquipped;
         public event EquipEvent AccessoryEquipped;
 
+        public InventorySO InventoryData { get { return inventoryData; }}
+        public InventorySO AccessoryData { get { return accessoryData; }}
+
         private void Start()
         {
             playerInput = GetComponent<PlayerInput>();
@@ -48,7 +50,6 @@ namespace Inventory
             PrepareUI();
             PrepareInventoryData();
             PrepareAccessoryData();
-
             // List<AccessorySO> currentlyEquipped = GetCurrentlyEquippedAccessories();
             // Debug.Log(currentlyEquipped.Count);
         }
@@ -459,19 +460,19 @@ namespace Inventory
             }
         }
 
-        public void LoadData(GameData gameData)
+        public void LoadData(GameData data)
         {
-            initialInventoryItems = gameData.SavedInventoryItems;
-            initialAccessoryItems = gameData.SavedAccessoryItems;
+            initialInventoryItems = data.SavedInventoryItems;
+            initialAccessoryItems = data.SavedAccessoryItems;
         }
 
-        public void SaveData(GameData gameData)
+        public void SaveData(GameData data)
         {
             // Save inventory items
-            gameData.SavedInventoryItems = GetItemsInInventory(inventoryData);
+            data.SavedInventoryItems = GetItemsInInventory(inventoryData);
 
             // Save accessory items
-            gameData.SavedAccessoryItems = GetItemsInInventory(accessoryData);
+            data.SavedAccessoryItems = GetItemsInInventory(accessoryData);
         }
 
         private List<InventoryItem> GetItemsInInventory(InventorySO inventoryData)

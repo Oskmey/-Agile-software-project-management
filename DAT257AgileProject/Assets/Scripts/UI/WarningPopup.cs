@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class WarningPopup : MonoBehaviour
 {
-    public float displayTime = 2.5f; // The time the warning will be displayed
+    private float displayTime = 2.5f; // The time the warning will be displayed
     [SerializeField]
     private TextMeshProUGUI warningText;
 

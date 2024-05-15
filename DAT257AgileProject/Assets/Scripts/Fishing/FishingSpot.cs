@@ -4,7 +4,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Codice.Client.Common.GameUI;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
@@ -13,18 +12,13 @@ using UnityEngine.InputSystem;
 
 public class FishingSpot : MonoBehaviour
 {
-
-    [SerializeField] 
-    private Sprite fishingSprite1, fishingSprite2;
-
     [SerializeField] 
     private FishingSpotRarities fishingSpotRarities;
-    [SerializeField] 
 
-    //[SerializeField] 
+    [SerializeField] 
     private GameObject exclamationMarkPrefab;
     private static bool isFishing = true;
-    public bool isPlayingMinigame { get; private set; }
+    public bool IsPlayingMinigame { get; private set; }
     private bool canCatchTrash = false;
     private float elapsedTime = 0f;
     private float delayTime = 2f;
@@ -32,10 +26,6 @@ public class FishingSpot : MonoBehaviour
     private float canCatchDelay = 1.5f;
     private MinigameManager minigameManager;
     private TextMeshProUGUI promptText;
-
-    private SpriteRenderer playerSpriteRenderer;
-
-    private FishingSpot fishSpot;
 
     private TrashHandler trashHandler;
 
@@ -46,9 +36,16 @@ public class FishingSpot : MonoBehaviour
     //Need to add percentages I guess
     void Start()
     {
-        listOfRarities = fishingSpotRarities.ToList();
+        try
+        {
+            listOfRarities = new List<float>(fishingSpotRarities.ToList());
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"The following Exception occurred when loading fishingSpotRarities: {e}");
+        }
+        
         currentRarity = GetCurrentRarity(listOfRarities);
-        fishSpot = GetComponent<FishingSpot>();
         promptText = GameObject.FindGameObjectWithTag("TutorialText").GetComponent<TextMeshProUGUI>();
         minigameManager = GameObject.FindGameObjectWithTag("Minigame Manager").GetComponent<MinigameManager>();
         trashHandler = GameObject.FindGameObjectWithTag("TrashHandler").GetComponent<TrashHandler>();
@@ -57,11 +54,10 @@ public class FishingSpot : MonoBehaviour
     //Triggered when walking close, borde vara collider grejs
     public void HandleFishingPlaying()
     {
-    if (isFishing)
-    {    
-        promptText.text = "Press F to Fish";
-        //playerSpriteRenderer.sprite = fishingSprite1;
-        elapsedTime += Time.deltaTime;
+        if (isFishing)
+        {    
+            promptText.text = "Press F to Fish";
+            elapsedTime += Time.deltaTime;
 
             if (elapsedTime >= delayTime)
             {
@@ -71,7 +67,6 @@ public class FishingSpot : MonoBehaviour
                 {
                     if (!canCatchTrash)
                     {
-                    
                         SpawnExclamationMark();
                     }
                     canCatchTrash = true;
@@ -89,13 +84,11 @@ public class FishingSpot : MonoBehaviour
     }
     public void HandleMinigameStart()
     {
-        if (!isPlayingMinigame && canCatchTrash)
-        {
-            //playerSpriteRenderer.sprite = fishingSprite2;
-            
+        if (!IsPlayingMinigame && canCatchTrash)
+        {   
             minigameManager.StartMinigame(MinigameType.ArrowBoxMinigame);
             
-            isPlayingMinigame = true;
+            IsPlayingMinigame = true;
             isFishing = false;
 
             elapsedTime = 0f;
@@ -107,13 +100,13 @@ public class FishingSpot : MonoBehaviour
     public void SpawnExclamationMark()
     {
         GameObject exclamationMark = Instantiate(exclamationMarkPrefab);
-        exclamationMark.transform.position = fishSpot.transform.position;
+        exclamationMark.transform.position = transform.position;
         Destroy(exclamationMark, 1.5f);
     }
 
     public bool GetIsPlaying()
     {
-        return isPlayingMinigame;
+        return IsPlayingMinigame;
     }
 
     public void ResetFishingLoop()
@@ -121,9 +114,8 @@ public class FishingSpot : MonoBehaviour
         // Reset the game state
         currentRarity = GetCurrentRarity(listOfRarities);
         isFishing = true;
-        isPlayingMinigame = false;
+        IsPlayingMinigame = false;
         canCatchTrash = false;
-        //playerSpriteRenderer.sprite = fishingSprite2;
 
         elapsedTime = 0f;
         canCatchTime = 0f;
@@ -135,14 +127,14 @@ public class FishingSpot : MonoBehaviour
     public void OnMinigameWonHandler()
     {
         // TODO: fix trashHandler being null when event invoked
-        isPlayingMinigame=false;
+        IsPlayingMinigame=false;
         Vector2 trashSpawnPosition = new(transform.position.x, transform.position.y);
         TrashScript currentTrash = trashHandler.CreateRandomTrash(currentRarity, trashSpawnPosition);
     }
 
     public void OnMinigameLostHandler()
     {
-        isPlayingMinigame=false;
+        IsPlayingMinigame=false;
         Debug.Log("Minigame lost! Implement your logic here...");
     }
     public TrashRarity GetCurrentRarity(List<float> listOfRarityPercentages)
@@ -151,27 +143,27 @@ public class FishingSpot : MonoBehaviour
         //You yourself have to make sure it adds up to 100% or 1.0
         float randomNumber = UnityEngine.Random.value;
 
-        if(randomNumber <= listOfRarityPercentages[0])
+        if (randomNumber <= listOfRarityPercentages[0])
         {
             return TrashRarity.Common;
         }
 
-        if(randomNumber <= listOfRarityPercentages[1] && randomNumber > listOfRarityPercentages[0])
+        if (randomNumber <= listOfRarityPercentages[1] && randomNumber > listOfRarityPercentages[0])
         {
             return TrashRarity.Uncommon;
         }
 
-        if(randomNumber <= listOfRarityPercentages[2] && randomNumber > listOfRarityPercentages[1])
+        if (randomNumber <= listOfRarityPercentages[2] && randomNumber > listOfRarityPercentages[1])
         {
             return TrashRarity.Rare;
         }
 
-        if(randomNumber <= listOfRarityPercentages[3] && randomNumber > listOfRarityPercentages[2])
+        if (randomNumber <= listOfRarityPercentages[3] && randomNumber > listOfRarityPercentages[2])
         {
             return TrashRarity.Epic;
         }
 
-        if(randomNumber <= listOfRarityPercentages[4] && randomNumber > listOfRarityPercentages[3])
+        if (randomNumber <= listOfRarityPercentages[4] && randomNumber > listOfRarityPercentages[3])
         {
             return TrashRarity.Legendary;
         }

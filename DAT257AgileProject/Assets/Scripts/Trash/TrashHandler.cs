@@ -28,6 +28,7 @@ public class TrashHandler : MonoBehaviour
     private InventorySO inventoryData;
 
     private bool infoPopupActive = false;
+    private PlayerStatsManager playerStatsManager;
 
     private void Start()
     {
@@ -38,6 +39,8 @@ public class TrashHandler : MonoBehaviour
         recyclingManager = GameObject.FindGameObjectWithTag("Recycling Manager").GetComponent<RecyclingManager>();
         OnTrashCollectedAndInventoryFull += () => gameplayHudHandler.UpdateWarningPopup("Can't collect the trash while there is no available slot in your inventory");
         gameplayHudHandler.OnInfoPopupActive += SetInfoPopupActive;
+        playerStatsManager = FindObjectOfType<PlayerStatsManager>();
+
         // fishingLoop = playerInteraction.currentFishingSpot;
         // if (fishingLoop != null)
         // {
@@ -137,7 +140,17 @@ public class TrashHandler : MonoBehaviour
         }
         return currentTrashScript;
     }
-
+    private void UpdateRecycledTrashDictionary(TrashType trashType)
+    {
+        if (playerStatsManager.RecycledTrashDictionary.ContainsKey(trashType))
+        {
+            playerStatsManager.RecycledTrashDictionary[trashType]++;
+        }
+        else
+        {
+            playerStatsManager.RecycledTrashDictionary.Add(trashType, 1);
+        }
+    }
     public void DestroyTrash()
     {
         if (gameplayHudHandler != null)
@@ -152,6 +165,17 @@ public class TrashHandler : MonoBehaviour
         if (currentTrashObject != null)
         {
             TrashCollected();
+
+            TrashType trashType = currentTrashObject.GetComponent<TrashScript>().TrashType;
+            if (playerStatsManager.TrashCaughtDictionary.ContainsKey(trashType))
+            {
+                playerStatsManager.TrashCaughtDictionary[trashType]++;
+            }
+            else
+            {
+                playerStatsManager.TrashCaughtDictionary.Add(trashType, 1);
+            }
+
             if (currentTrashObject.TryGetComponent<Item>(out var item))
             {
                 int remainder = inventoryData.AddItem(item.InventoryItem, item.Quantity);
