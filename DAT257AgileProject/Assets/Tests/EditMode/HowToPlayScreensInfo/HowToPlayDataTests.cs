@@ -18,6 +18,22 @@ public class HowToPlayDataTests
         }
     }
 
+    // for the tests that check for invalid characters
+    public static IEnumerable<TestCaseData> HowToPlayDataInvalidCharTestCases
+    {
+        get
+        {
+            char[] invalidChars = new[] { '\r', '\n' };
+            foreach (var howToPlayDataEntry in allHowToPlayData)
+            {
+                foreach (var invalidChar in invalidChars)
+                {
+                    yield return new TestCaseData(invalidChar, howToPlayDataEntry);
+                }
+            }
+        }
+    }
+
     [Test]
     public void AllHowToPlayData_IsNotNull()
     {
@@ -54,15 +70,9 @@ public class HowToPlayDataTests
         Assert.AreEqual(char.ToUpper(howToPlayData.ContentText[0]), howToPlayData.ContentText[0]);
     }
 
-    [Test, TestCaseSource(nameof(HowToPlayDataTestCases))]
-    public void EachHowToPlayData_DoesNotHaveContentTextEndingWithCarriageReturn(HowToPlayData howToPlayData)
+    [Test, TestCaseSource(nameof(HowToPlayDataInvalidCharTestCases))]
+    public void EachHowToPlayData_DoesNotHaveContentTextEndingWithInvalidCharacter(char invalidChar, HowToPlayData howToPlayData)
     {
-        Assert.AreNotEqual('\r', howToPlayData.ContentText[^1]);
-    }
-
-    [Test, TestCaseSource(nameof(HowToPlayDataTestCases))]
-    public void EachHowToPlayData_DoesNotHaveContentTextEndingWithNewLine(HowToPlayData howToPlayData)
-    {
-        Assert.AreNotEqual('\n', howToPlayData.ContentText[^1]);
+        Assert.AreNotEqual(invalidChar, howToPlayData.ContentText[^1]);
     }
 }
