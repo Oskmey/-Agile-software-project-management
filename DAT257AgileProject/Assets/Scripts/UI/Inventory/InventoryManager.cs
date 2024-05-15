@@ -47,7 +47,6 @@ namespace Inventory
             PrepareUI();
             PrepareInventoryData();
             PrepareAccessoryData();
-
             // List<AccessorySO> currentlyEquipped = GetCurrentlyEquippedAccessories();
             // Debug.Log(currentlyEquipped.Count);
         }

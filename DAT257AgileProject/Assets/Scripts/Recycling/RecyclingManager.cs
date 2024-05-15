@@ -48,14 +48,15 @@ public class RecyclingManager : MonoBehaviour
 
                 foreach (TrashItemSO trash in trashToRecycle)
                 {
-                    playerStatsManager.Money += trash.TrashData.MoneyValue;
-                    UpdateTrashDictionary(trash.TrashType);
+                    playerStatsManager.CurrentMoney += trash.TrashData.MoneyValue;
+                    playerStatsManager.TotalMoneyEarned += trash.TrashData.MoneyValue;
+                    UpdateRecycledTrashDictionary(trash.TrashType);
                 }
             }
         }
     }
 
-    private void UpdateTrashDictionary(TrashType trashType)
+    private void UpdateRecycledTrashDictionary(TrashType trashType)
     {
         if (playerStatsManager.RecycledTrashDictionary.ContainsKey(trashType))
         {

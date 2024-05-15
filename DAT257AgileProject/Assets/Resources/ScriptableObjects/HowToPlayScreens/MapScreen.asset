@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40e29ed274327ad4a88a09a960b98474, type: 3}
+  m_Name: MapScreen
+  m_EditorClassIdentifier: 
+  screenType: 5
+  contentText: The map is used to access different worlds. To open it you have to
+    find a boat, see Figure 1. Near a boat you can press the interaction button.
+    This will open up a menu from which you can choose which world you want to go
+    to.
+  topImage: {fileID: 21300000, guid: dd20e4bf250e695458ac2c9826d4ebab, type: 3}
+  bottomImage: {fileID: 0}
