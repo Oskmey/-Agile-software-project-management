@@ -53,17 +53,16 @@ public class RecyclingManager : MonoBehaviour
 
                 foreach (TrashItemSO trash in trashToRecycle)
                 {
-                    Debug.Log((int)(trash.TrashData.MoneyValue * moneyMultiplier));
-                    Debug.Log((moneyMultiplier));
-                    Debug.Log(trash.TrashData.MoneyValue);
-                    playerStatsManager.Money += (int)(trash.TrashData.MoneyValue * moneyMultiplier);
-                    UpdateTrashDictionary(trash.TrashType);
+                    int recyclingMoney = (int)(trash.TrashData.MoneyValue * moneyMultiplier)
+                    playerStatsManager.CurrentMoney += recyclingMoney;
+                    playerStatsManager.TotalMoneyEarned += recyclingMoney;
+                    UpdateRecycledTrashDictionary(trash.TrashType);
                 }
             }
         }
     }
 
-    private void UpdateTrashDictionary(TrashType trashType)
+    private void UpdateRecycledTrashDictionary(TrashType trashType)
     {
         if (playerStatsManager.RecycledTrashDictionary.ContainsKey(trashType))
         {

@@ -5,48 +5,49 @@ using UnityEngine;
 
 public class AccessoryManager : MonoBehaviour
 {
-    InventoryManager inventoryManager;
-    PlayerController playerController;
-    List<AccessorySO> acc;
+    private InventoryManager inventoryManager;
+    private PlayerController playerController;
 
-    int itemCount = 0;
-
-    // Start is called before the first frame update
     void Start()
     {
         inventoryManager = FindAnyObjectByType<InventoryManager>();
         playerController = FindAnyObjectByType<PlayerController>();
+        InitAccessoryEffects();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        acc = inventoryManager.GetCurrentlyEquippedAccessories();
-        if (acc.Count != itemCount)
-        {
-            ApplyEffect();
-            itemCount = acc.Count;
-        }
-        //Debug.Log(acc.Count);
+        //if(playerController != null)
+        //{
+           // Debug.Log("Player speed: " + playerController.speed);
+        //}
     }
 
-    void ApplyEffect()
+    private void InitAccessoryEffects()
     {
-        //int speedEggs = 0;
-        playerController.speed = 5f;
-        foreach (AccessorySO acc1 in acc)
+        inventoryManager.AccessoryEquipped += ApplyEffects;
+        inventoryManager.AccessoryUnEquipped += UnApplyEffects;
+    }
+    
+    private void UnApplyEffects(AccessorySO accessory)
+    {
+        if(playerController != null)
         {
-            foreach(EffectSO ae in acc1.accessoryEffects)
+            foreach (EffectSO ae in accessory.accessoryEffects)
+            {
+                ae.UnApplyEffect();
+            }
+        }
+    }
+
+    private void ApplyEffects(AccessorySO accessory)
+    {
+        if (playerController != null)
+        {
+            foreach (EffectSO ae in accessory.accessoryEffects)
             {
                 ae.ApplyEffect();
             }
-            // Temp solution for SpeedEffect
-            //if (acc1.AccessoryName == "Egg")
-            //{
-            //    speedEggs++;
-            //}
         }
-
-        //playerController.speed = 5f + speedEggs;
     }
 }

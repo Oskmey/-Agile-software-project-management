@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: testEffect
   m_EditorClassIdentifier: 
   effectType: 0
-  speed: 10
+  speed: 1

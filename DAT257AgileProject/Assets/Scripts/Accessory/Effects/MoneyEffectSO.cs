@@ -42,4 +42,9 @@ public class MoneyEffectSO : EffectSO
         //    }
         //}
     }
+
+    public override void UnApplyEffect()
+    {
+
+    }
 }

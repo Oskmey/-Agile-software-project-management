@@ -271,8 +271,15 @@ namespace Inventory.UI
 
         private void OnDestroy()
         {
-            listOfAccessoryUIItems.Clear();
-            listOfInventoryUIItems.Clear();
+            if (listOfAccessoryUIItems != null)
+            {
+                listOfAccessoryUIItems.Clear();
+            }
+
+            if (listOfInventoryUIItems != null)
+            {
+                listOfInventoryUIItems.Clear();
+            }
         }
 
         internal void ResetAccessoryItems()

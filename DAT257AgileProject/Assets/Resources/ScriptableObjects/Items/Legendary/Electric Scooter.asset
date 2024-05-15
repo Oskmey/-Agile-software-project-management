@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Electric Scooter
   m_EditorClassIdentifier: 
   <IsStackable>k__BackingField: 1
-  <MaxStackSize>k__BackingField: 99
-  <Name>k__BackingField: Electric Scooter
+  <MaxStackSize>k__BackingField: 5
   <Description>k__BackingField: Is an Electric Scooter that is trash
   <ItemImage>k__BackingField: {fileID: 21300000, guid: c69a2c8cf0a0f1e498f68120dcc4e7fe, type: 3}
   <DefaultParametersList>k__BackingField: []

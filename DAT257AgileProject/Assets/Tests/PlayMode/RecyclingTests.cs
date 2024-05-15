@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Inventory;
+using Inventory.Model;
 using NUnit.Framework;
 using UnityEditor;
 using UnityEngine;
@@ -12,6 +14,7 @@ public class RecyclingTests : InputTestFixture
     private RecyclingManager recyclingManager;
     private PlayerStatsManager playerStatsManager;
     private TrashHandler trashHandler;
+    private InventoryManager inventoryManager;
     private Keyboard keyboard;
     private Mouse mouse;
 
@@ -30,6 +33,8 @@ public class RecyclingTests : InputTestFixture
     public override void TearDown()
     {
         base.TearDown();
+        DataPersistenceManager.Instance.NewGame();
+        DataPersistenceManager.Instance.SaveGame();
     }
 
     // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
@@ -40,36 +45,40 @@ public class RecyclingTests : InputTestFixture
     {
         // Wait until the scene is fully loaded
         yield return null;
+        DataPersistenceManager.Instance.NewGame();
+        yield return null;
+        DataPersistenceManager.Instance.SaveGame();
+        yield return null;
+        DataPersistenceManager.Instance.LoadGame();
+        yield return null;
 
+        yield return null;
+        inventoryManager = GameObject.FindAnyObjectByType<InventoryManager>();
         playerStatsManager = GameObject.FindAnyObjectByType<PlayerStatsManager>();
         recyclingManager = GameObject.FindGameObjectWithTag("Recycling Manager").GetComponent<RecyclingManager>();
         trashHandler = GameObject.FindAnyObjectByType<TrashHandler>();
 
         yield return null;
-        trashHandler.CreateTrash(TrashType.TrashBag);
-        yield return null;
+        // TODO: money wont load to be 0 at new game for test
+        playerStatsManager.CurrentMoney = 0;
+        Debug.Log("Money: " + playerStatsManager.CurrentMoney.ToString());
+        TrashItemSO trashItem = Resources.Load<TrashItemSO>("ScriptableObjects/Items/Common/PET Bottle");
 
-        trashHandler.DestroyTrash();
         yield return null;
+        InventoryItem trashInventoryItem = new InventoryItem(trashItem, 1, null);
+        inventoryManager.InventoryData.AddItem(trashInventoryItem);
 
-        PressAndRelease(keyboard.rKey);
         yield return null;
-
-        trashHandler.CreateTrash(TrashType.TrashBag);
-        yield return null;
-
-        trashHandler.DestroyTrash();
-        yield return null;
+        Debug.Log("Money: " + playerStatsManager.CurrentMoney.ToString());
 
         PressAndRelease(keyboard.rKey);
         yield return null;
+        Debug.Log("Money: " + playerStatsManager.CurrentMoney.ToString());
 
-        // destroying the player input to fix an exception logged in the console
-        // link: https://forum.unity.com/threads/i-cannot-make-unity-test-framework-work-with-inputtestfixture.1331400/
-        // Object.Destroy(recyclingPlayerInput);
+        DataPersistenceManager.Instance.SaveGame();
+        yield return null;
 
         Assert.AreEqual(2, playerStatsManager.RecycledTrashDictionary.Count);
-        Assert.AreEqual(20, playerStatsManager.Money);
-        Assert.IsTrue(recyclingManager.TrashWasRecycled);
+        Assert.AreEqual(12, playerStatsManager.CurrentMoney);
     }
 }

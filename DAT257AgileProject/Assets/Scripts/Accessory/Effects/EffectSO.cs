@@ -9,6 +9,7 @@ public abstract class EffectSO : ScriptableObject
     public EffectType Effect => effectType;
 
     public abstract void ApplyEffect();
+    public abstract void UnApplyEffect();
 
 }
 public enum EffectType
