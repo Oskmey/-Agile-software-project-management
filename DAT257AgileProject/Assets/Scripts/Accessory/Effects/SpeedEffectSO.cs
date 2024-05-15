@@ -6,9 +6,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SpeedEffect", menuName = "Effects/Speed Effect")]
 public class SpeedEffectSO : EffectSO
 {
-
     [SerializeField]
-    int speed;
+    private int speed;
+
+    public int Speed =>speed;
     public override void ApplyEffect()
     {
         PlayerController playerController = FindAnyObjectByType<PlayerController>();

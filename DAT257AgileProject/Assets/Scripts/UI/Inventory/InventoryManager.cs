@@ -398,7 +398,14 @@ namespace Inventory
                         EffectSO accessoryEffect = equippableItem.Accessory.accessoryEffects[i];
                         if (i == equippableItem.Accessory.accessoryEffects.Count - 1)
                         {
-                            effects += accessoryEffect.Effect;
+                            if(accessoryEffect is SpeedEffectSO speedEffectSO)
+                            {
+                                effects += $"Speed: {speedEffectSO.Speed}";
+                            }
+                            else
+                            {
+                                effects += accessoryEffect.Effect;
+                            }
                         }
                         else
                         {
