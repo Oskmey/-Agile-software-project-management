@@ -37,6 +37,9 @@ namespace Inventory
 
         public delegate void SwapEvent();
         public event SwapEvent SwapItemToAccessoryIncorrect;
+        public delegate void EquipEvent(AccessorySO accessory);
+        public event EquipEvent AccessoryUnEquipped;
+        public event EquipEvent AccessoryEquipped;
 
         private void Start()
         {
@@ -81,6 +84,7 @@ namespace Inventory
                 }
 
                 accessoryData.AddItemAt(item, i);
+                AccessoryEquipped?.Invoke((item.Item as EquippableItemSO).Accessory);
             }
         }
 
@@ -140,7 +144,6 @@ namespace Inventory
 
         private void HandleItemActionRequest(int itemIndex, UIItem itemUI)
         {
-            //
             UIItem itemSlot = null;
             InventorySO items = null;
             InventoryItem inventoryItem = default;
@@ -252,13 +255,24 @@ namespace Inventory
                 InventoryItem currentItem = accessoryData.GetItemAt(itemIndex_1);
                 InventoryItem destinationItem = inventoryData.GetItemAt(itemIndex_2);
 
-                if (destinationItem.Item is EquippableItemSO || destinationItem.IsEmpty)
+                if ((destinationItem.Item is EquippableItemSO || destinationItem.IsEmpty) && currentItem.Item is EquippableItemSO currentEquippableItemSO)
                 {
+
                     accessoryData.RemoveItem(itemIndex_1, itemUI_1.Quantity);
                     inventoryData.RemoveItem(itemIndex_2, itemUI_2.Quantity);
 
                     inventoryData.AddItemAt(currentItem, itemIndex_2);
                     accessoryData.AddItemAt(destinationItem, itemIndex_1);
+
+                    if (destinationItem.Item is EquippableItemSO destinationEquippableItemSO)
+                    {
+                        AccessoryEquipped?.Invoke(destinationEquippableItemSO.Accessory);
+                        AccessoryUnEquipped?.Invoke(currentEquippableItemSO.Accessory);
+                    }
+                    else if (destinationItem.IsEmpty)
+                    {
+                        AccessoryUnEquipped?.Invoke(currentEquippableItemSO.Accessory);
+                    }
                 }
                 else
                 {
@@ -270,13 +284,23 @@ namespace Inventory
                 InventoryItem currentItem = inventoryData.GetItemAt(itemIndex_1);
                 InventoryItem destinationItem = accessoryData.GetItemAt(itemIndex_2);
 
-                if (currentItem.Item is EquippableItemSO)
+                if (currentItem.Item is EquippableItemSO currentEquippableItemSO)
                 {
                     inventoryData.RemoveItem(itemIndex_1, itemUI_1.Quantity);
                     accessoryData.RemoveItem(itemIndex_2, itemUI_2.Quantity);
 
                     accessoryData.AddItemAt(currentItem, itemIndex_2);
                     inventoryData.AddItemAt(destinationItem, itemIndex_1);
+
+                    if (destinationItem.Item is EquippableItemSO destinationEquippableItemSO)
+                    {
+                        AccessoryEquipped?.Invoke(currentEquippableItemSO.Accessory);
+                        AccessoryUnEquipped?.Invoke(destinationEquippableItemSO.Accessory);
+                    }
+                    else if (destinationItem.IsEmpty)
+                    {
+                        AccessoryEquipped?.Invoke(currentEquippableItemSO.Accessory);
+                    }
                 }
                 else
                 {
