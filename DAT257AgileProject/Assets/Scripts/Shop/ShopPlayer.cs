@@ -24,7 +24,7 @@ public class ShopPlayer : MonoBehaviour
 
     public void TryToBuy(AccessorySO type)
     {
-        money = playerStatsManager.Money;
+        money = playerStatsManager.CurrentMoney;
 
         if (inventoryData.IsInventoryFull())
         {
@@ -32,10 +32,9 @@ public class ShopPlayer : MonoBehaviour
         }
         else if (money >= type.cost)
         {
-            AudioManager.Instance.PlaySound(SoundName.ItemBought);
             AddItemToInventory(type);
-            playerStatsManager.Money -= type.cost;
-
+            playerStatsManager.CurrentMoney -= type.cost;
+            playerStatsManager.TotalMoneySpent += type.cost;
         }
         else if (money < type.cost)
         {
@@ -58,6 +57,15 @@ public class ShopPlayer : MonoBehaviour
         else
         {
             Debug.LogError("No matching item found.");
+        }
+
+        if (playerStatsManager.PurchasedAccessories.ContainsKey(matchingItem.Accessory))
+        {
+            playerStatsManager.PurchasedAccessories[matchingItem.Accessory]++;
+        }
+        else
+        {
+            playerStatsManager.PurchasedAccessories.Add(matchingItem.Accessory, 1);
         }
     }
 }

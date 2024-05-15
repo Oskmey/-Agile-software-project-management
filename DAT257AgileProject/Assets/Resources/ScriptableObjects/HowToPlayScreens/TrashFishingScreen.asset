@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40e29ed274327ad4a88a09a960b98474, type: 3}
+  m_Name: TrashFishingScreen
+  m_EditorClassIdentifier: 
+  screenType: 1
+  contentText: "The main goal of this game is fishing trash and learning about its
+    environmental impact. To actually fish some trash you have to find a fishing
+    spot with trash, see Figure 1. \n\nWhen near one you will automatically throw
+    your fishing rod. After waiting some time an exclamation mark will appear see
+    Figure 2. Then you have to press F, afterwards you will be presented with a minigame.
+    In this minigame you have to time when the box is near the arrow and press space.
+    \n\nAfter a successful catch you will be presented with some trash facts, the
+    trash will go to your inventory and you will start fishing again."
+  topImage: {fileID: 21300000, guid: 5c2c1af9381e2d542bb82370c8f8d5e7, type: 3}
+  bottomImage: {fileID: 21300000, guid: d719e8aec65c6784da9dccf11ca820dc, type: 3}
