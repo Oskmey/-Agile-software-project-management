@@ -48,6 +48,7 @@ public class RecyclingManager : MonoBehaviour
 
                 foreach (TrashItemSO trash in trashToRecycle)
                 {
+                    AudioManager.Instance.PlaySound(SoundName.RecycleNoise);
                     playerStatsManager.CurrentMoney += trash.TrashData.MoneyValue;
                     playerStatsManager.TotalMoneyEarned += trash.TrashData.MoneyValue;
                     UpdateRecycledTrashDictionary(trash.TrashType);
