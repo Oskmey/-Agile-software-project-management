@@ -50,5 +50,5 @@ public abstract class Ainteractable : MonoBehaviour
         return Vector2.Distance(player.transform.position, transform.position);
     }
 
-    public abstract void interact();
+    public abstract void Interact();
 }

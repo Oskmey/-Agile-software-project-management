@@ -1,16 +1,17 @@
 using Inventory.Model;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Build.Content;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class GameData
 {
     // The fields need to be SerializeField or public.
     [SerializeField]
-    private Vector2 playerPosition;
-    public Vector2 PlayerPosition { get { return playerPosition; } set { playerPosition = value; } }
-
+    private SerializableDictionary<string, Vector2> playerPosition;
     [SerializeField]
     private int money;
     public int Money { get { return money; } set { money = value; } }
@@ -34,8 +35,40 @@ public class GameData
 
     public GameData()
     {
-        // should maybe have that the "correct" starting point for the player be (0, 0)?
-        playerPosition = new Vector2(-4, -2);
         money = 0;
+    }
+
+    public Vector2 GetPlayerPosition(string sceneName)
+    {
+        if (playerPosition.ContainsKey(sceneName))
+        {
+            return playerPosition[sceneName];
+        }
+        Debug.LogWarning("No player position found for scene: " + sceneName);
+        return Vector2.zero;
+    }
+
+    public void SetPlayerPosition(string sceneName, Vector2 position)
+    {
+        if(playerPosition.ContainsKey(sceneName))
+        {
+            playerPosition[sceneName] = position;
+            return;
+        }
+
+        int sceneCount = SceneManager.sceneCountInBuildSettings;     
+
+        for( int i = 0; i < sceneCount; i++ )
+        {
+            if(sceneName == System.IO.Path.GetFileNameWithoutExtension(SceneUtility.GetScenePathByBuildIndex(i)))
+            {
+                playerPosition.Add(sceneName, position);
+                return;
+            }
+            else
+            {
+                Debug.LogWarning("Scene not found in build settings: " + sceneName);
+            }
+        }
     }
 }

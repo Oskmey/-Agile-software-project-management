@@ -25,7 +25,7 @@ public class MapInteraction : Ainteractable
     private Inventory.Model.InventorySO inventoryData;
     public bool IsMapOpen => isMapOpen;
 
-    public override void interact()
+    public override void Interact()
     {
         ui = GameObject.Find("GameplayHUD").transform.Find("MapselectionUI").gameObject;
         container = ui.transform.Find("Scroll View").Find("Viewport").Find("Content").transform;
@@ -33,16 +33,14 @@ public class MapInteraction : Ainteractable
         {
             ui.SetActive(true);
             isMapOpen = true;
-            getPlayerMaps();
+            GetPlayerMaps();
         }
     }
-
-
 
     public void Start()
     {
         inventoryData = GameObject.Find("InventoryManager").GetComponent<InventoryManager>().InventoryData;
-        PlayerExitHandler += playerExitEvent;
+        PlayerExitHandler += PlayerExitEvent;
     }
 
     public void Update()
@@ -53,8 +51,7 @@ public class MapInteraction : Ainteractable
         }
     }
 
-
-    private void playerExitEvent()
+    private void PlayerExitEvent()
     {
         ui.SetActive(false);
         isMapOpen = false;
@@ -62,7 +59,7 @@ public class MapInteraction : Ainteractable
         instantiatedTemplates.Clear();
     }
 
-    private void getPlayerMaps()
+    private void GetPlayerMaps()
     {
         foreach (InventoryItem item in inventoryData.InventoryItems)
         {
@@ -70,13 +67,13 @@ public class MapInteraction : Ainteractable
             {
                 if (item.Item is mapItemSO mapItemSO)
                 {
-                    makeMapSelectFromItem(mapItemSO);
+                    MakeMapSelectFromItem(mapItemSO);
                 }
             }
         }
-        makeDefaultWorldSelect();
+        MakeDefaultWorldSelect();
     }
-    private void makeMapSelectFromItem(mapItemSO mapItemSO)
+    private void MakeMapSelectFromItem(mapItemSO mapItemSO)
     {
         Transform world = Instantiate(worldTemplate, container);
         TextMeshProUGUI nameText = world.Find("NameText").GetComponent<TextMeshProUGUI>();
@@ -104,6 +101,7 @@ public class MapInteraction : Ainteractable
         }
         button.onClick.AddListener(() =>
         {
+            PlayerExitEvent();
             LoadMap(mapItemSO.SceneName);
         });
         instantiatedTemplates.Add(world);
@@ -111,7 +109,7 @@ public class MapInteraction : Ainteractable
 
 
 
-    private void makeDefaultWorldSelect()
+    private void MakeDefaultWorldSelect()
     {
         Transform defaultWorld = Instantiate(worldTemplate, container);
         TextMeshProUGUI nameText = defaultWorld.Find("NameText").GetComponent<TextMeshProUGUI>();
@@ -122,9 +120,9 @@ public class MapInteraction : Ainteractable
         itemIcon.sprite = defaultMapSprite;
         button.onClick.AddListener(() =>
         {
+            PlayerExitEvent();
             LoadMap("First World");
         });
-
         instantiatedTemplates.Add(defaultWorld);
     }
 
@@ -140,6 +138,4 @@ public class MapInteraction : Ainteractable
         }
 
     }
-
-
 }

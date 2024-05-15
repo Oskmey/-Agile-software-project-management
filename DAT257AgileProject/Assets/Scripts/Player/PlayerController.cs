@@ -5,6 +5,7 @@ using System.Reflection;
 using Codice.Client.BaseCommands;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using static RecyclingMachine;
 
 public class PlayerController : MonoBehaviour, IDataPersistence<GameData>
@@ -94,7 +95,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence<GameData>
         if (Time.timeScale > 0 && interactables != null)
         {
             Ainteractable closestInteractable = null;
-            float smallestDistance = 1000000000;
+            float smallestDistance = float.MaxValue;
             foreach (Ainteractable interactable in interactables)
             {
                 float distance = interactable.DistanceToPlayer();
@@ -106,7 +107,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence<GameData>
             }
             if (closestInteractable != null)
             {
-                closestInteractable.interact();
+                closestInteractable.Interact();
             }
         }
     }
@@ -159,11 +160,11 @@ public class PlayerController : MonoBehaviour, IDataPersistence<GameData>
 
     public void LoadData(GameData data)
     {
-        transform.position = data.PlayerPosition;
+        transform.position = data.GetPlayerPosition(SceneManager.GetActiveScene().name);
     }
 
     public void SaveData(GameData data)
     {
-        data.PlayerPosition = transform.position;
+        data.SetPlayerPosition(SceneManager.GetActiveScene().name, transform.position);
     }
 }
