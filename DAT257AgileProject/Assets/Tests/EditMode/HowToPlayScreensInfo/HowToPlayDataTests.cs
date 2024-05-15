@@ -23,7 +23,7 @@ public class HowToPlayDataTests
     {
         get
         {
-            char[] invalidChars = new[] { '\r', '\n' };
+            char[] invalidChars = new[] { '\r', '\n', ' ', '\t', ',', ';', ':', '\\', '/', '&', '<', '>', '*' };
             foreach (var howToPlayDataEntry in allHowToPlayData)
             {
                 foreach (var invalidChar in invalidChars)
