@@ -6,6 +6,7 @@ using UnityEngine;
 public class HowToPlayDataTests
 {
     private static readonly HowToPlayData[] allHowToPlayData = Resources.LoadAll<HowToPlayData>("ScriptableObjects");
+    private static readonly char[] invalidChars = new[] { '\r', '\n', ' ', '\t', ',', ';', ':', '\\', '/', '&', '*', '<', '(', '{', '[' };
 
     public static IEnumerable<TestCaseData> HowToPlayDataTestCases
     {
@@ -23,7 +24,6 @@ public class HowToPlayDataTests
     {
         get
         {
-            char[] invalidChars = new[] { '\r', '\n', ' ', '\t', ',', ';', ':', '\\', '/', '&', '<', '>', '*' };
             foreach (var howToPlayDataEntry in allHowToPlayData)
             {
                 foreach (var invalidChar in invalidChars)
