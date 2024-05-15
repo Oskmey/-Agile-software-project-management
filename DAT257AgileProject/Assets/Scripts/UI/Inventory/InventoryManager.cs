@@ -400,11 +400,11 @@ namespace Inventory
                         {
                             if(accessoryEffect is SpeedEffectSO speedEffectSO)
                             {
-                                effects += $"Speed of character: +{speedEffectSO.Speed}";
+                                effects += $"Movement Speed: +{speedEffectSO.Speed}";
                             }
                             else if(accessoryEffect is MoneyEffectSO moneyEffectSO)
                             {
-                                   effects += $"Money multiplier: {1+moneyEffectSO.MoneyMult}x";
+                                effects += $"Money Multiplier: {1+moneyEffectSO.MoneyMult}x";
                             }
                             else
                             {
