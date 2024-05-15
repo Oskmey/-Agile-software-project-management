@@ -40,7 +40,7 @@ public class GameData
     public GameData()
     {
         money = 0;
-        currentLevel = "First World"; 
+        currentLevel = "First World";
     }
 
     public Vector2 GetPlayerPosition(string sceneName)
