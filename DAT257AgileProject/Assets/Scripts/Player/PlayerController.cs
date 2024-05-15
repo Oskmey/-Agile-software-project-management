@@ -165,6 +165,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence<GameData>
 
     public void SaveData(GameData data)
     {
+        data.CurrentLevel = SceneManager.GetActiveScene().name;
         data.SetPlayerPosition(SceneManager.GetActiveScene().name, transform.position);
     }
 }

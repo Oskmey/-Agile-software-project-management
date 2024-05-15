@@ -33,9 +33,14 @@ public class GameData
     private long lastUpdated;
     public long LastUpdated { get { return lastUpdated; } set { lastUpdated = value; } }
 
+    [SerializeField]
+    private string currentLevel;
+    public string CurrentLevel { get { return currentLevel; } set { currentLevel = value; } }
+
     public GameData()
     {
         money = 0;
+        currentLevel = "First World"; 
     }
 
     public Vector2 GetPlayerPosition(string sceneName)

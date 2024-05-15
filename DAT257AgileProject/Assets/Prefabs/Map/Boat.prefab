@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 782980911287394821}
   - component: {fileID: 2905056544862712456}
+  - component: {fileID: 4331463231777167496}
   m_Layer: 0
   m_Name: InteractionRange
   m_TagString: Untagged
@@ -77,6 +78,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &4331463231777167496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5457535424791965014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 051496cb46493ab4fb750624a935d59c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  worldTemplate: {fileID: 58612011180820459, guid: 88e0330ce1e96514d9f242c30b0e2872, type: 3}
+  defaultMapSprite: {fileID: 21300000, guid: 2d1e9dedc14c620458c3fa3174df176e, type: 3}
 --- !u!1 &6715367441299642849
 GameObject:
   m_ObjectHideFlags: 0
@@ -206,5 +221,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.0001, y: 0.0001}
+  m_Size: {x: 2, y: 0.5}
   m_EdgeRadius: 0
