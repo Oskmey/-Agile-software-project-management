@@ -14,7 +14,12 @@ public class RecyclingManager : MonoBehaviour
     private IReadOnlyList<RecyclingMachine> recyclingMachines;
     private PlayerStatsManager playerStatsManager;
     private bool trashWasRecycled;
-
+    private float moneyMultiplier = 1f;
+    public float MoneyMultiplier
+    {
+        get { return moneyMultiplier; }
+        set { moneyMultiplier = value; }
+    }
     public IReadOnlyList<RecyclingMachine> RecyclingMachines
     {
         get
@@ -48,7 +53,10 @@ public class RecyclingManager : MonoBehaviour
 
                 foreach (TrashItemSO trash in trashToRecycle)
                 {
-                    playerStatsManager.Money += trash.TrashData.MoneyValue;
+                    Debug.Log((int)(trash.TrashData.MoneyValue * moneyMultiplier));
+                    Debug.Log((moneyMultiplier));
+                    Debug.Log(trash.TrashData.MoneyValue);
+                    playerStatsManager.Money += (int)(trash.TrashData.MoneyValue * moneyMultiplier);
                     UpdateTrashDictionary(trash.TrashType);
                 }
             }

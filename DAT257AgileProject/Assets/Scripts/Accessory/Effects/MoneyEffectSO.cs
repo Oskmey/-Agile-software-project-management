@@ -12,22 +12,34 @@ public class MoneyEffectSO : EffectSO
     float moneyMult;
     public override void ApplyEffect()
     {
-        string folderPath = "Assets/Resources/ScriptableObjects/Trash";
-
-        Object[] assets = AssetDatabase.LoadAllAssetsAtPath(folderPath);
-
-        foreach (Object asset in assets)
+        GameObject recycling = GameObject.FindGameObjectWithTag("Recycling Manager");
+        RecyclingManager manager = recycling.GetComponent<RecyclingManager>();
+        if(manager.MoneyMultiplier > 1)
         {
-            if (asset != null && asset is TrashData)
-            {
-                TrashData trashData = (TrashData)asset;
-
-                // The effect
-                trashData.moneyValue = (int)(trashData.moneyValue * (1 + moneyMult));
-
-                // dont know what this is lol
-                EditorUtility.SetDirty(asset);
-            }
+            manager.MoneyMultiplier = 1;
         }
+        else
+        {
+            manager.MoneyMultiplier = moneyMult;
+        }
+
+
+        //string folderPath = "Assets/Resources/ScriptableObjects/Trash";
+
+        //Object[] assets = AssetDatabase.LoadAllAssetsAtPath(folderPath);
+
+        //foreach (Object asset in assets)
+        //{
+        //    if (asset != null && asset is TrashData)
+        //    {
+        //        TrashData trashData = (TrashData)asset;
+
+        //        // The effect
+        //        trashData.moneyValue = (int)(trashData.moneyValue * (1 + moneyMult));
+
+        //        // dont know what this is lol
+        //        EditorUtility.SetDirty(asset);
+        //    }
+        //}
     }
 }

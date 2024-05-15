@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 464f2cced99e4d84ca70f5281c0bf16f, type: 3}
-  m_Name: MoneyEffect
+  m_Name: MoneyEffectRareEgg
   m_EditorClassIdentifier: 
   effectType: 1
-  moneyMult: 0.5
+  moneyMult: 1.5
