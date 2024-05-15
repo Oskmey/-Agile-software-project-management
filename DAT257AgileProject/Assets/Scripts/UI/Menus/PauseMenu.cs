@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-
 public class PauseMenu : MonoBehaviour, IMenuWithSettings
 {
     private static bool GamePaused = false;
@@ -16,20 +15,25 @@ public class PauseMenu : MonoBehaviour, IMenuWithSettings
     private InputAction PauseAction;
 
     private PlayerInputActions playerInputActions;
+    [SerializeField]
+    private GameStatsUI gameStatsMenu;
+    private SettingsMenu settingsMenu;
 
+    [Header("Buttons")]
     [SerializeField]
     private Button pauseButton;
     [SerializeField]
     private Button resumeButton;
     [SerializeField]
-    private Button settingsButton;
-    [SerializeField]
     private Button menuButton;
+    [SerializeField]
+    private Button gameStatsButton;
+    [SerializeField]
+    private Button settingsButton;
     [SerializeField]
     private Button quitButton;
 
-    private SettingsMenu settingsMenu;
-
+    private List<Button> buttons;
     private void Awake()
     {
         playerInputActions = new PlayerInputActions();
@@ -38,20 +42,45 @@ public class PauseMenu : MonoBehaviour, IMenuWithSettings
     private void Start()
     {
         settingsMenu = FindObjectOfType<SettingsMenu>(true);
+        InitButtons();
+    }
+
+    private void InitButtons()
+    {
+        buttons = new List<Button>();
+
         pauseButton.onClick.AddListener(OnPauseButtonClicked);
         resumeButton.onClick.AddListener(OnPauseButtonClicked);
         settingsButton.onClick.AddListener(OnSettingsButtonClicked);
         menuButton.onClick.AddListener(OnMenuButtonClicked);
+        gameStatsButton.onClick.AddListener(OnGameStatsButtonClicked);
         quitButton.onClick.AddListener(OnQuitButtonClicked);
+
+        buttons.Add(pauseButton);
+        buttons.Add(resumeButton);
+        buttons.Add(menuButton);
+        buttons.Add(gameStatsButton);
+        buttons.Add(settingsButton);
+        buttons.Add(quitButton);
     }
 
-    private void Pause(InputAction.CallbackContext contex)
+    public void HidePauseButtons()
     {
-        TogglePause();
-
+        foreach (Button button in buttons)
+        {
+            button.gameObject.SetActive(false);
+        }
     }
 
-    private void OnPauseButtonClicked()
+    public void ShowPauseButtons()
+    {
+        foreach (Button button in buttons)
+        {
+            button.gameObject.SetActive(true);
+        }
+    }
+
+    private void Pause(InputAction.CallbackContext context)
     {
         TogglePause();
     }
@@ -60,19 +89,25 @@ public class PauseMenu : MonoBehaviour, IMenuWithSettings
     {
         if (GamePaused)
         {
-            if (!settingsMenu.IsActive())
+            if (settingsMenu.IsActive() || gameStatsMenu.gameObject.activeSelf)
+            {
+                return;
+            }
             pauseMenuUI.SetActive(false);
             Time.timeScale = 1f;
             GamePaused = false;
-
         }
         else
         {   
             pauseMenuUI.SetActive(true);
             Time.timeScale = 0f;
             GamePaused = true;
-  
         }
+    }
+
+    private void OnPauseButtonClicked()
+    {
+        TogglePause();
     }
 
     private void OnSettingsButtonClicked()
@@ -91,6 +126,12 @@ public class PauseMenu : MonoBehaviour, IMenuWithSettings
     public void OnQuitButtonClicked()
     {
         Application.Quit();
+    }
+
+    public void OnGameStatsButtonClicked()
+    {
+        HidePauseButtons();
+        gameStatsMenu.gameObject.SetActive(true);
     }
 
     private void OnEnable()

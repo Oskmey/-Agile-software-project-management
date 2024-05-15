@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -18,6 +20,15 @@ public class SettingsMenu : MonoBehaviour
 
     private IMenuWithSettings otherMenuGameObject;
 
+
+    private PlayerInputActions playerInputActions;
+    private InputAction BackAction;
+
+    private void Awake()
+    {
+        playerInputActions = new PlayerInputActions();
+    }
+
     private void Start()
     {
         InitializeUIComponents();
@@ -27,6 +38,23 @@ public class SettingsMenu : MonoBehaviour
         {
             Debug.LogError("otherMenuGameObject was null");
         }
+    }
+
+    private void OnEnable()
+    {
+        BackAction = playerInputActions.UI.Pause;
+        BackAction.Enable();
+        BackAction.performed += Back;
+    }
+
+    private void Back(InputAction.CallbackContext context)
+    {
+        OnBackButtonClicked();
+    }
+
+    private void OnDisable()
+    {
+        BackAction.Disable();
     }
 
     private void InitializeUIComponents()
