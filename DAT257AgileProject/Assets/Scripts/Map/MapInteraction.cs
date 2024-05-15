@@ -19,6 +19,7 @@ public class MapInteraction : Ainteractable
     public override void interact()
     {
         ui = GameObject.Find("GameplayHUD").transform.Find("MapselectionUI").gameObject;
+        container = ui.transform.Find("Container");
         if (ui != null)
         {
             ui.SetActive(true);
