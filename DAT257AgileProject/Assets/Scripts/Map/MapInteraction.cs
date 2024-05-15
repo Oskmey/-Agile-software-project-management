@@ -13,7 +13,7 @@ public class MapInteraction : Ainteractable
 
     [SerializeField]
     private Transform worldTemplate;
-    
+
     [SerializeField]
     private Sprite defaultMapSprite;
 
@@ -83,7 +83,7 @@ public class MapInteraction : Ainteractable
         Image itemIcon = world.Find("ItemIcon").GetComponent<Image>();
         Button button = world.GetComponent<Button>();
 
-        
+
         if (mapItemSO.MapSprite != null)
         {
             itemIcon.sprite = mapItemSO.MapSprite;
@@ -93,7 +93,7 @@ public class MapInteraction : Ainteractable
             Debug.LogWarning("Missing map item image");
             itemIcon.sprite = defaultMapSprite;
         }
-        if(mapItemSO.MapName != null)
+        if (mapItemSO.MapName != null)
         {
             nameText.SetText(mapItemSO.MapName);
         }
@@ -130,13 +130,13 @@ public class MapInteraction : Ainteractable
 
     private void LoadMap(string sceneName)
     {
-        if(sceneName != SceneManager.GetActiveScene().name)
+        if (sceneName != SceneManager.GetActiveScene().name)
         {
             SceneManager.LoadScene(sceneName);
         }
         else
         {
-            Debug.Log("You are already in this map");
+            GameObject.Find("GameplayHUD").transform.Find("WarningPopUp").GetComponent<WarningPopup>().DisplayWarning("You are already in this map");
         }
 
     }
