@@ -37,8 +37,8 @@ RectTransform:
   - {fileID: 3421578537935088505}
   - {fileID: 9018122211070958945}
   - {fileID: 5330086205459615989}
-  - {fileID: 6523880950702891117}
   - {fileID: 1716943721719628925}
+  - {fileID: 6523880950702891117}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -618,94 +618,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4353188229599448322, guid: 3ef2c255d2d945042b7edecccb61422e, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4353188229599448322, guid: 3ef2c255d2d945042b7edecccb61422e, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5040511967567444450, guid: 3ef2c255d2d945042b7edecccb61422e, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0.000061035156
-      objectReference: {fileID: 0}
-    - target: {fileID: 5040511967567444450, guid: 3ef2c255d2d945042b7edecccb61422e, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.00018310547
-      objectReference: {fileID: 0}
-    - target: {fileID: 5787950692076835341, guid: 3ef2c255d2d945042b7edecccb61422e, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5787950692076835341, guid: 3ef2c255d2d945042b7edecccb61422e, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5787950692076835341, guid: 3ef2c255d2d945042b7edecccb61422e, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: -17
-      objectReference: {fileID: 0}
-    - target: {fileID: 6663044540225274075, guid: 3ef2c255d2d945042b7edecccb61422e, type: 3}
-      propertyPath: m_Value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6965534049459521899, guid: 3ef2c255d2d945042b7edecccb61422e, type: 3}
-      propertyPath: m_Horizontal
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7864590121742483781, guid: 3ef2c255d2d945042b7edecccb61422e, type: 3}
       propertyPath: m_Name
       value: MapselectionUI
       objectReference: {fileID: 0}
-    - target: {fileID: 7864590121742483781, guid: 3ef2c255d2d945042b7edecccb61422e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7284051600783219205, guid: 3ef2c255d2d945042b7edecccb61422e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5737359657239122942}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ef2c255d2d945042b7edecccb61422e, type: 3}
 --- !u!224 &1716943721719628925 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3800446257992489015, guid: 3ef2c255d2d945042b7edecccb61422e, type: 3}
   m_PrefabInstance: {fileID: 2553024818273672266}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &5077822723954689615 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7284051600783219205, guid: 3ef2c255d2d945042b7edecccb61422e, type: 3}
-  m_PrefabInstance: {fileID: 2553024818273672266}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5737359657239122942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5077822723954689615}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
-  m_ChildAlignment: 4
-  m_Spacing: 10
-  m_ChildForceExpandWidth: 0
-  m_ChildForceExpandHeight: 0
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
-  m_ChildScaleWidth: 1
-  m_ChildScaleHeight: 1
-  m_ReverseArrangement: 0
 --- !u!1001 &5660956532156702172
 PrefabInstance:
   m_ObjectHideFlags: 0
