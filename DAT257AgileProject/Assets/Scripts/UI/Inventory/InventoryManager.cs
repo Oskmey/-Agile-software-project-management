@@ -400,7 +400,11 @@ namespace Inventory
                         {
                             if(accessoryEffect is SpeedEffectSO speedEffectSO)
                             {
-                                effects += $"Speed: {speedEffectSO.Speed}";
+                                effects += $"Speed of character: +{speedEffectSO.Speed}";
+                            }
+                            else if(accessoryEffect is MoneyEffectSO moneyEffectSO)
+                            {
+                                   effects += $"Money multiplier: {1+moneyEffectSO.MoneyMult}x";
                             }
                             else
                             {
@@ -454,7 +458,7 @@ namespace Inventory
                     {
                         inventoryUI.UpdateData(item.Key, item.Value.Item.ItemImage, item.Value.Quantity, false);
                     }
-                    //
+
                     foreach (var item in accessoryData.GetCurrentInventoryState())
                     {
                         inventoryUI.UpdateData(item.Key, item.Value.Item.ItemImage, item.Value.Quantity, true);

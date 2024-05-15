@@ -53,7 +53,7 @@ public class RecyclingManager : MonoBehaviour
 
                 foreach (TrashItemSO trash in trashToRecycle)
                 {
-                    int recyclingMoney = (int)(trash.TrashData.MoneyValue * moneyMultiplier)
+                    int recyclingMoney = (int)(trash.TrashData.MoneyValue * moneyMultiplier);
                     playerStatsManager.CurrentMoney += recyclingMoney;
                     playerStatsManager.TotalMoneyEarned += recyclingMoney;
                     UpdateRecycledTrashDictionary(trash.TrashType);

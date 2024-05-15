@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: MoneyEffectRareEgg
   m_EditorClassIdentifier: 
   effectType: 1
-  moneyMult: 1.5
+  moneyMult: 0.5

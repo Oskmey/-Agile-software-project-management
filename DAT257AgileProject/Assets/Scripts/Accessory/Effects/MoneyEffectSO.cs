@@ -9,42 +9,27 @@ using UnityEngine;
 public class MoneyEffectSO : EffectSO
 {
     [SerializeField]
-    float moneyMult;
+    private float moneyMult;
+    public float MoneyMult => moneyMult;
+
     public override void ApplyEffect()
     {
-        GameObject recycling = GameObject.FindGameObjectWithTag("Recycling Manager");
-        RecyclingManager manager = recycling.GetComponent<RecyclingManager>();
-        if(manager.MoneyMultiplier > 1)
+        GameObject recyclingMachine = GameObject.FindGameObjectWithTag("Recycling Manager");
+        if (recyclingMachine != null)
         {
-            manager.MoneyMultiplier = 1;
-        }
-        else
-        {
-            manager.MoneyMultiplier = moneyMult;
+            RecyclingManager recyclingManager = recyclingMachine.GetComponent<RecyclingManager>();
+            recyclingManager.MoneyMultiplier += moneyMult;
         }
 
-
-        //string folderPath = "Assets/Resources/ScriptableObjects/Trash";
-
-        //Object[] assets = AssetDatabase.LoadAllAssetsAtPath(folderPath);
-
-        //foreach (Object asset in assets)
-        //{
-        //    if (asset != null && asset is TrashData)
-        //    {
-        //        TrashData trashData = (TrashData)asset;
-
-        //        // The effect
-        //        trashData.moneyValue = (int)(trashData.moneyValue * (1 + moneyMult));
-
-        //        // dont know what this is lol
-        //        EditorUtility.SetDirty(asset);
-        //    }
-        //}
     }
 
     public override void UnApplyEffect()
     {
-
+        GameObject recyclingMachine = GameObject.FindGameObjectWithTag("Recycling Manager");
+        if (recyclingMachine != null)
+        {
+            RecyclingManager recyclingManager = recyclingMachine.GetComponent<RecyclingManager>();
+            recyclingManager.MoneyMultiplier = 1;
+        }
     }
 }
