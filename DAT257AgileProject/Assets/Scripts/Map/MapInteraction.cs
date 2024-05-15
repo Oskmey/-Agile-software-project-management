@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using Inventory;
 using Inventory.Model;
 using TMPro;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class MapInteraction : Ainteractable
 {
@@ -66,11 +68,33 @@ public class MapInteraction : Ainteractable
                     instantiatedTemplates.Add(world);
                     world.GetComponent<Button>().onClick.AddListener(() =>
                     {
-                        //GameObject.Find("MapManager").GetComponent<MapManager>().LoadMap(mapItemSO.SceneName);
+                        LoadMap(mapItemSO.SceneName);
                     });
                 }
             }
         }
+        Transform defaultWorld = Instantiate(worldTemplate, container);
+        defaultWorld.Find("NameText").GetComponent<TextMeshProUGUI>().SetText("Grassy grove");
+        defaultWorld.Find("ItemIcon").GetComponent<Image>().sprite = Resources.Load<Sprite>("Assets/Sprites/Map_sprites/Image_world_1");
+        instantiatedTemplates.Add(defaultWorld);
+        defaultWorld.GetComponent<Button>().onClick.AddListener(() =>
+        {
+            LoadMap("First World");
+        });
     }
+
+    private void LoadMap(string sceneName)
+    {
+        if(sceneName != SceneManager.GetActiveScene().name)
+        {
+            SceneManager.LoadScene(sceneName);
+        }
+        else
+        {
+            Debug.Log("You are already in this map");
+        }
+
+    }
+
 
 }
