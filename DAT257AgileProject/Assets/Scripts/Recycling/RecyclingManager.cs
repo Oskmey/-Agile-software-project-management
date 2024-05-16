@@ -10,7 +10,7 @@ public class RecyclingManager : MonoBehaviour
 {
     [SerializeField]
     private InventorySO playerInventory;
-    private bool isRecycling = false;
+    private bool isRecycling;
     public bool IsRecycling => isRecycling;
     private IReadOnlyList<RecyclingMachine> recyclingMachines;
     private PlayerStatsManager playerStatsManager;
@@ -44,7 +44,7 @@ public class RecyclingManager : MonoBehaviour
         {
             if (recyclingMachine.IsPlayerInRange())
             {
-                isRecycling = true;
+
                 List<TrashItemSO> trashToRecycle = playerInventory.GetAndRemoveRecyclableTrashItems();
 
                 foreach (TrashItemSO trash in trashToRecycle)
@@ -53,7 +53,7 @@ public class RecyclingManager : MonoBehaviour
                     playerStatsManager.TotalMoneyEarned += trash.TrashData.MoneyValue;
                     UpdateRecycledTrashDictionary(trash.TrashType);
                 }
-                isRecycling = false;
+
             }
         }
     }
