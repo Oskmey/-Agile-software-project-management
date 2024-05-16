@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using UnityEngine;
 
 public class PlayerAnimations : MonoBehaviour
@@ -10,6 +11,7 @@ public class PlayerAnimations : MonoBehaviour
 
     private bool isFishing = false;
     private bool isPlaying = false;
+    private bool hasPlayedSoundEffect = false;
     private Vector3 fishingSpotPos;
     private Vector3 directionToFishingSpot;
 
@@ -34,12 +36,19 @@ public class PlayerAnimations : MonoBehaviour
         if (playerInteraction.currentFishingSpot != null)
         {
             isFishing = true;
+            if (hasPlayedSoundEffect == false) 
+            {
+                AudioManager.Instance.PlaySound(SoundName.BeginFishing);
+                hasPlayedSoundEffect = true;
+            }
             isPlaying = playerInteraction.currentFishingSpot.GetComponent<FishingSpot>().IsPlayingMinigame;
             fishingSpotPos = playerInteraction.currentFishingSpot.transform.position;
+
         }
         else {
             isFishing = false;
             isPlaying = false;
+            hasPlayedSoundEffect = false;
         }
 
         if (fishingSpotPos != null)

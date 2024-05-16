@@ -102,6 +102,7 @@ public class FishingSpot : MonoBehaviour
         GameObject exclamationMark = Instantiate(exclamationMarkPrefab);
         exclamationMark.transform.position = transform.position;
         Destroy(exclamationMark, 1.5f);
+        AudioManager.Instance.PlaySound(SoundName.ExclamationMarkAppears);
     }
 
     public bool GetIsPlaying()
@@ -130,6 +131,8 @@ public class FishingSpot : MonoBehaviour
         IsPlayingMinigame=false;
         Vector2 trashSpawnPosition = new(transform.position.x, transform.position.y);
         TrashScript currentTrash = trashHandler.CreateRandomTrash(currentRarity, trashSpawnPosition);
+        AudioManager.Instance.PlaySound(SoundName.TrashCaught);
+
     }
 
     public void OnMinigameLostHandler()

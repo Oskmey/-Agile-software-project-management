@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using UnityEditor;
-using UnityEditor.VersionControl;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "MoneyEffect", menuName = "Effects/Money Effect")]
