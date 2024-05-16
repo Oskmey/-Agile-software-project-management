@@ -6,24 +6,27 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
     path: Assets/Scenes/Test/RecyclingTest.unity
     guid: 2947948faad3e1c48bbdafddbea038dd
   - enabled: 0
     path: Assets/Scenes/Old/MVP Scene.unity
     guid: 0263688e4c7d44f4ba7d5183485938c5
-  - enabled: 1
-    path: Assets/Scenes/TestCollisionScene.unity
+  - enabled: 0
+    path: Assets/Scenes/Old/TestCollisionScene.unity
     guid: 9b231ba15774633468d1c01f511fb5aa
-  - enabled: 1
-    path: Assets/Scenes/Game/World.unity
-    guid: 98037e9a5efe6624694133cbcd5cc7e6
   - enabled: 1
     path: Assets/Scenes/Game/Main Menu.unity
     guid: 8464bd0c4fec2314eb545d3c7fb4bdb2
   - enabled: 1
+    path: Assets/Scenes/Game/First World.unity
+    guid: 20d9d0ab4dd0021479da789055508f60
+  - enabled: 1
+    path: Assets/Scenes/Game/Shop.unity
+    guid: 5b55deb4feeae144c9e03a0abd6eec6d
+  - enabled: 0
+    path: Assets/Scenes/Old/World.unity
+    guid: 98037e9a5efe6624694133cbcd5cc7e6
+  - enabled: 0
     path: Assets/Scenes/Oskar's World.unity
     guid: a7c719cc03914c24389c4bd10fc5e446
   m_configObjects:

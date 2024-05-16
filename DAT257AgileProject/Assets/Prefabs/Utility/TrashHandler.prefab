@@ -51,6 +51,9 @@ MonoBehaviour:
   - {fileID: 6108896794586476295, guid: b3eb4c006d570f440a866a60439ae0ee, type: 3}
   - {fileID: 6746091704529100501, guid: ee436337835113146bf9ffd89ccb8002, type: 3}
   - {fileID: 8941772817073763933, guid: 7a3f7bd480d47dc48b440db56a7beabe, type: 3}
+  - {fileID: 4700282325771958015, guid: 95fc558e42d6dc84e808564417919055, type: 3}
+  - {fileID: 743655074027208390, guid: 62eb59eddb2778144bad0fc5432dd699, type: 3}
+  - {fileID: 3464683140163306389, guid: 2fd7fed42c9533e48bab53ec71491875, type: 3}
 --- !u!114 &868576855452486802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,7 +66,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 169775c09a567274da5c316dc965d51c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameplayHudHandler: {fileID: 0}
+  gameplayHudHandler: {fileID: 1633566605763213701, guid: d4930d0dc155d6a4990c227b8e723320, type: 3}
+  inventoryData: {fileID: 11400000, guid: 61539fd28ea43fd42aa4e22c1a71ffb7, type: 2}
 --- !u!114 &6575130779639470006
 MonoBehaviour:
   m_ObjectHideFlags: 0

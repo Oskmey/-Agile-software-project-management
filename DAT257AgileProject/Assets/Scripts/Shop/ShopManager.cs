@@ -1,40 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static RecyclingMachine;
 
 public class ShopManager : MonoBehaviour
 {
-    private PlayerStatsManager playerStatsManager;
     private IReadOnlyList<Shop> shoppingSpots;
     
-void Awake()
-{
-    shoppingSpots = GetShoppingSpots();
-    playerStatsManager = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatsManager>();
-}
-
-
-public void ShopAtNearestSpot()
-{
-    foreach (Shop shop in shoppingSpots)
+    void Awake()
     {
-        // TODO: Make it so player can only recycle trash to nearest recycling machine
-        // if (recyclingMachine.IsPlayerInRange(player.transform.position))
-        
-        if (shop.IsPlayerInRange())
-        {
-            Debug.Log("Player is in range of shopping");
-            // NOTE: Trash is not recyclable by default, needs to be RecycableTrash
-            
-        }
-        
+        shoppingSpots = GetShoppingSpots();
     }
-}
 
 
-public IReadOnlyList<Shop> GetShoppingSpots()
+    public void ShopAtNearestSpot()
+    {
+        foreach (Shop shop in shoppingSpots)
+        {
+            // TODO: Make it so player can only recycle trash to nearest recycling machine
+            // if (recyclingMachine.IsPlayerInRange(player.transform.position))
+        
+            if (shop.IsPlayerInRange())
+            {
+                DataPersistenceManager.Instance.SaveGame();
+                SceneManager.LoadScene("Shop");
+            }
+        
+        }
+    }
+
+
+    public IReadOnlyList<Shop> GetShoppingSpots()
     {
         List<Shop> shopSpots = new();
         GameObject[] shoppingSpots = GameObject.FindGameObjectsWithTag("Shop");

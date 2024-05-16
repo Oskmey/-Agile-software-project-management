@@ -1,3 +1,5 @@
+using Inventory.Model;
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -16,33 +18,70 @@ public class TrashHandler : MonoBehaviour
 
     private delegate void TrashEvent();
     private event TrashEvent OnTrashCollected;
+    private event TrashEvent OnTrashCollectedAndInventoryFull;
 
-    private FishingLoop fishingLoop;
+    private PlayerInteraction playerInteraction;
+
+    private FishingSpot fishingLoop;
+
+    [SerializeField]
+    private InventorySO inventoryData;
+
+    private bool infoPopupActive = false;
+    private PlayerStatsManager playerStatsManager;
 
     private void Start()
     {
-        fishingLoop = FindObjectOfType<FishingLoop>();
-        if (fishingLoop != null)
-        {
-            OnTrashCollected += fishingLoop.ResetFishingLoop;
-        }
+        playerInteraction = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<PlayerInteraction>();
         gameplayHudHandler = GameObject.FindGameObjectWithTag("GameplayHUD").GetComponent<GameplayHudHandler>();
         playerInput = GetComponent<PlayerInput>();
         hideTrashInfoPanelAction = playerInput.actions["HideTrashInfoPanel"];
         recyclingManager = GameObject.FindGameObjectWithTag("Recycling Manager").GetComponent<RecyclingManager>();
+        OnTrashCollectedAndInventoryFull += () => gameplayHudHandler.UpdateWarningPopup("Can't collect the trash while there is no available slot in your inventory");
+        gameplayHudHandler.OnInfoPopupActive += SetInfoPopupActive;
+        playerStatsManager = FindObjectOfType<PlayerStatsManager>();
+
+        // fishingLoop = playerInteraction.currentFishingSpot;
+        // if (fishingLoop != null)
+        // {
+        //     OnTrashCollected += fishingLoop.ResetFishingLoop;
+        // }
+    }
+
+    private void SetInfoPopupActive(bool isActive)
+    {
+        infoPopupActive = isActive;
     }
 
     private void Update()
     {
-         if (hideTrashInfoPanelAction.triggered)
-         {
-             DestroyTrash();
-         }
+        if (Time.timeScale > 0)
+        {
+            HandleFishingLoopReset();
+        }
+    }
+
+    private void HandleFishingLoopReset()
+    {
+        if (hideTrashInfoPanelAction.triggered && infoPopupActive)
+        {
+            DestroyTrash();
+            //Reset the loop here instead, does reset the fishingloop twice if u walk away from fishingspot since that also triggers ResetFishingLoop, doesnt really matter tho.
+            try
+            {
+                playerInteraction.currentFishingSpot.ResetFishingLoop();
+            }
+            catch (Exception e)
+            {
+                Debug.LogWarning($"The following Exception occurred: {e}");
+            }
+        }
     }
 
     void OnDestroy()
     {
-        if(fishingLoop != null)
+        OnTrashCollectedAndInventoryFull -= () => gameplayHudHandler.UpdateWarningPopup("Can't collect the trash while there is no available slot in your inventory");
+        if (fishingLoop != null)
         {
             OnTrashCollected -= fishingLoop.ResetFishingLoop;
         }
@@ -50,8 +89,13 @@ public class TrashHandler : MonoBehaviour
 
     // Method to trigger the events
     private void TrashCollected()
-    {
+    {   
         OnTrashCollected?.Invoke();
+    }
+
+    private void TrashCollectedWhileFullInventory()
+    {
+        OnTrashCollectedAndInventoryFull?.Invoke();
     }
 
     // Creates trash at the center of the screen
@@ -96,7 +140,17 @@ public class TrashHandler : MonoBehaviour
         }
         return currentTrashScript;
     }
-
+    private void UpdateRecycledTrashDictionary(TrashType trashType)
+    {
+        if (playerStatsManager.RecycledTrashDictionary.ContainsKey(trashType))
+        {
+            playerStatsManager.RecycledTrashDictionary[trashType]++;
+        }
+        else
+        {
+            playerStatsManager.RecycledTrashDictionary.Add(trashType, 1);
+        }
+    }
     public void DestroyTrash()
     {
         if (gameplayHudHandler != null)
@@ -110,12 +164,35 @@ public class TrashHandler : MonoBehaviour
 
         if (currentTrashObject != null)
         {
-            TrashScript trash = currentTrashObject.GetComponent<TrashScript>();
-            recyclingManager.AddTrashToRecycle(trash);
-
             TrashCollected();
-            Destroy(currentTrashObject);
-        }
+
+            TrashType trashType = currentTrashObject.GetComponent<TrashScript>().TrashType;
+            if (playerStatsManager.TrashCaughtDictionary.ContainsKey(trashType))
+            {
+                playerStatsManager.TrashCaughtDictionary[trashType]++;
+            }
+            else
+            {
+                playerStatsManager.TrashCaughtDictionary.Add(trashType, 1);
+            }
+
+            if (currentTrashObject.TryGetComponent<Item>(out var item))
+            {
+                int remainder = inventoryData.AddItem(item.InventoryItem, item.Quantity);
+                if (remainder == 0)
+                {
+                    item.CollectItem();
+                }
+                else
+                {
+                    TrashCollectedWhileFullInventory();
+                    item.DestroyItem();
+                    item.Quantity = remainder;
+                }
+            }
+
+            currentTrashObject = null;
+        }   
     }
 
     public GameObject CurrentTrashObject => currentTrashObject;

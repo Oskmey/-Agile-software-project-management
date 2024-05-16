@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static RecyclingMachine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDataPersistence<GameData>
 {
     [SerializeField] private float speed = 5f;
 
@@ -15,13 +15,12 @@ public class PlayerController : MonoBehaviour
     private PlayerInput playerControls;
     private RecyclingManager recyclingManager;
     private InputAction recycleAction;
-
     private InputAction fishingAction;
- 
     private InputAction shopAction;
     private ShopManager shoppingManager;
-
     private PlayerInteraction playerInteraction;
+
+    private PlayerStatsManager playerStatsManager;
 
     private InputAction catchingAction; 
 
@@ -31,28 +30,19 @@ public class PlayerController : MonoBehaviour
 
     private bool resultOfCatch;
 
-
-
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         movementAction = GetComponent<PlayerInput>().actions["Movement"];
-
         recycleAction = GetComponent<PlayerInput>().actions["Recycle"];
         recyclingManager = GameObject.FindGameObjectWithTag("Recycling Manager").GetComponent<RecyclingManager>();
-
         fishingAction = GetComponent<PlayerInput>().actions["Fish"];
-        
-
         shopAction = GetComponent<PlayerInput>().actions["Shop"];
         shoppingManager = GameObject.FindGameObjectWithTag("Shop Manager").GetComponent<ShopManager>();
-
         catchingAction = GetComponent<PlayerInput>().actions["Catch"];
         minigame = GameObject.FindGameObjectWithTag("Minigame Manager").GetComponent<MinigameManager>().getCurrentMinigame();
-
-        
-
         playerInteraction = GetComponentInChildren<PlayerInteraction>();
+        playerStatsManager = GetComponent<PlayerStatsManager>();
     }
 
     private void OnEnable()
@@ -71,28 +61,40 @@ public class PlayerController : MonoBehaviour
         movementAction.canceled -= OnMovementStopped;
         recycleAction.performed -= Recycle;
         shopAction.performed -= Shopping;
+        fishingAction.performed -= Fishing;
         catchingAction.performed -= Catch;
     }
     
     // Test method to recycle trash due to no inventory system
     private void Recycle(InputAction.CallbackContext context)
     {
-        recyclingManager.RecycleAtNearestMachine();
-    }
-
-    private void Fishing(InputAction.CallbackContext context)
-    {
-        if (playerInteraction.currentFishingSpot != null){
-            canMove=false;
-            rb.velocity = Vector2.zero;
-            playerInteraction.currentFishingSpot.HandleMinigameStart();
+        if (Time.timeScale > 0)
+        {
+            recyclingManager.RecycleAtNearestMachine();
         }
     }
 
-        private void Shopping(InputAction.CallbackContext context)
-    {
-        Debug.Log("Shopping if in range");
-        shoppingManager.ShopAtNearestSpot();
+    private void Fishing(InputAction.CallbackContext context)
+    {   
+        if (Time.timeScale > 0)
+        {
+            if (playerInteraction.currentFishingSpot != null)
+            {
+                canMove = false;
+                rb.velocity = Vector2.zero;
+                playerInteraction.currentFishingSpot.HandleMinigameStart();
+
+            }
+        }     
+    }
+
+    private void Shopping(InputAction.CallbackContext context)
+    {   
+        if (Time.timeScale > 0)
+        {
+            shoppingManager.ShopAtNearestSpot();
+        }
+
     }
 
     private void OnMovement(InputAction.CallbackContext value)
@@ -109,18 +111,33 @@ public class PlayerController : MonoBehaviour
     //Måste lägga till minigames, cant be arsed
     private void Catch(InputAction.CallbackContext context)
     {
-        if (playerInteraction.currentFishingSpot != null){
-        minigame = GameObject.FindGameObjectWithTag("Minigame Manager").GetComponent<MinigameManager>().getCurrentMinigame();
-        resultOfCatch = minigame.HandleCatch();
-        canMove=true;
-        if (resultOfCatch){
-            playerInteraction.currentFishingSpot.OnMinigameWonHandler();
-        }
-        else{
-            playerInteraction.currentFishingSpot.OnMinigameLostHandler();
-        }
+        if (Time.timeScale > 0)
+        {
+            if (playerInteraction.currentFishingSpot != null && playerInteraction.currentFishingSpot.GetIsPlaying() == true)
+            {
+                minigame = GameObject.FindGameObjectWithTag("Minigame Manager").GetComponent<MinigameManager>().getCurrentMinigame();
+                resultOfCatch = minigame.HandleCatch();
+                canMove = true;
+                if (resultOfCatch)
+                {
+                    playerInteraction.currentFishingSpot.OnMinigameWonHandler();
+                }
+                else
+                {
+                    playerInteraction.currentFishingSpot.OnMinigameLostHandler();
+                }
+            }
+    
         }
     }
-    
 
+    public void LoadData(GameData data)
+    {
+        transform.position = data.PlayerPosition;
+    }
+
+    public void SaveData(GameData data)
+    {
+        data.PlayerPosition = transform.position;
+    }
 }

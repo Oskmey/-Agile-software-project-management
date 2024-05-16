@@ -10,20 +10,14 @@ public class MinigameManager : MonoBehaviour
     // Minigame prefabs
     [SerializeField] 
     private ArrowBoxMinigame arrowBoxMinigame;
-
-    private TrashHandler trashHandler;
-
     private MinigameType currentMinigameType;
     private Minigame currentMinigame;
     private TextMeshProUGUI promptText;
  
     private bool minigameStarted = false;
 
-    private GameObject currentTrash;
-
     private void Awake()
     {
-        trashHandler = GameObject.FindGameObjectWithTag("TrashHandler").GetComponent<TrashHandler>();
         promptText = GameObject.FindGameObjectWithTag("TutorialText").GetComponent<TextMeshProUGUI>();
     }
 
@@ -51,9 +45,7 @@ public class MinigameManager : MonoBehaviour
     void InitMinigame(MinigameType minigameType)
     {
         CreateMinigame(minigameType);
-        
-        //promptText = GameObject.FindGameObjectWithTag("TutorialText").GetComponent<TextMeshProUGUI>();
-    }
+            }
 
     // Update is called once per frame
     void Update()
@@ -63,7 +55,6 @@ public class MinigameManager : MonoBehaviour
             UpdateMinigamePromptText();
         }
     }
-
 
 //Bör skicka med trashprefaben som ska spawnas aswell om man vill göra olika fishing tiles
     private void CreateMinigame(MinigameType type)
@@ -88,7 +79,6 @@ public class MinigameManager : MonoBehaviour
     {
         minigameStarted = false;
         promptText.text = "";
-        PlayerPrefs.SetInt("RecycledTrashLeft", PlayerPrefs.GetInt("RecycledTrashLeft")+1);
     }
 
     public void HandleMinigameLost()
@@ -96,7 +86,6 @@ public class MinigameManager : MonoBehaviour
         //currentMinigame.DestroyMinigame();
         minigameStarted = false;
         //Debug.Log("Minigame lost! Implement your logic here...");
-        
     }
 
     private void UpdateMinigamePromptText()

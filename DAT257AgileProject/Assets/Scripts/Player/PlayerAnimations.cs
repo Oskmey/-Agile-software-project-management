@@ -53,7 +53,7 @@ public class PlayerAnimations : MonoBehaviour
         if (playerInteraction.currentFishingSpot != null)
         {
             isFishing = true;
-            isPlaying = playerInteraction.currentFishingSpot.GetComponent<FishingSpot>().isPlayingMinigame;
+            isPlaying = playerInteraction.currentFishingSpot.GetComponent<FishingSpot>().IsPlayingMinigame;
             fishingSpotPos = playerInteraction.currentFishingSpot.transform.position;
         }
         else {

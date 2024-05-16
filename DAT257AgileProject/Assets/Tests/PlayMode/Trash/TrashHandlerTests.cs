@@ -97,8 +97,18 @@ public class TrashHandlerTests : InputTestFixture
         yield return null;
         trashHandler.DestroyTrash();
         yield return null;
+        bool trashNull = false;
+
+        if(trashHandler.CurrentTrashObject != null)
+        {
+            trashNull = false;
+        }
+        else
+        {
+            trashNull = true;
+        }
         
-        Assert.IsTrue(trashHandler.CurrentTrashObject.Equals(null));
+        Assert.IsTrue(trashNull);
     }
 
     [UnityTest]
@@ -116,7 +126,17 @@ public class TrashHandlerTests : InputTestFixture
         playerInput.actions["HideTrashInfoPanel"].Disable();
         yield return null;
         Object.Destroy(playerInput);
-        Assert.IsTrue(trashHandler.CurrentTrashObject.Equals(null), $"Current Trash Object was {trashHandler.CurrentTrashObject}");
+        bool trashNull = false;
+
+        if (trashHandler.CurrentTrashObject != null)
+        {
+            trashNull = false;
+        }
+        else
+        {
+            trashNull = true;
+        }
+        Assert.IsTrue(trashNull, $"Current Trash Object was {trashHandler.CurrentTrashObject}");
     }
 
     [TearDown]

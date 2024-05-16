@@ -2,70 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStatsManager : MonoBehaviour
+public class PlayerStatsManager : MonoBehaviour, IDataPersistence<GameData>
 {
-    private List<TrashScript> recycledTrashList;
-    private int money;
-    public List<TrashScript> RecycledTrashList
+    public delegate void UpdateEvent();
+    public SerializableDictionary<TrashType, int> RecycledTrashDictionary { get; private set; }
+    public SerializableDictionary<TrashType, int> TrashCaughtDictionary { get; private set; }
+    public int CurrentMoney { get; set; }
+    public int TotalMoneyEarned { get; set; }
+    public int TotalMoneySpent { get; set; }
+    public SerializableDictionary<AccessorySO, int> PurchasedAccessories { get; private set; }
+    public void LoadData(GameData data)
     {
-        get
-        {
-            return recycledTrashList;
-        }
-        set
-        {
-            recycledTrashList = value;
-        }
+        RecycledTrashDictionary = data.RecycledTrashCount;
+        TrashCaughtDictionary = data.TrashCaught;
+        CurrentMoney = data.CurrentMoney;
+        TotalMoneyEarned = data.TotalMoneyEarned;
+        TotalMoneySpent = data.TotalMoneySpent;
+        PurchasedAccessories = data.PurchasedAccessories;
     }
 
-    public int Money
+    public void SaveData(GameData data)
     {
-        get { return money; }
-        set { money = value; }
-    }
-
-    // Start is called before the first frame update
-    void Awake()
-    {
-        recycledTrashList = LoadTrashRecycled();
-
-        money = PlayerPrefs.GetInt("Money");
-
-        if (money == 0)
-        {
-            PlayerPrefs.SetInt("Money", 0);
-        }
-    }
-
-    // TEMP: basic temporary saving system between scenes
-
-    private List<TrashScript> LoadTrashRecycled()
-    {
-        List<TrashScript>  recycledTrashList = new();
-        int trashToRecycle = PlayerPrefs.GetInt("RecycledTrashCount");
-
-        if (trashToRecycle > 0)
-        {
-            for (int i = 0; i < trashToRecycle; i++)
-            {
-                GameObject tempTrash = TrashFactory.CreateTrash(TrashType.TrashBag);
-                recycledTrashList.Add(tempTrash.GetComponent<TrashScript>());
-                Destroy(tempTrash);
-            }
-        }
-        return recycledTrashList;
-    }
-
-    // TEMP SAVE
-    public void Save()
-    {
-        PlayerPrefs.SetInt("RecycledTrashCount", recycledTrashList.Count);
-        PlayerPrefs.SetInt("Money", money);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        data.RecycledTrashCount = RecycledTrashDictionary;
+        data.TrashCaught = TrashCaughtDictionary;
+        data.CurrentMoney = CurrentMoney;
+        data.TotalMoneyEarned = TotalMoneyEarned;
+        data.TotalMoneySpent = TotalMoneySpent;
+        data.PurchasedAccessories = PurchasedAccessories;
     }
 }

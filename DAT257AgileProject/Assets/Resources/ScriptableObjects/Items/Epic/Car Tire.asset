@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce1cbf96045d7a94d9eac182b91e89ba, type: 3}
+  m_Name: Car Tire
+  m_EditorClassIdentifier: 
+  <IsStackable>k__BackingField: 1
+  <MaxStackSize>k__BackingField: 5
+  <Description>k__BackingField: Is a bouncy car tire
+  <ItemImage>k__BackingField: {fileID: 21300000, guid: a82f191221829da4f9857f342fbdc29c, type: 3}
+  <DefaultParametersList>k__BackingField: []
+  trashData: {fileID: 11400000, guid: dc440b4501e91004db9958a9c0d1d392, type: 2}
+  trashScript: {fileID: -3614313260051933767, guid: 95fc558e42d6dc84e808564417919055, type: 3}
