@@ -55,6 +55,7 @@ public class RecyclingManager : MonoBehaviour
                 StartCoroutine(RecyclingInteraction());
                 foreach (TrashItemSO trash in trashToRecycle)
                 {
+                    AudioManager.Instance.PlaySound(SoundName.RecycleNoise);
                     int recyclingMoney = (int)(trash.TrashData.MoneyValue * moneyMultiplier);
                     playerStatsManager.CurrentMoney += recyclingMoney;
                     playerStatsManager.TotalMoneyEarned += recyclingMoney;
