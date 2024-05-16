@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -20,7 +21,7 @@ public class TrashCategoryTests
     {
         get
         {
-            foreach (var trashCategoryEntry in GetTrashCategories())
+            foreach (TrashCategory trashCategoryEntry in GetTrashCategories())
             {
                 yield return new TestCaseData(trashCategoryEntry);
             }
@@ -28,9 +29,16 @@ public class TrashCategoryTests
     }
 
     [Test, TestCaseSource(nameof(TrashCategoryTestCases))]
+    public void EachTrashCategory_IsCovered(TrashCategory trashCategoryEntry)
+    {
+        Assert.AreEqual(System.Enum.GetValues(typeof(TrashCategory)).Length, TrashCategoryTestCases.Count());
+    }
+
+    [Test, TestCaseSource(nameof(TrashCategoryTestCases))]
     public void EachTrashCategory_HasReadableString(TrashCategory trashCategoryEntry)
     {
         string trashCategoryString = trashCategoryEntry.ToReadableString();
         Assert.IsNotNull(trashCategoryString);
+        Assert.IsNotEmpty(trashCategoryString);
     }
 }

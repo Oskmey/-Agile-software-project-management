@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -20,7 +21,7 @@ public class TrashTypeTests
     {
         get
         {
-            foreach (var trashTypeEntry in GetTrashTypes())
+            foreach (TrashType trashTypeEntry in GetTrashTypes())
             {
                 yield return new TestCaseData(trashTypeEntry);
             }
@@ -28,9 +29,17 @@ public class TrashTypeTests
     }
 
     [Test, TestCaseSource(nameof(TrashTypeTestCases))]
+    public void EachTrashType_IsCovered(TrashType trashTypeEntry)
+    {
+        // Check that all enum values are covered
+        Assert.AreEqual(System.Enum.GetValues(typeof(TrashType)).Length, TrashTypeTestCases.Count());
+    }
+
+    [Test, TestCaseSource(nameof(TrashTypeTestCases))]
     public void EachTrashType_HasReadableString(TrashType trashTypeEntry)
     {
         string trashTypeString = trashTypeEntry.ToReadableString();
         Assert.IsNotNull(trashTypeString);
+        Assert.IsNotEmpty(trashTypeString);
     }
 }

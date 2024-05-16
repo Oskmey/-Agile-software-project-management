@@ -41,7 +41,7 @@ public class RecyclingTests : InputTestFixture
     // `yield return null;` to skip a frame.
     [UnityTest]
     [Description("Testing the recycle input")]
-    public IEnumerator RecycleInput_GivenTwoTrash_IsAllRecycled()
+    public IEnumerator RecycleInput_GivenOneTrash_IsRecycled()
     {
         // Wait until the scene is fully loaded
         yield return null;
