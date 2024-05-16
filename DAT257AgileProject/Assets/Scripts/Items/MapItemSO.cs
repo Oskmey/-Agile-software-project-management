@@ -27,7 +27,6 @@ namespace Inventory.Model
             {
                 Name = accessory.AccessoryName;
             }
-            //trashModifierData.Amount = trashData.MoneyValue;
         }
     }
 }
