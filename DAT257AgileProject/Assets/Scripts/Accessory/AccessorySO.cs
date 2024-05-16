@@ -21,8 +21,9 @@ public class AccessorySO : ScriptableObject
 
     [Header("Accessory effects")]
     [Tooltip("Effects the items has on the player")]
+    [SerializeReference]
     [SerializeField]
-    public List<AEffect> accessoryEffects;
+    public List<EffectSO> accessoryEffects = new();
 }
 
 public enum AccessoryRarity
