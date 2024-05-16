@@ -1196,15 +1196,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7799686631963856934, guid: 1267cf81ccdd19346b7308418228a595, type: 3}
       propertyPath: m_Color.b
-      value: 0.9169811
+      value: 0.81886786
       objectReference: {fileID: 0}
     - target: {fileID: 7799686631963856934, guid: 1267cf81ccdd19346b7308418228a595, type: 3}
       propertyPath: m_Color.g
-      value: 0.75516117
+      value: 0.676203
       objectReference: {fileID: 0}
     - target: {fileID: 7799686631963856934, guid: 1267cf81ccdd19346b7308418228a595, type: 3}
       propertyPath: m_Color.r
-      value: 0
+      value: 0.004635034
       objectReference: {fileID: 0}
     - target: {fileID: 7799686631963856934, guid: 1267cf81ccdd19346b7308418228a595, type: 3}
       propertyPath: m_RaycastTarget

@@ -135,6 +135,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1659191367700293868, guid: b2515884365a4094a93ad0ea6e33166a, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1816515639403896639, guid: b2515884365a4094a93ad0ea6e33166a, type: 3}
       propertyPath: m_Pivot.x
       value: 0

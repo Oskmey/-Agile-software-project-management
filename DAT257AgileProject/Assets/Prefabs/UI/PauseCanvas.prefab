@@ -1206,7 +1206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.75686276, b: 0.91764706, a: 1}
+  m_Color: {r: 0.007843138, g: 0.6784314, b: 0.81960785, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2031,6 +2031,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5346610271533171615, guid: 2e5288a09b5b1fe45aa97cf5e3e998f5, type: 3}
+      propertyPath: m_Color.b
+      value: 0.81960785
+      objectReference: {fileID: 0}
+    - target: {fileID: 5346610271533171615, guid: 2e5288a09b5b1fe45aa97cf5e3e998f5, type: 3}
+      propertyPath: m_Color.g
+      value: 0.6784314
+      objectReference: {fileID: 0}
+    - target: {fileID: 5346610271533171615, guid: 2e5288a09b5b1fe45aa97cf5e3e998f5, type: 3}
+      propertyPath: m_Color.r
+      value: 0.007843138
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2136,6 +2148,18 @@ PrefabInstance:
     - target: {fileID: 1396472998211504687, guid: e64f8154a23e29c48b7e8f7ace5769d3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1795346702132881671, guid: e64f8154a23e29c48b7e8f7ace5769d3, type: 3}
+      propertyPath: m_Color.b
+      value: 0.81960785
+      objectReference: {fileID: 0}
+    - target: {fileID: 1795346702132881671, guid: e64f8154a23e29c48b7e8f7ace5769d3, type: 3}
+      propertyPath: m_Color.g
+      value: 0.6784314
+      objectReference: {fileID: 0}
+    - target: {fileID: 1795346702132881671, guid: e64f8154a23e29c48b7e8f7ace5769d3, type: 3}
+      propertyPath: m_Color.r
+      value: 0.007843138
       objectReference: {fileID: 0}
     - target: {fileID: 2509198622094948749, guid: e64f8154a23e29c48b7e8f7ace5769d3, type: 3}
       propertyPath: m_AnchorMax.y
