@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc1e547dc6edfee47b4bc4a30af7bbbe, type: 3}
+  m_Script: {fileID: 11500000, guid: 3c1bc3e4a7f1d469b87502bc20d7ac4a, type: 3}
   m_Name: StoreTheme
   m_EditorClassIdentifier: 
-  audioType: 1
   audioClip: {fileID: 8300000, guid: 73dab21e226bac841b6b09f2def26390, type: 3}
   audioBalancingValue: 0.5
   musicName: 1

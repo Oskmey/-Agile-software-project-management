@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce1cbf96045d7a94d9eac182b91e89ba, type: 3}
+  m_Script: {fileID: 11500000, guid: f959b0f36427a4d159fe210d477963bf, type: 3}
   m_Name: Trash Bag
   m_EditorClassIdentifier: 
   <IsStackable>k__BackingField: 1
-  <MaxStackSize>k__BackingField: 5
+  <MaxStackSize>k__BackingField: 99
   <Description>k__BackingField: Is a trashy Trash Bag
   <ItemImage>k__BackingField: {fileID: 21300000, guid: 895b0888c61459647bc6d48aea6846a1, type: 3}
   <DefaultParametersList>k__BackingField: []
   trashData: {fileID: 11400000, guid: 7edf8182ae623eb499c067bc8f009867, type: 2}
-  trashScript: {fileID: 4280939727050352008, guid: e832d922162442b4c9349cd219bcfa0b, type: 3}
+  trashScript: {fileID: 0}

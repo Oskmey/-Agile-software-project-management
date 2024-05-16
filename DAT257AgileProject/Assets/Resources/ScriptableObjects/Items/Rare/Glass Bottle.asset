@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce1cbf96045d7a94d9eac182b91e89ba, type: 3}
+  m_Script: {fileID: 11500000, guid: f959b0f36427a4d159fe210d477963bf, type: 3}
   m_Name: Glass Bottle
   m_EditorClassIdentifier: 
   <IsStackable>k__BackingField: 1
-  <MaxStackSize>k__BackingField: 5
+  <MaxStackSize>k__BackingField: 99
   <Description>k__BackingField: Is a Glass Bottle
-  <ItemImage>k__BackingField: {fileID: 21300000, guid: 0a81ff68a57bbf448a9624baef0638c1, type: 3}
+  <ItemImage>k__BackingField: {fileID: 21300000, guid: f7454dc19d2f44dd8a8e7e29d4d61365, type: 3}
   <DefaultParametersList>k__BackingField: []
-  trashData: {fileID: 11400000, guid: f491dce6f85cd2348ad6b9b227438671, type: 2}
-  trashScript: {fileID: 7720395919705477355, guid: 2fd7fed42c9533e48bab53ec71491875, type: 3}
+  trashData: {fileID: 11400000, guid: ffc326ebe023c488eab50db35d75092b, type: 2}
+  trashScript: {fileID: 0}

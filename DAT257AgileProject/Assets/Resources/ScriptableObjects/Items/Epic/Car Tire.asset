@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce1cbf96045d7a94d9eac182b91e89ba, type: 3}
+  m_Script: {fileID: 11500000, guid: f959b0f36427a4d159fe210d477963bf, type: 3}
   m_Name: Car Tire
   m_EditorClassIdentifier: 
   <IsStackable>k__BackingField: 1
-  <MaxStackSize>k__BackingField: 5
+  <MaxStackSize>k__BackingField: 99
   <Description>k__BackingField: Is a bouncy car tire
-  <ItemImage>k__BackingField: {fileID: 21300000, guid: a82f191221829da4f9857f342fbdc29c, type: 3}
+  <ItemImage>k__BackingField: {fileID: 21300000, guid: 88859a616adc04eae8e930f0f659c615, type: 3}
   <DefaultParametersList>k__BackingField: []
-  trashData: {fileID: 11400000, guid: dc440b4501e91004db9958a9c0d1d392, type: 2}
-  trashScript: {fileID: -3614313260051933767, guid: 95fc558e42d6dc84e808564417919055, type: 3}
+  trashData: {fileID: 11400000, guid: 77cfe8f13896f42ba8b91a06a2e4680b, type: 2}
+  trashScript: {fileID: 0}
