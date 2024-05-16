@@ -13,7 +13,7 @@ public class TrashData : ScriptableObject
     private List<TrashFactData> trashFacts;
 
     [Tooltip("The money value of the trash")]
-    [SerializeField] 
+    [SerializeField]
     private int moneyValue;
 
     [Tooltip("Whether the trash is recyclable")]

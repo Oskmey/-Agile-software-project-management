@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <IsStackable>k__BackingField: 1
   <MaxStackSize>k__BackingField: 1
-  <Description>k__BackingField: Is rarer egg
+  <Description>k__BackingField: Is a Rare Egg
   <ItemImage>k__BackingField: {fileID: 21300000, guid: 8fcd1ca3dc1e4294dbade2f76c2bab2d, type: 3}
   <DefaultParametersList>k__BackingField: []
   accessory: {fileID: 11400000, guid: f04b20c8d26e9af42ac50411d981df58, type: 2}

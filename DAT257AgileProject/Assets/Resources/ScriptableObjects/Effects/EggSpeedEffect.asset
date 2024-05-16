@@ -9,6 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9a439c6648eacc4f903694516a3ade8, type: 3}
-  m_Name: TrashMoneyModifier
+  m_Script: {fileID: 11500000, guid: 2d38055ef2b30fe43a066722841c8f15, type: 3}
+  m_Name: EggSpeedEffect
   m_EditorClassIdentifier: 
+  effectType: 0
+  speed: 0
