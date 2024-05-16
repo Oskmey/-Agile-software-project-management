@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2620450335004286510}
   - component: {fileID: 1622255498136431966}
   - component: {fileID: 351669321385923966}
-  - component: {fileID: 7733099578423923194}
+  - component: {fileID: 2349175367804846407}
   m_Layer: 5
   m_Name: WarningPopUp
   m_TagString: Untagged
@@ -78,7 +78,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7733099578423923194
+--- !u!114 &2349175367804846407
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -87,10 +87,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 893511744653666078}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1fc1f3abd43b8c43a0046f86d04feff, type: 3}
+  m_Script: {fileID: 11500000, guid: bbbdeb22cea0c4cc1848991ae04f1554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayTime: 2
   warningText: {fileID: 2425628071633231792}
 --- !u!1 &1241448704520981722
 GameObject:

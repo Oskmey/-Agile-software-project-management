@@ -122,7 +122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moneyGeneratedText: {fileID: 6360479846582854589}
   inventoryData: {fileID: 11400000, guid: 61539fd28ea43fd42aa4e22c1a71ffb7, type: 2}
-  warningPopup: {fileID: 1550843020818051001}
+  warningPopup: {fileID: 6795153478092439300}
   shopPlayer: {fileID: 0}
   inventoryManager: {fileID: 0}
 --- !u!1 &3134124889003892933
@@ -1311,19 +1311,19 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0696377655e56d459ea6b9754b6cb3c, type: 3}
---- !u!114 &1550843020818051001 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7733099578423923194, guid: a0696377655e56d459ea6b9754b6cb3c, type: 3}
-  m_PrefabInstance: {fileID: 9139156708804705859}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1fc1f3abd43b8c43a0046f86d04feff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &6523880950702891117 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2620450335004286510, guid: a0696377655e56d459ea6b9754b6cb3c, type: 3}
   m_PrefabInstance: {fileID: 9139156708804705859}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6795153478092439300 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2349175367804846407, guid: a0696377655e56d459ea6b9754b6cb3c, type: 3}
+  m_PrefabInstance: {fileID: 9139156708804705859}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbbdeb22cea0c4cc1848991ae04f1554, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
