@@ -53,9 +53,9 @@ public class RecyclingManager : MonoBehaviour
                     playerStatsManager.TotalMoneyEarned += trash.TrashData.MoneyValue;
                     UpdateRecycledTrashDictionary(trash.TrashType);
                 }
+                isRecycling = false;
             }
         }
-        isRecycling = false;
     }
 
     private void UpdateRecycledTrashDictionary(TrashType trashType)
