@@ -10,7 +10,8 @@ public class RecyclingManager : MonoBehaviour
 {
     [SerializeField]
     private InventorySO playerInventory;
-
+    private bool isRecycling;
+    public bool IsRecycling => isRecycling;
     private IReadOnlyList<RecyclingMachine> recyclingMachines;
     private PlayerStatsManager playerStatsManager;
     private bool trashWasRecycled;
