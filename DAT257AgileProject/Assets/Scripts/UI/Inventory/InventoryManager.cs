@@ -194,6 +194,11 @@ namespace Inventory
 
         private void DestroyItems(int itemIndex, int quantity, InventorySO items)
         {
+            InventoryItem itemToBeDestroyed = items.GetItemAt(itemIndex);
+            if (itemToBeDestroyed.Item is EquippableItemSO equippableItem && items == accessoryData)
+            {
+                AccessoryUnEquipped?.Invoke(equippableItem.Accessory);
+            }
             items.RemoveItem(itemIndex, quantity);
             inventoryUI.ResetSelection();
             //audioSource.PlayOneShot(dropClip);
@@ -408,7 +413,11 @@ namespace Inventory
                         {
                             if(accessoryEffect is SpeedEffectSO speedEffectSO)
                             {
-                                effects += $"Speed: {speedEffectSO.Speed}";
+                                effects += $"Movement Speed: +{speedEffectSO.Speed}";
+                            }
+                            else if(accessoryEffect is MoneyEffectSO moneyEffectSO)
+                            {
+                                effects += $"Money Multiplier: +{moneyEffectSO.MoneyMult}";
                             }
                             else
                             {
@@ -462,7 +471,7 @@ namespace Inventory
                     {
                         inventoryUI.UpdateData(item.Key, item.Value.Item.ItemImage, item.Value.Quantity, false);
                     }
-                    //
+
                     foreach (var item in accessoryData.GetCurrentInventoryState())
                     {
                         inventoryUI.UpdateData(item.Key, item.Value.Item.ItemImage, item.Value.Quantity, true);
