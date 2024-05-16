@@ -180,7 +180,8 @@ public class TrashHandlerTests : InputTestFixture
     public override void TearDown()
     {
         InventoryManager inventoryManager = GameObject.FindAnyObjectByType<InventoryManager>();
-        inventoryManager.ResetInventories();
+        inventoryManager.ResetInventory();
+        inventoryManager.ResetAccessories();
 
         base.TearDown();
         DataPersistenceManager.Instance.NewGame();
