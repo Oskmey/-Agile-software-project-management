@@ -22,7 +22,7 @@ public class MapInteraction : Ainteractable
     private bool isMapOpen = false;
     public override string text => "Press E to open map";
     private GameObject ui;
-    private Inventory.Model.InventorySO inventoryData;
+    private List<mapItemSO> purchasedMaps;
     public bool IsMapOpen => isMapOpen;
 
     public override void Interact()
@@ -39,7 +39,7 @@ public class MapInteraction : Ainteractable
 
     public void Start()
     {
-        inventoryData = GameObject.Find("InventoryManager").GetComponent<InventoryManager>().InventoryData;
+        purchasedMaps = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStatsManager>().PurchasedMaps;
         PlayerExitHandler += PlayerExitEvent;
     }
 
@@ -69,15 +69,9 @@ public class MapInteraction : Ainteractable
 
     private void GetPlayerMaps()
     {
-        foreach (InventoryItem item in inventoryData.InventoryItems)
+        foreach (mapItemSO item in purchasedMaps)
         {
-            if (item.Item != null)
-            {
-                if (item.Item is mapItemSO mapItemSO)
-                {
-                    MakeMapSelectFromItem(mapItemSO);
-                }
-            }
+            MakeMapSelectFromItem(item);
         }
         MakeDefaultWorldSelect();
     }

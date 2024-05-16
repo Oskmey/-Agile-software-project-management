@@ -28,6 +28,11 @@ public class GameData
     [SerializeField]
     private SerializableDictionary<AccessorySO, int> purchasedAccessories;
     public SerializableDictionary<AccessorySO, int> PurchasedAccessories { get { return purchasedAccessories; } set { purchasedAccessories = value; } }
+    
+    [SerializeField]
+    private List<mapItemSO> purchasedMaps;
+    public List<mapItemSO> PurchasedMaps { get { return purchasedMaps; } set { purchasedMaps = value; } }
+ 
 
     [SerializeField]
     private SerializableDictionary<TrashType, int> recycledTrashCount;

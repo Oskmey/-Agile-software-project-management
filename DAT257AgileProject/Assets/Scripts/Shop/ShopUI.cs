@@ -101,6 +101,7 @@ public class ShopUI : MonoBehaviour, IDataPersistence<GameData>
         int ShopItems = minItems;
         DateTime computerTime = DateTime.Now;
         int hour = computerTime.Hour;
+        int minute = (computerTime.Minute / 10) * 10; 
         if (hour % 6 == 0)
         {
             ShopItems = maxItems;
@@ -111,17 +112,17 @@ public class ShopUI : MonoBehaviour, IDataPersistence<GameData>
         }
         for (int i = 0; i < ShopItems; i++)
         {
-            GenerateShopingItems(new System.Random(hour + i));
+            GenerateShopingItems(new System.Random(hour + i), new System.Random(minute + i));
         }
     }
 
-    private void GenerateShopingItems(System.Random hourSeed)
+    private void GenerateShopingItems(System.Random hourSeed, System.Random minuteSeed)
     {
         int rng = hourSeed.Next(0, 100);
         List<AccessorySO> items = shopingItems.Where(item => rng <= (int)item.rarity).ToList();// This takes the rarity of the item and compares it to the random number generated
         if (items.Any())
         {
-            AccessorySO item = items[hourSeed.Next(0, items.Count)];
+            AccessorySO item = items[minuteSeed.Next(0, items.Count)];
             CreateShopButton(item);
         }
         else

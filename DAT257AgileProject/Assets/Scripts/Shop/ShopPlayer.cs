@@ -46,30 +46,52 @@ public class ShopPlayer : MonoBehaviour
     {
         EquippableItemSO[] equippableItems = Resources.LoadAll<EquippableItemSO>("");
         mapItemSO[] mapItems = Resources.LoadAll<mapItemSO>("");
-        List<EquippableItemSO> equippableItemsList = equippableItems.ToList();
-        EquippableItemSO matchingItem = equippableItemsList.Find(item => item.Accessory == type);
-        mapItemSO matchingMap = mapItems.ToList().Find(item => item.Accessory == type);
-
-        if (matchingItem != null)
+        EquippableItemSO matchingItem = equippableItems.FirstOrDefault(item => item.Accessory == type);
+        mapItemSO matchingMap = mapItems.FirstOrDefault(item => item.Accessory == type);
+        if(matchingItem != null)
         {
-            int remainder = inventoryData.AddItem(matchingItem, 1);
+            inventoryData.AddItem(matchingItem, 1);
+            UpdatePlayerStats(matchingItem);
         }
-        else if (matchingMap != null)
+        else if(matchingMap != null)
         {
-            int remainder = inventoryData.AddItem(matchingMap, 1);
+            UpdatePlayerStatsMaps(matchingMap);
         }
         else
         {
             Debug.LogError("No matching item found.");
         }
+    }
 
-        if (playerStatsManager.PurchasedAccessories.ContainsKey(matchingItem.Accessory))
+    private void UpdatePlayerStatsMaps(mapItemSO matchingItem)
+    {
+        Debug.Log(playerStatsManager.PurchasedMaps);
+        if (matchingItem != null && !playerStatsManager.PurchasedMaps.Contains(matchingItem))
         {
-            playerStatsManager.PurchasedAccessories[matchingItem.Accessory]++;
+                playerStatsManager.PurchasedMaps.Add(matchingItem);
         }
         else
         {
-            playerStatsManager.PurchasedAccessories.Add(matchingItem.Accessory, 1);
+            Debug.LogError("No matching map found.");
+        }
+    }
+
+    private void UpdatePlayerStats(EquippableItemSO matchingItem)
+    {
+        if (matchingItem != null)
+        {
+            if (playerStatsManager.PurchasedAccessories.ContainsKey(matchingItem.Accessory))
+            {
+                playerStatsManager.PurchasedAccessories[matchingItem.Accessory]++;
+            }
+            else
+            {
+                playerStatsManager.PurchasedAccessories.Add(matchingItem.Accessory, 1);
+            }
+        }
+        else
+        {
+            Debug.LogError("No matching item found.");
         }
     }
 }
