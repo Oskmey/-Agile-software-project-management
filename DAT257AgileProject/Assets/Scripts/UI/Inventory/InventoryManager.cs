@@ -404,7 +404,7 @@ namespace Inventory
                             }
                             else if(accessoryEffect is MoneyEffectSO moneyEffectSO)
                             {
-                                effects += $"Money Multiplier: +{moneyEffectSO.MoneyMult}x";
+                                effects += $"Money Multiplier: +{moneyEffectSO.MoneyMult}";
                             }
                             else
                             {

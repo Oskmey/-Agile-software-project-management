@@ -11,19 +11,24 @@ public class MoneyEffectSO : EffectSO
     [SerializeField]
     private float moneyMult;
     public float MoneyMult => moneyMult;
-    private RecyclingManager recyclingManager;
-    private void Awake()
-    {
-        recyclingManager = FindAnyObjectByType<RecyclingManager>();
-    }
 
     public override void ApplyEffect()
     {
-        recyclingManager.MoneyMultiplier += moneyMult;
+        GameObject recyclingMachine = GameObject.FindGameObjectWithTag("Recycling Manager");
+        if (recyclingMachine != null)
+        {
+            RecyclingManager recyclingManager = recyclingMachine.GetComponent<RecyclingManager>();
+            recyclingManager.MoneyMultiplier += moneyMult;
+        }
     }
 
     public override void UnApplyEffect()
     {
-        recyclingManager.MoneyMultiplier -= moneyMult;
+        GameObject recyclingMachine = GameObject.FindGameObjectWithTag("Recycling Manager");
+        if (recyclingMachine != null)
+        {
+            RecyclingManager recyclingManager = recyclingMachine.GetComponent<RecyclingManager>();
+            recyclingManager.MoneyMultiplier -= moneyMult;
+        }
     }
 }
