@@ -34,6 +34,7 @@ public class RecyclingManager : MonoBehaviour
     void Awake()
     {
         trashWasRecycled = false;
+        isRecycling = false;
         recyclingMachines = GetRecyclingMachines();
         playerStatsManager = FindObjectOfType<PlayerStatsManager>();
     }
@@ -45,7 +46,7 @@ public class RecyclingManager : MonoBehaviour
             if (recyclingMachine.IsPlayerInRange())
             {
                 List<TrashItemSO> trashToRecycle = playerInventory.GetAndRemoveRecyclableTrashItems();
-
+                StartCoroutine(RecyclingInteraction());
                 foreach (TrashItemSO trash in trashToRecycle)
                 {
                     playerStatsManager.CurrentMoney += trash.TrashData.MoneyValue;
@@ -80,5 +81,12 @@ public class RecyclingManager : MonoBehaviour
         }
 
         return recyclingMachines;
+    }
+
+    IEnumerator RecyclingInteraction()
+    {
+        isRecycling = true;
+        yield return new WaitForSeconds((float)0.5);
+        isRecycling = false;
     }
 }
