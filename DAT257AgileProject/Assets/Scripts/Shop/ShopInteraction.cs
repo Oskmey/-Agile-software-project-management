@@ -8,6 +8,6 @@ public class ShopInteraction : Ainteractable
     public override void Interact()
     {
         DataPersistenceManager.Instance.SaveGame();
-        SceneManager.LoadScene("Shop");
+        SceneManager.LoadSceneAsync("Shop");
     }
 }
