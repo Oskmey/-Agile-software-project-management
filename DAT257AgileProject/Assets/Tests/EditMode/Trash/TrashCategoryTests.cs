@@ -35,10 +35,16 @@ public class TrashCategoryTests
     }
 
     [Test, TestCaseSource(nameof(TrashCategoryTestCases))]
-    public void EachTrashCategory_HasReadableString(TrashCategory trashCategoryEntry)
+    public void EachTrashCategory_HasReadableString_NotNull(TrashCategory trashCategoryEntry)
     {
         string trashCategoryString = trashCategoryEntry.ToReadableString();
         Assert.IsNotNull(trashCategoryString);
+    }
+
+    [Test, TestCaseSource(nameof(TrashCategoryTestCases))]
+    public void EachTrashCategory_HasReadableString_NotEmpty(TrashCategory trashCategoryEntry)
+    {
+        string trashCategoryString = trashCategoryEntry.ToReadableString();
         Assert.IsNotEmpty(trashCategoryString);
     }
 }

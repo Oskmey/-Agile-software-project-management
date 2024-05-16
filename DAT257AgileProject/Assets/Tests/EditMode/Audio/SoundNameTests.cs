@@ -36,11 +36,16 @@ public class SoundNameTests
     }
 
     [Test, TestCaseSource(nameof(SoundNameTestCases))]
-    public void EachSoundName_HasReadableString(SoundName soundNameEntry)
+    public void EachSoundName_HasReadableString_NotNull(SoundName soundNameEntry)
     {
         string soundNameString = soundNameEntry.ToReadableString();
-
         Assert.IsNotNull(soundNameString);
+    }
+
+    [Test, TestCaseSource(nameof(SoundNameTestCases))]
+    public void EachSoundName_HasReadableString_NotEmpty(SoundName soundNameEntry)
+    {
+        string soundNameString = soundNameEntry.ToReadableString();
         Assert.IsNotEmpty(soundNameString);
     }
 }

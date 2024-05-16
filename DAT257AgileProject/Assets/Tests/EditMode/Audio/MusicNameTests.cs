@@ -36,10 +36,16 @@ public class MusicNameTests
     }
 
     [Test, TestCaseSource(nameof(MusicNameTestCases))]
-    public void EachMusicName_HasReadableString(MusicName musicNameEntry)
+    public void EachMusicName_HasReadableString_NotNull(MusicName musicNameEntry)
     {
         string musicNameString = musicNameEntry.ToReadableString();
         Assert.IsNotNull(musicNameString);
+    }
+
+    [Test, TestCaseSource(nameof(MusicNameTestCases))]
+    public void EachMusicName_HasReadableString_NotEmpty(MusicName musicNameEntry)
+    {
+        string musicNameString = musicNameEntry.ToReadableString();
         Assert.IsNotEmpty(musicNameString);
     }
 }

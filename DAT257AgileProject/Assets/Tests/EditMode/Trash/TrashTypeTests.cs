@@ -36,10 +36,16 @@ public class TrashTypeTests
     }
 
     [Test, TestCaseSource(nameof(TrashTypeTestCases))]
-    public void EachTrashType_HasReadableString(TrashType trashTypeEntry)
+    public void EachTrashType_HasReadableString_NotNull(TrashType trashTypeEntry)
     {
         string trashTypeString = trashTypeEntry.ToReadableString();
         Assert.IsNotNull(trashTypeString);
+    }
+
+    [Test, TestCaseSource(nameof(TrashTypeTestCases))]
+    public void EachTrashType_HasReadableString_NotEmpty(TrashType trashTypeEntry)
+    {
+        string trashTypeString = trashTypeEntry.ToReadableString();
         Assert.IsNotEmpty(trashTypeString);
     }
 }

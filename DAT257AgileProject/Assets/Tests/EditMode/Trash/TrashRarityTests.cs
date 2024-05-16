@@ -43,12 +43,24 @@ public class TrashRarityTests
         Assert.IsNotEmpty(trashRarityString);
     }
 
+    [Test, TestCaseSource(nameof(TrashRarityTestCases))]
+    public void EachTrashRarity_HasReadableString_NotNull(TrashRarity trashRarityEntry)
+    {
+        string trashRarityString = trashRarityEntry.ToReadableString();
+        Assert.IsNotNull(trashRarityString);
+    }
+
+    [Test, TestCaseSource(nameof(TrashRarityTestCases))]
+    public void EachTrashRarity_HasReadableString_NotEmpty(TrashRarity trashRarityEntry)
+    {
+        string trashRarityString = trashRarityEntry.ToReadableString();
+        Assert.IsNotEmpty(trashRarityString);
+    }
+
     [Test]
     public void TrashRarity_GetRandomRarity_ReturnsRarity()
     {
         TrashRarity trashRarity = TrashRarityExtensions.GetRandomRarity();
-
-        Assert.IsNotNull(trashRarity);
         Assert.IsTrue(System.Enum.IsDefined(typeof(TrashRarity), trashRarity));
     }
 }

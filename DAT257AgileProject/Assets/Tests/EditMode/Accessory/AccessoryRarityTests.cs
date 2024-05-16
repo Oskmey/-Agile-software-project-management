@@ -35,10 +35,16 @@ public class AccessoryRarityTests
     }
 
     [Test, TestCaseSource(nameof(AccessoryRarityTestCases))]
-    public void EachAccessoryRarity_HasReadableString(AccessoryRarity accessoryRarityEntry)
+    public void EachAccessoryRarity_HasReadableString_NotNull(AccessoryRarity accessoryRarityEntry)
     {
         string accessoryRarityString = accessoryRarityEntry.ToReadableString();
         Assert.IsNotNull(accessoryRarityString);
+    }
+
+    [Test, TestCaseSource(nameof(AccessoryRarityTestCases))]
+    public void EachAccessoryRarity_HasReadableString_NotEmpty(AccessoryRarity accessoryRarityEntry)
+    {
+        string accessoryRarityString = accessoryRarityEntry.ToReadableString();
         Assert.IsNotEmpty(accessoryRarityString);
     }
 }
