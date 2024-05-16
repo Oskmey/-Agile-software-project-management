@@ -15,14 +15,6 @@ public class AccessoryManager : MonoBehaviour
         InitAccessoryEffects();
     }
 
-    void Update()
-    {
-        //if(playerController != null)
-        //{
-           // Debug.Log("Player speed: " + playerController.speed);
-        //}
-    }
-
     private void InitAccessoryEffects()
     {
         inventoryManager.AccessoryEquipped += ApplyEffects;

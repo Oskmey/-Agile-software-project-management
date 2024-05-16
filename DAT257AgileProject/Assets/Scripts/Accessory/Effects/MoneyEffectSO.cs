@@ -8,30 +8,27 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "MoneyEffect", menuName = "Effects/Money Effect")]
 public class MoneyEffectSO : EffectSO
 {
+    [SerializeField]
+    private float moneyMult;
+    public float MoneyMult => moneyMult;
+
     public override void ApplyEffect()
     {
-        // TODO: rework money effect, the game build will not work using methods from the UnityEditor namespace
-        string folderPath = "Assets/Resources/ScriptableObjects/Trash";
-
-        Object[] assets = AssetDatabase.LoadAllAssetsAtPath(folderPath);
-
-        foreach (Object asset in assets)
+        GameObject recyclingMachine = GameObject.FindGameObjectWithTag("Recycling Manager");
+        if (recyclingMachine != null)
         {
-            if (asset != null && asset is TrashData)
-            {
-                TrashData trashData = (TrashData)asset;
-
-                // The effect
-                //trashData.MoneyValue *= 2;
-
-                // dont know what this is lol
-                EditorUtility.SetDirty(asset);
-            }
+            RecyclingManager recyclingManager = recyclingMachine.GetComponent<RecyclingManager>();
+            recyclingManager.MoneyMultiplier += moneyMult;
         }
     }
 
     public override void UnApplyEffect()
     {
-
+        GameObject recyclingMachine = GameObject.FindGameObjectWithTag("Recycling Manager");
+        if (recyclingMachine != null)
+        {
+            RecyclingManager recyclingManager = recyclingMachine.GetComponent<RecyclingManager>();
+            recyclingManager.MoneyMultiplier -= moneyMult;
+        }
     }
 }
