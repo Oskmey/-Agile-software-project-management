@@ -23,5 +23,5 @@ public class AccessorySO : ScriptableObject
     [Tooltip("Effects the items has on the player")]
     [SerializeReference]
     [SerializeField]
-    public List<AEffect> accessoryEffects;
+    public List<EffectSO> accessoryEffects;
 }
