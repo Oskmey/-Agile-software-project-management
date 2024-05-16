@@ -53,10 +53,10 @@ public class MapInteraction : Ainteractable
 
     private void PlayerExitEvent()
     {
-            if (ui != null)
-    {
-        ui.SetActive(false);
-    }
+        if (ui != null)
+        {
+            ui.SetActive(false);
+        }
         isMapOpen = false;
         ClearMapSelection();
     }

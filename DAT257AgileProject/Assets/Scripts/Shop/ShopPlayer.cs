@@ -14,7 +14,7 @@ public class ShopPlayer : MonoBehaviour
     public delegate void ShopEvent();
     public event ShopEvent OnBuyNoFreeInventorySlot;
     public event ShopEvent OnBuyNotEnoughMoney;
-    
+
     private void Start()
     {
         playerStatsManager = GetComponent<PlayerStatsManager>();
@@ -48,12 +48,12 @@ public class ShopPlayer : MonoBehaviour
         mapItemSO[] mapItems = Resources.LoadAll<mapItemSO>("");
         EquippableItemSO matchingItem = equippableItems.FirstOrDefault(item => item.Accessory == type);
         mapItemSO matchingMap = mapItems.FirstOrDefault(item => item.Accessory == type);
-        if(matchingItem != null)
+        if (matchingItem != null)
         {
             inventoryData.AddItem(matchingItem, 1);
             UpdatePlayerStats(matchingItem);
         }
-        else if(matchingMap != null)
+        else if (matchingMap != null)
         {
             UpdatePlayerStatsMaps(matchingMap);
         }
@@ -68,7 +68,7 @@ public class ShopPlayer : MonoBehaviour
         Debug.Log(playerStatsManager.PurchasedMaps);
         if (matchingItem != null && !playerStatsManager.PurchasedMaps.Contains(matchingItem))
         {
-                playerStatsManager.PurchasedMaps.Add(matchingItem);
+            playerStatsManager.PurchasedMaps.Add(matchingItem);
         }
         else
         {

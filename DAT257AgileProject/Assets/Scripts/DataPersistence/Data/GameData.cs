@@ -20,24 +20,24 @@ public class GameData
     [SerializeField]
     private int totalMoneyEarned;
     public int TotalMoneyEarned { get { return totalMoneyEarned; } set { totalMoneyEarned = value; } }
-    
+
     [SerializeField]
     private int totalMoneySpent;
     public int TotalMoneySpent { get { return totalMoneySpent; } set { totalMoneySpent = value; } }
-    
+
     [SerializeField]
     private SerializableDictionary<AccessorySO, int> purchasedAccessories;
     public SerializableDictionary<AccessorySO, int> PurchasedAccessories { get { return purchasedAccessories; } set { purchasedAccessories = value; } }
-    
+
     [SerializeField]
     private List<mapItemSO> purchasedMaps;
     public List<mapItemSO> PurchasedMaps { get { return purchasedMaps; } set { purchasedMaps = value; } }
- 
+
 
     [SerializeField]
     private SerializableDictionary<TrashType, int> recycledTrashCount;
     public SerializableDictionary<TrashType, int> RecycledTrashCount { get { return recycledTrashCount; } set { recycledTrashCount = value; } }
-    
+
     [SerializeField]
     private SerializableDictionary<TrashType, int> trashCaught;
     public SerializableDictionary<TrashType, int> TrashCaught { get { return trashCaught; } set { trashCaught = value; } }
@@ -79,17 +79,17 @@ public class GameData
 
     public void SetPlayerPosition(string sceneName, Vector2 position)
     {
-        if(playerPosition.ContainsKey(sceneName))
+        if (playerPosition.ContainsKey(sceneName))
         {
             playerPosition[sceneName] = position;
             return;
         }
 
-        int sceneCount = SceneManager.sceneCountInBuildSettings;     
+        int sceneCount = SceneManager.sceneCountInBuildSettings;
 
-        for( int i = 0; i < sceneCount; i++ )
+        for (int i = 0; i < sceneCount; i++)
         {
-            if(sceneName == System.IO.Path.GetFileNameWithoutExtension(SceneUtility.GetScenePathByBuildIndex(i)))
+            if (sceneName == System.IO.Path.GetFileNameWithoutExtension(SceneUtility.GetScenePathByBuildIndex(i)))
             {
                 playerPosition.Add(sceneName, position);
                 return;
