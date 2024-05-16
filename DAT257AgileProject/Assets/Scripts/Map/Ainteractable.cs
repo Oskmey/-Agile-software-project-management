@@ -21,15 +21,18 @@ public abstract class Ainteractable : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player" && text != null)
+        if (collision.gameObject.CompareTag("Player"))
         {
-            player = collision;
-            collision.gameObject.GetComponent<PlayerController>().AddInteractable(this);
-            promtText.text = text;
-        }
-        else
-        {
-            Debug.LogWarning("Text is null");
+            if (text != null)
+            {
+                player = collision;
+                collision.gameObject.GetComponent<PlayerController>().AddInteractable(this);
+                promtText.text = text;
+            }
+            else
+            {
+                Debug.LogWarning("Text is null");
+            }
         }
     }
 

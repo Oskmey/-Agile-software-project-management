@@ -1,4 +1,5 @@
 
+using Codice.Client.BaseCommands;
 using UnityEngine;
 
 namespace Inventory.Model
@@ -22,7 +23,10 @@ namespace Inventory.Model
         public Sprite MapSprite => mapSprite;
         public void Awake()
         {
-            Name = accessory.AccessoryName;
+            if(accessory != null)
+            {
+                Name = accessory.AccessoryName;
+            }
             //trashModifierData.Amount = trashData.MoneyValue;
         }
     }

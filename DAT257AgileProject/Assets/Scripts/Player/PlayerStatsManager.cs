@@ -13,6 +13,16 @@ public class PlayerStatsManager : MonoBehaviour, IDataPersistence<GameData>
     public int TotalMoneySpent { get; set; }
     public SerializableDictionary<AccessorySO, int> PurchasedAccessories { get; private set; }
     public List<mapItemSO> PurchasedMaps { get; private set; }
+
+    private void Start()
+    {
+        mapItemSO firstWorldMap = Resources.Load<mapItemSO>("ScriptableObjects/Items/MapItem/World 1 ticket");
+        if(!PurchasedMaps.Contains(firstWorldMap))
+        {
+            PurchasedMaps.Add(firstWorldMap);
+        }
+    }
+
     public void LoadData(GameData data)
     {
         RecycledTrashDictionary = data.RecycledTrashCount;
