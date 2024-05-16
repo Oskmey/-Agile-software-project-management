@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b477336d77cce6e4dabb83f76a365353, type: 3}
+  m_Script: {fileID: 11500000, guid: d720c2926d9e24cafb39fa47b0a95ebe, type: 3}
   m_Name: RareEgg
   m_EditorClassIdentifier: 
   accessoryName: Rare egg

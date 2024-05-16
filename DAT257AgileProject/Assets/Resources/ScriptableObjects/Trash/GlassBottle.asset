@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trashCategories: 03000000
   trashFacts:
-  - {fileID: 11400000, guid: 130505c0cf90a694aa9c08de4d530bb1, type: 2}
-  - {fileID: 11400000, guid: e374e355b66083f479a0be84c3f2d955, type: 2}
-  - {fileID: 11400000, guid: 7657c731b7296d147a35fe9d7aceebb9, type: 2}
-  - {fileID: 11400000, guid: 4b81f2dd651fd9f4288605de881252c7, type: 2}
+  - {fileID: 11400000, guid: 74f5ceec092d1412abd7a567b21c592c, type: 2}
+  - {fileID: 11400000, guid: dbc0536ef4f1843a886b4f632ef9db57, type: 2}
+  - {fileID: 11400000, guid: d963bb7bd8f1b422192c7066d88090b6, type: 2}
+  - {fileID: 11400000, guid: 2979fb07f705d4d8c972479cbaff4062, type: 2}
   moneyValue: 55
   isRecyclable: 1

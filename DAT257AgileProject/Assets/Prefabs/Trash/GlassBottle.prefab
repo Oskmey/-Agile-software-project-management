@@ -84,7 +84,7 @@ SpriteRenderer:
   m_Size: {x: 0.25, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &7720395919705477355
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00eda25aedcbf6345b7761c684f8b8b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trashScriptableObject: {fileID: 11400000, guid: f491dce6f85cd2348ad6b9b227438671, type: 2}
+  trashScriptableObject: {fileID: 11400000, guid: ffc326ebe023c488eab50db35d75092b, type: 2}
   trashType: 6
   rarity: 2
 --- !u!114 &-4450023143637048490
@@ -111,7 +111,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3464683140163306389}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e823c16d2fceb24c96f94d1d3704013, type: 3}
+  m_Script: {fileID: 11500000, guid: 7e8abf40626d34c50a50ce141c0ef124, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &-45452670581563820
@@ -123,7 +123,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3464683140163306389}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d08d4003b24c5d2438a236fc21a1fbae, type: 3}
+  m_Script: {fileID: 11500000, guid: d7ce3ffd2983243d8bd43f868a6fdaa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   <InventoryItem>k__BackingField: {fileID: 11400000, guid: 0d0dc19d23a28c340a7e88af2e98edd7, type: 2}

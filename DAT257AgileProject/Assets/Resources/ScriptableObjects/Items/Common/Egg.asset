@@ -17,4 +17,4 @@ MonoBehaviour:
   <Description>k__BackingField: Is egg
   <ItemImage>k__BackingField: {fileID: 21300000, guid: 2dc8a4d3440132a4b9a0099214c27ddc, type: 3}
   <DefaultParametersList>k__BackingField: []
-  accessory: {fileID: 0}
+  accessory: {fileID: 11400000, guid: 00e23dbcbe1144676825fdc9da3eb307, type: 2}

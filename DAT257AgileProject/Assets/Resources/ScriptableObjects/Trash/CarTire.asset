@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trashCategories: 0200000006000000
   trashFacts:
-  - {fileID: 11400000, guid: 088180437b40a584d84ac5fd47080413, type: 2}
-  - {fileID: 11400000, guid: 36a901bee56e5ee49993d28ed0e3d95e, type: 2}
-  - {fileID: 11400000, guid: 24d910268be364f479b3276f799e8ea9, type: 2}
-  - {fileID: 11400000, guid: 5313b9858b42806419289b8d97533f43, type: 2}
-  - {fileID: 11400000, guid: 4c98a4bc1f6e94443b9449b7d9097d22, type: 2}
-  - {fileID: 11400000, guid: 779b87a002c52c14591c9808e96caa80, type: 2}
-  - {fileID: 11400000, guid: a078210a8fdcf8842900856fc8355d5a, type: 2}
-  - {fileID: 11400000, guid: 911d8c2fabed56848b13b3badc9a67d7, type: 2}
-  - {fileID: 11400000, guid: 942d17cb609368248b3fdd1287663a60, type: 2}
-  - {fileID: 11400000, guid: 44dc4f386ed1ecb4398a488b1fd7b054, type: 2}
+  - {fileID: 11400000, guid: bc72f4e94c3e242e584bca6742405345, type: 2}
+  - {fileID: 11400000, guid: a073bb763733a4e6b996e7d16255018b, type: 2}
+  - {fileID: 11400000, guid: e1a5d048f787a4e7698e748b8e30f78d, type: 2}
+  - {fileID: 11400000, guid: 2d80acdb0efcf4bdfb5826055d4e69cb, type: 2}
+  - {fileID: 11400000, guid: a98a1c333cd40446b89c439cfd33667e, type: 2}
+  - {fileID: 11400000, guid: fb33cac9ce37f4885b04a161eb1b9adc, type: 2}
+  - {fileID: 11400000, guid: 0e068744089a74d71b06253fa963aa17, type: 2}
+  - {fileID: 11400000, guid: b4d12cd206f0c41148d25e7a0bfccc15, type: 2}
+  - {fileID: 11400000, guid: 75fa8f7d3d6e749cf9d993e4a9bf151b, type: 2}
+  - {fileID: 11400000, guid: b9aa5f55f310e4b37a03a6b40c3ebb35, type: 2}
   moneyValue: 250
   isRecyclable: 1

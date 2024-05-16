@@ -110,10 +110,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 951709337480037534}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d08d4003b24c5d2438a236fc21a1fbae, type: 3}
+  m_Script: {fileID: 11500000, guid: d7ce3ffd2983243d8bd43f868a6fdaa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   <InventoryItem>k__BackingField: {fileID: 11400000, guid: 056b97048a2ddc14c9a7ef3912bb7308, type: 2}
   <Quantity>k__BackingField: 1
-  audioSource: {fileID: 0}
   duration: 0.3

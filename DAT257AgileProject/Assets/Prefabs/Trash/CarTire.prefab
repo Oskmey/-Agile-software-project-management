@@ -83,7 +83,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &-3614313260051933767
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00eda25aedcbf6345b7761c684f8b8b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trashScriptableObject: {fileID: 11400000, guid: dc440b4501e91004db9958a9c0d1d392, type: 2}
+  trashScriptableObject: {fileID: 11400000, guid: 77cfe8f13896f42ba8b91a06a2e4680b, type: 2}
   trashType: 4
   rarity: 3
 --- !u!114 &-4587482095911694255
@@ -110,10 +110,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4700282325771958015}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d08d4003b24c5d2438a236fc21a1fbae, type: 3}
+  m_Script: {fileID: 11500000, guid: d7ce3ffd2983243d8bd43f868a6fdaa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   <InventoryItem>k__BackingField: {fileID: 11400000, guid: 91d48c6d46421764d900fc57cbac7e56, type: 2}
   <Quantity>k__BackingField: 1
-  audioSource: {fileID: 0}
   duration: 0.3
