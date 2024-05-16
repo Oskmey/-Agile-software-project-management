@@ -35,7 +35,6 @@ public class MapInteraction : Ainteractable
         if (ui != null && !ui.activeSelf)
         {
             ui.SetActive(true);
-            Debug.Log("Getting player maps");
             GetPlayerMaps();
         }
     }
