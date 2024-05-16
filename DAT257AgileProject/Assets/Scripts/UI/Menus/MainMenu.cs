@@ -6,14 +6,21 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour, IMenuWithSettings, IMenuWithHowToPlay
 {
+    [Header("Buttons")]
     [SerializeField]
     private Button newGameButton;
     [SerializeField]
     private Button continueButton;
     [SerializeField]
+    private Button howToPlayButton;
+    [SerializeField]
     private Button settingsButton;
     [SerializeField]
-    private Button howToPlayButton;
+    private Button wikiButton;
+    [SerializeField]
+    private Button creditsButton;
+    [SerializeField]
+    private Button quitButton;
 
     private SettingsMenu settingsMenu;
     private HowToPlayMenu howToPlayMenu;
@@ -59,8 +66,11 @@ public class MainMenu : MonoBehaviour, IMenuWithSettings, IMenuWithHowToPlay
     {
         newGameButton.interactable = false;
         continueButton.interactable = false;
-        settingsButton.interactable = false;
         howToPlayButton.interactable = false;
+        settingsButton.interactable = false;
+        wikiButton.interactable = false;
+        creditsButton.interactable = false;
+        quitButton.interactable = false;
     }
 
     private void OnSettingsButtonClicked()
