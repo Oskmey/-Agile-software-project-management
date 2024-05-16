@@ -186,6 +186,11 @@ namespace Inventory
 
         private void DestroyItems(int itemIndex, int quantity, InventorySO items)
         {
+            InventoryItem itemToBeDestroyed = items.GetItemAt(itemIndex);
+            if (itemToBeDestroyed.Item is EquippableItemSO equippableItem && items == accessoryData)
+            {
+                AccessoryUnEquipped?.Invoke(equippableItem.Accessory);
+            }
             items.RemoveItem(itemIndex, quantity);
             inventoryUI.ResetSelection();
             //audioSource.PlayOneShot(dropClip);
