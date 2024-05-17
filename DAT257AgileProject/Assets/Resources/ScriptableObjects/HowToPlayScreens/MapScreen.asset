@@ -13,9 +13,13 @@ MonoBehaviour:
   m_Name: MapScreen
   m_EditorClassIdentifier: 
   screenType: 5
-  contentText: The map is used to access different worlds. To open it you have to
+  contentText: 'The map is used to access different worlds. To open it you have to
     find a boat, see Figure 1. Near a boat you can press the interaction button.
     This will open up a menu from which you can choose which world you want to go
     to.
+
+
+    To unlock different worlds you need their tickets. It is possible to
+    purchase tickets from the shop. Figure 2 is an example of a ticket.'
   topImage: {fileID: 21300000, guid: dd20e4bf250e695458ac2c9826d4ebab, type: 3}
-  bottomImage: {fileID: 0}
+  bottomImage: {fileID: 21300000, guid: 03fef0ec86498604e98247ebcdef89f8, type: 3}
