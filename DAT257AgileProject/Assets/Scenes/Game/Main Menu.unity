@@ -1218,6 +1218,10 @@ PrefabInstance:
       propertyPath: m_Value
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7130116158294698987, guid: 1267cf81ccdd19346b7308418228a595, type: 3}
+      propertyPath: m_text
+      value: Super Fish Trash Game
+      objectReference: {fileID: 0}
     - target: {fileID: 7544698019417905384, guid: 1267cf81ccdd19346b7308418228a595, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
