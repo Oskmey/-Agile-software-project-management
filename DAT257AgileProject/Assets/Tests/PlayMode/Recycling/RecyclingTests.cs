@@ -41,7 +41,7 @@ public class RecyclingTests : InputTestFixture
     // `yield return null;` to skip a frame.
     [UnityTest]
     [Description("Testing the recycle input")]
-    public IEnumerator RecycleInput_GivenTwoTrash_IsAllRecycled()
+    public IEnumerator RecycleInput_GivenOneTrash_IsRecycled()
     {
         // Wait until the scene is fully loaded
         yield return null;
@@ -59,9 +59,10 @@ public class RecyclingTests : InputTestFixture
         trashHandler = GameObject.FindAnyObjectByType<TrashHandler>();
 
         yield return null;
-        // TODO: money wont load to be 0 at new game for test
+        inventoryManager.ResetInventory();
+        inventoryManager.ResetAccessories();
         playerStatsManager.CurrentMoney = 0;
-        Debug.Log("Money: " + playerStatsManager.CurrentMoney.ToString());
+        playerStatsManager.RecycledTrashDictionary.Clear();
         TrashItemSO trashItem = Resources.Load<TrashItemSO>("ScriptableObjects/Items/Common/PET Bottle");
 
         yield return null;
@@ -69,16 +70,14 @@ public class RecyclingTests : InputTestFixture
         inventoryManager.InventoryData.AddItem(trashInventoryItem);
 
         yield return null;
-        Debug.Log("Money: " + playerStatsManager.CurrentMoney.ToString());
 
         PressAndRelease(keyboard.rKey);
         yield return null;
-        Debug.Log("Money: " + playerStatsManager.CurrentMoney.ToString());
 
         DataPersistenceManager.Instance.SaveGame();
         yield return null;
 
-        Assert.AreEqual(2, playerStatsManager.RecycledTrashDictionary.Count);
-        Assert.AreEqual(12, playerStatsManager.CurrentMoney);
+        Assert.AreEqual(1, playerStatsManager.RecycledTrashDictionary.Count);
+        Assert.AreEqual(trashItem.TrashData.MoneyValue, playerStatsManager.CurrentMoney);
     }
 }

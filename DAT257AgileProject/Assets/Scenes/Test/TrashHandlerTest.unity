@@ -337,7 +337,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -4095826208368994269, guid: 5c130d89184b1924bba2a4b23733efaf, type: 3}
       propertyPath: fileName
-      value: recyclingtest_save_data.game
+      value: trashhandlertest_save_data.game
       objectReference: {fileID: 0}
     - target: {fileID: 6216647353100184616, guid: 5c130d89184b1924bba2a4b23733efaf, type: 3}
       propertyPath: m_LocalPosition.x
