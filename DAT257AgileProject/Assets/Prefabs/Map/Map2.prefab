@@ -10158,7 +10158,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 16
-      m_TileSpriteIndex: 16
+      m_TileSpriteIndex: 17
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -10268,7 +10268,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 12
-      m_TileSpriteIndex: 12
+      m_TileSpriteIndex: 16
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -10518,7 +10518,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 11
-      m_TileSpriteIndex: 11
+      m_TileSpriteIndex: 12
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -10558,7 +10558,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 13
-      m_TileSpriteIndex: 2
+      m_TileSpriteIndex: 11
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -10653,8 +10653,8 @@ Tilemap:
     m_Data: {fileID: -482424194, guid: 0593d426e17d9a14aac5adefb97b1139, type: 3}
   - m_RefCount: 3
     m_Data: {fileID: 2114670460, guid: 0593d426e17d9a14aac5adefb97b1139, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: 21300000, guid: e1fc9193d9876a94781d81dac60f3026, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 3
     m_Data: {fileID: -1999372851, guid: 0593d426e17d9a14aac5adefb97b1139, type: 3}
   - m_RefCount: 3
@@ -10672,9 +10672,9 @@ Tilemap:
   - m_RefCount: 5
     m_Data: {fileID: -552132692, guid: 9aa12d8be71e96b40afcb2a0b630914f, type: 3}
   - m_RefCount: 1
-    m_Data: {fileID: 425840700, guid: 0593d426e17d9a14aac5adefb97b1139, type: 3}
+    m_Data: {fileID: 21300000, guid: e1fc9193d9876a94781d81dac60f3026, type: 3}
   - m_RefCount: 1
-    m_Data: {fileID: -851512770, guid: 9aa12d8be71e96b40afcb2a0b630914f, type: 3}
+    m_Data: {fileID: 425840700, guid: 0593d426e17d9a14aac5adefb97b1139, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: -143089790, guid: 9aa12d8be71e96b40afcb2a0b630914f, type: 3}
   - m_RefCount: 1
@@ -10682,9 +10682,9 @@ Tilemap:
   - m_RefCount: 2
     m_Data: {fileID: -1929989057, guid: 9aa12d8be71e96b40afcb2a0b630914f, type: 3}
   - m_RefCount: 1
+    m_Data: {fileID: -851512770, guid: 9aa12d8be71e96b40afcb2a0b630914f, type: 3}
+  - m_RefCount: 1
     m_Data: {fileID: -168324056, guid: 9aa12d8be71e96b40afcb2a0b630914f, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
   - m_RefCount: 2
     m_Data: {fileID: 21300000, guid: cfc7b7bb9f6f408489c6dced617fe975, type: 3}
   - m_RefCount: 2
@@ -19305,6 +19305,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6280130266851163154, guid: f55b65426d73ed848a14015450b3c2b0, type: 3}
+      propertyPath: fishingSpotRarities.trashRarityPercentages.Array.data[0].percentage
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6280130266851163154, guid: f55b65426d73ed848a14015450b3c2b0, type: 3}
+      propertyPath: fishingSpotRarities.trashRarityPercentages.Array.data[1].percentage
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6280130266851163154, guid: f55b65426d73ed848a14015450b3c2b0, type: 3}
+      propertyPath: fishingSpotRarities.trashRarityPercentages.Array.data[2].percentage
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6280130266851163154, guid: f55b65426d73ed848a14015450b3c2b0, type: 3}
+      propertyPath: fishingSpotRarities.trashRarityPercentages.Array.data[3].percentage
+      value: 0.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 6280130266851163154, guid: f55b65426d73ed848a14015450b3c2b0, type: 3}
+      propertyPath: fishingSpotRarities.trashRarityPercentages.Array.data[4].percentage
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 8344709470843271773, guid: f55b65426d73ed848a14015450b3c2b0, type: 3}
       propertyPath: m_Name
       value: Fishing Spot
@@ -19367,6 +19387,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6280130266851163154, guid: f55b65426d73ed848a14015450b3c2b0, type: 3}
+      propertyPath: fishingSpotRarities.trashRarityPercentages.Array.data[0].percentage
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6280130266851163154, guid: f55b65426d73ed848a14015450b3c2b0, type: 3}
+      propertyPath: fishingSpotRarities.trashRarityPercentages.Array.data[1].percentage
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6280130266851163154, guid: f55b65426d73ed848a14015450b3c2b0, type: 3}
+      propertyPath: fishingSpotRarities.trashRarityPercentages.Array.data[3].percentage
+      value: 0.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 6280130266851163154, guid: f55b65426d73ed848a14015450b3c2b0, type: 3}
+      propertyPath: fishingSpotRarities.trashRarityPercentages.Array.data[4].percentage
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 8344709470843271773, guid: f55b65426d73ed848a14015450b3c2b0, type: 3}
       propertyPath: m_Name
       value: Fishing Spot (1)
@@ -19428,6 +19464,26 @@ PrefabInstance:
     - target: {fileID: 1394511631512588816, guid: f55b65426d73ed848a14015450b3c2b0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6280130266851163154, guid: f55b65426d73ed848a14015450b3c2b0, type: 3}
+      propertyPath: fishingSpotRarities.trashRarityPercentages.Array.data[0].percentage
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6280130266851163154, guid: f55b65426d73ed848a14015450b3c2b0, type: 3}
+      propertyPath: fishingSpotRarities.trashRarityPercentages.Array.data[1].percentage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6280130266851163154, guid: f55b65426d73ed848a14015450b3c2b0, type: 3}
+      propertyPath: fishingSpotRarities.trashRarityPercentages.Array.data[2].percentage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6280130266851163154, guid: f55b65426d73ed848a14015450b3c2b0, type: 3}
+      propertyPath: fishingSpotRarities.trashRarityPercentages.Array.data[3].percentage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6280130266851163154, guid: f55b65426d73ed848a14015450b3c2b0, type: 3}
+      propertyPath: fishingSpotRarities.trashRarityPercentages.Array.data[4].percentage
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8344709470843271773, guid: f55b65426d73ed848a14015450b3c2b0, type: 3}
       propertyPath: m_Name
