@@ -16,8 +16,8 @@ public class DataPersistenceManager : MonoBehaviour
     private bool useEncryption;
 
     private GameData gameData;
-    private List<IDataPersistence> dataPersistenceObjects;
-    private FileDataHandler dataHandler;
+    private List<IDataPersistence<GameData>> dataPersistenceObjects;
+    private FileDataHandler<GameData> dataHandler;
     
     public static DataPersistenceManager Instance { get; private set; }
 
@@ -35,7 +35,7 @@ public class DataPersistenceManager : MonoBehaviour
         // So that it stays between scenes. 
         DontDestroyOnLoad(this.gameObject);
 
-        dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
+        dataHandler = new FileDataHandler<GameData>(Application.persistentDataPath, fileName, useEncryption);
     }
 
     private void OnEnable()
@@ -58,6 +58,11 @@ public class DataPersistenceManager : MonoBehaviour
     public void NewGame()
     {
         gameData = new GameData();
+        // After creating a new game, the data persistence objects should be updated.
+        foreach (IDataPersistence<GameData> dataPersistenceObject in dataPersistenceObjects)
+        {
+            dataPersistenceObject.LoadData(gameData);
+        }
     }
 
     public void LoadGame()
@@ -71,7 +76,7 @@ public class DataPersistenceManager : MonoBehaviour
             return;
         }
 
-        foreach (IDataPersistence dataPersistenceObject in dataPersistenceObjects)
+        foreach (IDataPersistence<GameData> dataPersistenceObject in dataPersistenceObjects)
         {
             dataPersistenceObject.LoadData(gameData);
         }
@@ -85,7 +90,7 @@ public class DataPersistenceManager : MonoBehaviour
             return;
         }
 
-        foreach (IDataPersistence dataPersistenceObject in dataPersistenceObjects)
+        foreach (IDataPersistence<GameData> dataPersistenceObject in dataPersistenceObjects)
         {
             dataPersistenceObject.SaveData(gameData);
         }
@@ -101,11 +106,11 @@ public class DataPersistenceManager : MonoBehaviour
         SaveGame();
     }
 
-    private List<IDataPersistence> FindAllDataPersistenceObjects()
+    private List<IDataPersistence<GameData>> FindAllDataPersistenceObjects()
     {
         // Can specify if should include inactive game objects.
-        IEnumerable<IDataPersistence> dataPersistenceObjects = FindObjectsOfType<MonoBehaviour>().OfType<IDataPersistence>();
-        return new List<IDataPersistence>(dataPersistenceObjects);
+        IEnumerable<IDataPersistence<GameData>> dataPersistenceObjects = FindObjectsOfType<MonoBehaviour>().OfType<IDataPersistence<GameData>>();
+        return new List<IDataPersistence<GameData>>(dataPersistenceObjects);
     }
 
     public bool HasGameData()

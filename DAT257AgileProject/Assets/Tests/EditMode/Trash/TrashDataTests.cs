@@ -18,7 +18,7 @@ public class TrashDataTests
         }
     }
 
-    private static IEnumerable<TestCaseData> NonRecycableTrashDataTestCases
+    /* private static IEnumerable<TestCaseData> NonRecycableTrashDataTestCases
     {
         get
         {
@@ -30,9 +30,9 @@ public class TrashDataTests
                 }
             }
         }
-    }
+    }*/
 
-    private static IEnumerable<TestCaseData> RecycableTrashDataTestCases
+    private static IEnumerable<TestCaseData> RecyclableTrashDataTestCases
     {
         get
         {
@@ -72,7 +72,7 @@ public class TrashDataTests
     }
 
 
-    [Test, TestCaseSource(nameof(RecycableTrashDataTestCases))]
+    [Test, TestCaseSource(nameof(RecyclableTrashDataTestCases))]
     public void Recycling_GivenRecyclableTrash_ReturnsTrue(TrashData trashDataEntry)
     {
         // Assign

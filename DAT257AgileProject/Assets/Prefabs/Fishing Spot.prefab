@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f1181367b4dd94740b1d2cb321a04a87, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5c2c1af9381e2d542bb82370c8f8d5e7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -98,19 +98,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa96559057b6b984b935f968a0aa0b15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fishingSprite1: {fileID: 0}
-  fishingSprite2: {fileID: 0}
   fishingSpotRarities:
     trashRarityPercentages:
-    - Name: Common
+    - name: Common
       percentage: 0.2
-    - Name: Uncommon
+    - name: Uncommon
       percentage: 0.2
-    - Name: Rare
+    - name: Rare
       percentage: 0.2
-    - Name: Epic
+    - name: Epic
       percentage: 0.2
-    - Name: Legendary
+    - name: Legendary
       percentage: 0.2
   exclamationMarkPrefab: {fileID: 8678099781156329870, guid: ea15b8ae6ec919142b49b5f63fe71c11, type: 3}
 --- !u!61 &4582509056629564299

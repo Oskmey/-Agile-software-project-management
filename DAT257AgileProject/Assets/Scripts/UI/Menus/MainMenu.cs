@@ -4,12 +4,27 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MainMenu : MonoBehaviour
+public class MainMenu : MonoBehaviour, IMenuWithSettings, IMenuWithHowToPlay, IDataPersistence<GameData>
 {
+    [Header("Buttons")]
     [SerializeField]
     private Button newGameButton;
     [SerializeField]
     private Button continueButton;
+    [SerializeField]
+    private Button howToPlayButton;
+    [SerializeField]
+    private Button settingsButton;
+    [SerializeField]
+    private Button wikiButton;
+    [SerializeField]
+    private Button creditsButton;
+    [SerializeField]
+    private Button quitButton;
+
+    private SettingsMenu settingsMenu;
+    private string sceneName;
+    private HowToPlayMenu howToPlayMenu;
 
     private void Start()
     {
@@ -18,6 +33,11 @@ public class MainMenu : MonoBehaviour
         {
             continueButton.interactable = false;
         }
+        settingsMenu = FindObjectOfType<SettingsMenu>(true);
+        howToPlayMenu = FindObjectOfType<HowToPlayMenu>(true);
+        settingsButton.onClick.AddListener(OnSettingsButtonClicked);
+        howToPlayButton.onClick.AddListener(OnHowToPlayButtonClicked);
+        AudioManager.Instance.PlayMusic(MusicName.MenuTheme);
     }
 
     public void OnNewGameClicked()
@@ -28,12 +48,12 @@ public class MainMenu : MonoBehaviour
         LoadScene();
     }
 
-    private static void LoadScene()
+    private void LoadScene()
     {
         // Save game before loading scene. 
         DataPersistenceManager.Instance.SaveGame();
         // Loading the scene will load the game due to OnSceneLoaded in DataPersistenceManager.
-        SceneManager.LoadSceneAsync("First World");
+        SceneManager.LoadSceneAsync(sceneName);
     }
 
     public void OnContinueClicked()
@@ -47,10 +67,41 @@ public class MainMenu : MonoBehaviour
     {
         newGameButton.interactable = false;
         continueButton.interactable = false;
+        howToPlayButton.interactable = false;
+        settingsButton.interactable = false;
+        wikiButton.interactable = false;
+        creditsButton.interactable = false;
+        quitButton.interactable = false;
+    }
+
+    private void OnSettingsButtonClicked()
+    {
+        settingsMenu.gameObject.SetActive(true);
+    }
+
+    private void OnHowToPlayButtonClicked()
+    {
+        howToPlayMenu.gameObject.SetActive(true);
     }
 
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public GameObject GetGameObject()
+    {
+        return gameObject;
+    }
+
+    public void LoadData(GameData data)
+    {
+        sceneName = data.CurrentLevel;
+        
+    }
+
+    public void SaveData(GameData data)
+    {
+        // Unused in MainMenu
     }
 }

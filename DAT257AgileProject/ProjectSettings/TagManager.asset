@@ -20,6 +20,7 @@ TagManager:
   - ShopItemPrefab
   - Shop Player
   - InventoyUI
+  - Content
   layers:
   - Default
   - TransparentFX

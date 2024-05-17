@@ -5,14 +5,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
 namespace Inventory
 {
-    public class InventoryManager : MonoBehaviour, IDataPersistence
+    public class InventoryManager : MonoBehaviour, IDataPersistence<GameData>
     {
         [SerializeField]
         private UIInventoryPage inventoryUI;
@@ -37,6 +36,9 @@ namespace Inventory
 
         public delegate void SwapEvent();
         public event SwapEvent SwapItemToAccessoryIncorrect;
+        public delegate void EquipEvent(AccessorySO accessory);
+        public event EquipEvent AccessoryUnEquipped;
+        public event EquipEvent AccessoryEquipped;
 
         public InventorySO InventoryData { get { return inventoryData; }}
         public InventorySO AccessoryData { get { return accessoryData; }}
@@ -48,9 +50,16 @@ namespace Inventory
             PrepareUI();
             PrepareInventoryData();
             PrepareAccessoryData();
+        }
 
-            // List<AccessorySO> currentlyEquipped = GetCurrentlyEquippedAccessories();
-            // Debug.Log(currentlyEquipped.Count);
+        public void ResetInventory()
+        {
+            inventoryData.Initialize();
+        }
+
+        public void ResetAccessories()
+        {
+            accessoryData.Initialize();
         }
 
         private void PrepareInventoryData()
@@ -84,6 +93,7 @@ namespace Inventory
                 }
 
                 accessoryData.AddItemAt(item, i);
+                AccessoryEquipped?.Invoke((item.Item as EquippableItemSO).Accessory);
             }
         }
 
@@ -143,7 +153,6 @@ namespace Inventory
 
         private void HandleItemActionRequest(int itemIndex, UIItem itemUI)
         {
-            //
             UIItem itemSlot = null;
             InventorySO items = null;
             InventoryItem inventoryItem = default;
@@ -185,6 +194,11 @@ namespace Inventory
 
         private void DestroyItems(int itemIndex, int quantity, InventorySO items)
         {
+            InventoryItem itemToBeDestroyed = items.GetItemAt(itemIndex);
+            if (itemToBeDestroyed.Item is EquippableItemSO equippableItem && items == accessoryData)
+            {
+                AccessoryUnEquipped?.Invoke(equippableItem.Accessory);
+            }
             items.RemoveItem(itemIndex, quantity);
             inventoryUI.ResetSelection();
             //audioSource.PlayOneShot(dropClip);
@@ -255,13 +269,24 @@ namespace Inventory
                 InventoryItem currentItem = accessoryData.GetItemAt(itemIndex_1);
                 InventoryItem destinationItem = inventoryData.GetItemAt(itemIndex_2);
 
-                if (destinationItem.Item is EquippableItemSO || destinationItem.IsEmpty)
+                if ((destinationItem.Item is EquippableItemSO || destinationItem.IsEmpty) && currentItem.Item is EquippableItemSO currentEquippableItemSO)
                 {
+
                     accessoryData.RemoveItem(itemIndex_1, itemUI_1.Quantity);
                     inventoryData.RemoveItem(itemIndex_2, itemUI_2.Quantity);
 
                     inventoryData.AddItemAt(currentItem, itemIndex_2);
                     accessoryData.AddItemAt(destinationItem, itemIndex_1);
+
+                    if (destinationItem.Item is EquippableItemSO destinationEquippableItemSO)
+                    {
+                        AccessoryEquipped?.Invoke(destinationEquippableItemSO.Accessory);
+                        AccessoryUnEquipped?.Invoke(currentEquippableItemSO.Accessory);
+                    }
+                    else if (destinationItem.IsEmpty)
+                    {
+                        AccessoryUnEquipped?.Invoke(currentEquippableItemSO.Accessory);
+                    }
                 }
                 else
                 {
@@ -273,13 +298,23 @@ namespace Inventory
                 InventoryItem currentItem = inventoryData.GetItemAt(itemIndex_1);
                 InventoryItem destinationItem = accessoryData.GetItemAt(itemIndex_2);
 
-                if (currentItem.Item is EquippableItemSO)
+                if (currentItem.Item is EquippableItemSO currentEquippableItemSO)
                 {
                     inventoryData.RemoveItem(itemIndex_1, itemUI_1.Quantity);
                     accessoryData.RemoveItem(itemIndex_2, itemUI_2.Quantity);
 
                     accessoryData.AddItemAt(currentItem, itemIndex_2);
                     inventoryData.AddItemAt(destinationItem, itemIndex_1);
+
+                    if (destinationItem.Item is EquippableItemSO destinationEquippableItemSO)
+                    {
+                        AccessoryEquipped?.Invoke(currentEquippableItemSO.Accessory);
+                        AccessoryUnEquipped?.Invoke(destinationEquippableItemSO.Accessory);
+                    }
+                    else if (destinationItem.IsEmpty)
+                    {
+                        AccessoryEquipped?.Invoke(currentEquippableItemSO.Accessory);
+                    }
                 }
                 else
                 {
@@ -373,10 +408,21 @@ namespace Inventory
                 {
                     for (int i = 0; i < equippableItem.Accessory.accessoryEffects.Count; i++)
                     {
-                        AEffect accessoryEffect = equippableItem.Accessory.accessoryEffects[i];
+                        EffectSO accessoryEffect = equippableItem.Accessory.accessoryEffects[i];
                         if (i == equippableItem.Accessory.accessoryEffects.Count - 1)
                         {
-                            effects += accessoryEffect;
+                            if(accessoryEffect is SpeedEffectSO speedEffectSO)
+                            {
+                                effects += $"Movement Speed: +{speedEffectSO.Speed}";
+                            }
+                            else if(accessoryEffect is MoneyEffectSO moneyEffectSO)
+                            {
+                                effects += $"Money Multiplier: +{moneyEffectSO.MoneyMult}";
+                            }
+                            else
+                            {
+                                effects += accessoryEffect.Effect;
+                            }
                         }
                         else
                         {
@@ -425,7 +471,7 @@ namespace Inventory
                     {
                         inventoryUI.UpdateData(item.Key, item.Value.Item.ItemImage, item.Value.Quantity, false);
                     }
-                    //
+
                     foreach (var item in accessoryData.GetCurrentInventoryState())
                     {
                         inventoryUI.UpdateData(item.Key, item.Value.Item.ItemImage, item.Value.Quantity, true);
@@ -438,19 +484,19 @@ namespace Inventory
             }
         }
 
-        public void LoadData(GameData gameData)
+        public void LoadData(GameData data)
         {
-            initialInventoryItems = gameData.SavedInventoryItems;
-            initialAccessoryItems = gameData.SavedAccessoryItems;
+            initialInventoryItems = data.SavedInventoryItems;
+            initialAccessoryItems = data.SavedAccessoryItems;
         }
 
-        public void SaveData(GameData gameData)
+        public void SaveData(GameData data)
         {
             // Save inventory items
-            gameData.SavedInventoryItems = GetItemsInInventory(inventoryData);
+            data.SavedInventoryItems = GetItemsInInventory(inventoryData);
 
             // Save accessory items
-            gameData.SavedAccessoryItems = GetItemsInInventory(accessoryData);
+            data.SavedAccessoryItems = GetItemsInInventory(accessoryData);
         }
 
         private List<InventoryItem> GetItemsInInventory(InventorySO inventoryData)

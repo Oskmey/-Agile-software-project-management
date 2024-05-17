@@ -10,11 +10,17 @@ public class RecyclingManager : MonoBehaviour
 {
     [SerializeField]
     private InventorySO playerInventory;
-
+    private bool isRecycling;
+    public bool IsRecycling => isRecycling;
     private IReadOnlyList<RecyclingMachine> recyclingMachines;
     private PlayerStatsManager playerStatsManager;
     private bool trashWasRecycled;
-
+    private float moneyMultiplier = 1f;
+    public float MoneyMultiplier
+    {
+        get { return moneyMultiplier; }
+        set { moneyMultiplier = value; }
+    }
     public IReadOnlyList<RecyclingMachine> RecyclingMachines
     {
         get
@@ -34,6 +40,7 @@ public class RecyclingManager : MonoBehaviour
     void Awake()
     {
         trashWasRecycled = false;
+        isRecycling = false;
         recyclingMachines = GetRecyclingMachines();
         playerStatsManager = FindObjectOfType<PlayerStatsManager>();
     }
@@ -46,16 +53,28 @@ public class RecyclingManager : MonoBehaviour
             {
                 List<TrashItemSO> trashToRecycle = playerInventory.GetAndRemoveRecyclableTrashItems();
 
+                if (trashToRecycle.Count != 0)
+                {
+                    StartCoroutine(RecyclingInteraction());
+                }
+
                 foreach (TrashItemSO trash in trashToRecycle)
                 {
-                    playerStatsManager.Money += trash.TrashData.MoneyValue;
-                    UpdateTrashDictionary(trash.TrashType);
+                    if (AudioManager.Instance != null)
+                    {
+                        AudioManager.Instance.PlaySound(SoundName.RecycleNoise);
+                    }
+
+                    int recyclingMoney = (int)(trash.TrashData.MoneyValue * moneyMultiplier);
+                    playerStatsManager.CurrentMoney += recyclingMoney;
+                    playerStatsManager.TotalMoneyEarned += recyclingMoney;
+                    UpdateRecycledTrashDictionary(trash.TrashType);
                 }
             }
         }
     }
 
-    private void UpdateTrashDictionary(TrashType trashType)
+    private void UpdateRecycledTrashDictionary(TrashType trashType)
     {
         if (playerStatsManager.RecycledTrashDictionary.ContainsKey(trashType))
         {
@@ -79,5 +98,12 @@ public class RecyclingManager : MonoBehaviour
         }
 
         return recyclingMachines;
+    }
+
+    IEnumerator RecyclingInteraction()
+    {
+        isRecycling = true;
+        yield return new WaitForSeconds((float)0.5);
+        isRecycling = false;
     }
 }

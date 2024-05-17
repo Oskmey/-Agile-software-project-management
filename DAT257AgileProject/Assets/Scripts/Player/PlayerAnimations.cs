@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using UnityEngine;
 
 public class PlayerAnimations : MonoBehaviour
@@ -10,43 +11,70 @@ public class PlayerAnimations : MonoBehaviour
 
     private bool isFishing = false;
     private bool isPlaying = false;
+    private bool hasPlayedSoundEffect = false;
     private Vector3 fishingSpotPos;
     private Vector3 directionToFishingSpot;
+    private Vector3 recyclingMachineSpotPos;
+    private Vector3 directionToRecyclingMachineSpot;
+    //private bool isRecycling = false;
+    private RecyclingManager recyclingManager;
+    private IReadOnlyList<RecyclingMachine> recyclingMachines;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         playerInteraction = GetComponentInChildren<PlayerInteraction>();
+        recyclingManager = GameObject.FindGameObjectWithTag("Recycling Manager").GetComponent<RecyclingManager>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-
+        recyclingMachines = recyclingManager.GetRecyclingMachines();
     }
 
 
     // Update is called once per frame
     void Update()
     {
+        //isRecycling = recyclingManager.IsRecycling;
+        foreach (RecyclingMachine recyclingMachine in recyclingMachines)
+        {
+            if (recyclingMachine.IsPlayerInRange())
+            {
+               
+                if (recyclingManager.IsRecycling)
+                {
+                    recyclingMachineSpotPos = recyclingMachine.transform.position;
+                    directionToRecyclingMachineSpot = recyclingMachineSpotPos - transform.position;
+                }
+            }
+        }
 
         if (playerInteraction.currentFishingSpot != null)
         {
             isFishing = true;
-            isPlaying = playerInteraction.currentFishingSpot.GetComponent<FishingSpot>().isPlayingMinigame;
+            if (hasPlayedSoundEffect == false) 
+            {
+                AudioManager.Instance.PlaySound(SoundName.BeginFishing);
+                hasPlayedSoundEffect = true;
+            }
+            isPlaying = playerInteraction.currentFishingSpot.GetComponent<FishingSpot>().IsPlayingMinigame;
             fishingSpotPos = playerInteraction.currentFishingSpot.transform.position;
+
         }
         else {
             isFishing = false;
             isPlaying = false;
+            hasPlayedSoundEffect = false;
         }
 
         if (fishingSpotPos != null)
         {
             directionToFishingSpot = fishingSpotPos - transform.position;
         }
-      
+
         UpdateAnimator();
     }
 
@@ -59,6 +87,9 @@ public class PlayerAnimations : MonoBehaviour
         animator.SetBool("isPlaying", isPlaying);
         animator.SetFloat("Distance_x", directionToFishingSpot.x);
         animator.SetFloat("Distance_y", directionToFishingSpot.y);
+        animator.SetBool("isRecycling", recyclingManager.IsRecycling);
+        animator.SetFloat("Distance_rm_x", directionToRecyclingMachineSpot.x);
+        animator.SetFloat("Distance_rm_y", directionToRecyclingMachineSpot.y);
     }
 }
 
