@@ -15567,14 +15567,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6280130266851163154, guid: f55b65426d73ed848a14015450b3c2b0, type: 3}
-      propertyPath: trashPrefab
-      value: 
-      objectReference: {fileID: 6108896794586476295, guid: b3eb4c006d570f440a866a60439ae0ee, type: 3}
-    - target: {fileID: 6280130266851163154, guid: f55b65426d73ed848a14015450b3c2b0, type: 3}
-      propertyPath: fishingSpotRarities.trashRarityPercentages.Array.data[4].name
-      value: Legendary
-      objectReference: {fileID: 0}
     - target: {fileID: 8344709470843271773, guid: f55b65426d73ed848a14015450b3c2b0, type: 3}
       propertyPath: m_Name
       value: Fishing Spot
