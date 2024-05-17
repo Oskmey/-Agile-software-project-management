@@ -42,7 +42,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Shop",
+                    "name": "Interact",
                     "type": "Button",
                     "id": "7281573c-7408-433e-a7bf-e5ad9d62ecfa",
                     "expectedControlType": "",
@@ -147,7 +147,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Shop",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

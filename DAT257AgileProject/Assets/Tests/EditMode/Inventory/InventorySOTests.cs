@@ -9,7 +9,6 @@ public class InventorySOTests
 {
     private static readonly InventorySO inventoryData = Resources.Load<InventorySO>("ScriptableObjects/Inventory/PlayerInventory");
 
-    // A Test behaves as an ordinary method
     [SetUp]
     public void Setup()
     {
@@ -29,7 +28,6 @@ public class InventorySOTests
 
         int inventorySlots = inventoryData.InventoryItems.Count;
         int initInventorySize = inventoryData.Size;
-        // Use the Assert class to test conditions
         Assert.AreEqual(initInventorySize, inventorySlots);
     }
     [Test]

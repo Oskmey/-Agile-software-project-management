@@ -58,6 +58,11 @@ public class DataPersistenceManager : MonoBehaviour
     public void NewGame()
     {
         gameData = new GameData();
+        // After creating a new game, the data persistence objects should be updated.
+        foreach (IDataPersistence<GameData> dataPersistenceObject in dataPersistenceObjects)
+        {
+            dataPersistenceObject.LoadData(gameData);
+        }
     }
 
     public void LoadGame()

@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
-using UnityEditor;
-using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
@@ -14,18 +12,16 @@ public class MapCollision : InputTestFixture
 {
     private GameObject player;
     private GameObject map;
-    GameObject managers;
+    private GameObject managers;
 
     private string sceneName = "TestCollisionScene"; 
     private Keyboard keyboard;
-
-
 
     [SetUp]
     public override void Setup()
     {
         base.Setup();
-        SceneManager.LoadScene("TestCollisionScene");
+        SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
         keyboard = InputSystem.AddDevice<Keyboard>();
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
@@ -128,10 +124,11 @@ public class MapCollision : InputTestFixture
     public override void TearDown() 
     {
         base.TearDown();
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+
         foreach (var gameObject in Object.FindObjectsOfType<GameObject>()) 
         {
             Object.Destroy(gameObject);
         }
-}
-
+    }
 }

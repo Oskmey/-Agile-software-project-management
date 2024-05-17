@@ -50,8 +50,16 @@ namespace Inventory
             PrepareUI();
             PrepareInventoryData();
             PrepareAccessoryData();
-            // List<AccessorySO> currentlyEquipped = GetCurrentlyEquippedAccessories();
-            // Debug.Log(currentlyEquipped.Count);
+        }
+
+        public void ResetInventory()
+        {
+            inventoryData.Initialize();
+        }
+
+        public void ResetAccessories()
+        {
+            accessoryData.Initialize();
         }
 
         private void PrepareInventoryData()
