@@ -37,6 +37,11 @@ public class MapInteraction : Ainteractable
             ui.SetActive(true);
             GetPlayerMaps();
         }
+        else if (ui != null && ui.activeSelf)
+        {
+            ui.SetActive(false);
+            ClearMapSelection();
+        }
     }
 
     public void Start()
