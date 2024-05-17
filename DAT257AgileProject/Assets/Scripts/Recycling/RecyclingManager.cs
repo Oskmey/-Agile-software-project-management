@@ -52,7 +52,12 @@ public class RecyclingManager : MonoBehaviour
             if (recyclingMachine.IsPlayerInRange())
             {
                 List<TrashItemSO> trashToRecycle = playerInventory.GetAndRemoveRecyclableTrashItems();
-                StartCoroutine(RecyclingInteraction());
+
+                if (trashToRecycle.Count != 0)
+                {
+                    StartCoroutine(RecyclingInteraction());
+                }
+
                 foreach (TrashItemSO trash in trashToRecycle)
                 {
                     AudioManager.Instance.PlaySound(SoundName.RecycleNoise);
