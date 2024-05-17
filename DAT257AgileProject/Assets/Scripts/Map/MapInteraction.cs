@@ -72,7 +72,6 @@ public class MapInteraction : Ainteractable
     {
         foreach (mapItemSO item in purchasedMaps)
         {
-            Debug.Log("Getting player maps");
             MakeMapSelectFromItem(item);
         }
     }

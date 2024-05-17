@@ -32,13 +32,10 @@ public class ShopPlayer : MonoBehaviour
         else if (money >= type.cost)
         {
             AddItemToInventory(type);
-            playerStatsManager.CurrentMoney -= type.cost;
-            playerStatsManager.TotalMoneySpent += type.cost;
         }
         else if (money < type.cost)
         {
             OnBuyNotEnoughMoney?.Invoke();
-            //Debug.Log("You are poor!");
         }
     }
 
@@ -65,14 +62,20 @@ public class ShopPlayer : MonoBehaviour
 
     private void UpdatePlayerStatsMaps(mapItemSO matchingItem)
     {
-        Debug.Log(playerStatsManager.PurchasedMaps);
-        if (matchingItem != null && !playerStatsManager.PurchasedMaps.Contains(matchingItem))
+        if (matchingItem == null)
         {
-            playerStatsManager.PurchasedMaps.Add(matchingItem);
+            Debug.LogError("UpdatePlayerStatsMaps failed: matchingItem is null.");
+            return;
+        }
+
+        if (playerStatsManager.PurchasedMaps.Contains(matchingItem))
+        {
+            GameObject.Find("GameplayHUD").transform.Find("WarningPopUp").GetComponent<WarningPopup>().DisplayWarning("You already have this item!");
         }
         else
         {
-            Debug.LogError("No matching map found.");
+            playerStatsManager.PurchasedMaps.Add(matchingItem);
+            ProcessPayment(matchingItem.Accessory);
         }
     }
 
@@ -88,10 +91,18 @@ public class ShopPlayer : MonoBehaviour
             {
                 playerStatsManager.PurchasedAccessories.Add(matchingItem.Accessory, 1);
             }
+            ProcessPayment(matchingItem.Accessory);
         }
         else
         {
             Debug.LogError("No matching item found.");
         }
     }
+
+    private void ProcessPayment(AccessorySO type)
+    {
+        playerStatsManager.CurrentMoney -= type.cost;
+        playerStatsManager.TotalMoneySpent += type.cost;
+    }
+
 }

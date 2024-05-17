@@ -94,10 +94,6 @@ public class GameData
                 playerPosition.Add(sceneName, position);
                 return;
             }
-            else
-            {
-                Debug.LogWarning("Scene not found in build settings: " + sceneName);
-            }
         }
     }
 }
