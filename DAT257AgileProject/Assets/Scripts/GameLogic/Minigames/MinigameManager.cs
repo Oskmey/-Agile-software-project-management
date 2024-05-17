@@ -18,7 +18,11 @@ public class MinigameManager : MonoBehaviour
 
     private void Awake()
     {
-        promptText = GameObject.FindGameObjectWithTag("TutorialText").GetComponent<TextMeshProUGUI>();
+        GameObject promptTextObject = GameObject.FindGameObjectWithTag("TutorialText");
+        if (promptTextObject != null)
+        {
+            promptText = promptTextObject.GetComponent<TextMeshProUGUI>();
+        }
     }
 
     public bool MinigameStarted
