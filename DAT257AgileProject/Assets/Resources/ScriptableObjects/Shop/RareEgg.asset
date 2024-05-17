@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RareEgg
   m_EditorClassIdentifier: 
   accessoryName: Uncommon egg
-  cost: 200
+  cost: 100
   sprite: {fileID: 21300000, guid: 8fcd1ca3dc1e4294dbade2f76c2bab2d, type: 3}
   rarity: 15
   accessoryEffects:
