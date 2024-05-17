@@ -11,11 +11,10 @@ public class ShopPlayer : MonoBehaviour
     [SerializeField]
     private InventorySO inventoryData;
     private PlayerStatsManager playerStatsManager;
-
     public delegate void ShopEvent();
     public event ShopEvent OnBuyNoFreeInventorySlot;
     public event ShopEvent OnBuyNotEnoughMoney;
-    
+
     private void Start()
     {
         playerStatsManager = GetComponent<PlayerStatsManager>();
@@ -34,39 +33,77 @@ public class ShopPlayer : MonoBehaviour
         {
             AudioManager.Instance.PlaySound(SoundName.ItemBought);
             AddItemToInventory(type);
-            playerStatsManager.CurrentMoney -= type.cost;
-            playerStatsManager.TotalMoneySpent += type.cost;
         }
         else if (money < type.cost)
         {
             OnBuyNotEnoughMoney?.Invoke();
-            //Debug.Log("You are poor!");
         }
     }
 
     private void AddItemToInventory(AccessorySO type)
     {
         EquippableItemSO[] equippableItems = Resources.LoadAll<EquippableItemSO>("");
-        List<EquippableItemSO> equippableItemsList = equippableItems.ToList();
-
-        EquippableItemSO matchingItem = equippableItemsList.Find(item => item.Accessory == type);
-
+        mapItemSO[] mapItems = Resources.LoadAll<mapItemSO>("");
+        EquippableItemSO matchingItem = equippableItems.FirstOrDefault(item => item.Accessory == type);
+        mapItemSO matchingMap = mapItems.FirstOrDefault(item => item.Accessory == type);
         if (matchingItem != null)
         {
-            int remainder = inventoryData.AddItem(matchingItem, 1);
+            inventoryData.AddItem(matchingItem, 1);
+            UpdatePlayerStats(matchingItem);
+        }
+        else if (matchingMap != null)
+        {
+            UpdatePlayerStatsMaps(matchingMap);
         }
         else
         {
             Debug.LogError("No matching item found.");
         }
+    }
 
-        if (playerStatsManager.PurchasedAccessories.ContainsKey(matchingItem.Accessory))
+    private void UpdatePlayerStatsMaps(mapItemSO matchingItem)
+    {
+        if (matchingItem == null)
         {
-            playerStatsManager.PurchasedAccessories[matchingItem.Accessory]++;
+            Debug.LogError("UpdatePlayerStatsMaps failed: matchingItem is null.");
+            return;
+        }
+
+        if (playerStatsManager.PurchasedMaps.Contains(matchingItem))
+        {
+            GameObject.Find("GameplayHUD").transform.Find("WarningPopUp").GetComponent<WarningPopup>().DisplayWarning("You already have this item!");
         }
         else
         {
-            playerStatsManager.PurchasedAccessories.Add(matchingItem.Accessory, 1);
+            playerStatsManager.PurchasedMaps.Add(matchingItem);
+            ProcessPayment(matchingItem.Accessory);
         }
     }
+
+    private void UpdatePlayerStats(EquippableItemSO matchingItem)
+    {
+        if (matchingItem != null)
+        {
+            if (playerStatsManager.PurchasedAccessories.ContainsKey(matchingItem.Accessory))
+            {
+                playerStatsManager.PurchasedAccessories[matchingItem.Accessory]++;
+            }
+            else
+            {
+                playerStatsManager.PurchasedAccessories.Add(matchingItem.Accessory, 1);
+            }
+            ProcessPayment(matchingItem.Accessory);
+        }
+        else
+        {
+            Debug.LogError("No matching item found.");
+        }
+    }
+
+    private void ProcessPayment(AccessorySO type)
+    {
+        playerStatsManager.CurrentMoney -= type.cost;
+        playerStatsManager.TotalMoneySpent += type.cost;
+    }
+
 }

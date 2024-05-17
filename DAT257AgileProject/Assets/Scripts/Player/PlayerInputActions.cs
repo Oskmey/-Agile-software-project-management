@@ -65,7 +65,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Shop"",
+                    ""name"": ""Interact"",
                     ""type"": ""Button"",
                     ""id"": ""7281573c-7408-433e-a7bf-e5ad9d62ecfa"",
                     ""expectedControlType"": """",
@@ -170,7 +170,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Shop"",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -275,7 +275,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_Fish = m_Player.FindAction("Fish", throwIfNotFound: true);
         m_Player_Catch = m_Player.FindAction("Catch", throwIfNotFound: true);
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
-        m_Player_Shop = m_Player.FindAction("Shop", throwIfNotFound: true);
+        m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_HideTrashInfoPanel = m_UI.FindAction("HideTrashInfoPanel", throwIfNotFound: true);
@@ -352,7 +352,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Fish;
     private readonly InputAction m_Player_Catch;
     private readonly InputAction m_Player_Movement;
-    private readonly InputAction m_Player_Shop;
+    private readonly InputAction m_Player_Interact;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -361,7 +361,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Fish => m_Wrapper.m_Player_Fish;
         public InputAction @Catch => m_Wrapper.m_Player_Catch;
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
-        public InputAction @Shop => m_Wrapper.m_Player_Shop;
+        public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -383,9 +383,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Movement.started += instance.OnMovement;
             @Movement.performed += instance.OnMovement;
             @Movement.canceled += instance.OnMovement;
-            @Shop.started += instance.OnShop;
-            @Shop.performed += instance.OnShop;
-            @Shop.canceled += instance.OnShop;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -402,9 +402,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Movement.started -= instance.OnMovement;
             @Movement.performed -= instance.OnMovement;
             @Movement.canceled -= instance.OnMovement;
-            @Shop.started -= instance.OnShop;
-            @Shop.performed -= instance.OnShop;
-            @Shop.canceled -= instance.OnShop;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -490,7 +490,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnFish(InputAction.CallbackContext context);
         void OnCatch(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
-        void OnShop(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

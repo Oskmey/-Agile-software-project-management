@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Codice.Client.BaseCommands;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using static RecyclingMachine;
 
 public class PlayerController : MonoBehaviour, IDataPersistence<GameData>
@@ -16,19 +18,21 @@ public class PlayerController : MonoBehaviour, IDataPersistence<GameData>
     private RecyclingManager recyclingManager;
     private InputAction recycleAction;
     private InputAction fishingAction;
-    private InputAction shopAction;
-    private ShopManager shoppingManager;
+    private InputAction intractionAction;
     private PlayerInteraction playerInteraction;
 
     private PlayerStatsManager playerStatsManager;
 
-    private InputAction catchingAction; 
+    private InputAction catchingAction;
 
     private Minigame minigame;
 
     private bool canMove = true;
 
     private bool resultOfCatch;
+    private HashSet<Ainteractable> interactables = new HashSet<Ainteractable>();
+
+
 
     void Awake()
     {
@@ -37,8 +41,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence<GameData>
         recycleAction = GetComponent<PlayerInput>().actions["Recycle"];
         recyclingManager = FindObjectOfType<RecyclingManager>();
         fishingAction = GetComponent<PlayerInput>().actions["Fish"];
-        shopAction = GetComponent<PlayerInput>().actions["Shop"];
-        shoppingManager = FindObjectOfType<ShopManager>();
+        intractionAction = GetComponent<PlayerInput>().actions["Interact"];
         catchingAction = GetComponent<PlayerInput>().actions["Catch"];
         MinigameManager miniGameManager = FindObjectOfType<MinigameManager>(); 
 
@@ -62,7 +65,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence<GameData>
         movementAction.canceled += OnMovementStopped;
         recycleAction.performed += Recycle;
         fishingAction.performed += Fishing;
-        shopAction.performed += Shopping;
+        intractionAction.performed += Interact;
         catchingAction.performed += Catch;
     }
 
@@ -71,11 +74,11 @@ public class PlayerController : MonoBehaviour, IDataPersistence<GameData>
         movementAction.performed -= OnMovement;
         movementAction.canceled -= OnMovementStopped;
         recycleAction.performed -= Recycle;
-        shopAction.performed -= Shopping;
+        intractionAction.performed -= Interact;
         fishingAction.performed -= Fishing;
         catchingAction.performed -= Catch;
     }
-    
+
     // Test method to recycle trash due to no inventory system
     private void Recycle(InputAction.CallbackContext context)
     {
@@ -86,7 +89,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence<GameData>
     }
 
     private void Fishing(InputAction.CallbackContext context)
-    {   
+    {
         if (Time.timeScale > 0)
         {
             if (playerInteraction.currentFishingSpot != null)
@@ -94,24 +97,38 @@ public class PlayerController : MonoBehaviour, IDataPersistence<GameData>
                 canMove = false;
                 rb.velocity = Vector2.zero;
                 playerInteraction.currentFishingSpot.HandleMinigameStart();
-
             }
-        }     
+        }
     }
 
-    private void Shopping(InputAction.CallbackContext context)
-    {   
-        if (Time.timeScale > 0)
+    private void Interact(InputAction.CallbackContext context)
+    {
+        if (Time.timeScale > 0 && interactables != null)
         {
-            shoppingManager.ShopAtNearestSpot();
+            Ainteractable closestInteractable = null;
+            float smallestDistance = float.MaxValue;
+            foreach (Ainteractable interactable in interactables)
+            {
+                float distance = interactable.DistanceToPlayer();
+                if (distance < smallestDistance)
+                {
+                    smallestDistance = distance;
+                    closestInteractable = interactable;
+                }
+            }
+            if (closestInteractable != null)
+            {
+                closestInteractable.Interact();
+            }
         }
-
     }
 
     private void OnMovement(InputAction.CallbackContext value)
     {
-        if(canMove){
-        rb.velocity = value.ReadValue<Vector2>() * speed;}
+        if (canMove)
+        {
+            rb.velocity = value.ReadValue<Vector2>() * speed;
+        }
     }
 
     private void OnMovementStopped(InputAction.CallbackContext value)
@@ -138,17 +155,28 @@ public class PlayerController : MonoBehaviour, IDataPersistence<GameData>
                     playerInteraction.currentFishingSpot.OnMinigameLostHandler();
                 }
             }
-    
+
         }
+    }
+
+    public void AddInteractable(Ainteractable ainteractable)
+    {
+            interactables.Add(ainteractable);
+    }
+
+    public void RemoveInteractable(Ainteractable ainteractable)
+    {
+        interactables.Remove(ainteractable);
     }
 
     public void LoadData(GameData data)
     {
-        transform.position = data.PlayerPosition;
+        transform.position = data.GetPlayerPosition(SceneManager.GetActiveScene().name);
     }
 
     public void SaveData(GameData data)
     {
-        data.PlayerPosition = transform.position;
+        data.CurrentLevel = SceneManager.GetActiveScene().name;
+        data.SetPlayerPosition(SceneManager.GetActiveScene().name, transform.position);
     }
 }

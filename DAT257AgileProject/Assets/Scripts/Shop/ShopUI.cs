@@ -9,9 +9,9 @@ using UnityEngine.Experimental.AI;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class ShopUI : MonoBehaviour
+public class ShopUI : MonoBehaviour, IDataPersistence<GameData>
 {
-    private string worldSceneName = "First World";
+
     private Transform container;
     [SerializeField]
     private Transform shopItemTemplate;
@@ -40,25 +40,7 @@ public class ShopUI : MonoBehaviour
     [Header("Shop Items that the player can buy in this shop")]
     [SerializeField]
     private List<AccessorySO> shopingItems;
-
-
-    public string WorldSceneName
-    {
-        get { return worldSceneName; }
-        set
-        {
-            for (int i = 0; i < SceneManager.sceneCount; i++)
-            {
-                var scene = SceneManager.GetSceneAt(i);
-                if (scene.name == value)
-                {
-                    worldSceneName = value;
-                    return;
-                }
-            }
-            Debug.LogError("Scene with name " + value + " not found");
-        }
-    }
+    private string sceneName;
 
     void Awake()
     {
@@ -110,7 +92,7 @@ public class ShopUI : MonoBehaviour
     public void ExitShop()
     {
         DataPersistenceManager.Instance.SaveGame();
-        SceneManager.LoadSceneAsync(worldSceneName);
+        SceneManager.LoadSceneAsync(sceneName);
     }
 
 
@@ -119,6 +101,7 @@ public class ShopUI : MonoBehaviour
         int ShopItems = minItems;
         DateTime computerTime = DateTime.Now;
         int hour = computerTime.Hour;
+        int minute = (computerTime.Minute / 10) * 10; 
         if (hour % 6 == 0)
         {
             ShopItems = maxItems;
@@ -129,17 +112,17 @@ public class ShopUI : MonoBehaviour
         }
         for (int i = 0; i < ShopItems; i++)
         {
-            GenerateShopingItems(new System.Random(hour + i));
+            GenerateShopingItems(new System.Random(hour + i), new System.Random(minute + i));
         }
     }
 
-    private void GenerateShopingItems(System.Random hourSeed)
+    private void GenerateShopingItems(System.Random hourSeed, System.Random minuteSeed)
     {
         int rng = hourSeed.Next(0, 100);
         List<AccessorySO> items = shopingItems.Where(item => rng <= (int)item.rarity).ToList();// This takes the rarity of the item and compares it to the random number generated
         if (items.Any())
         {
-            AccessorySO item = items[hourSeed.Next(0, items.Count)];
+            AccessorySO item = items[minuteSeed.Next(0, items.Count)];
             CreateShopButton(item);
         }
         else
@@ -147,6 +130,16 @@ public class ShopUI : MonoBehaviour
             CreateShopButton(shopingItems[0]);
         }
 
+    }
+
+    public void LoadData(GameData data)
+    {
+        sceneName = data.CurrentLevel;
+    }
+
+    public void SaveData(GameData data)
+    {
+        // Unused in MainMenu
     }
 
 }

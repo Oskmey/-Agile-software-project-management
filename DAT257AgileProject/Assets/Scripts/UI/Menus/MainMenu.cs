@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MainMenu : MonoBehaviour, IMenuWithSettings, IMenuWithHowToPlay
+public class MainMenu : MonoBehaviour, IMenuWithSettings, IMenuWithHowToPlay, IDataPersistence<GameData>
 {
     [SerializeField]
     private Button newGameButton;
@@ -16,6 +16,7 @@ public class MainMenu : MonoBehaviour, IMenuWithSettings, IMenuWithHowToPlay
     private Button howToPlayButton;
 
     private SettingsMenu settingsMenu;
+    private string sceneName;
     private HowToPlayMenu howToPlayMenu;
 
     private void Start()
@@ -40,12 +41,12 @@ public class MainMenu : MonoBehaviour, IMenuWithSettings, IMenuWithHowToPlay
         LoadScene();
     }
 
-    private static void LoadScene()
+    private void LoadScene()
     {
         // Save game before loading scene. 
         DataPersistenceManager.Instance.SaveGame();
         // Loading the scene will load the game due to OnSceneLoaded in DataPersistenceManager.
-        SceneManager.LoadSceneAsync("First World");
+        SceneManager.LoadSceneAsync(sceneName);
     }
 
     public void OnContinueClicked()
@@ -82,4 +83,16 @@ public class MainMenu : MonoBehaviour, IMenuWithSettings, IMenuWithHowToPlay
     {
         return gameObject;
     }
+
+    public void LoadData(GameData data)
+    {
+        sceneName = data.CurrentLevel;
+        
+    }
+
+    public void SaveData(GameData data)
+    {
+        // Unused in MainMenu
+    }
+
 }
