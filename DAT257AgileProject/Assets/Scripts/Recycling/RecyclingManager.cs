@@ -10,7 +10,8 @@ public class RecyclingManager : MonoBehaviour
 {
     [SerializeField]
     private InventorySO playerInventory;
-
+    private bool isRecycling;
+    public bool IsRecycling => isRecycling;
     private IReadOnlyList<RecyclingMachine> recyclingMachines;
     private PlayerStatsManager playerStatsManager;
     private bool trashWasRecycled;
@@ -39,6 +40,7 @@ public class RecyclingManager : MonoBehaviour
     void Awake()
     {
         trashWasRecycled = false;
+        isRecycling = false;
         recyclingMachines = GetRecyclingMachines();
         playerStatsManager = FindObjectOfType<PlayerStatsManager>();
     }
@@ -50,6 +52,11 @@ public class RecyclingManager : MonoBehaviour
             if (recyclingMachine.IsPlayerInRange())
             {
                 List<TrashItemSO> trashToRecycle = playerInventory.GetAndRemoveRecyclableTrashItems();
+
+                if (trashToRecycle.Count != 0)
+                {
+                    StartCoroutine(RecyclingInteraction());
+                }
 
                 foreach (TrashItemSO trash in trashToRecycle)
                 {
@@ -91,5 +98,12 @@ public class RecyclingManager : MonoBehaviour
         }
 
         return recyclingMachines;
+    }
+
+    IEnumerator RecyclingInteraction()
+    {
+        isRecycling = true;
+        yield return new WaitForSeconds((float)0.5);
+        isRecycling = false;
     }
 }
