@@ -1,6 +1,7 @@
 using Inventory;
 using Inventory.Model;
 using Inventory.UI;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
@@ -37,6 +38,8 @@ public class GameStatsUI : MonoBehaviour
     private TextMeshProUGUI currentlyEquippedAccessoriesText;
     [SerializeField]
     private TextMeshProUGUI recycledTrashText;
+    [SerializeField]
+    private TextMeshProUGUI purchasedMapsText;
 
     [SerializeField]
     private Button backButton;
@@ -79,6 +82,7 @@ public class GameStatsUI : MonoBehaviour
         UpdateRecycledTrashInfo();
         UpdateTrashCaughtInfo();
         UpdateAccessoriesPurchasedInfo();
+        UpdateMapsPurchasedInfo();
     }
 
     private void BackToPauseMenu()
@@ -206,6 +210,32 @@ public class GameStatsUI : MonoBehaviour
         }
 
         currentInventoryItemsText.text = sb.ToString();
+    }
+
+    private void UpdateMapsPurchasedInfo()
+    {
+        List<mapItemSO> purchasedMaps = playerStatsManager.PurchasedMaps;
+        StringBuilder sb = new();
+        sb.Append("Purchased Maps:");
+        sb.AppendLine();
+
+        if (purchasedMaps.Count > 0)
+        {
+            foreach (var map in purchasedMaps)
+            {
+                if (map.Name != string.Empty)
+                {
+                    sb.Append($"• {map.Name}");
+                    sb.AppendLine();
+                }
+            }
+        }
+        else
+        {
+            sb.Append("None");
+            sb.AppendLine();
+        }
+        purchasedMapsText.text = sb.ToString();
     }
 
     private void UpdateAccessoryInfo()
