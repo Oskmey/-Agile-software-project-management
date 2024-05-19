@@ -216,7 +216,7 @@ public class GameStatsUI : MonoBehaviour
     {
         List<mapItemSO> purchasedMaps = playerStatsManager.PurchasedMaps;
         StringBuilder sb = new();
-        sb.Append("Purchased Maps:");
+        sb.Append("Maps Owned:");
         sb.AppendLine();
 
         if (purchasedMaps.Count > 0)
