@@ -722,15 +722,15 @@ PrefabInstance:
     - target: {fileID: 5018870901405522255, guid: f08559c084d56ee4c94dd4ec452a1f7a, type: 3}
       propertyPath: shopingItems.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: b770356362cefff49914dc8a99a81de4, type: 2}
+      objectReference: {fileID: 11400000, guid: d7b6c661258cab14899bdb62bf17706a, type: 2}
     - target: {fileID: 5018870901405522255, guid: f08559c084d56ee4c94dd4ec452a1f7a, type: 3}
       propertyPath: shopingItems.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: f04b20c8d26e9af42ac50411d981df58, type: 2}
+      objectReference: {fileID: 11400000, guid: b770356362cefff49914dc8a99a81de4, type: 2}
     - target: {fileID: 5018870901405522255, guid: f08559c084d56ee4c94dd4ec452a1f7a, type: 3}
       propertyPath: shopingItems.Array.data[2]
       value: 
-      objectReference: {fileID: 11400000, guid: d7b6c661258cab14899bdb62bf17706a, type: 2}
+      objectReference: {fileID: 11400000, guid: f04b20c8d26e9af42ac50411d981df58, type: 2}
     - target: {fileID: 5230688703787899957, guid: f08559c084d56ee4c94dd4ec452a1f7a, type: 3}
       propertyPath: m_Spacing.x
       value: 15
