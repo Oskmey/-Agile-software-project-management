@@ -1,4 +1,4 @@
-# DAT257, Agile software project management
+# DAT257 - Agile software project management
  This is our (Project Team 18) project and GitHub repository for Agile software project management, DAT257, a course at Chalmers University.
  
 ## Structure
