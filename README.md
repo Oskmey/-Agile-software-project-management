@@ -3,7 +3,7 @@
  
 ## Structure
 ### Running the project
-This a Unity project, a game made with the Unity game engine, so it will be made to fit what the structured is required for it to run in the Unity Editor. To see the source of the code go into [DAT257AgileProject](https://github.com/Oskmey/-Agile-software-project-management/tree/main/DAT257AgileProject), that folder will contain source code and more. 
+This a Unity project, a game made with the Unity game engine, so it will be made to fit the structure that is required for it to function in the Unity Editor. To see the source of the code go into [DAT257AgileProject](https://github.com/Oskmey/-Agile-software-project-management/tree/main/DAT257AgileProject), that folder will contain source code and more. 
 
 To run the project you will need to have Unity installed. The Unity Editor version for this project is 2022.3.23f1 LTS. When you have Unity installed, clone the repository and add the Unity Project via the Unity Hub application. 
 
