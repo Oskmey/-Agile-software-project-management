@@ -1,9 +1,17 @@
 # DAT257, Agile software project management
  This is our (Project Team 18) project for Agile software project management, DAT257, a course at Chalmers University. This is a Unity project, a game made with the Unity game engine.
+ 
 ## Structure
+This a Unity project so it will be made to fit what the structured is required for it to run in the Unity Editor. To see the source of the code go into [DAT257AgileProject](https://github.com/Oskmey/-Agile-software-project-management/tree/main/DAT257AgileProject), that folder will contain source code and more. 
+
+### Running the project
+To run the project you will need to have Unity installed. The Unity Editor version for this project is 2022.3.23f1 LTS. Then clone the repository and add the Unity Project via the Unity Hub application. 
+
+### Tests
+Go to [DAT257AgileProject/Assets/Tests](https://github.com/Oskmey/-Agile-software-project-management/tree/main/DAT257AgileProject/Assets/Tests) and under the folders [EditMode](https://github.com/Oskmey/-Agile-software-project-management/tree/main/DAT257AgileProject/Assets/Tests/EditMode) and [PlayMode](https://github.com/Oskmey/-Agile-software-project-management/tree/main/DAT257AgileProject/Assets/Tests/PlayMode) we have the tests, where mostly Unit Tests will be under the EditMode folder, because they do not need to be at run time to execute. 
 
 ### Running the application
-To run our game application look at what is the latest release under [releases](https://github.com/Oskmey/-Agile-software-project-management/releases) for GitHub repository.
+To run our game application look at what is the latest release under [releases](https://github.com/Oskmey/-Agile-software-project-management/releases) for GitHub repository. Note that the most viable platform to run this application would be on Windows.
 
 ### Kanban board
 To see our [kanban board](https://github.com/users/Oskmey/projects/5) look under projects for the GitHub repository.
