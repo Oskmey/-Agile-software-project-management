@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b477336d77cce6e4dabb83f76a365353, type: 3}
   m_Name: SavannahTravelObject
   m_EditorClassIdentifier: 
-  accessoryName: Savannah
+  accessoryName: Savannah Ticket
   cost: 500
   sprite: {fileID: 21300000, guid: 03fef0ec86498604e98247ebcdef89f8, type: 3}
   rarity: 30
