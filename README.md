@@ -1,5 +1,13 @@
 # DAT257, Agile software project management
- This is our (Project Team 18) project for Agile software project management, DAT257, a course at Chalmers University.
+ This is our (Project Team 18) project for Agile software project management, DAT257, a course at Chalmers University. This is a Unity project, a game made with the Unity game engine.
+## Structure
+
+### Running the application
+To run our game application look at what is the latest release under [releases](https://github.com/Oskmey/-Agile-software-project-management/releases) for GitHub repository.
+
+### Kanban board
+To see our [kanban board](https://github.com/users/Oskmey/projects/5) look under projects for the GitHub repository.
+
 ## Authors 
 * Aron Lund - [AronLundh](https://github.com/AronLundh)
 * David Memedov – [Caramajau](https://github.com/Caramajau)
