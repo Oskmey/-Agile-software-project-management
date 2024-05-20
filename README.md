@@ -6,3 +6,9 @@
 [Cat character](https://cupnooble.itch.io/sprout-lands-asset-pack) by [Cup Nooble](https://cupnooble.itch.io/). Free to download.
 
 Some of the music (themes for World and Main Menu) we have is custom-made by someone outside of our group, Alfred Young.
+
+[Buy item sound effect](https://studio.youtube.com/channel/UCiCLS2MXCzBK_IIq0k31DrA/music).
+
+[Fishing sound effects](https://sfxr.me/).
+
+[Slider sound effect](https://freesound.org/people/abstraktgeneriert/sounds/233607/). We modified this.
