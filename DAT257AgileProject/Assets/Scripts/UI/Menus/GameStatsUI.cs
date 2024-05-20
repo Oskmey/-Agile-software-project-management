@@ -225,7 +225,8 @@ public class GameStatsUI : MonoBehaviour
             {
                 if (map.Name != string.Empty)
                 {
-                    sb.Append($"• {map.Name}");
+                    string nameWithoutTicket = map.Name.Replace(" Ticket", string.Empty);
+                    sb.Append($"• {nameWithoutTicket}");
                     sb.AppendLine();
                 }
             }
