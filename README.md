@@ -27,7 +27,7 @@ We have a [wiki page](https://github.com/Oskmey/-Agile-software-project-manageme
 ## Authors 
 * Aron Lund - [AronLundh](https://github.com/AronLundh)
 * David Memedov – [Caramajau](https://github.com/Caramajau)
-* Edgar Young - [FIger-op](https://github.com/Figer-op)
+* Edgar Young - [Figer-op](https://github.com/Figer-op)
 * Herman Forsberg - [HermanForsberg](https://github.com/HermanForsberg)
 * Hugo Unosson - [HugoUnosson](https://github.com/HugoUnosson)
 * Linus Karlsson – [linuskar](https://github.com/linuskar)
