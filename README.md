@@ -16,6 +16,9 @@ To run our game application look at what is the latest release under [releases](
 ### Kanban board
 To see our [kanban board](https://github.com/users/Oskmey/projects/5) look under projects for the GitHub repository.
 
+### Documents
+Go to [Documents](https://github.com/Oskmey/-Agile-software-project-management/tree/bug_fixing_v2/Documents) to see some our documents.
+
 ### Wiki
 We have a [wiki page](https://github.com/Oskmey/-Agile-software-project-management/wiki) for the GitHub repository. There you can find additonal information.
 
