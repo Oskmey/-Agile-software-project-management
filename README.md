@@ -1,5 +1,15 @@
-# Agile-software-project-management
- This is our project for Agile software project management, DAT257, a course at Chalmers University.
+# DAT257, Agile software project management
+ This is our (Project Team 18) project for Agile software project management, DAT257, a course at Chalmers University.
+## Authors 
+* Aron Lund - [AronLundh](https://github.com/AronLundh)
+* David Memedov – [Caramajau](https://github.com/Caramajau)
+* Edgar Young - [FIger-op](https://github.com/Figer-op)
+* Herman Forsberg - [HermanForsberg](https://github.com/HermanForsberg)
+* Hugo Unosson - [HugoUnosson](https://github.com/HugoUnosson)
+* Linus Karlsson – [linuskar](https://github.com/linuskar)
+* Ludwig Alexandersson - [ludwigal](https://github.com/ludwigal)
+* Oskar Meyer - [Oskmey](https://github.com/Oskmey)
+
 ## Credits (assets not made by us)
 [Basic Tileset and Asset Pack 32x32 Pixels](https://schwarnhild.itch.io/basic-tileset-and-asset-pack-32x32-pixels) by [schwarnhild](https://schwarnhild.itch.io/) modifications to the asset where made. Under a royalty-free license.
 
