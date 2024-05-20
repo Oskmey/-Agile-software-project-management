@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de5788d681e1af74d80d7818dd2cb667, type: 3}
-  m_Name: Egg
+  m_Name: Speed Egg
   m_EditorClassIdentifier: 
   <IsStackable>k__BackingField: 1
   <MaxStackSize>k__BackingField: 1
-  <Description>k__BackingField: Is an Egg
+  <Description>k__BackingField: Is a speedy egg
   <ItemImage>k__BackingField: {fileID: 21300000, guid: 2dc8a4d3440132a4b9a0099214c27ddc, type: 3}
   <DefaultParametersList>k__BackingField: []
   accessory: {fileID: 11400000, guid: b770356362cefff49914dc8a99a81de4, type: 2}

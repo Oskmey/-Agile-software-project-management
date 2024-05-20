@@ -17,7 +17,12 @@ public class PlayerStatsManager : MonoBehaviour, IDataPersistence<GameData>
     private void Start()
     {
         mapItemSO firstWorldMap = Resources.Load<mapItemSO>("ScriptableObjects/Items/MapItem/World 1 ticket");
-        if(!PurchasedMaps.Contains(firstWorldMap))
+        if (PurchasedMaps == null)
+        {
+            PurchasedMaps = new List<mapItemSO>();
+        }
+
+        if (!PurchasedMaps.Contains(firstWorldMap))
         {
             PurchasedMaps.Add(firstWorldMap);
         }

@@ -170,12 +170,22 @@ public class PlayerController : MonoBehaviour, IDataPersistence<GameData>
 
     public void LoadData(GameData data)
     {
-        transform.position = data.GetPlayerPosition(SceneManager.GetActiveScene().name);
+        string sceneName = SceneManager.GetActiveScene().name;
+
+        if (!sceneName.Contains("Test"))
+        {
+            transform.position = data.GetPlayerPosition(sceneName);
+        }
     }
 
     public void SaveData(GameData data)
     {
         data.CurrentLevel = SceneManager.GetActiveScene().name;
-        data.SetPlayerPosition(SceneManager.GetActiveScene().name, transform.position);
+        string sceneName = SceneManager.GetActiveScene().name;
+
+        if (!sceneName.Contains("Test"))
+        {
+            data.SetPlayerPosition(sceneName, transform.position);
+        }     
     }
 }

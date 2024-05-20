@@ -20,4 +20,4 @@ MonoBehaviour:
   mapSprite: {fileID: 21300000, guid: 2d1e9dedc14c620458c3fa3174df176e, type: 3}
   sceneName: First World
   mapName: Grassy Grove
-  accessory: {fileID: 0}
+  accessory: {fileID: 11400000, guid: 0caab2cb8bf79e4429ba81ec5901486d, type: 2}

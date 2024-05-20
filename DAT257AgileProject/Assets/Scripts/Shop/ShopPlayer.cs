@@ -105,5 +105,4 @@ public class ShopPlayer : MonoBehaviour
         playerStatsManager.CurrentMoney -= type.cost;
         playerStatsManager.TotalMoneySpent += type.cost;
     }
-
 }
