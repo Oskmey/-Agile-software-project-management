@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b477336d77cce6e4dabb83f76a365353, type: 3}
-  m_Name: Egg
+  m_Name: Money Egg
   m_EditorClassIdentifier: 
-  accessoryName: Speed Egg
-  cost: 20
-  sprite: {fileID: 21300000, guid: 2dc8a4d3440132a4b9a0099214c27ddc, type: 3}
-  rarity: 50
+  accessoryName: Money Egg
+  cost: 100
+  sprite: {fileID: 21300000, guid: 8fcd1ca3dc1e4294dbade2f76c2bab2d, type: 3}
+  rarity: 15
   accessoryEffects:
-  - {fileID: 11400000, guid: 04e30a241610a5c4da1593ce9b3d09f0, type: 2}
+  - {fileID: 11400000, guid: 4970c35ced26da64e929b26c8eaa896e, type: 2}
